@@ -1,0 +1,109 @@
+footer, nav, section, article, aside {
+
+    display: block;
+
+}
+
+header {
+
+    padding: 1em;
+    color: #ffffff;
+    background-color: #028ff3;
+    clear: left;
+    text-align: center;
+}
+
+body {
+
+    color: #000000;
+    background-color: #e9eef5;
+    font-family: Calibri, Arial, sans-serif;
+}
+
+.program-box a {
+
+    text-decoration: none;
+
+}
+
+.container {
+
+    background-color: #ffffff;
+
+}
+
+.jumbotron {
+
+    background-color: #028ff3;
+    text-align: center;
+    padding: 15px;
+
+}
+
+.jumbotron h1 {
+
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #000000;
+}
+
+.row {
+
+    margin: 0;
+
+}
+
+.panel-heading h2 {
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+
+.panel-group .panel {
+
+    margin-bottom: 20px;
+
+}
+
+button a {
+
+    color: #ffffff;
+
+}
+
+body footer {
+
+    padding: 1em;
+    color: #ffffff;
+    background-color: #028ff3;
+    text-align: center;
+    margin-top: 0;
+
+}
+
+.panel-heading h3 {
+
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 1.3em;
+
+}
+
+
+@media print {
+
+    .jumbotron header {
+
+        display: none;
+
+    }
+
+    footer {
+
+        display: none;
+
+    }
+
+
+}

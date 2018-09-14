@@ -28,3 +28,5 @@
 |09/09/2018|Exercise 2 "mental gymnastics" to get 100% code coverage|2|
 |09/09/2018|Reconfigured the indie project maven project because the first one did not work|2|
 |09/09/2018|Watched week 3 videos|.8|
+|09/11/2018|Watched the rest of videos, started week 3 activity|1|
+|09/13/2018|Did Exercise 3 |2|
