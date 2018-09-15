@@ -6,6 +6,11 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="studentNavbar.jsp"/>
+        <div class="col-sm-12">
+            <h3>
+                Rabbit Quick
+            </h3>
+        </div>
         <div class="col-sm-3">
            <img id="userPhoto" src="images/userPhotos/rabbit.jpg">
         </div>
@@ -32,12 +37,6 @@
             </div>
         </div>
 
-        <div class="col-sm-12">
-            <h3>
-                Rabbit Quick
-            </h3>
-        </div>
-
         <div class="scrollbar scrollbar-deep-blue col-sm-9">
             <div class="force-overflow">
                 <table class="table">
@@ -56,6 +55,7 @@
                 </table>
             </div>
         </div>
+        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

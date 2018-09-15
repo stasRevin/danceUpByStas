@@ -35,6 +35,7 @@ function addInstructorsDetails() {
         label.appendChild(labelValue);
         inputDiv.className = "col-sm-6";
         input.className = "form-control";
+        input.name = "ratePerLesson";
         input.type = "text";
         input.id = "instructorsRate";
 
@@ -55,3 +56,4 @@ function removeInstructorsDetails() {
         form.removeChild(formGroupDiv);
     }
 }
+
