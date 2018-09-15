@@ -32,25 +32,29 @@
             </div>
         </div>
 
-        <div class="col-sm-3">
-            <h4>
-                Username: rabbit4ever
-            </h4>
-            <h4>
-                First name: Rabbit
-            </h4>
-            <h4>
-                Last name: Quick
-            </h4>
+        <div class="col-sm-12">
+            <h3>
+                Rabbit Quick
+            </h3>
         </div>
 
-        <div class="col-sm-7">
-            <table>
-                <tr>
-                    <th>Upcoming Lessons</th>
-                </tr>
-
-            </table>
+        <div class="scrollbar scrollbar-deep-blue col-sm-9">
+            <div class="force-overflow">
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Upcoming Lessons</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Example</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Example</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

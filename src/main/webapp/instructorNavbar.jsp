@@ -10,10 +10,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/studentViewProfile">View Profile</a></li>
-                <li><a href="/studentProfileUpdate">Update Profile</a></li>
+                <li><a href="/instructorViewProfile">View Profile</a></li>
+                <li><a href="/instructorProfileUpdate">Update Profile</a></li>
                 <li><a href="/notificaitons">Notifications<span class="badge badge-warning">4</span></a></li>
-                <li><a href="/instructors">Instructors</a></li>
+                <li><a href="/students">Students</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logOutConfirmation"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
