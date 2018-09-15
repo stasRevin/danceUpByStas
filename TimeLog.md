@@ -30,3 +30,6 @@
 |09/09/2018|Watched week 3 videos|.8|
 |09/11/2018|Watched the rest of videos, started week 3 activity|1|
 |09/13/2018|Did Exercise 3 |2|
+|09/14/2018|Set-up Tomcat Realm |1|
+|09/14/2018|Created database |.5|
+|09/14/2018|Worked on JSP pages |6|
