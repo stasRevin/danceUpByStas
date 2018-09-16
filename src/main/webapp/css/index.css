@@ -1,3 +1,5 @@
+/* Got textures from here: https://www.transparenttextures.com*/
+
 footer, nav, section, article, aside {
 
     display: block;
@@ -8,15 +10,18 @@ header {
 
     padding: 1em;
     color: #ffffff;
-    background-color: #028ff3;
+    background-color: #E9633B;
+    background-image: url("../images/beige-paper.png");
     clear: left;
     text-align: center;
+    border-radius: 20px;
 }
 
 body {
 
     color: #000000;
-    background-color: #e9eef5;
+    background-color: #221E1D;
+    background-image: url("../images/concrete-wall.png");
     font-family: Calibri, Arial, sans-serif;
 }
 
@@ -28,15 +33,18 @@ body {
 
 .container {
 
-    background-color: #ffffff;
+    background-color: #ECEAE0;
+    background-image: url("../images/beige-paper.png");
 
 }
 
 .jumbotron {
 
-    background-color: #028ff3;
+    background-color: #221E1D;
+    background-image: url("../images/concrete-wall.png");
     text-align: center;
     padding: 15px;
+    font-family: "Arial Black";
 
 }
 
@@ -45,12 +53,13 @@ body {
     font-size: 35px;
     font-weight: 500;
     line-height: 1.1;
-    color: #000000;
+    font-family: "Arial Black";
 }
 
 .row {
 
     margin: 0;
+
 
 }
 
@@ -73,13 +82,22 @@ button a {
 
 }
 
+.btn-primary {
+
+    background-color: #63AA9C;
+
+}
+
 body footer {
 
     padding: 1em;
     color: #ffffff;
-    background-color: #028ff3;
+    background-color:  #63AA9C;
+    background-image: url("../images/beige-paper.png");
     text-align: center;
     margin-top: 0;
+    border-radius: 10px;
+
 
 }
 
@@ -132,7 +150,22 @@ body footer {
     margin-bottom: 20%;
 }
 
+.container-fluid {
 
+    background-image: url("../images/cross-stripes.png");
+}
+
+
+.panel-default > .panel-heading {
+
+    background-color:  #63AA9C;
+}
+
+.panel-primary > .panel-heading {
+
+
+    background-color:  #63AA9C;
+}
 
 @media print {
 

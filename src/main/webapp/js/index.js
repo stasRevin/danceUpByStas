@@ -58,6 +58,6 @@ function removeInstructorsDetails() {
 }
 
 $( function() {
-    $( "#datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker();
 } );
 

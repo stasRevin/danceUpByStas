@@ -34,3 +34,4 @@
 |09/14/2018|Created database |.5|
 |09/14/2018|Worked on JSP pages |6|
 |09/15/2018|Worked on JSP pages |8|
+|09/16/2018|Web Design of JSP pages |3|

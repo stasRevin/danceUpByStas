@@ -10,6 +10,10 @@
             <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
         <br/><br/>
+        <div style="float:right">
+            <a class="btn btn-primary" href="/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
+        </div>
+        <br/><br/>
         <br/><br/>
         <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
