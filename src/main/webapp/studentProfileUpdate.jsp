@@ -6,6 +6,10 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
 <jsp:include page="studentNavbar.jsp"/>
+<div style="float:right">
+    <a class="btn btn-primary" href="/updateStudentDances.jsp" role="button">Update My Dances</a>
+</div>
+<br/><br/>
 <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">
     <div class="form-group" style="margin-left: 24%">
         <div class="col-sm-3">
@@ -147,67 +151,12 @@
             <input class="form-control" type="password" name="passwordConfirmation">
         </div>
     </div>
-    <div class="col-sm-6 dancePanel">
-        <div class="panel panel-default">
-            <div class="panel-heading">My Current Dances</div>
-            <div class="scrollbar scrollbar-deep-blue">
-                <div class="force-overflow">
-                    <table class="table">
-                        <tr><th>Dance</th><th>Check to Delete a Dance</th></tr>
-                        <tr><td>E.C. Swing</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Waltz</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Salsa</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Tango</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Cha Cha</td><td><input type="checkbox"></td></tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 dancePanel">
-        <div class="panel panel-default">
-            <div class="panel-heading">Add a New Dance</div>
-            <div class="scrollbar scrollbar-deep-blue">
-                <div class="force-overflow">
-                    <table class="table">
-                        <tr><th>Dance</th><th>Check to Add a Dance</th></tr>
-                        <tr><td>E.C. Swing</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Waltz</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Salsa</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Tango</td><td><input type="checkbox"></td></tr>
-                        <tr><td>Cha Cha</td><td><input type="checkbox"></td></tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-sm-6 dancePanel">
-        <div class="panel panel-default">
-            <div class="panel-heading">Dance Proficiency Level</div>
-            <div class="scrollbar scrollbar-deep-blue">
-                <div class="force-overflow">
-                    <table class="table">
-                        <tr><th>Dance</th><th>Proficiency</th></tr>
-                        <tr><td>E.C. Swing</td><td><input type="text" name="danceProficiency" placeholder="1-100"></td></tr>
-                        <tr><td>Waltz</td><td><input type="text" name="danceProficiency" placeholder="1-100"></td></tr>
-                        <tr><td>Salsa</td><td><input type="text" name="danceProficiency" placeholder="1-100"></td></tr>
-                        <tr><td>Tango</td><td><input type="text" name="danceProficiency" placeholder="1-100"></td></tr>
-                        <tr><td>Cha Cha</td><td><input type="text" name="danceProficiency" placeholder="1-100"></td></tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
             <button class="btn btn-primary" type="button" class="btn btn-default">Update</button>
             <button class="btn btn-primary" type="reset" class="btn btn-default">Clear</button>
         </div>
     </div>
-
 </form>
 <jsp:include page="footer.jsp"/>
 </div>

@@ -7,8 +7,10 @@
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div style="float:right">
-            <a class="btn btn-primary" href="#" role="button">Update My Dances</a>
+            <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
+        <br/><br/>
+        <br/><br/>
         <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">

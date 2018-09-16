@@ -5,15 +5,15 @@
 <div class="container">
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
-        <jsp:include page="instructorNavbar.jsp"/>
-            <div style="float:right">
-                <a class="btn btn-primary" href="instructorProfileUpdate.jsp" role="button">Update My Profile</a>
-            </div>
+        <jsp:include page="studentNavbar.jsp"/>
+        <div style="float:right">
+            <a class="btn btn-primary" href="/studentProfileUpdate.jsp" role="button">Update My Profile</a>
+        </div>
         <br/><br/>
         <form class="form-horizontal" id="multipleForm" action="#" method="post">
             <div class="col-sm-6 dancePanel">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dances I Teach</div>
+                    <div class="panel-heading">Delete Dances</div>
                     <div class="scrollbar scrollbar-deep-blue">
                         <div class="force-overflow">
                             <table class="table">
@@ -42,12 +42,12 @@
                     <div class="scrollbar scrollbar-deep-blue">
                         <div class="force-overflow">
                             <table class="table">
-                                <tr><th>Dance</th><th>Check to Add a Dance</th><th>Experience (years)</th></tr>
-                                <tr><td>E.C. Swing</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addDanceExperience" placeholder="1"></td></tr>
-                                <tr><td>Waltz</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addDanceExperience" placeholder="1"></td></tr>
-                                <tr><td>Salsa</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="danceExperience" placeholder="1"></td></tr>
-                                <tr><td>Tango</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="danceExperience" placeholder="1"></td></tr>
-                                <tr><td>Cha Cha</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="danceExperience" placeholder="1"></td></tr>
+                                <tr><th>Dance</th><th>Check to Add a Dance</th><th>Learning Proficiency level</th></tr>
+                                <tr><td>E.C. Swing</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Waltz</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Salsa</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Tango</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Cha Cha</td><td><input type="checkbox" name="addDance" value="danceId"></td><td><input type="text" name="addStudentProficiency(danceID)" placeholder="1-100"></td></tr>
                             </table>
                         </div>
                     </div>
@@ -60,20 +60,19 @@
                 </div>
             </div>
         </form>
-
         <form class="form-horizontal" id="multipleForm" action="#" method="post">
             <div class="col-sm-6 dancePanel">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dance Experience</div>
+                    <div class="panel-heading">Dance Learning Proficiency</div>
                     <div class="scrollbar scrollbar-deep-blue">
                         <div class="force-overflow">
                             <table class="table">
-                                <tr><th>Dance</th><th>Experience (years)</th></tr>
-                                <tr><td>E.C. Swing</td><td><input type="text" name="updateDanceExperience(danceID)" placeholder="1"></td></tr>
-                                <tr><td>Waltz</td><td><input type="text" name="updateDanceExperience(danceID)" placeholder="2"></td></tr>
-                                <tr><td>Salsa</td><td><input type="text" name="updateDanceExperience(danceID)" placeholder="3"></td></tr>
-                                <tr><td>Tango</td><td><input type="text" name="updateDanceExperience(danceID)" placeholder="4"></td></tr>
-                                <tr><td>Cha Cha</td><td><input type="text" name="updateDanceExperience(danceID)" placeholder="5"></td></tr>
+                                <tr><th>Dance</th><th>Learning Proficiency Level</th></tr>
+                                <tr><td>E.C. Swing</td><td><input type="text" name="updateStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Waltz</td><td><input type="text" name="updateStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Salsa</td><td><input type="text" name="updateStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Tango</td><td><input type="text" name="updateStudentProficiency(danceID)" placeholder="1-100"></td></tr>
+                                <tr><td>Cha Cha</td><td><input type="text" name="updateStudentProficiency(danceID)" placeholder="1-100"></td></tr>
                             </table>
                         </div>
                     </div>
@@ -87,7 +86,7 @@
             </div>
         </form>
         <jsp:include page="footer.jsp"/>
-</div>
+    </div>
 </div>
 </body>
 </html>

@@ -127,6 +127,11 @@ body footer {
     min-height: 450px;
 }
 
+.short-page {
+
+    margin-bottom: 20%;
+}
+
 
 
 @media print {

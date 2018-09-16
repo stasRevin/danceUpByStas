@@ -57,3 +57,7 @@ function removeInstructorsDetails() {
     }
 }
 
+$( function() {
+    $( "#datepicker" ).datepicker();
+} );
+

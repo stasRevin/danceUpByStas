@@ -11,7 +11,6 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="">About Dances</a></li>
-                <li><a>Why DanceUp?</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/signUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

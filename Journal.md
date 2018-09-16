@@ -24,3 +24,8 @@ Tasks Completed:
 * Completed all week 2 activities.
 
 What a week! How do you test IOException after InputOutputException to achieve 100% line coverage?
+
+### Week 1
+09/15/2018
+
+Check out password encryption API here https://www.programmableweb.com/sdk/dracoon-crypto-java-sdk
