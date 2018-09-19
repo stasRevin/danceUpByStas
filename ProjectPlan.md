@@ -10,7 +10,6 @@
 6. Create a servlet to login
 7. Create a servlet to view student page
 8. Create a servlet to view instructor page
-9. Create required unit tests
 
 ### Week 4
 1. Implement logic to schedule a lesson
