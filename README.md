@@ -27,13 +27,9 @@ In the era of a so called gig economy, a number of applications has emerged to a
 * Unit Testing
   * JUnit tests to achieve 80% code coverage
 
-### Design
-*
-*
-*
 
 ### [Project Plan](ProjectPlan.md)
-* [Screen Design](DesignDocuments/Screens.md)
+* [Screen Design](DesignDocuments/wireframes/images/)
 * [Application Flow](DesignDocuments/applicationFlow.md)
 * [Database Design](DesignDocuments/ERD.JPEG)
 
