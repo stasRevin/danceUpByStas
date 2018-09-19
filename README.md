@@ -15,7 +15,7 @@ In the era of a so called gig economy, a number of applications has emerged to a
 * ORM Framework
   * Hibernate
 * Web Services or APIs
-  * Google Maps for dance lesson location
+  * Zip Code Radius
 * Data Validation
   * jQuery validator
 * Logging
