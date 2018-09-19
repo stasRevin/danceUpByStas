@@ -1,4 +1,4 @@
-# Project Plan
+# Project Plan (More of a goal)
 
 ### Week 3
 1. Implement Hibernate into the project
