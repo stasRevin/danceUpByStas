@@ -35,6 +35,6 @@ In the era of a so called gig economy, a number of applications has emerged to a
 ### [Project Plan](ProjectPlan.md)
 * [Screen Design](DesignDocuments/Screens.md)
 * [Application Flow](DesignDocuments/applicationFlow.md)
-* [Database Design](DesignDocuments/databaseDiagram.png)
+* [Database Design](DesignDocuments/ERD.JPEG)
 
 ### [Development Journal](Journal.md)
