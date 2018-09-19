@@ -35,3 +35,6 @@
 |09/14/2018|Worked on JSP pages |6|
 |09/15/2018|Worked on JSP pages |8|
 |09/16/2018|Web Design of JSP pages |3|
+|09/16/2018|Watched Hibernate video tutorial and started reading tutorial. |.5|
+|09/18/2018|Project plan |.5|
+|09/18/2018|Videos |.5|
