@@ -34,4 +34,8 @@ Tasks Completed:
 1. Did all html pages
 2. Set up database
 3. Set up Tomcat authentication for one page
+TODO
+1. Add distance to lesson location on JSP page
+2. Change the update interface
+
 
