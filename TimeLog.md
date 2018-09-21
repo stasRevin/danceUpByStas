@@ -38,3 +38,4 @@
 |09/16/2018|Watched Hibernate video tutorial and started reading tutorial. |.5|
 |09/18/2018|Project plan |.5|
 |09/18/2018|Videos |.5|
+|09/20/2018|Hibernate troubleshooting + videos |4|
