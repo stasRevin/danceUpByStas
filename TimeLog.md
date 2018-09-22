@@ -39,3 +39,5 @@
 |09/18/2018|Project plan |.5|
 |09/18/2018|Videos |.5|
 |09/20/2018|Hibernate troubleshooting + videos |4|
+|09/21/2018|Professional Development Project |5|
+|09/21/2018|Implementing Hibernate into project |3|
