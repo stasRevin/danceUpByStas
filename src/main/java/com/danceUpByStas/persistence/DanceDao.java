@@ -26,16 +26,9 @@ public class DanceDao {
 
     public int insert(Dance dance) {
 
-        int id = 0;
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        id = (int) session.save(dance);
-        transaction.commit();
-        session.close();
-        return id;
+        return genericDao.insert(dance);
 
     }
-
 
     public List<Dance> getAllDances() {
 
@@ -50,11 +43,7 @@ public class DanceDao {
 
     public void saveOrUpdate(Dance dance) {
 
-        Session session = getSession();
-        session.beginTransaction();
-        session.saveOrUpdate(dance);
-        session.getTransaction().commit();
-        session.close();
+        genericDao.saveOrUpdate(dance);
     }
 
     public void deleteDance(Dance dance) {

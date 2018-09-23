@@ -16,7 +16,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class UserRoleDao {
-/*
+
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
     GenericDao<UserRole> genericDao;
@@ -75,5 +75,5 @@ public class UserRoleDao {
         return sessionFactory.openSession();
 
     }
-*/
+
 }

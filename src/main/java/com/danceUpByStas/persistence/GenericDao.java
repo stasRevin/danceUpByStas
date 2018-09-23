@@ -59,6 +59,37 @@ public class GenericDao<T> {
 
     }
 
+    public int insert(T entity) {
+
+        int id = 0;
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        id = (int)session.save(entity);
+        transaction.commit();
+        session.close();
+        return  id;
+
+    }
+
+    public void saveOrUpdate(T entity) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(entity);
+        transaction.commit();
+        session.close();
+    }
+
+    public Class<T> insertManyToMany(T entity) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        Class<T> insertedEntity = (Class<T>)session.save(entity);
+        transaction.commit();
+        session.close();
+        return insertedEntity;
+    }
+
 
     private Session getSession() {
 
