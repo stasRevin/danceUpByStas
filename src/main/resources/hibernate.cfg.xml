@@ -20,6 +20,7 @@
         <mapping class="com.danceUpByStas.entity.User"/>
         <mapping class="com.danceUpByStas.entity.Role"/>
         <mapping class="com.danceUpByStas.entity.UserRole"/>
+        <mapping class="com.danceUpByStas.entity.UserDance"/>
 
 
     </session-factory>

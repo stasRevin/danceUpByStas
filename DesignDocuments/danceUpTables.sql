@@ -127,8 +127,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`User_Dance`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `User_Dance` (
-  `experience_years` INT NOT NULL,
-  `learning_proficiency` INT NOT NULL,
+  `experience_years` INT NULL,
+  `learning_proficiency` INT NULL,
   `user_id` INT NOT NULL,
   `dance_id` INT NOT NULL,
   PRIMARY KEY (`user_id`, `dance_id`),

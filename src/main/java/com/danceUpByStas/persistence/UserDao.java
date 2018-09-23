@@ -1,6 +1,7 @@
 package com.danceUpByStas.persistence;
 
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -70,6 +71,27 @@ public class UserDao {
         query.select(root).where(builder.equal(root.get(propertyName), value));
         List<User> users = session.createQuery(query).getResultList();
         session.close();
+        return users;
+
+    }
+
+    public List<User> getInstructorsByProperty(String property, String value) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        /*
+        query.select(root).where(builder
+                          .and(builder
+                          .equal(root.get("role"), 1),
+                           builder.equal(root.get(property), value)));
+                           */
+        query.select(root).where(builder
+                .equal(root.get("role"), 1));
+        List<User> users = session.createQuery(query).getResultList();
+
         return users;
 
     }

@@ -40,15 +40,19 @@
             <artifactId>junit-platform-surefire-provider</artifactId>
             <version>1.0.0</version>
           </dependency>
-
-
         </dependencies>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-
+    <!-- Project Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.16</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>

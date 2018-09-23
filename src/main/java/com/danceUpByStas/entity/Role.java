@@ -7,17 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Role")
-@Table(name = "role")
+@Table(name = "ROLE")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-    @Column(name = "name")
+/*
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> users = new ArrayList<>();
-
+*/
+    @Column(name = "name")
     private String name;
 
     public Role() {
@@ -27,7 +28,7 @@ public class Role {
     public  Role(String name) {
         this.name = name;
     }
-
+/*
     public List<UserRole> getUsers() {
         return users;
     }
@@ -35,7 +36,7 @@ public class Role {
     public void setUsers(List<UserRole> users) {
         this.users = users;
     }
-
+*/
     public int getId() {
         return id;
     }

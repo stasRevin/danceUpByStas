@@ -1,11 +1,14 @@
 package com.danceUpByStas.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Dance")
-@Table(name = "Dance")
+@Table(name = "DANCE")
 public class Dance {
 
     @Id
@@ -13,15 +16,18 @@ public class Dance {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "dance", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserDance> users = new ArrayList<>();
+
     public Dance() {
 
     }
-
 
     public String getName() {
         return name;
@@ -35,6 +41,15 @@ public class Dance {
 
         this.name = name;
         this.description = description;
+    }
+
+
+    public List<UserDance> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<UserDance> users) {
+        this.users = users;
     }
 
     public int getId() {

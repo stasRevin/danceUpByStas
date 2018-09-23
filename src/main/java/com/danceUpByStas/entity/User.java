@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "User")
-@Table(name = "user")
+@Table(name = "USER")
 public class User {
 
     @Id
@@ -38,9 +38,13 @@ public class User {
     @Column(name="pay_rate")
     private double payRate;
 
-
+/*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
+
+*/
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserDance> dances = new ArrayList<>();
 
     public User() {
 
@@ -62,6 +66,14 @@ public class User {
         this.payRate = payRate;
     }
 
+    public List<UserDance> getDances() {
+        return dances;
+    }
+
+    public void setDances(List<UserDance> dances) {
+        this.dances = dances;
+    }
+
     public short getIsDeleted() {
         return isDeleted;
     }
@@ -69,7 +81,7 @@ public class User {
     public void setIsDeleted(short isDeleted) {
         this.isDeleted = isDeleted;
     }
-
+/*
     public List<UserRole> getRoles() {
         return roles;
     }
@@ -77,7 +89,7 @@ public class User {
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;
     }
-
+*/
     public int getId() {
         return id;
     }
