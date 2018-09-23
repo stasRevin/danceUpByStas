@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS `User` (
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `postalcode` VARCHAR(16) NOT NULL,
-  `lat` DECIMAL(9,6) NULL,
-  `lon` DECIMAL(9,6) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;

@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/DanceUpTest</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/danceUpTest</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
         <property name="connection.username">root</property>
@@ -17,6 +17,10 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <mapping class="com.danceUpByStas.entity.Dance"/>
+        <mapping class="com.danceUpByStas.entity.User"/>
+        <mapping class="com.danceUpByStas.entity.Role"/>
+        <mapping class="com.danceUpByStas.entity.UserRole"/>
+
 
     </session-factory>
 
