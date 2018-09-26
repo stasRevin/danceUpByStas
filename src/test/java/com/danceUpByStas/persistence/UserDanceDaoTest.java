@@ -14,7 +14,7 @@ class UserDanceDaoTest {
 
     private UserDanceDao userDanceDao;
     private UserDao userDao;
-    private DanceDao danceDao;
+    private GenericDao<Dance> genericDao;
     @BeforeEach
     void setUp() {
 
@@ -22,17 +22,42 @@ class UserDanceDaoTest {
         database.runSQL("cleanTestDb.sql");
         this.userDanceDao = new UserDanceDao();
         this.userDao = new UserDao();
-        this.danceDao = new DanceDao();
+        this.genericDao = new GenericDao<>(Dance.class);
     }
 
     @Test
     void getAllSuccess() {
 
         User user = userDao.getUserById(1);
-        Dance dance = danceDao.getDanceById(1);
+        Dance dance = genericDao.getById(1);
         userDanceDao.insert(new UserDance(user, dance));
         List<UserDance> userDance = userDanceDao.getAll();
         assertEquals(1, userDance.size());
+
+    }
+
+    @Test
+    void saveOrUpdateSuccess() {
+
+        User user = userDao.getUserById(1);
+        Dance dance = genericDao.getById(2);
+        userDanceDao.insert(new UserDance(user, dance));
+        List<UserDance> userDanceList = userDanceDao.getDancesByUserId(1);
+        UserDance userDance = userDanceList.get(0);
+        Dance newDance = genericDao.getById(2);
+        userDance.setDance(newDance);
+        assertEquals(2, userDanceDao.getDancesByUserId(1).get(0).getDance().getId());
+
+    }
+
+    @Test
+    void getDancesByUserIdSuccess() {
+
+        User user = userDao.getUserById(2);
+        Dance dance = genericDao.getById(2);
+        userDanceDao.insert(new UserDance(user, dance));
+        List<UserDance> userDanceList = userDanceDao.getDancesByUserId(2);
+        assertEquals(2, userDanceDao.getDancesByUserId(2).get(0).getDance().getId());
 
     }
 }

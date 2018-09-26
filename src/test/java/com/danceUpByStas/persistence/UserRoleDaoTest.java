@@ -13,10 +13,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserRoleDaoTest {
-/*
+
     private UserRoleDao userRoleDao;
     private UserDao userDao;
-    private RoleDao roleDao;
+    private GenericDao<Role> genericDao;
     private final Logger logger = LogManager.getLogger(this.getClass());
     @BeforeEach
     void setUp() {
@@ -24,7 +24,7 @@ class UserRoleDaoTest {
         database.runSQL("cleanTestDb.sql");
         this.userRoleDao = new UserRoleDao();
         this.userDao = new UserDao();
-        this.roleDao = new RoleDao();
+        this.genericDao = new GenericDao<Role>(Role.class);
     }
 
     @Test
@@ -38,7 +38,7 @@ class UserRoleDaoTest {
     void insertUserRoleSuccess() {
 
         User user = userDao.getUserById(1);
-        Role role = roleDao.getById(2);
+        Role role = genericDao.getById(2);
 
         UserRole userRole = userRoleDao.insert(new UserRole(user, role));
 
@@ -51,5 +51,5 @@ class UserRoleDaoTest {
         List<UserRole> instructors = userRoleDao.getInstructorsByProperty("postalCode", "53705");
         logger.debug(instructors);
     }
-*/
+
 }

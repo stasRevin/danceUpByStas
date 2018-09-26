@@ -51,20 +51,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Location` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(250) NOT NULL,
+  `name` VARCHAR(250) NOT NULL,
   `address1` VARCHAR(120) NOT NULL,
   `address2` VARCHAR(120) NULL,
   `city` VARCHAR(45) NOT NULL,
-  `state` VARCHAR(2) NULL,
-  `lat` DECIMAL(9,6) NOT NULL,
-  `lon` DECIMAL(9,6) NOT NULL,
+  `state` VARCHAR(2) NOT NULL,
+  `lat` DECIMAL(9,6) NULL,
+  `lon` DECIMAL(9,6) NULL,
   `postalcode` VARCHAR(16) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Lesson`
+-- Table `mydb`.`LessonDao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Lesson` (
   `id` INT NOT NULL AUTO_INCREMENT,

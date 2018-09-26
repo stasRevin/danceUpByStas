@@ -1,5 +1,6 @@
 package com.danceUpByStas.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,16 +9,17 @@ import java.util.List;
 
 @Entity(name = "Role")
 @Table(name = "ROLE")
+@Data
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
-/*
+
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> users = new ArrayList<>();
-*/
+
     @Column(name = "name")
     private String name;
 
@@ -26,30 +28,6 @@ public class Role {
     }
 
     public  Role(String name) {
-        this.name = name;
-    }
-/*
-    public List<UserRole> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<UserRole> users) {
-        this.users = users;
-    }
-*/
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

@@ -12,7 +12,7 @@
 8. Create a servlet to view instructor page
 
 ### Week 4
-1. Implement logic to schedule a lesson
+1. Finish all Hibernate pages
 2. Make servlet to update student page
 3. Make servlet to update instructor page
 4. Make servlet to search for instructors

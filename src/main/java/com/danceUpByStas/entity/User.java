@@ -1,5 +1,6 @@
 package com.danceUpByStas.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.ManyToAny;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity(name = "User")
 @Table(name = "USER")
+@Data
 public class User {
 
     @Id
@@ -38,11 +40,10 @@ public class User {
     @Column(name="pay_rate")
     private double payRate;
 
-/*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
 
-*/
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserDance> dances = new ArrayList<>();
 
@@ -65,117 +66,4 @@ public class User {
         this.postalCode = postalCode;
         this.payRate = payRate;
     }
-
-    public List<UserDance> getDances() {
-        return dances;
-    }
-
-    public void setDances(List<UserDance> dances) {
-        this.dances = dances;
-    }
-
-    public short getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(short isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-/*
-    public List<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<UserRole> roles) {
-        this.roles = roles;
-    }
-*/
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddressOne() {
-        return addressOne;
-    }
-
-    public void setAddressOne(String addressOne) {
-        this.addressOne = addressOne;
-    }
-
-    public String getAddressTwo() {
-        return addressTwo;
-    }
-
-    public void setAddressTwo(String addressTwo) {
-        this.addressTwo = addressTwo;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public double getPayRate() {
-        return payRate;
-    }
-
-    public void setPayRate(double payRate) {
-        this.payRate = payRate;
-    }
-
 }

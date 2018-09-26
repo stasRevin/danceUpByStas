@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Lesson`
+-- Table `mydb`.`LessonDao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Lesson` (
   `id` INT NOT NULL,

@@ -49,7 +49,7 @@ INSERT INTO `Dance` VALUES (1,'rumba','nice dance');
 UNLOCK TABLES;
 
 --
--- Table structure for table `Lesson`
+-- Table structure for table `LessonDao`
 --
 
 DROP TABLE IF EXISTS `Lesson`;
@@ -67,12 +67,12 @@ CREATE TABLE `Lesson` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Lesson`
+-- Dumping data for table `LessonDao`
 --
 
 LOCK TABLES `Lesson` WRITE;
-/*!40000 ALTER TABLE `Lesson` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Lesson` ENABLE KEYS */;
+/*!40000 ALTER TABLE `LessonDao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LessonDao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

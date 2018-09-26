@@ -28,15 +28,13 @@ public class UserDao {
 
     public int insertUser(User user) {
 
-        int id = 0;
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        id = (int) session.save(user);
-        transaction.commit();
-        session.close();
-        return id;
+        return genericDao.insert(user);
     }
 
+    public List<User> getAllUsers() {
+
+        return genericDao.getAll();
+    }
 
     public User getUserById(int id) {
 
@@ -46,11 +44,7 @@ public class UserDao {
 
     public void saveOrUpdate(User user) {
 
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(user);
-        transaction.commit();
-        session.close();
+        genericDao.saveOrUpdate(user);
     }
 
     public void delete(User user) {
@@ -82,24 +76,17 @@ public class UserDao {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
-        /*
+
         query.select(root).where(builder
                           .and(builder
                           .equal(root.get("role"), 1),
                            builder.equal(root.get(property), value)));
-                           */
-        query.select(root).where(builder
-                .equal(root.get("role"), 1));
         List<User> users = session.createQuery(query).getResultList();
 
         return users;
 
     }
 
-    public List<User> getAllUsers() {
-
-        return genericDao.getAll();
-    }
 
 
     private Session getSession() {

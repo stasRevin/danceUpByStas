@@ -23,7 +23,7 @@
 |09/07/2018|Week 2 Activities with log4j |.5|
 |09/08/2018|Week 2 videos |1|
 |09/08/2018|Week 2 reading (jUnit) |2|
-|09/08/2018|Excercise 2 puzzle |1|
+|09/08/2018|Exercise 2 puzzle |1|
 |09/09/2018|Exercise 2 exception testing. How do you test IOException that comes after FileNotFoundException?|2|
 |09/09/2018|Exercise 2 "mental gymnastics" to get 100% code coverage|2|
 |09/09/2018|Reconfigured the indie project maven project because the first one did not work|2|
@@ -41,3 +41,6 @@
 |09/20/2018|Hibernate troubleshooting + videos |4|
 |09/21/2018|Professional Development Project |5|
 |09/21/2018|Implementing Hibernate into project |3|
+|09/22/2018|More Hibernate |5|
+|09/23/2018|Hibernate cont'd |5|
+|09/25/2018|More DAOs |2.5|
