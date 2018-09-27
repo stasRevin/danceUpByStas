@@ -1,5 +1,6 @@
 DELETE FROM USER_DANCE;
 DELETE FROM USER_ROLE;
+DELETE FROM USER_LESSON;
 DELETE FROM DANCE;
 DELETE FROM LESSON;
 DELETE FROM LOCATION;
@@ -23,3 +24,5 @@ INSERT INTO LOCATION (name, address1, city, state, postalcode) values ('Elite Da
 ALTER TABLE LESSON AUTO_INCREMENT = 1;
 INSERT INTO LESSON (start_time, end_time, location_id) values('2018-09-27 17:00:00', '2018-09-28 18:00:00', 1);
 INSERT INTO LESSON (start_time, end_time, location_id) values('2018-10-01 19:00:00', '2018-10-02 18:00:00', 2);
+INSERT INTO USER_LESSON (user_id, lesson_id) VALUES (1, 1);
+INSERT INTO USER_LESSON (user_id, lesson_id) VALUES (1, 2);

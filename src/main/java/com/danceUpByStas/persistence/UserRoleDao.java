@@ -31,14 +31,6 @@ public class UserRoleDao {
         return genericDao.getAll();
     }
 
-    public void saveOrUpdate(UserRole userRole) {
-
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(userRole);
-        transaction.commit();
-        session.close();
-    }
 
 
     public UserRole insert(UserRole userRole) {
@@ -64,6 +56,8 @@ public class UserRoleDao {
                            builder.equal(root.get("user").get(property), value)));
 
         List<UserRole> userRoles = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
 
         return userRoles;
 

@@ -34,7 +34,7 @@ public class GenericDao<T> {
         CriteriaBuilder builder = session.getCriteriaBuilder();
 
         CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
+        query.from(type);
         List<T> list = session.createQuery(query).getResultList();
         session.close();
         return list;

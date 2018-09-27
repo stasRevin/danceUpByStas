@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `city` VARCHAR(45) NOT NULL,
   `state` VARCHAR(2) NOT NULL,
   `postalcode` VARCHAR(16) NOT NULL,
+  `pay_rate` DECIMAL(5, 2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `Schedule` (
   `start_time` DATETIME NOT NULL,
   `end_time` DATETIME NOT NULL,
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `user_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_Schedule_User1_idx` (`user_id` ASC),
   CONSTRAINT `fk_Schedule_User1`
     FOREIGN KEY (`user_id`)

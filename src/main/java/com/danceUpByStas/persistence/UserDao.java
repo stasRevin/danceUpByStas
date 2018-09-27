@@ -82,6 +82,8 @@ public class UserDao {
                           .equal(root.get("role"), 1),
                            builder.equal(root.get(property), value)));
         List<User> users = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
 
         return users;
 

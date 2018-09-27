@@ -23,6 +23,8 @@
         <mapping class="com.danceUpByStas.entity.UserDance"/>
         <mapping class="com.danceUpByStas.entity.Lesson"/>
         <mapping class="com.danceUpByStas.entity.Location"/>
+        <mapping class="com.danceUpByStas.entity.UserLesson"/>
+        <mapping class="com.danceUpByStas.entity.Schedule"/>
 
 
     </session-factory>

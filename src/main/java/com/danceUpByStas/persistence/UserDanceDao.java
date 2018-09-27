@@ -46,15 +46,6 @@ public class UserDanceDao {
         genericDao.delete(userDance);
     }
 
-    public void saveOrUpdate(UserDance userDance) {
-
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(userDance);
-        transaction.commit();
-        session.close();
-
-    }
 
     public List<UserDance> getDancesByUserId(int userId) {
 
@@ -64,8 +55,9 @@ public class UserDanceDao {
         CriteriaQuery<UserDance> query = builder.createQuery(UserDance.class);
         Root<UserDance> root = query.from(UserDance.class);
         query.select(root).where(builder.equal(root.get("user").get("id"), userId));
-
         List<UserDance> userDances = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
         return userDances;
 
     }

@@ -57,7 +57,7 @@ class UserDanceDaoTest {
         Dance dance = genericDao.getById(2);
         userDanceDao.insert(new UserDance(user, dance));
         List<UserDance> userDanceList = userDanceDao.getDancesByUserId(2);
-        assertEquals(2, userDanceDao.getDancesByUserId(2).get(0).getDance().getId());
+        assertEquals(2, userDanceList.get(0).getDance().getId());
 
     }
 }
