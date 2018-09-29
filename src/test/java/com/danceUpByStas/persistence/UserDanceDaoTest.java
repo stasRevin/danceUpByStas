@@ -12,17 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDanceDaoTest {
 
-    private UserDanceDao userDanceDao;
     private UserDao userDao;
     private GenericDao<Dance> genericDao;
+    private GenericDao<UserDance> userDanceGeneric;
     @BeforeEach
     void setUp() {
 
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-        this.userDanceDao = new UserDanceDao();
         this.userDao = new UserDao();
         this.genericDao = new GenericDao<>(Dance.class);
+        this.userDanceGeneric = new GenericDao<>(UserDance.class);
     }
 
     @Test
@@ -30,8 +30,8 @@ class UserDanceDaoTest {
 
         User user = userDao.getUserById(1);
         Dance dance = genericDao.getById(1);
-        userDanceDao.insert(new UserDance(user, dance));
-        List<UserDance> userDance = userDanceDao.getAll();
+        userDanceGeneric.insertManyToMany(new UserDance(user, dance));
+        List<UserDance> userDance = userDanceGeneric.getAll();
         assertEquals(1, userDance.size());
 
     }
@@ -41,12 +41,12 @@ class UserDanceDaoTest {
 
         User user = userDao.getUserById(1);
         Dance dance = genericDao.getById(2);
-        userDanceDao.insert(new UserDance(user, dance));
-        List<UserDance> userDanceList = userDanceDao.getDancesByUserId(1);
+        userDanceGeneric.insertManyToMany(new UserDance(user, dance));
+        List<UserDance> userDanceList = userDanceGeneric.getElementsOfTypeAByIdOfEntityOfTypeB("user", 1);
         UserDance userDance = userDanceList.get(0);
         Dance newDance = genericDao.getById(2);
         userDance.setDance(newDance);
-        assertEquals(2, userDanceDao.getDancesByUserId(1).get(0).getDance().getId());
+        assertEquals(2, userDanceGeneric.getElementsOfTypeAByIdOfEntityOfTypeB("user", 1).get(0).getDance().getId());
 
     }
 
@@ -55,8 +55,8 @@ class UserDanceDaoTest {
 
         User user = userDao.getUserById(2);
         Dance dance = genericDao.getById(2);
-        userDanceDao.insert(new UserDance(user, dance));
-        List<UserDance> userDanceList = userDanceDao.getDancesByUserId(2);
+        userDanceGeneric.insertManyToMany(new UserDance(user, dance));
+        List<UserDance> userDanceList = userDanceGeneric.getElementsOfTypeAByIdOfEntityOfTypeB("user", 2);
         assertEquals(2, userDanceList.get(0).getDance().getId());
 
     }

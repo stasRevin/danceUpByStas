@@ -80,16 +80,30 @@ public class GenericDao<T> {
         session.close();
     }
 
-    public Class<T> insertManyToMany(T entity) {
+    public void insertManyToMany(T entity) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        Class<T> insertedEntity = (Class<T>)session.save(entity);
+        type.cast(session.save(entity));
         transaction.commit();
         session.close();
-        return insertedEntity;
     }
 
+    public List<T> getElementsOfTypeAByIdOfEntityOfTypeB(String entityAName,
+                                                         int id) {
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder.equal(root.get(entityAName).get("id"), id));
+        List<T> elements = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        return elements;
+
+    }
 
     private Session getSession() {
 

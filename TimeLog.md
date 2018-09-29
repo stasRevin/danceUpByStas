@@ -44,3 +44,4 @@
 |09/22/2018|More Hibernate |5|
 |09/23/2018|Hibernate cont'd |5|
 |09/25/2018|More DAOs |2.5|
+|09/28/2018|Presentation research and preparation |5|

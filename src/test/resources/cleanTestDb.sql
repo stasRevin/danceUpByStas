@@ -5,6 +5,7 @@ DELETE FROM DANCE;
 DELETE FROM LESSON;
 DELETE FROM LOCATION;
 DELETE FROM ROLE;
+DELETE FROM SCHEDULE;
 DELETE FROM USER;
 ALTER TABLE DANCE AUTO_INCREMENT = 1;
 INSERT INTO DANCE VALUES(1, 'Waltz', 'elegant, classy');
@@ -26,3 +27,9 @@ INSERT INTO LESSON (start_time, end_time, location_id) values('2018-09-27 17:00:
 INSERT INTO LESSON (start_time, end_time, location_id) values('2018-10-01 19:00:00', '2018-10-02 18:00:00', 2);
 INSERT INTO USER_LESSON (user_id, lesson_id) VALUES (1, 1);
 INSERT INTO USER_LESSON (user_id, lesson_id) VALUES (1, 2);
+ALTER TABLE SCHEDULE AUTO_INCREMENT = 1;
+INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('2018-09-27 17:00:00', '2018-09-27 22:00:00', '2018-09-27', 1);
+INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('2018-10-27 17:00:00', '2018-10-27 22:00:00', '2018-10-27', 1);
+INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('2018-11-27 17:00:00', '2018-11-27 22:00:00', '2018-11-27', 1);
+INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('2018-12-27 17:00:00', '2018-12-27 22:00:00', '2018-12-27', 1);
+INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('2018-09-27 15:00:00', '2018-09-27 21:00:00', '2018-09-27', 2);

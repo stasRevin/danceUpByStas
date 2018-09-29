@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `Schedule` (
   `start_time` DATETIME NOT NULL,
   `end_time` DATETIME NOT NULL,
   `user_id` INT NOT NULL,
+  `date` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Schedule_User1_idx` (`user_id` ASC),
   CONSTRAINT `fk_Schedule_User1`
