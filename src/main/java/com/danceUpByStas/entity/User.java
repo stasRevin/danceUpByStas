@@ -22,7 +22,7 @@ public class User {
     @Column(name = "password")
     private String password;
     @Column(name="is_deleted")
-    private short isDeleted;
+    private int isDeleted;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -53,7 +53,7 @@ public class User {
 
     }
 
-    public User(String username, String password, short isDeleted, String firstName, String lastName,
+    public User(String username, String password, int isDeleted, String firstName, String lastName,
                 String addressOne, String addressTwo, String city, String state, String postalCode, double payRate) {
 
         this.username = username;

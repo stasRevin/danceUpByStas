@@ -14,6 +14,8 @@ INSERT INTO DANCE VALUES (3, 'Tango', 'romantic, staccato, dramatic');
 ALTER TABLE USER AUTO_INCREMENT = 1;
 INSERT INTO USER (username, password, is_deleted, first_name, last_name, address1, city, state, postalcode, pay_rate) VALUES ('mjackson', '123abc', 0, 'Michael', 'Jackson', '123 Main St', 'Madison', 'WI', '53705', 50.00);
 INSERT INTO USER (username, password, is_deleted, first_name, last_name, address1, city, state, postalcode, pay_rate) VALUES ('mjessy', '123abc', 0, 'Mary', 'Jessy', '123 Main St', 'Madison', 'WI', '53704', 60.00);
+INSERT INTO USER_DANCE (user_id, dance_id) VALUES (1, 1);
+INSERT INTO USER_DANCE (user_id, dance_id) VALUES (1, 2);
 ALTER TABLE ROLE AUTO_INCREMENT = 1;
 INSERT INTO ROLE (name) VALUES ("instructor");
 INSERT INTO ROLE (name) VALUES ("student");

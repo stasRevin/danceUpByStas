@@ -11,18 +11,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDaoTest {
 
     private UserDao userDao;
+    private GenericDao<User> genericDao;
 
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
         this.userDao = new UserDao();
+        this.genericDao = new GenericDao<>(User.class);
     }
 
     @Test
     void getAllUsersSuccess() {
 
-        List<User> users = userDao.getAllUsers();
+        List<User> users = genericDao.getAll();
         assertEquals(2, users.size());
 
     }
@@ -30,21 +32,23 @@ class UserDaoTest {
     @Test
     void insertUserSuccess() {
 
-        int id = userDao.insertUser(new User("vpablo", "123abc", (short)0, "Victor",
+        int id = genericDao.insert(new User("vpablo", "123abc", (short)0, "Victor",
                 "Pablo", "123 Main St", "", "Madison", "WI",
                 "53705", 65.00));
+        User user = genericDao.getById(3);
 
-        assertEquals("Pablo", userDao.getUserById(3).getLastName());
+        assertEquals("Pablo", user.getLastName());
 
     }
 
     @Test
     void saveOrUpdateUserSuccess() {
 
-        User user = userDao.getUserById(1);
+        User user = genericDao.getById(1);
         user.setCity("Milwaukee");
-        userDao.saveOrUpdate(user);
-        assertEquals("Milwaukee", userDao.getUserById(1).getCity());
+        genericDao.saveOrUpdate(user);
+        user = genericDao.getById(1);
+        assertEquals("Milwaukee", user.getCity());
 
     }
 

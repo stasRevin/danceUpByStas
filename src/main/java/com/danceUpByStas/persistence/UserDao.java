@@ -26,32 +26,6 @@ public class UserDao {
         genericDao = new GenericDao<User>(User.class);
     }
 
-    public int insertUser(User user) {
-
-        return genericDao.insert(user);
-    }
-
-    public List<User> getAllUsers() {
-
-        return genericDao.getAll();
-    }
-
-    public User getUserById(int id) {
-
-        return genericDao.getById(id);
-    }
-
-
-    public void saveOrUpdate(User user) {
-
-        genericDao.saveOrUpdate(user);
-    }
-
-    public void delete(User user) {
-
-        genericDao.delete(user);
-    }
-
 
     public List<User> getByPropertyEqual(String propertyName, String value) {
 

@@ -24,6 +24,7 @@ public class GenericDao<T> {
     public GenericDao(Class<T> type) {
 
         this.type = type;
+
     }
 
 
@@ -80,15 +81,23 @@ public class GenericDao<T> {
         session.close();
     }
 
-    public void insertManyToMany(T entity) {
+    public T insertManyToMany(T entity) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        type.cast(session.save(entity));
+        T entityInserted = type.cast(session.save(entity));
         transaction.commit();
         session.close();
+
+        return entityInserted;
     }
 
+    /**
+     * This method will get elements of type A by ID of entity of type B
+     * @param entityAName the name of the entity A
+     * @param id the id of the entity B
+     * @return elements found
+     */
     public List<T> getElementsOfTypeAByIdOfEntityOfTypeB(String entityAName,
                                                          int id) {
         Session session = getSession();
@@ -104,6 +113,7 @@ public class GenericDao<T> {
         return elements;
 
     }
+
 
     private Session getSession() {
 

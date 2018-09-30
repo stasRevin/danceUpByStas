@@ -14,35 +14,37 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRoleDaoTest {
 
-    private UserRoleDao userRoleDao;
-    private UserDao userDao;
+    private GenericDao<UserRole> userRoleDaoGeneric;
+    private GenericDao<User> userDao;
     private GenericDao<Role> genericDao;
+    private UserRoleDao userRoleDao;
     private final Logger logger = LogManager.getLogger(this.getClass());
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-        this.userRoleDao = new UserRoleDao();
-        this.userDao = new UserDao();
+        this.userRoleDaoGeneric = new GenericDao<>(UserRole.class);
+        this.userDao = new GenericDao<>(User.class);
         this.genericDao = new GenericDao<Role>(Role.class);
+        this.userRoleDao = new UserRoleDao();
     }
 
     @Test
     void getAllUserRolesSuccess() {
 
-        List<UserRole> userRoleList = userRoleDao.getAllUserRoles();
+        List<UserRole> userRoleList = userRoleDaoGeneric.getAll();
         assertEquals(2, userRoleList.size());
     }
 
     @Test
     void insertUserRoleSuccess() {
 
-        User user = userDao.getUserById(1);
+        User user = userDao.getById(1);
         Role role = genericDao.getById(2);
+        UserRole userRoleInserted = userRoleDaoGeneric.insertManyToMany(new UserRole(user, role));
+        assertEquals(1, userRoleInserted.getUser().getId());
+        assertEquals(2, userRoleInserted.getRole().getId());
 
-        UserRole userRole = userRoleDao.insert(new UserRole(user, role));
-
-        logger.debug(userRole);
     }
 
     @Test

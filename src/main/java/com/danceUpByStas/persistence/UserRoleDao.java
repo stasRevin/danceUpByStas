@@ -26,22 +26,7 @@ public class UserRoleDao {
         genericDao = new GenericDao<UserRole>(UserRole.class);
     }
 
-    public List<UserRole> getAllUserRoles() {
 
-        return genericDao.getAll();
-    }
-
-
-
-    public UserRole insert(UserRole userRole) {
-
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        UserRole userRoleInserted = (UserRole)session.save(userRole);
-        transaction.commit();
-        session.close();
-        return userRoleInserted;
-    }
 
     public List<UserRole> getInstructorsByProperty(String property, String value) {
 
