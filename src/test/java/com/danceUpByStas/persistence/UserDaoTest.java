@@ -34,7 +34,7 @@ class UserDaoTest {
 
         int id = genericDao.insert(new User("vpablo", "123abc", (short)0, "Victor",
                 "Pablo", "123 Main St", "", "Madison", "WI",
-                "53705", 65.00));
+                "53705", 65.00, ""));
         User user = genericDao.getById(3);
 
         assertEquals("Pablo", user.getLastName());

@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `User` (
   `state` VARCHAR(2) NOT NULL,
   `postalcode` VARCHAR(16) NOT NULL,
   `pay_rate` DECIMAL(5, 2) NOT NULL,
+  `photo_name` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;

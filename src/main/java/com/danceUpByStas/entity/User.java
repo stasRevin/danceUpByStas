@@ -39,6 +39,8 @@ public class User {
     private String postalCode;
     @Column(name="pay_rate")
     private double payRate;
+    @Column(name="photo_name")
+    private String photoName;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
@@ -54,7 +56,8 @@ public class User {
     }
 
     public User(String username, String password, int isDeleted, String firstName, String lastName,
-                String addressOne, String addressTwo, String city, String state, String postalCode, double payRate) {
+                String addressOne, String addressTwo, String city, String state, String postalCode,
+                double payRate, String photoName) {
 
         this.username = username;
         this.password = password;
@@ -67,5 +70,7 @@ public class User {
         this.state = state;
         this.postalCode = postalCode;
         this.payRate = payRate;
+        this.photoName = photoName;
+
     }
 }
