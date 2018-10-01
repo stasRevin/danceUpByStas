@@ -45,3 +45,5 @@
 |09/23/2018|Hibernate cont'd |5|
 |09/25/2018|More DAOs |2.5|
 |09/28/2018|Presentation research and preparation |5|
+|09/29/2018|Daos |4|
+|09/29/2018|Sign up servlet |3|

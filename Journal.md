@@ -38,4 +38,16 @@ TODO
 1. Add distance to lesson location on JSP page
 2. Change the update interface
 
+### Week 3
+09/22/2018
+
+Did JSP tags.
+
+### Week 4
+
+Intro to Hibernate.
+
+### Week 5
+
+Generic DAO, Sign Up Servlet
 
