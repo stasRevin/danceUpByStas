@@ -1,15 +1,15 @@
 package com.danceUpByStas.controller;
 
+import com.danceUpByStas.entity.Role;
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
 
 @WebServlet(
@@ -26,6 +26,8 @@ public class UserSignUp extends HttpServlet {
 
         //Get session
         HttpSession session = request.getSession();
+
+        File userPhotoFile = new File("/Users/stanislavrevin/tomcat/webapps/user_photos");
 
         //Get parameters from the form
         String role = request.getParameter("role");
@@ -46,12 +48,59 @@ public class UserSignUp extends HttpServlet {
         GenericDao<User> userDao = new GenericDao<User>(User.class);
         int userId = userDao.insert(user);
         //Associate user with the role
+        GenericDao<UserRole> userRoleDao = new GenericDao<>(UserRole.class);
+        GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
 
+        if (role.equals("instructor")) {
+            Role instructor = roleDao.getById(1);
+            userRoleDao.insertManyToMany(new UserRole(user, instructor));
+
+        } else if (role.equals("student")) {
+
+            Role student = roleDao.getById(2);
+            userRoleDao.insertManyToMany(new UserRole(user, student));
+        }
         //Forward to the login page
 
+        if (!userPhotoFile.exists()) {
+
+            userPhotoFile.mkdir();
+        }
+
+        for (Part part : request.getParts()) {
+
+            if (part.getName().equals("profilePhoto")) {
+
+                String fileName = getFileName(part);
+                System.out.println("PART FILE NAME: " + fileName);
+                String fileLocation = userPhotoFile + File.separator + fileName;
+                part.write(fileLocation);
+                user.setPhotoName(fileName);
+                userDao.saveOrUpdate(user);
+            }
+        }
 
         response.sendRedirect("/signIn.jsp");
     }
 
+    private String getFileName(Part part) {
+
+        String contentDisplay = part.getHeader("content-disposition");
+        String fileName = "";
+        String[] contentItems = contentDisplay.split(";");
+
+        for (String contentItem : contentItems) {
+
+            if (contentItem.trim().startsWith("filename")) {
+
+                fileName = contentItem.substring(contentItem.indexOf("=") + 2,
+                        contentItem.length() - 1);
+                return fileName;
+            }
+
+        }
+
+        return fileName;
+    }
 
 }
