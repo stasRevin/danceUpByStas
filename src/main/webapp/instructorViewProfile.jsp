@@ -12,7 +12,7 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/userPhotos/dancing.jpg">
+            <img id="userPhoto" src="images/${user.photoName}">
         </div>
 
         <div class="col-sm-4">

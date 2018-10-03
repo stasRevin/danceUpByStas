@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.23, for macos10.13 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.21, for macos10.13 (x86_64)
 --
 -- Host: localhost    Database: danceUpTest
 -- ------------------------------------------------------
--- Server version	5.7.23
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `Dance`
+-- Table structure for table `DANCE`
 --
 
-DROP TABLE IF EXISTS `Dance`;
+DROP TABLE IF EXISTS `DANCE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Dance` (
+CREATE TABLE `DANCE` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `description` varchar(500) NOT NULL,
@@ -31,23 +31,23 @@ CREATE TABLE `Dance` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Dance`
+-- Dumping data for table `DANCE`
 --
 
-LOCK TABLES `Dance` WRITE;
-/*!40000 ALTER TABLE `Dance` DISABLE KEYS */;
-INSERT INTO `Dance` VALUES (1,'Waltz','elegant, classy'),(2,'Rumba','romantic, slow, easy'),(3,'Tango','romantic, staccato, dramatic');
-/*!40000 ALTER TABLE `Dance` ENABLE KEYS */;
+LOCK TABLES `DANCE` WRITE;
+/*!40000 ALTER TABLE `DANCE` DISABLE KEYS */;
+INSERT INTO `DANCE` VALUES (1,'Waltz','elegant, classy'),(2,'Rumba','romantic, slow, easy'),(3,'Tango','romantic, staccato, dramatic');
+/*!40000 ALTER TABLE `DANCE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Lesson`
+-- Table structure for table `LESSON`
 --
 
-DROP TABLE IF EXISTS `Lesson`;
+DROP TABLE IF EXISTS `LESSON`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Lesson` (
+CREATE TABLE `LESSON` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
@@ -59,23 +59,23 @@ CREATE TABLE `Lesson` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Lesson`
+-- Dumping data for table `LESSON`
 --
 
-LOCK TABLES `Lesson` WRITE;
-/*!40000 ALTER TABLE `Lesson` DISABLE KEYS */;
-INSERT INTO `Lesson` VALUES (1,'2018-09-27 17:00:00','2018-09-28 18:00:00',1),(2,'2018-10-01 19:00:00','2018-10-02 18:00:00',2);
-/*!40000 ALTER TABLE `Lesson` ENABLE KEYS */;
+LOCK TABLES `LESSON` WRITE;
+/*!40000 ALTER TABLE `LESSON` DISABLE KEYS */;
+INSERT INTO `LESSON` VALUES (1,'2018-09-27 17:00:00','2018-09-28 18:00:00',1),(2,'2018-10-01 19:00:00','2018-10-02 18:00:00',2);
+/*!40000 ALTER TABLE `LESSON` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Location`
+-- Table structure for table `LOCATION`
 --
 
-DROP TABLE IF EXISTS `Location`;
+DROP TABLE IF EXISTS `LOCATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Location` (
+CREATE TABLE `LOCATION` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
   `address1` varchar(120) NOT NULL,
@@ -90,23 +90,23 @@ CREATE TABLE `Location` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Location`
+-- Dumping data for table `LOCATION`
 --
 
-LOCK TABLES `Location` WRITE;
-/*!40000 ALTER TABLE `Location` DISABLE KEYS */;
-INSERT INTO `Location` VALUES (1,'My Ballroom','123 Main St',NULL,'Madison','WI',NULL,NULL,'53705'),(2,'Elite Dance','124 Main St',NULL,'Madison','WI',NULL,NULL,'53705');
-/*!40000 ALTER TABLE `Location` ENABLE KEYS */;
+LOCK TABLES `LOCATION` WRITE;
+/*!40000 ALTER TABLE `LOCATION` DISABLE KEYS */;
+INSERT INTO `LOCATION` VALUES (1,'My Ballroom','123 Main St',NULL,'Madison','WI',NULL,NULL,'53705'),(2,'Elite Dance','124 Main St',NULL,'Madison','WI',NULL,NULL,'53705');
+/*!40000 ALTER TABLE `LOCATION` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Role`
+-- Table structure for table `ROLE`
 --
 
-DROP TABLE IF EXISTS `Role`;
+DROP TABLE IF EXISTS `ROLE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Role` (
+CREATE TABLE `ROLE` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
@@ -114,50 +114,52 @@ CREATE TABLE `Role` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Role`
+-- Dumping data for table `ROLE`
 --
 
-LOCK TABLES `Role` WRITE;
-/*!40000 ALTER TABLE `Role` DISABLE KEYS */;
-INSERT INTO `Role` VALUES (1,'instructor'),(2,'student');
-/*!40000 ALTER TABLE `Role` ENABLE KEYS */;
+LOCK TABLES `ROLE` WRITE;
+/*!40000 ALTER TABLE `ROLE` DISABLE KEYS */;
+INSERT INTO `ROLE` VALUES (1,'instructor'),(2,'student');
+/*!40000 ALTER TABLE `ROLE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Schedule`
+-- Table structure for table `SCHEDULE`
 --
 
-DROP TABLE IF EXISTS `Schedule`;
+DROP TABLE IF EXISTS `SCHEDULE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Schedule` (
+CREATE TABLE `SCHEDULE` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_Schedule_User1_idx` (`user_id`),
   CONSTRAINT `fk_Schedule_User1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `Schedule`
+-- Dumping data for table `SCHEDULE`
 --
 
-LOCK TABLES `Schedule` WRITE;
-/*!40000 ALTER TABLE `Schedule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Schedule` ENABLE KEYS */;
+LOCK TABLES `SCHEDULE` WRITE;
+/*!40000 ALTER TABLE `SCHEDULE` DISABLE KEYS */;
+INSERT INTO `SCHEDULE` VALUES (1,'2018-09-27 17:00:00','2018-09-27 22:00:00',1,'2018-09-27'),(2,'2018-10-27 17:00:00','2018-10-27 22:00:00',1,'2018-10-27'),(3,'2018-11-27 17:00:00','2018-11-27 22:00:00',1,'2018-11-27'),(4,'2018-12-27 17:00:00','2018-12-27 22:00:00',1,'2018-12-27'),(5,'2018-09-27 15:00:00','2018-09-27 21:00:00',2,'2018-09-27');
+/*!40000 ALTER TABLE `SCHEDULE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `User`
+-- Table structure for table `USER`
 --
 
-DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `User` (
+CREATE TABLE `USER` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(450) DEFAULT NULL,
@@ -170,19 +172,20 @@ CREATE TABLE `User` (
   `state` varchar(2) NOT NULL,
   `postalcode` varchar(16) NOT NULL,
   `pay_rate` decimal(5,2) DEFAULT NULL,
+  `photo_name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `User`
+-- Dumping data for table `USER`
 --
 
-LOCK TABLES `User` WRITE;
-/*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'mjackson','123abc','0','Michael','Jackson','123 Main St',NULL,'Madison','WI','53705',50.00),(2,'mjessy','123abc','0','Mary','Jessy','123 Main St',NULL,'Madison','WI','53704',60.00);
-/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+LOCK TABLES `USER` WRITE;
+/*!40000 ALTER TABLE `USER` DISABLE KEYS */;
+INSERT INTO `USER` VALUES (1,'mjackson','123abc','0','Michael','Jackson','123 Main St',NULL,'Madison','WI','53705',50.00,NULL),(2,'mjessy','123abc','0','Mary','Jessy','123 Main St',NULL,'Madison','WI','53704',60.00,NULL);
+/*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -211,6 +214,7 @@ CREATE TABLE `User_Dance` (
 
 LOCK TABLES `User_Dance` WRITE;
 /*!40000 ALTER TABLE `User_Dance` DISABLE KEYS */;
+INSERT INTO `User_Dance` VALUES (NULL,NULL,1,1),(NULL,NULL,1,2);
 /*!40000 ALTER TABLE `User_Dance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,4 +281,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-28 18:57:06
+-- Dump completed on 2018-10-02 22:32:28

@@ -63,7 +63,24 @@ public class UserDao {
 
     }
 
+    public User sigIn(String username, String password) {
 
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+
+        query.select(root).where(builder.and(
+                                 builder.equal(root.get("username"), username),
+                                 builder.equal(root.get("password"), password)
+        ));
+        User user = (User)session.createQuery(query).getSingleResult();
+        transaction.commit();
+        session.close();
+
+        return user;
+    }
 
     private Session getSession() {
 

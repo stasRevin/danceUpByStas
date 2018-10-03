@@ -5,6 +5,7 @@ import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -24,10 +25,8 @@ import java.io.IOException;
 public class UserSignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Get session
-        HttpSession session = request.getSession();
-
-        File userPhotoFile = new File("/Users/stanislavrevin/tomcat/webapps/user_photos");
+        ServletContext context = getServletContext();
+        File userPhotoFile = new File((String)context.getAttribute("profilePhotoPath"));
 
         //Get parameters from the form
         String role = request.getParameter("role");
@@ -41,6 +40,8 @@ public class UserSignUp extends HttpServlet {
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
         String password = request.getParameter("password");
+
+        //TODO: add pay rate for instructor
 
         //Create new User
         User user = new User(username, password, 0, firstName, lastName, address1, address2, city, state, zipCode, 0.00, "");
@@ -60,11 +61,13 @@ public class UserSignUp extends HttpServlet {
             Role student = roleDao.getById(2);
             userRoleDao.insertManyToMany(new UserRole(user, student));
         }
-        //Forward to the login page
 
-        if (!userPhotoFile.exists()) {
+        File userFolder = new File(userPhotoFile + File.separator + userId);
 
-            userPhotoFile.mkdir();
+
+        if (!userFolder.exists()) {
+
+            userFolder.mkdir();
         }
 
         for (Part part : request.getParts()) {
@@ -72,8 +75,7 @@ public class UserSignUp extends HttpServlet {
             if (part.getName().equals("profilePhoto")) {
 
                 String fileName = getFileName(part);
-                System.out.println("PART FILE NAME: " + fileName);
-                String fileLocation = userPhotoFile + File.separator + fileName;
+                String fileLocation = userFolder + File.separator + fileName;
                 part.write(fileLocation);
                 user.setPhotoName(fileName);
                 userDao.saveOrUpdate(user);

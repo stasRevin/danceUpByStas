@@ -6,7 +6,7 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="navbar.jsp"/>
-        <form class="form-horizontal" id="multipleForm" action="#" method="post">
+        <form class="form-horizontal" id="multipleForm" action="/signInUser" method="post">
             <div class="form-group">
                 <label class="control-label col-sm-3">Sign up as</label>
                 <div class="col-sm-9">
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-5">
-                    <button class="btn btn-primary" type="button" class="btn btn-default">Submit</button>
+                    <button class="btn btn-primary" type="submit" class="btn btn-default">Submit</button>
                     <button class="btn btn-primary" type="reset" class="btn btn-default">Clear</button>
                 </div>
             </div>
