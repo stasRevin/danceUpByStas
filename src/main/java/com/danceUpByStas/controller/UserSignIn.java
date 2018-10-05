@@ -1,7 +1,7 @@
 package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.User;
-import com.danceUpByStas.persistence.UserDao;
+import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.SimpleVisitor;
 
 import javax.servlet.RequestDispatcher;
@@ -37,9 +37,9 @@ public class UserSignIn extends HttpServlet {
         String role = request.getParameter("role");
 
         String url = "";
-        UserDao userDao = new UserDao();
+        GenericDao<User> userDao = new GenericDao<>(User.class);
 
-        User user = userDao.sigIn(username, password);
+        User user = userDao.getElementByTwoProperties("username", "password", username, password);
 
         if (Objects.nonNull(user)) {
 
@@ -66,7 +66,7 @@ public class UserSignIn extends HttpServlet {
 
     private void prepareUserPhoto(String userPhotoPath, String photoName) {
 
-        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/src/main/webapp/images";
+        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
         File imageDirectory = new File(staticImagePath);
 
         Path source = Paths.get(userPhotoPath);

@@ -1,5 +1,6 @@
 package com.danceUpByStas.persistence;
 
+import com.danceUpByStas.entity.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -112,6 +113,46 @@ public class GenericDao<T> {
 
         return elements;
 
+    }
+
+    public List<T> getElementsByTwoEntitiesAndTwoProperties(String entityOne, String entityTwo, String propertyOne, String propertyTwo,
+                                             String valueOne, String valueTwo) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder
+                .and(builder
+                                .equal(root.get(entityOne).get(propertyOne), valueOne),
+                        builder.equal(root.get(entityTwo).get(propertyTwo), valueTwo)));
+
+        List<T> resultList = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        return resultList;
+
+    }
+
+    public T getElementByTwoProperties(String propertyOne, String propertyTwo, String valueOne, String valueTwo) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder
+                          .and(builder
+                          .equal(root.get(propertyOne), valueOne), builder
+                          .equal(root.get(propertyTwo), valueTwo)));
+
+        T element = session.createQuery(query).getSingleResult();
+        transaction.commit();
+        session.close();
+
+        return element;
     }
 
 

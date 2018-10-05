@@ -54,4 +54,21 @@ class UserRoleDaoTest {
         logger.debug(instructors);
     }
 
+    @Test
+    void getElementsByTwoPropertiesSuccess() {
+
+        String entityOne = "user";
+        String entityTwo = "role";
+        String propertyOne = "id";
+        String propertyTwo = "id";
+        String valueOne = "1";
+        String valueTwo = "1";
+
+        List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByTwoEntitiesAndTwoProperties(entityOne, entityTwo, propertyOne,
+                                                                                    propertyTwo, valueOne, valueTwo);
+
+        assertEquals(1, userRoleList.get(0).getUser().getId());
+        assertEquals(1, userRoleList.get(0).getRole().getId());
+    }
+
 }

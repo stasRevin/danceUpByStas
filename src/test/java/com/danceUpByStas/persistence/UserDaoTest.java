@@ -1,6 +1,7 @@
 package com.danceUpByStas.persistence;
 
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,14 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoTest {
 
-    private UserDao userDao;
     private GenericDao<User> genericDao;
 
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-        this.userDao = new UserDao();
         this.genericDao = new GenericDao<>(User.class);
     }
 
@@ -50,6 +49,15 @@ class UserDaoTest {
         user = genericDao.getById(1);
         assertEquals("Milwaukee", user.getCity());
 
+    }
+
+    @Test
+    void getElementByTwoPropertiesSuccess() {
+
+        User user = genericDao.getElementByTwoProperties("username", "password",
+                                                            "mjessy", "123abc");
+
+        assertEquals("Jessy", user.getLastName());
     }
 
 

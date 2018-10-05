@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDanceDaoTest {
 
-    private UserDao userDao;
     private GenericDao<Dance> genericDaoDance;
     private GenericDao<User> genericDaoUser;
     private GenericDao<UserDance> userDanceGeneric;
@@ -24,7 +23,6 @@ class UserDanceDaoTest {
 
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-        this.userDao = new UserDao();
         this.genericDaoDance = new GenericDao<>(Dance.class);
         this.userDanceGeneric = new GenericDao<>(UserDance.class);
         this.genericDaoUser = new GenericDao<>(User.class);
