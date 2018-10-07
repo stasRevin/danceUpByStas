@@ -82,7 +82,7 @@ public class UserSignUp extends HttpServlet {
             }
         }
 
-        response.sendRedirect("/signIn.jsp");
+        response.sendRedirect("/danceup/signIn.jsp");
     }
 
     private String getFileName(Part part) {

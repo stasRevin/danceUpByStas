@@ -13,8 +13,8 @@
                 <li><a href="">About Dances</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/signUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="/signIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/danceup/signUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/danceup/signIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>

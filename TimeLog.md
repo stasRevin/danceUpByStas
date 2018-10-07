@@ -47,4 +47,8 @@
 |09/28/2018|Presentation research and preparation |5|
 |09/29/2018|Daos |4|
 |09/29/2018|Sign up servlet |3|
-|10/02/2018| Sign in servlet and image upload |3|
+|10/02/2018|Sign in servlet and image upload |3|
+|10/04/2018|Cleaning servlets |2|
+|10/05/2018|AWS configuration |3|
+|10/06/2018|Finishing up AWS with indie project |2|
+|10/06/2018|Rewriting Hibernate Daos and adding Schedule Dao methods |3|

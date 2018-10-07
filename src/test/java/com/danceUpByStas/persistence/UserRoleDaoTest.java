@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,8 +66,22 @@ class UserRoleDaoTest {
         String valueOne = "1";
         String valueTwo = "1";
 
+        /*
         List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByTwoEntitiesAndTwoProperties(entityOne, entityTwo, propertyOne,
                                                                                     propertyTwo, valueOne, valueTwo);
+
+        */
+
+        Map<String, Map<String, String>> entities = new HashMap<>();
+        Map<String, String> propertiesOne= new HashMap<>();
+        Map<String, String> propertiesTwo = new HashMap<>();
+
+        propertiesOne.put(propertyOne, valueOne);
+        entities.put(entityOne, propertiesOne);
+        propertiesTwo.put(propertyTwo, valueTwo);
+        entities.put(entityTwo, propertiesTwo);
+
+        List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByTwoEntitiesAndTwoProperties(entities);
 
         assertEquals(1, userRoleList.get(0).getUser().getId());
         assertEquals(1, userRoleList.get(0).getRole().getId());

@@ -9,8 +9,11 @@ import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
@@ -95,18 +98,18 @@ public class GenericDao<T> {
 
     /**
      * This method will get elements of type A by ID of entity of type B
-     * @param entityAName the name of the entity A
+     * @param entityBName the name of the entity B
      * @param id the id of the entity B
      * @return elements found
      */
-    public List<T> getElementsOfTypeAByIdOfEntityOfTypeB(String entityAName,
+    public List<T> getElementsOfTypeAByIdOfEntityOfTypeB(String entityBName,
                                                          int id) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
         Root<T> root = query.from(type);
-        query.select(root).where(builder.equal(root.get(entityAName).get("id"), id));
+        query.select(root).where(builder.equal(root.get(entityBName).get("id"), id));
         List<T> elements = session.createQuery(query).getResultList();
         transaction.commit();
         session.close();
@@ -115,18 +118,34 @@ public class GenericDao<T> {
 
     }
 
-    public List<T> getElementsByTwoEntitiesAndTwoProperties(String entityOne, String entityTwo, String propertyOne, String propertyTwo,
-                                             String valueOne, String valueTwo) {
+
+    public List<T> getElementsByTwoEntitiesAndTwoProperties(Map<String, Map<String, String>> entities) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
         Root<T> root = query.from(type);
-        query.select(root).where(builder
-                .and(builder
-                                .equal(root.get(entityOne).get(propertyOne), valueOne),
-                        builder.equal(root.get(entityTwo).get(propertyTwo), valueTwo)));
+        List<Predicate> predicates = new ArrayList<>();
+
+        for (Map.Entry<String, Map<String, String>> outerEntry : entities.entrySet()) {
+
+            String entityKey = outerEntry.getKey();
+            Map<String, String> properties = outerEntry.getValue();
+
+            for (Map.Entry<String, String> innerEntry : properties.entrySet()) {
+
+                if (entityKey.isEmpty()) {
+
+                    predicates.add(builder.equal(root.get(innerEntry.getKey()), innerEntry.getValue()));
+                    break;
+                }
+
+                predicates.add(builder.equal(root.get(entityKey).get(innerEntry.getKey()), innerEntry.getValue()));
+            }
+        }
+
+        query.select(root).where(builder.and(predicates.toArray(new Predicate[] {})));
 
         List<T> resultList = session.createQuery(query).getResultList();
         transaction.commit();
@@ -136,23 +155,27 @@ public class GenericDao<T> {
 
     }
 
-    public T getElementByTwoProperties(String propertyOne, String propertyTwo, String valueOne, String valueTwo) {
+    //https://stackoverflow.com/questions/12244799/correct-usage-of-jpa-criteria-api-predicates-and-where-method-of-criteriaquery
+    public List<T> getElementsByMultipleProperties(Map<String, String> properties) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
         Root<T> root = query.from(type);
-        query.select(root).where(builder
-                          .and(builder
-                          .equal(root.get(propertyOne), valueOne), builder
-                          .equal(root.get(propertyTwo), valueTwo)));
+        List<Predicate> predicates = new ArrayList<>();
 
-        T element = session.createQuery(query).getSingleResult();
+        for (Map.Entry<String, String> entry : properties.entrySet()) {
+
+            predicates.add(builder.equal(root.get(entry.getKey()), entry.getValue()));
+        }
+
+        query.select(root).where(builder.and(predicates.toArray(new Predicate[] {})));
+        List<T> elements = session.createQuery(query).getResultList();
         transaction.commit();
         session.close();
 
-        return element;
+        return elements;
     }
 
 

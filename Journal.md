@@ -49,5 +49,8 @@ Intro to Hibernate.
 
 ### Week 5
 
-Generic DAO, Sign Up Servlet
+Generic DAO, Sign Up Servlet, Sign In Servlet, Image upload
 
+### Week 6
+
+AWS

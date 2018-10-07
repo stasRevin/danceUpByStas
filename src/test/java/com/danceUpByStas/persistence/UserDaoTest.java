@@ -5,7 +5,9 @@ import com.danceUpByStas.entity.UserRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,11 +55,16 @@ class UserDaoTest {
 
     @Test
     void getElementByTwoPropertiesSuccess() {
-
+    /*
         User user = genericDao.getElementByTwoProperties("username", "password",
                                                             "mjessy", "123abc");
+    */
+        Map<String, String> properties = new HashMap<>();
+        properties.put("username", "mjessy");
+        properties.put("password", "123abc");
 
-        assertEquals("Jessy", user.getLastName());
+        List<User> users = genericDao.getElementsByMultipleProperties(properties);
+        assertEquals("Jessy", users.get(0).getLastName());
     }
 
 

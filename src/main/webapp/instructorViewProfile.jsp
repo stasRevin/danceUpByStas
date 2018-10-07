@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="contentType.jsp"/>
 <html>
 <jsp:include page="head.jsp"/>
@@ -8,7 +9,7 @@
         <jsp:include page="instructorNavbar.jsp"/>
         <div class="col-sm-12">
             <h3>
-                Dancing Bobby
+                ${user.firstName} ${user.lastName}
             </h3>
         </div>
         <div class="col-sm-3">
@@ -24,7 +25,7 @@
                             <h4>Student/Lesson Details</h4>
                             <tr><td>Total Lessons Taught</td><td>78</td></tr>
                             <tr><td>Number of Active Students</td><td>9</td></tr>
-                            <tr><td>Current rate per Lesson</td><td>50$</td></tr>
+                            <tr><td>Current rate per Lesson</td><td>$${user.payRate}</td></tr>
                         </table>
                         <h4>General Availability</h4>
                         <table class="table">
@@ -43,11 +44,9 @@
                 <div class="scrollbar scrollbar-deep-blue">
                     <div class="force-overflow">
                         <table class="table">
-                            <tr><td>E.C. Swing</td><td>5 years</td></tr>
-                            <tr><td>Waltz</td><td>8 years</td></tr>
-                            <tr><td>Salsa</td><td>4 years</td></tr>
-                            <tr><td>Tango</td><td>6 years</td></tr>
-                            <tr><td>Cha Cha</td><td>10 years</td></tr>
+                        <c:forEach var="userDance" items="${userDances}">
+                            <tr><td>${userDance.dance.name}</td><td>${userDance.yearsOfExperience} years</td></tr>
+                        </c:forEach>
                         </table>
                     </div>
                 </div>
