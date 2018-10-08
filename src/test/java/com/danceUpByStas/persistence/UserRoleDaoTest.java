@@ -35,17 +35,17 @@ class UserRoleDaoTest {
     void getAllUserRolesSuccess() {
 
         List<UserRole> userRoleList = userRoleDaoGeneric.getAll();
-        assertEquals(2, userRoleList.size());
+        assertEquals(3, userRoleList.size());
     }
 
     @Test
     void insertUserRoleSuccess() {
 
-        User user = userDao.getById(1);
-        Role role = genericDao.getById(2);
+        User user = userDao.getById(2);
+        Role role = genericDao.getById(1);
         UserRole userRoleInserted = userRoleDaoGeneric.insertManyToMany(new UserRole(user, role));
-        assertEquals(1, userRoleInserted.getUser().getId());
-        assertEquals(2, userRoleInserted.getRole().getId());
+        assertEquals(2, userRoleInserted.getUser().getId());
+        assertEquals(1, userRoleInserted.getRole().getId());
 
     }
 
@@ -81,7 +81,7 @@ class UserRoleDaoTest {
         propertiesTwo.put(propertyTwo, valueTwo);
         entities.put(entityTwo, propertiesTwo);
 
-        List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByTwoEntitiesAndTwoProperties(entities);
+        List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByEntitiesAndProperties(entities);
 
         assertEquals(1, userRoleList.get(0).getUser().getId());
         assertEquals(1, userRoleList.get(0).getRole().getId());

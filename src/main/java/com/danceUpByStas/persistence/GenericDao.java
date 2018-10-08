@@ -7,10 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +116,7 @@ public class GenericDao<T> {
     }
 
 
-    public List<T> getElementsByTwoEntitiesAndTwoProperties(Map<String, Map<String, String>> entities) {
+    public List<T> getElementsByEntitiesAndProperties(Map<String, Map<String, String>> entities) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
@@ -176,6 +173,21 @@ public class GenericDao<T> {
         session.close();
 
         return elements;
+    }
+
+    //https://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
+
+    public void deleteEntityByProperty(T entity, String property, String value) {
+
+        Session session = getSession();
+        Transaction transaction = session.getTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaDelete delete = builder.createCriteriaDelete(type);
+        Root root = delete.from(type);
+        delete.where(builder.equal(root.get(property), value));
+        session.createQuery(delete).executeUpdate();
+        transaction.commit();
+        session.close();
     }
 
 

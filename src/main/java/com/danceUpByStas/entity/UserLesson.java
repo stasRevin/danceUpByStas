@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * This entity is created to reflect the many-to-many relationship between User and Lesson.
@@ -24,14 +25,22 @@ public class UserLesson implements Serializable {
     @ManyToOne
     private Lesson lesson;
 
+    @Column(name="time_scheduled")
+    private LocalDateTime timeScheduled;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_lesson_role_id"))
+    private Role role;
+
     public UserLesson() {
 
     }
 
-    public UserLesson(User user, Lesson lesson) {
+    public UserLesson(User user, Lesson lesson, Role role) {
 
         this.user = user;
         this.lesson = lesson;
+        this.role = role;
     }
 
 }

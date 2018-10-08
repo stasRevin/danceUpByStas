@@ -1,6 +1,7 @@
 package com.danceUpByStas.persistence;
 
 import com.danceUpByStas.entity.Schedule;
+import com.danceUpByStas.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -11,10 +12,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ScheduleDao {
 
@@ -68,6 +72,34 @@ public class ScheduleDao {
     }
 
 
+    public int insertSchedulesInRangeForUser(User user, LocalDate startDate, LocalDate endDate,
+                                              Map<DayOfWeek, List<LocalTime>> schedules) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        int id = 0;
+
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+
+           DayOfWeek currentDay = date.getDayOfWeek();
+
+           if (schedules.containsKey(currentDay)) {
+
+               List<LocalTime> times = schedules.get(currentDay);
+               Schedule schedule = new Schedule(date, times.get(0), times.get(1), user);
+               id = (int)session.save(schedule);
+           }
+        }
+        transaction.commit();
+        session.close();
+
+        return id;
+    }
+
+    public void deleteAllSchedulesForUser() {
+
+
+    }
 
     private Session getSession() {
 

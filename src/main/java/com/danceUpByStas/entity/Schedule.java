@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity(name = "Schedule")
 @Table(name = "Schedule")
@@ -18,14 +19,26 @@ public class Schedule {
     private int id;
 
     @Column(name = "start_time")
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     @Column(name = "end_time")
-    private LocalDateTime endTime;
+    private LocalTime endTime;
     @Column(name = "date")
     private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_Schedule_User1"))
     private User user;
+
+    public Schedule(LocalDate date, LocalTime startTime, LocalTime endTime, User user) {
+
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.user = user;
+    }
+
+    public Schedule() {
+
+    }
 
 }

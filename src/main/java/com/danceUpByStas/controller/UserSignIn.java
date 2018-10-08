@@ -1,8 +1,6 @@
 package com.danceUpByStas.controller;
 
-import com.danceUpByStas.entity.Dance;
-import com.danceUpByStas.entity.User;
-import com.danceUpByStas.entity.UserDance;
+import com.danceUpByStas.entity.*;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.SimpleVisitor;
 
@@ -55,12 +53,30 @@ public class UserSignIn extends HttpServlet {
             int userId = user.getId();
             String photoName = user.getPhotoName();
 
+
             List<UserDance> dances = user.getDances();
             GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
+            GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
+            GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+
             List<UserDance> userDances = userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+            List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+
+            Map<String, Map<String, String>> userLessonEntities = new HashMap<>();
+            Map<String, String> userLessonPropertiesOne = new HashMap<>();
+            Map<String, String> userLessonPropertiesTwo = new HashMap<>();
+
+            userLessonPropertiesOne.put("id", userId + "");
+            userLessonPropertiesTwo.put("id", "1");
+            userLessonEntities.put("user", userLessonPropertiesOne);
+            userLessonEntities.put("role", userLessonPropertiesTwo);
+
+            List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
 
             session.setAttribute("user", user);
             session.setAttribute("userDances", userDances);
+            session.setAttribute("schedules", schedules);
+            session.setAttribute("userLessons", userLessons);
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                                 + File.separator + userId + File.separator + user.getPhotoName();
 
@@ -81,9 +97,9 @@ public class UserSignIn extends HttpServlet {
 
     private void prepareUserPhoto(String userPhotoPath, String photoName) {
 
-        //String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
+        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
         String catalinaHome = System.getProperty("catalina.home");
-        String staticImagePath = catalinaHome +  File.separator + "webapps/danceup/images/userPhotos";
+       // String staticImagePath = catalinaHome +  File.separator + "webapps/danceup/images/userPhotos";
         File imageDirectory = new File(staticImagePath);
 
         Path source = Paths.get(userPhotoPath);

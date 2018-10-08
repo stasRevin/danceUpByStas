@@ -4,7 +4,9 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,12 @@ public class Lesson {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
     @Column(name="start_time")
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     @Column(name="end_time")
-    private LocalDateTime endTime;
+    private LocalTime endTime;
+
+    @Column (name="date")
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "fk_Lesson_Location1"))
@@ -29,11 +34,12 @@ public class Lesson {
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> users = new ArrayList<>();
 
-    public Lesson(LocalDateTime startTime, LocalDateTime endTime, Location location) {
+    public Lesson(LocalTime startTime, LocalTime endTime, Location location, LocalDate date) {
 
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
+        this.date = date;
     }
 
     public Lesson() {

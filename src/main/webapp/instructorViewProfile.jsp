@@ -24,15 +24,7 @@
                         <table class="table">
                             <h4>Student/Lesson Details</h4>
                             <tr><td>Total Lessons Taught</td><td>78</td></tr>
-                            <tr><td>Number of Active Students</td><td>9</td></tr>
                             <tr><td>Current rate per Lesson</td><td>$${user.payRate}</td></tr>
-                        </table>
-                        <h4>General Availability</h4>
-                        <table class="table">
-                            <tr><td>Mondays</td><td>5PM-8PM</td></tr>
-                            <tr><td>Tuesdays</td><td>5PM-10PM</td></tr>
-                            <tr><td>Wednesday</td><td>5PM-10PM</td></tr>
-                            <tr><td>Thursday</td><td>5PM-9PM</td></tr>
                         </table>
                     </div>
                 </div>
@@ -53,24 +45,51 @@
             </div>
         </div>
 
-        <div class="scrollbar scrollbar-deep-blue col-sm-9">
-            <div class="force-overflow">
-                <table class="table">
+        <!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
+        <div class="col-sm-9">
+            <h3>Upcoming Lessons</h3>
+            <div class="table-responsive">
+                <table class="table dataTable table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Upcoming Lessons</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Location Name</th>
+                        <th>Location Address</th>
+                        <th>Location City</th>
+                        <th>Location State</th>
+                        <th>Location Zip</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Example</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Example</td>
-                    </tr>
+                    </thead>
+                    <c:forEach var="userLesson" items="${userLessons}">
+                        <tr><td>${userLesson.lesson.date}</td><td>${userLesson.lesson.startTime}</td>
+                            <td>${userLesson.lesson.endTime}</td>
+                            <td>${userLesson.lesson.location.name}</td>
+                            <td>${userLesson.lesson.location.address1}</td>
+                            <td>${userLesson.lesson.location.city}</td>
+                            <td>${userLesson.lesson.location.state}</td>
+                            <td>${userLesson.lesson.location.postalCode}</td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
         </div>
+
+<!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
+            <div class="table col-sm-9">
+                <h3>Availability</h3>
+                <div class="table-responsive">
+                    <table class="table dataTable table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                            <tr><th>Date</th><th>Start Time</th><th>End Time</th></tr>
+                        </thead>
+                        <c:forEach var="schedule" items="${schedules}">
+                            <tr><td>${schedule.date}</td><td>${schedule.startTime}</td><td>${schedule.endTime}</td></tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
         <jsp:include page="footer.jsp"/>
     </div>
 </div>
