@@ -17,10 +17,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,7 +56,6 @@ public class UserSignIn extends HttpServlet {
             int userId = user.getId();
             String photoName = user.getPhotoName();
 
-
             List<UserDance> dances = user.getDances();
             GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
             GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
@@ -73,10 +75,13 @@ public class UserSignIn extends HttpServlet {
 
             List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
 
+            long lessonsTaughtCount = userLessons.stream().filter(l -> l.getLesson().getDate().isBefore(LocalDate.now())).count();
+
             session.setAttribute("user", user);
             session.setAttribute("userDances", userDances);
             session.setAttribute("schedules", schedules);
             session.setAttribute("userLessons", userLessons);
+            session.setAttribute("lessonsTaughtCount", lessonsTaughtCount);
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                                 + File.separator + userId + File.separator + user.getPhotoName();
 

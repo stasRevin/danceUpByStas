@@ -15,7 +15,7 @@
         <div class="col-sm-3">
             <img id="userPhoto" src="images/userPhotos/${user.photoName}">
         </div>
-
+        <br/>
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Work Info</div>
@@ -23,7 +23,7 @@
                     <div class="force-overflow">
                         <table class="table">
                             <h4>Student/Lesson Details</h4>
-                            <tr><td>Total Lessons Taught</td><td>78</td></tr>
+                            <tr><td>Total Lessons Taught</td><td>${lessonsTaughtCount}</td></tr>
                             <tr><td>Current rate per Lesson</td><td>$${user.payRate}</td></tr>
                         </table>
                     </div>

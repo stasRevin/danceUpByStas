@@ -12,6 +12,10 @@
         <div style="float:right">
             <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
+        <div style="float:left">
+            <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button" style="background-color: red">Delete My Schedule</a>
+        </div>
+        <br/> <br/>
         <div class="col-sm-12">
             <form class="form-horizontal" id="multipleForm" action="#" method="post">
                 <h4>Select Schedule Date Range</h4>

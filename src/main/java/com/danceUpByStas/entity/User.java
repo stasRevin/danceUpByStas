@@ -1,12 +1,14 @@
 package com.danceUpByStas.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "User")
 @Table(name = "User")
@@ -55,6 +57,7 @@ public class User {
 
     }
 
+
     public User(String username, String password, int isDeleted, String firstName, String lastName,
                 String addressOne, String addressTwo, String city, String state, String postalCode,
                 double payRate, String photoName) {
@@ -73,4 +76,28 @@ public class User {
         this.photoName = photoName;
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getId() == user.getId() &&
+                getIsDeleted() == user.getIsDeleted() &&
+                Objects.equals(getUsername(), user.getUsername()) &&
+                Objects.equals(getPassword(), user.getPassword()) &&
+                Objects.equals(getFirstName(), user.getFirstName()) &&
+                Objects.equals(getLastName(), user.getLastName()) &&
+                Objects.equals(getAddressOne(), user.getAddressOne()) &&
+                Objects.equals(getAddressTwo(), user.getAddressTwo()) &&
+                Objects.equals(getCity(), user.getCity()) &&
+                Objects.equals(getState(), user.getState()) &&
+                Objects.equals(getPostalCode(), user.getPostalCode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUsername(), getPassword(), getIsDeleted(), getFirstName(), getLastName(), getAddressOne(), getAddressTwo(), getCity(), getState(), getPostalCode());
+    }
+
 }

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "Lesson")
 @Table(name = "Lesson")
@@ -46,5 +47,20 @@ public class Lesson {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lesson)) return false;
+        Lesson lesson = (Lesson) o;
+        return getId() == lesson.getId() &&
+                Objects.equals(getStartTime(), lesson.getStartTime()) &&
+                Objects.equals(getEndTime(), lesson.getEndTime()) &&
+                Objects.equals(getDate(), lesson.getDate()) &&
+                Objects.equals(getLocation(), lesson.getLocation());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getStartTime(), getEndTime(), getDate(), getLocation());
+    }
 }

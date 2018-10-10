@@ -53,3 +53,4 @@
 |10/06/2018|Finishing up AWS with indie project |2|
 |10/06/2018|Rewriting Hibernate Daos and adding Schedule Dao methods |3|
 |10/06/2018|Working on schedules and lessons, profile view |7|
+|10/09/2018|Updating instructor profile view page and servlet, added lessons taught |1|
