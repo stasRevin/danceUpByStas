@@ -69,20 +69,4 @@ public class UserDance implements Serializable {
         this.learningProficiency = learningProficiency;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserDance)) return false;
-        UserDance userDance = (UserDance) o;
-        return Objects.equals(getUser(), userDance.getUser()) &&
-                Objects.equals(getDance(), userDance.getDance()) &&
-                Objects.equals(getYearsOfExperience(), userDance.getYearsOfExperience()) &&
-                Objects.equals(getLearningProficiency(), userDance.getLearningProficiency());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getUser(), getDance(), getYearsOfExperience(), getLearningProficiency());
-    }
 }
