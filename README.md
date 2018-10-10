@@ -11,7 +11,6 @@ In the era of a so called gig economy, a number of applications has emerged to a
   * All: can browse website to read about dancing, instructor's tips, look for instructor (cannot book without a valid account)
 * Database (MySQL and Hibernate)
   * Store users and roles
-  * Store all data for the trails and reports
 * ORM Framework
   * Hibernate
 * Web Services or APIs
