@@ -4,24 +4,26 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
   <display-name>Archetype Created Web Application</display-name>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/signIn.jsp</form-login-page>
+      <form-error-page>/generalError.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
 
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>HelloWorld</web-resource-name>
-      <url-pattern>/helloWorld</url-pattern>
-      <http-method>GET</http-method>
-      <http-method>POST</http-method>
+      <web-resource-name>instructorPages</web-resource-name>
+      <url-pattern>/signInUser</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-      <role-name>admin</role-name>
+      <role-name>instructor</role-name>
     </auth-constraint>
-    <user-data-constraint>
-      <transport-guarantee>NONE</transport-guarantee>
-    </user-data-constraint>
   </security-constraint>
 
-  <login-config>
-    <auth-method>BASIC</auth-method>
-  </login-config>
+  <security-role>
+    <role-name>instructor</role-name>
+  </security-role>
 
 </web-app>

@@ -175,6 +175,23 @@ public class GenericDao<T> {
         return elements;
     }
 
+    public T getElementByProperty(String property, String value) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+
+        query.select(root).where(builder.equal(root.get(property), value));
+        T element = (T) session.createQuery(query).getSingleResult();
+        transaction.commit();
+        session.close();
+        return element;
+
+
+    }
+
     //https://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
 
     public void deleteEntityByProperty(T entity, String property, String value) {

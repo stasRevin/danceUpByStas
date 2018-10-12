@@ -38,18 +38,11 @@ public class UserSignIn extends HttpServlet {
         ServletContext context = getServletContext();
         HttpSession session = request.getSession();
 
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-
+        String username = request.getUserPrincipal().getName();
         String url = "";
         GenericDao<User> userDao = new GenericDao<>(User.class);
 
-        Map<String, String> userLoginProperties = new HashMap<>();
-        userLoginProperties.put("username", username);
-        userLoginProperties.put("password", password);
-        List<User> userList = userDao.getElementsByMultipleProperties(userLoginProperties);
-        User user = userList.get(0);
+        User user = userDao.getById(1);
 
         if (Objects.nonNull(user)) {
 
@@ -86,17 +79,21 @@ public class UserSignIn extends HttpServlet {
                                 + File.separator + userId + File.separator + user.getPhotoName();
 
             prepareUserPhoto(userPhotoPath, photoName);
-            url = role.equals("instructor") ? "/instructorViewProfile.jsp" : "/studentViewProfile.jsp";
+            url = "/instructor/instructorViewProfile.jsp";
 
         } else {
 
-            url = "/signIn.jsp";
-            RequestDispatcher dispatcher = context.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
+            url = "/generalError.jsp";
         }
 
         RequestDispatcher dispatcher = context.getRequestDispatcher(url);
         dispatcher.forward(request, response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        doPost(request, response);
 
     }
 

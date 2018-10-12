@@ -6,7 +6,7 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="navbar.jsp"/>
-        <form class="form-horizontal" id="multipleForm" action="/danceup/signInUser" method="post">
+        <form class="form-horizontal" id="multipleForm" action="j_security_check" method="POST">
             <div class="form-group">
                 <label class="control-label col-sm-3">Sign up as</label>
                 <div class="col-sm-9">
@@ -18,13 +18,13 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">Username</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="username">
+                    <input class="form-control" type="text" name="j_username">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">Password</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="password" name="password">
+                    <input class="form-control" type="password" name="j_password">
                 </div>
             </div>
             <div class="form-group">

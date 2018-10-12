@@ -14,7 +14,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/danceup/signUp.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="/danceup/signIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log In <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Student</a></li>
+                        <li><a href="/danceup/signInUser">Instructor</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
