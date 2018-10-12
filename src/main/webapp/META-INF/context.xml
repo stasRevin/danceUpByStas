@@ -3,8 +3,8 @@
 <Context docBase="danceup" path="/danceup" reloadable="true">
     <Realm className="org.apache.catalina.realm.JDBCRealm"
            driverName="com.mysql.jdbc.Driver"
-           connectionURL="jdbc:mysql://localhost:3306/danceup?user=tomcat&amp;password=tomcat&amp;useJDBCCompliantTimezoneShift=true&amp;serverTimezone=UTC"
-           userTable="user" userNameCol="username" userCredCol="password"
-           userRoleTable="user_role_view" roleNameCol="role_name" >
+           connectionURL="jdbc:mysql://localhost:3306/DanceUp?user=tomcat&amp;password=tomcat&amp;useJDBCCompliantTimezoneShift=true&amp;serverTimezone=UTC"
+           userTable="User" userNameCol="username" userCredCol="password"
+           userRoleTable="User_Role_View" roleNameCol="role_name" >
     </Realm>
 </Context>

@@ -1,10 +1,10 @@
-<jsp:include page="contentType.jsp"/>
+<jsp:include page="../contentType.jsp"/>
 <html>
 
 <body>
 <div class="container">
     <div class="row align-items-center justify-content-center">
-        <jsp:include page="jumbotron.jsp"/>
+        <jsp:include page="../jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div class="col-sm-12 pt-3">
             <form>
@@ -24,9 +24,9 @@
             </form>
         </div>
         <br/><br/>
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
     </div>
 </div>
 </body>
 </html>
-<jsp:include page="head.jsp"/>
+<jsp:include page="../head.jsp"/>

@@ -28,11 +28,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @WebServlet(
-        name = "com.danceUpByStas.controller.UserSignIn",
-        urlPatterns = {"/signInUser"}
+        name = "com.danceUpByStas.controller.InstructorSignIn",
+        urlPatterns = {"/signInInstructor"}
 
 )
-public class UserSignIn extends HttpServlet {
+public class InstructorSignIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -42,7 +42,7 @@ public class UserSignIn extends HttpServlet {
         String url = "";
         GenericDao<User> userDao = new GenericDao<>(User.class);
 
-        User user = userDao.getById(1);
+        User user = userDao.getElementByProperty("username", username);
 
         if (Objects.nonNull(user)) {
 

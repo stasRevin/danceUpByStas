@@ -40,11 +40,19 @@ public class UserSignUp extends HttpServlet {
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
         String password = request.getParameter("password");
+        Double payrate = 0.0;
+
+
 
         //TODO: add pay rate for instructor
 
         //Create new User
-        User user = new User(username, password, 0, firstName, lastName, address1, address2, city, state, zipCode, 0.00, "");
+        if (role.equals("instructor")) {
+
+            payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
+        }
+
+        User user = new User(username, password, 0, firstName, lastName, address1, address2, city, state, zipCode, payrate, "");
         //Insert new User
         GenericDao<User> userDao = new GenericDao<User>(User.class);
         int userId = userDao.insert(user);

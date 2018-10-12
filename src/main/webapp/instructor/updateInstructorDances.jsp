@@ -1,10 +1,10 @@
-<jsp:include page="contentType.jsp"/>
+<jsp:include page="../contentType.jsp"/>
 <html>
-<jsp:include page="head.jsp"/>
+<jsp:include page="../head.jsp"/>
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="jumbotron.jsp"/>
+        <jsp:include page="../jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
             <div style="float:right">
                 <a class="btn btn-primary" href="instructorProfileUpdate.jsp" role="button">Update My Profile</a>
@@ -91,7 +91,7 @@
                 </div>
             </form>
         </div>
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
 </div>
 </div>
 </body>

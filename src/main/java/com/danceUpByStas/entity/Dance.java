@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Dance")
-@Table(name = "DANCE")
+@Table(name = "Dance")
 @Data
 public class Dance {
 
