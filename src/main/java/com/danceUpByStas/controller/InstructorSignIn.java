@@ -72,6 +72,7 @@ public class InstructorSignIn extends HttpServlet {
             long lessonsTaughtCount = userLessons.stream().filter(l -> l.getLesson().getDate().isBefore(LocalDate.now())).count();
 
             session.setAttribute("user", user);
+            session.setAttribute("role", 1);
             session.setAttribute("userDances", userDances);
             session.setAttribute("schedules", schedules);
             session.setAttribute("userLessons", userLessons);

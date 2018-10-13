@@ -4,7 +4,12 @@ import com.danceUpByStas.entity.Role;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
+import com.danceUpByStas.utilities.UserPhotoManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,6 +17,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Random;
+
+import org.apache.catalina.realm.RealmBase;
 
 @WebServlet(
         name = "UserSignUp",
@@ -23,6 +38,7 @@ import java.io.IOException;
 )
 
 public class UserSignUp extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -40,8 +56,19 @@ public class UserSignUp extends HttpServlet {
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
         String password = request.getParameter("password");
+        String passwordConfirmation = request.getParameter("passwordConfirmation");
         Double payrate = 0.0;
 
+        String hashedPassword = "";
+
+        if (password.equals(passwordConfirmation)) {
+
+            hashedPassword = RealmBase.Digest(password, "SHA-256", "UTF-8");
+
+        } else {
+
+            response.sendRedirect("/danceup/generalError.jsp");
+        }
 
 
         //TODO: add pay rate for instructor
@@ -52,7 +79,7 @@ public class UserSignUp extends HttpServlet {
             payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
         }
 
-        User user = new User(username, password, 0, firstName, lastName, address1, address2, city, state, zipCode, payrate, "");
+        User user = new User(username, hashedPassword, 0, firstName, lastName, address1, address2, city, state, zipCode, payrate, "");
         //Insert new User
         GenericDao<User> userDao = new GenericDao<User>(User.class);
         int userId = userDao.insert(user);
@@ -78,39 +105,57 @@ public class UserSignUp extends HttpServlet {
             userFolder.mkdir();
         }
 
-        for (Part part : request.getParts()) {
-
-            if (part.getName().equals("profilePhoto")) {
-
-                String fileName = getFileName(part);
-                String fileLocation = userFolder + File.separator + fileName;
-                part.write(fileLocation);
-                user.setPhotoName(fileName);
-                userDao.saveOrUpdate(user);
-            }
-        }
+        UserPhotoManager photoManager = new UserPhotoManager();
+        photoManager.saveUserPhoto(request, userFolder, user, userDao);
 
         response.sendRedirect("/danceup/signIn.jsp");
     }
 
-    private String getFileName(Part part) {
 
-        String contentDisplay = part.getHeader("content-disposition");
-        String fileName = "";
-        String[] contentItems = contentDisplay.split(";");
+    //http://tutorials.jenkov.com/java-cryptography/messagedigest.html
+    //https://www.mkyong.com/java/how-do-convert-byte-array-to-string-in-java/
+    private String hashPassword(String password, byte[] salt, int iterationCount, int keyLength, String hashingAlgorithm) {
 
-        for (String contentItem : contentItems) {
+        Logger logger = LogManager.getLogger(this.getClass());
+        String hashedPassword = "";
+        char[] charPassword = password.toCharArray();
 
-            if (contentItem.trim().startsWith("filename")) {
+        PBEKeySpec spec = new PBEKeySpec(charPassword, salt, iterationCount, keyLength);
+        Arrays.fill(charPassword, Character.MIN_VALUE);
 
-                fileName = contentItem.substring(contentItem.indexOf("=") + 2,
-                        contentItem.length() - 1);
-                return fileName;
-            }
+        try {
 
+            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(hashingAlgorithm);
+            byte[] byteHash = secretKeyFactory.generateSecret(spec).getEncoded();
+            hashedPassword = new String(byteHash, "Unicode");
+
+        } catch (NoSuchAlgorithmException noSuchAlgorithmException) {
+
+            logger.debug("No such algorithm exception: {}", noSuchAlgorithmException);
+        } catch (InvalidKeySpecException invalidKeyException) {
+
+            logger.debug("Invalid Key Exception: {}", invalidKeyException);
+        } catch (UnsupportedEncodingException unsupportedEncodingException) {
+
+            logger.debug("Unsupported encoding: {}", unsupportedEncodingException);
+
+        } finally {
+
+            spec.clearPassword();
         }
 
-        return fileName;
+
+        return hashedPassword;
+
+    }
+
+    private byte[] getSalt(int length) {
+
+        Random random = new SecureRandom();
+        byte[] salt = new byte[length];
+        random.nextBytes(salt);
+
+        return salt;
     }
 
 }

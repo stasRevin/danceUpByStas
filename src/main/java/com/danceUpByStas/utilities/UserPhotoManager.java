@@ -5,6 +5,9 @@ import com.danceUpByStas.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -51,6 +54,41 @@ public class UserPhotoManager {
 
     }
 
+    public String getFileName(Part part) {
+
+        String contentDisplay = part.getHeader("content-disposition");
+        String fileName = "";
+        String[] contentItems = contentDisplay.split(";");
+
+        for (String contentItem : contentItems) {
+
+            if (contentItem.trim().startsWith("filename")) {
+
+                fileName = contentItem.substring(contentItem.indexOf("=") + 2,
+                        contentItem.length() - 1);
+                return fileName;
+            }
+
+        }
+
+        return fileName;
+    }
+
+    public void saveUserPhoto(HttpServletRequest request, File userFolder, User user, GenericDao<User> userDao) throws  IOException, ServletException {
+
+        for (Part part : request.getParts()) {
+
+            if (part.getName().equals("profilePhoto")) {
+
+                String fileName = getFileName(part);
+                String fileLocation = userFolder + File.separator + fileName;
+                part.write(fileLocation);
+                user.setPhotoName(fileName);
+                userDao.saveOrUpdate(user);
+            }
+        }
+    }
+
 
     private void removePhotoFromDatabase(User user) {
 
@@ -73,4 +111,6 @@ public class UserPhotoManager {
 
         return wasDeleted;
     }
+
+
 }

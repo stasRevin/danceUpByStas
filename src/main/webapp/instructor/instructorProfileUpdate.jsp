@@ -15,7 +15,7 @@
         </div>
         <br/><br/>
         <br/><br/>
-        <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">
                     <img id="userPhoto" src="images/userPhotos/${user.photoName}">
@@ -69,10 +69,12 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 <label class="control-label col-sm-3"> State</label>
+                Current State: ${user.state}
                 <div class="col-sm-6">
-                    <select class="form-control" name="state" value="${user.state}">
+                    <select class="form-control" name="state">
                         <option value="">None selected</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
@@ -159,7 +161,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button class="btn btn-primary" type="button" class="btn btn-default">Update</button>
+                    <button class="btn btn-primary" type="submit" class="btn btn-default">Update</button>
                     <button class="btn btn-primary" type="reset" class="btn btn-default">Clear</button>
                 </div>
             </div>
