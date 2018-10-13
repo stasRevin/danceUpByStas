@@ -16,6 +16,7 @@
     <web-resource-collection>
       <web-resource-name>instructorPages</web-resource-name>
       <url-pattern>/signInInstructor</url-pattern>
+      <url-pattern>/instructorProfileUpdate</url-pattern>
       <url-pattern>/instructor/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>

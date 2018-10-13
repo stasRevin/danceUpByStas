@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.danceUpByStas.utilities.UserPhotoManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,8 +78,10 @@ public class InstructorSignIn extends HttpServlet {
             session.setAttribute("lessonsTaughtCount", lessonsTaughtCount);
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                                 + File.separator + userId + File.separator + user.getPhotoName();
+            session.setAttribute("userPhotoPath", userPhotoPath);
 
-            prepareUserPhoto(userPhotoPath, photoName);
+            UserPhotoManager photoManager = new UserPhotoManager();
+            photoManager.prepareUserPhoto(userPhotoPath, photoName);
             url = "/instructor/instructorViewProfile.jsp";
 
         } else {
@@ -97,30 +100,6 @@ public class InstructorSignIn extends HttpServlet {
 
     }
 
-    private void prepareUserPhoto(String userPhotoPath, String photoName) {
-
-        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
-        String catalinaHome = System.getProperty("catalina.home");
-       // String staticImagePath = catalinaHome +  File.separator + "webapps/danceup/images/userPhotos";
-        File imageDirectory = new File(staticImagePath);
-
-        Path source = Paths.get(userPhotoPath);
-        Path target = Paths.get(staticImagePath + File.separator + photoName);
-        Logger logger = LogManager.getLogger(this.getClass());
-
-        SimpleVisitor simpleVisitor = new SimpleVisitor(target, source);
-
-        try {
-
-            Files.walkFileTree(source, simpleVisitor);
-
-        } catch (IOException inputOutputException) {
-
-            logger.debug("Input/Output Exception: {}",  inputOutputException);
-
-        }
-
-    }
 
 
 }

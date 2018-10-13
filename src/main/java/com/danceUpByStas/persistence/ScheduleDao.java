@@ -2,6 +2,7 @@ package com.danceUpByStas.persistence;
 
 import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserLesson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -17,8 +18,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ScheduleDao {
 
@@ -98,6 +101,49 @@ public class ScheduleDao {
 
     public void deleteAllSchedulesForUser() {
 
+
+    }
+
+    public List<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, User user) {
+
+        List<Schedule> schedules = getScheduleByUserIdAndDate(user.getId(), date);
+        List<LocalTime> availableTimes = new ArrayList<>();
+
+        GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+        Map<String, Map<String, String>> userLessonEntities = new HashMap<>();
+        Map<String, String> userLessonPropertiesOne = new HashMap<>();
+        Map<String, String> userLessonPropertiesTwo = new HashMap<>();
+
+        userLessonPropertiesOne.put("id", user.getId()+ "");
+        userLessonPropertiesTwo.put("id", "1");
+        userLessonEntities.put("user", userLessonPropertiesOne);
+        userLessonEntities.put("role", userLessonPropertiesTwo);
+
+
+        List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities)
+                                        .stream().filter(l -> l.getLesson().getDate().compareTo(date) == 0).collect(Collectors.toList());
+
+        LocalTime startTime = schedules.get(0).getStartTime();
+        LocalTime endTime = schedules.get(0).getEndTime();
+
+        for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
+
+            compareTimes(availableTimes, userLessons, time);
+        }
+
+        return availableTimes;
+    }
+
+
+    private void compareTimes(List<LocalTime> availableTimes, List<UserLesson> userLessons, LocalTime time) {
+
+        for (UserLesson lesson : userLessons) {
+
+            if (time.compareTo(lesson.getLesson().getStartTime()) != 0) {
+
+                availableTimes.add(time);
+            }
+        }
 
     }
 

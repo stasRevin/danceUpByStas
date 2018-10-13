@@ -1,3 +1,13 @@
+// For instructorViewProfile.jsp
+$(document).ready(function () {
+
+    $(".dataTable").DataTable();
+    $(".dataTables_length").addClass("bs-select");
+    addDeletePhotoOnClickEvent();
+    console.log("getting ready.");
+
+});
+
 function signUpEventsInit() {
 
     var studentRole = document.getElementById("studentRole");
@@ -62,10 +72,36 @@ $( function() {
 } );
 
 
-// For instructorViewProfile.jsp
-$(document).ready(function () {
 
-    $(".dataTable").DataTable();
-    $(".dataTables_length").addClass("bs-select");
 
-});
+//Remove user photo from the update page
+function deleteUserPhoto() {
+
+
+    $.get({
+        url: "http://localhost:8080/danceup/deleteUserPhoto",
+        success: function () {
+
+            console.log("removing photo.");
+            removePhotoFromPage();
+        }
+
+    });
+
+}
+
+function removePhotoFromPage() {
+
+    var sourcePath = $("#userPhoto").attr("src");
+    $("#userPhoto").attr("src", "");
+}
+
+function addDeletePhotoOnClickEvent() {
+
+    $("#deletePhotoButton").click(function () {
+
+        console.log("Adding delete event.");
+        deleteUserPhoto();
+    });
+}
+

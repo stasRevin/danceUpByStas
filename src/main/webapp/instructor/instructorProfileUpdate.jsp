@@ -18,7 +18,7 @@
         <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">
-                    <img id="userPhoto" src="images/userPhotos/dancing.jpg">
+                    <img id="userPhoto" src="images/userPhotos/${user.photoName}">
                 </div>
             </div>
             <div class="form-group">
@@ -37,49 +37,42 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">First Name</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="firstName" />
+                    <input class="form-control" type="text" name="firstName" value="${user.firstName}"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Last Name</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="lastName" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-sm-3">Email address</label>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" name="email" />
+                    <input class="form-control" type="text" name="lastName" value="${user.lastName}"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Address 1</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="address1">
+                    <input class="form-control" type="text" name="address1" value="${user.addressOne}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Address 2</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="address2">
+                    <input class="form-control" type="text" name="address2" value="${user.addressTwo}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">City</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="city">
+                    <input class="form-control" type="text" name="city" value="${user.city}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3"> State</label>
                 <div class="col-sm-6">
-                    <select class="form-control" name="state">
+                    <select class="form-control" name="state" value="${user.state}">
                         <option value="">None selected</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
@@ -139,14 +132,14 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">Zip Code</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="zip">
+                    <input class="form-control" type="text" name="zip" value="${user.postalCode}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Rate per lesson ($)</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="ratePerLesson">
+                    <input class="form-control" type="text" name="ratePerLesson" value="${user.payRate}">
                 </div>
             </div>
 
@@ -172,7 +165,7 @@
             </div>
 
         </form>
-        <jsp:include page="footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
     </div>
 </div>
 </body>

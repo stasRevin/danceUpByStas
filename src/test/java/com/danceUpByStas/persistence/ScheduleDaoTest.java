@@ -88,4 +88,13 @@ class ScheduleDaoTest {
         assertEquals(10, schedulesRetrieved.size());
 
     }
+
+    @Test
+    void getAvailabilityForDateByInstructorIdSuccess() {
+
+        User user = userDao.getById(1);
+
+        List<LocalTime> availableTimes = scheduleDao.getAvailabilityForDateByInstructorId(LocalDate.of(2018, 9, 27), user);
+        assertEquals(4, availableTimes.size());
+    }
 }
