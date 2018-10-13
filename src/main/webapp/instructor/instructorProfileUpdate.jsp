@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../contentType.jsp"/>
 <html>
 <jsp:include page="../head.jsp"/>
@@ -72,10 +73,9 @@
 
             <div class="form-group">
                 <label class="control-label col-sm-3"> State</label>
-                Current State: ${user.state}
                 <div class="col-sm-6">
                     <select class="form-control" name="state">
-                        <option value="">None selected</option>
+                        <option value="${user.state}">${user.state}</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
                         <option value="AR">Arkansas</option>
