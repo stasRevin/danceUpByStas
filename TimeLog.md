@@ -54,3 +54,6 @@
 |10/06/2018|Rewriting Hibernate Daos and adding Schedule Dao methods |3|
 |10/06/2018|Working on schedules and lessons, profile view |7|
 |10/09/2018|Updating instructor profile view page and servlet, added lessons taught |1|
+|10/11/2018|Videos|1|
+|10/12/2018|Tomcat Authentication set-up |8|
+|10/13/2018|Password Hasing, delete dance pages, etc. |6|

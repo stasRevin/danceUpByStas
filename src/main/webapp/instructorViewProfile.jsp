@@ -76,17 +76,21 @@
             </div>
         </div>
 
+        <div class="col-sm-9">
+            <h3>Availability</h3>
+        </div>
 <!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
             <div class="table col-sm-9">
-                <h3>Availability</h3>
-                <div class="table-responsive">
-                    <table class="table dataTable table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+
+                    <table class="dataTable display" cellspacing="0" width="100%">
                         <thead>
                             <tr><th>Date</th><th>Start Time</th><th>End Time</th></tr>
                         </thead>
-                        <c:forEach var="schedule" items="${schedules}">
-                            <tr><td>${schedule.date}</td><td>${schedule.startTime}</td><td>${schedule.endTime}</td></tr>
-                        </c:forEach>
+                        <tbody>
+                            <c:forEach var="schedule" items="${schedules}">
+                                <tr><td>${schedule.date}</td><td>${schedule.startTime}</td><td>${schedule.endTime}</td></tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -95,3 +99,4 @@
 </div>
 </body>
 </html>
+

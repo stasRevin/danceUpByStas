@@ -4,7 +4,7 @@ $(document).ready(function () {
     $(".dataTable").DataTable();
     $(".dataTables_length").addClass("bs-select");
     addDeletePhotoOnClickEvent();
-    console.log("getting ready.");
+    $( ".datepicker" ).datepicker();
 
 });
 
@@ -66,11 +66,6 @@ function removeInstructorsDetails() {
         form.removeChild(formGroupDiv);
     }
 }
-
-$( function() {
-    $( ".datepicker" ).datepicker();
-} );
-
 
 
 

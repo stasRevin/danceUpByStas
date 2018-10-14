@@ -82,7 +82,7 @@ public class ScheduleDao {
         Transaction transaction = session.beginTransaction();
         int id = 0;
 
-        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+        for (LocalDate date = startDate; date.isBefore(endDate) || date.isEqual(endDate); date = date.plusDays(1)) {
 
            DayOfWeek currentDay = date.getDayOfWeek();
 

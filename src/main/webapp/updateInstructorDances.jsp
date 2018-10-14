@@ -49,9 +49,8 @@
            $(this).closest("tr").remove();
            var thisClass = $(this);
            var danceName = thisClass.data("delete");
-
-           $.get("http://localhost:8080/danceup/deleteUserDance?name=" + danceName, function () {}
-           )
+            console.log("dance name: " + danceName);
+           $.get("http://localhost:8080/danceup/deleteUserDance?name=" + danceName, function () {});
 
        });
 

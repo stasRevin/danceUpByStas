@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <jsp:include page="head.jsp"/>
 <body>
@@ -13,22 +14,22 @@
             <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
         <div style="float:left">
-            <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button" style="background-color: red">Delete My Schedule</a>
+            <a class="btn btn-danger" href="/updateInstructorDances.jsp" role="button">Delete My Schedule</a>
         </div>
         <br/> <br/>
         <div class="col-sm-12">
-            <form class="form-horizontal" id="multipleForm" action="#" method="post">
+            <form class="form-horizontal" id="multipleForm" action="/danceup/insertInstructorSchedule" method="post">
                 <h4>Select Schedule Date Range</h4>
                 <div class="form-group">
                     <label class="control-label col-sm-3"> Start Date</label>
                     <div class="col-sm-9">
-                        <input type="text" class="datepicker">
+                        <input type="text" class="datepicker" name="startDate">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3"> End Date</label>
+                    <label class="control-label col-sm-3" > End Date</label>
                     <div class="col-sm-9">
-                        <input type="text" class="datepicker">
+                        <input type="text" class="datepicker" name="endDate">
                     </div>
                 </div>
                 <h4>Select General Availability</h4>
@@ -382,9 +383,73 @@
                     </div>
                 </div>
             </form>
+            <div class="col-sm-9" style="float:left">
+                <button id="deleteAvailability" class="btn btn-danger" role="button">Delete Selected Availability</button>
+            </div>
+            <!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
+            <div class="table col-sm-9">
+
+
+                <div class="table-responsive">
+                    <table id="availabilityTable" class="dataTable display" cellspacing="0" width="100%">
+                        <thead>
+                        <tr><th>Date</th><th>Start Time</th><th>End Time</th></tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="schedule" items="${schedules}">
+                                <tr class="deleteSchedule" data-date="${schedule.date}" data-start="${schedule.startTime}" data-end="${schedule.endTime}">
+                                    <td>${schedule.date}</td><td>${schedule.startTime}</td><td>${schedule.endTime}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <jsp:include page="footer.jsp"/>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+<script>
+
+    //https://datatables.net/examples/api/select_single_row.html
+
+    $(document).ready(function () {
+
+        var table = $("#availabilityTable").DataTable();
+
+        $("#availabilityTable tbody").on("click", "tr", function () {
+
+            if ($(this).hasClass("selected")) {
+
+                $(this).removeClass("selected");
+
+            } else {
+
+                table.$("tr.selected").removeClass("selected");
+                $(this).addClass("selected");
+            }
+        });
+
+        $("#deleteAvailability").click(function () {
+
+            var selectedRow = $(".selected");
+
+            table.row(".selected").remove().draw(false);
+
+            $.each(selectedRow, function (key, value) {
+
+                console.log(key + ": " + value);
+            });
+
+            var date = selectedRow.attr("data-date");
+            var startTime = selectedRow.attr("data-start");
+            var endTime = selectedRow.attr("data-end");
+
+            $.get("http://localhost:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
+        });
+    });
+
+</script>
