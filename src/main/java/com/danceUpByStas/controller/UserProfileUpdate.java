@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @WebServlet(name = "UserProfileUpdate",
             urlPatterns = {"/updateUserProfile"})
@@ -60,17 +62,18 @@ public class UserProfileUpdate extends HttpServlet {
 
         File userFolder = new File(userPhotoFile + File.separator + userId);
 
-
-
-        userDao.saveOrUpdate(user);
         String photoName = request.getPart("profilePhoto").getName();
         long size = request.getPart("profilePhoto").getSize();
 
         if (request.getPart("profilePhoto").getSize() > 0) {
             UserPhotoManager photoManager = new UserPhotoManager();
+            Path photoPath = Paths.get(userPhotoFile + File.separator + userId + File.separator + user.getPhotoName());
+            photoManager.deleteUserPhoto(user, photoPath);
             photoManager.saveUserPhoto(request, userFolder, user, userDao);
+
         }
 
+        userDao.saveOrUpdate(user);
 
         String url = "";
 

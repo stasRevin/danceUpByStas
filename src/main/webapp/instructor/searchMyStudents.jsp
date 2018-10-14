@@ -1,10 +1,10 @@
-<jsp:include page="../contentType.jsp"/>
+<jsp:include page="contentType.jsp"/>
 <html>
 
 <body>
 <div class="container">
     <div class="row align-items-center justify-content-center">
-        <jsp:include page="../jumbotron.jsp"/>
+        <jsp:include page="../general/jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div class="col-sm-12 pt-3">
             <form>

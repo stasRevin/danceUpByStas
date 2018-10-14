@@ -1,10 +1,10 @@
-<jsp:include page="../contentType.jsp"/>
+<jsp:include page="contentType.jsp"/>
 <html>
-<jsp:include page="../head.jsp"/>
+<jsp:include page="head.jsp"/>
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="../jumbotron.jsp"/>
+        <jsp:include page="../general/jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <h3>Instructors Found</h3>
         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -49,7 +49,7 @@
             </tr>
             </tfoot>
         </table>
-        <jsp:include page="../footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

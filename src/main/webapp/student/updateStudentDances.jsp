@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="jumbotron.jsp"/>
+        <jsp:include page="../general/jumbotron.jsp"/>
         <jsp:include page="studentNavbar.jsp"/>
         <div style="float:right">
             <a class="btn btn-primary" href="/studentProfileUpdate.jsp" role="button">Update My Profile</a>
