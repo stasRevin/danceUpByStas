@@ -83,7 +83,7 @@ public class InstructorSignIn extends HttpServlet {
 
             UserPhotoManager photoManager = new UserPhotoManager();
             photoManager.prepareUserPhoto(userPhotoPath, photoName);
-            url = "/instructor/instructorViewProfile.jsp";
+            url = "/instructorViewProfile.jsp";
 
         } else {
 

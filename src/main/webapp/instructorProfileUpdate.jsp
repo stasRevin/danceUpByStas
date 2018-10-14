@@ -5,14 +5,14 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="../general/jumbotron.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div style="float:right">
-            <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
+            <a class="btn btn-primary" href="/danceup/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
         <br/><br/>
         <div style="float:right">
-            <a class="btn btn-primary" href="/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
+            <a class="btn btn-primary" href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
         </div>
         <br/><br/>
         <br/><br/>

@@ -5,7 +5,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="../general/jumbotron.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div class="col-sm-12">
             <h3>

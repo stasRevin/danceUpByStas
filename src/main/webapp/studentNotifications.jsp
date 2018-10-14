@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="../general/jumbotron.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
 <jsp:include page="studentNavbar.jsp"/>
     </div>
     <h1>Notifications</h1>

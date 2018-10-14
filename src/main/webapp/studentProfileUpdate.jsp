@@ -4,10 +4,10 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="../general/jumbotron.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
 <jsp:include page="studentNavbar.jsp"/>
 <div style="float:right">
-    <a class="btn btn-primary" href="/updateStudentDances.jsp" role="button">Update My Dances</a>
+    <a class="btn btn-primary" href="/danceup/updateStudentDances.jsp" role="button">Update My Dances</a>
 </div>
 <br/><br/>
 <form class="form-horizontal" id="multipleForm" action="#" method="post" enctype="multipart/form-data">

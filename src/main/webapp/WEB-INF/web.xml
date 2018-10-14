@@ -7,8 +7,8 @@
   <login-config>
     <auth-method>FORM</auth-method>
     <form-login-config>
-      <form-login-page>/general/signIn.jsp</form-login-page>
-      <form-error-page>/general/generalError.jsp</form-error-page>
+      <form-login-page>/signIn.jsp</form-login-page>
+      <form-error-page>/generalError.jsp</form-error-page>
     </form-login-config>
   </login-config>
 
@@ -17,7 +17,6 @@
       <web-resource-name>instructorPages</web-resource-name>
       <url-pattern>/signInInstructor</url-pattern>
       <url-pattern>/instructorProfileUpdate</url-pattern>
-      <url-pattern>/instructor/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>instructor</role-name>

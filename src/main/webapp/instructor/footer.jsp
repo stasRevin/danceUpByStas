@@ -1,1 +1,0 @@
-<footer class="col-xs-12 col-sm-12">DanceUp</footer>

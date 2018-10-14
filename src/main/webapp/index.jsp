@@ -23,8 +23,8 @@
 <body>
 <div class="container">
     <div class="row">
-        <jsp:include page="general/jumbotron.jsp"/>
-        <jsp:include page="general/navbar.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
+        <jsp:include page="navbar.jsp"/>
 
         <div class="panel panel-primary">
             <div class="panel-heading">About</div>

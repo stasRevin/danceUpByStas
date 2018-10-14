@@ -1,11 +1,10 @@
 <jsp:include page="contentType.jsp"/>
 <html>
-
 <body>
 <div class="container">
     <div class="row align-items-center justify-content-center">
-        <jsp:include page="../general/jumbotron.jsp"/>
-        <jsp:include page="instructorNavbar.jsp"/>
+        <jsp:include page="jumbotron.jsp"/>
+        <jsp:include page="studentNavbar.jsp"/>
         <div class="col-sm-12 pt-3">
             <form>
                 <!-- Took search button from here https://bootsnipp.com/snippets/Q0Rvm-->
@@ -24,9 +23,9 @@
             </form>
         </div>
         <br/><br/>
-        <jsp:include page="../footer.jsp"/>
+        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>
 </html>
-<jsp:include page="../head.jsp"/>
+<jsp:include page="head.jsp"/>

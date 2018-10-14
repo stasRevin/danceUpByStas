@@ -34,7 +34,7 @@ public class InstructorProfileUpdate extends HttpServlet {
 
         }
 
-        url = "/instructor/instructorProfileUpdate.jsp";
+        url = "/instructorProfileUpdate.jsp";
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 
