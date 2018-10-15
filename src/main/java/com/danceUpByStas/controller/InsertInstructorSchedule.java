@@ -1,5 +1,6 @@
 package com.danceUpByStas.controller;
 
+import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.persistence.ScheduleDao;
@@ -22,20 +23,17 @@ import java.util.*;
 public class InsertInstructorSchedule extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    //TODO add day of week to the parameters in jsp
         HttpSession session = request.getSession();
 
         User user = (User)session.getAttribute("user");
         ScheduleDao scheduleDao = new ScheduleDao();
+        GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:m");
         LocalDate startDate = LocalDate.parse((String)request.getParameter("startDate"), dateFormatter);
         LocalDate endDate = LocalDate.parse((String)request.getParameter("endDate"), dateFormatter);
-
-
-
-
 
         String mondayStartTime = (String)request.getParameter("mondayStartTime");
         String mondayEndTime = (String)request.getParameter("mondayEndTime");
@@ -58,11 +56,10 @@ public class InsertInstructorSchedule extends HttpServlet {
                                                        fridayStartTime, fridayEndTime, saturdayStartTime, saturdayEndTime,
                                                        sundayStartTime, sundayEndTime);
 
-
         int counter = 1;
         int dayCounter = 1;
         List<LocalTime> daySchedule = null;
-        Map<DayOfWeek, List<LocalTime>> schedules = new TreeMap<>();
+        Map<DayOfWeek, List<LocalTime>> schedulesMap = new HashMap<>();
 
 
         for (String currentSchedule : weeklySchedule) {
@@ -77,7 +74,7 @@ public class InsertInstructorSchedule extends HttpServlet {
                 } else {
 
                     daySchedule.add(LocalTime.parse(currentSchedule, timeFormatter));
-                    schedules.put(DayOfWeek.of(dayCounter), daySchedule);
+                    schedulesMap.put(DayOfWeek.of(dayCounter), daySchedule);
                     dayCounter += 1;
 
                 }
@@ -89,7 +86,13 @@ public class InsertInstructorSchedule extends HttpServlet {
         }
 
 
-        int insertedId = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedules);
+        int insertedId = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedulesMap);
+
+        List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
+
+        session.setAttribute("schedules", schedules);
+
+        response.sendRedirect("/danceup/updateInstructorSchedule.jsp");
 
         /*
 

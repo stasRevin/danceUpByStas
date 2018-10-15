@@ -36,6 +36,7 @@ public class DeleteInstructorSchedule extends HttpServlet {
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
 
         scheduleGenericDao.delete(scheduleToDelete);
+        schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
 
         session.setAttribute("schedules", schedules);
     }
