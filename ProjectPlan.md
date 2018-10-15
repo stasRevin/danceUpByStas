@@ -37,14 +37,17 @@
 7. Implement unfamiliar techniques like Enums, lambdas
 
 ### Week 7 (depends on week 6)
-1. Continue working on adding more servlets if needed
-2. Add more tests if needed
-3. Conduct functional testing
+1. Finish instructor schedule entry
+2. Add feature for users to add dances
+3. Servlet for student profile update
+4. Servlet for student booking a lesson
+5. Servlet for student searching for instructors
+6. Implement zip code radius
+7. Achieve minimum functional product (happy path works for all features)
 
 ### Week 8 (depends on week 7)
-1. Write java docs
-2. Ask other people to use the website and give feedback
-3. Create presentation
+1. Work on validation and unhappy path
+2. Create additional tests
 
 ### Week 9 (depends on week 8)
 1. Work on team project
@@ -55,16 +58,30 @@
 ### Week 10 (depends on week 9)
 1. Work on team project
 2. Test and fix bugs
-3. Start redoing the whole indie project if all of the above failed
 
 ### Week 11 (depends on week 10)
 1. Work on team project
 2. Solving unforeseen problems
 
 ### Week 12
-1. Create video
-2. Finalize all docs
-3. Final touches
+1. Add notifications to the project
+2. Fix bugs
+3. Create javadocs
+
+### Week 13
+1. Bug fixes
+2. Create video presentation about the project
+
+### Week 14
+1. Bug fixes
+
+### Week 15
+1. Bug fixes
+
+
+### Week 16
+1. Bug fixes
+2. Submit the project
 
 
 

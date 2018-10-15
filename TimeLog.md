@@ -56,4 +56,5 @@
 |10/09/2018|Updating instructor profile view page and servlet, added lessons taught |1|
 |10/11/2018|Videos|1|
 |10/12/2018|Tomcat Authentication set-up |8|
-|10/13/2018|Password Hasing, delete dance pages, etc. |6|
+|10/13/2018|Password Hashing, delete dance pages, etc. |6|
+|10/14/2018|Adding features to add, delete, update schedule |6|
