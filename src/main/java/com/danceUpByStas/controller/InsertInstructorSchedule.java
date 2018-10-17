@@ -64,20 +64,23 @@ public class InsertInstructorSchedule extends HttpServlet {
 
         for (String currentSchedule : weeklySchedule) {
 
-            if (currentSchedule != null && !currentSchedule.isEmpty() ) {
+            currentSchedule = currentSchedule.trim();
 
-                if (counter % 2 != 0) {
+            if (counter % 2 != 0) {
 
-                    daySchedule = new ArrayList<>();
-                    daySchedule.add(LocalTime.parse(currentSchedule, timeFormatter));
+                daySchedule = new ArrayList<>();
+                addToSchedule(daySchedule, currentSchedule, timeFormatter);
 
-                } else {
+            } else {
 
-                    daySchedule.add(LocalTime.parse(currentSchedule, timeFormatter));
+                addToSchedule(daySchedule, currentSchedule, timeFormatter);
+
+                if (daySchedule.size() > 1) {
+
                     schedulesMap.put(DayOfWeek.of(dayCounter), daySchedule);
-                    dayCounter += 1;
-
                 }
+
+                dayCounter += 1;
 
             }
 
@@ -101,6 +104,18 @@ public class InsertInstructorSchedule extends HttpServlet {
          */
 
 
+
+    }
+
+
+    private void addToSchedule(List<LocalTime> daySchedule, String currentSchedule, DateTimeFormatter formatter) {
+
+        if (currentSchedule != null && !currentSchedule.isEmpty()
+                && currentSchedule.matches("^(([0-1]?[0-9])|([2][0-3])):[0-5][0-9]$")) {
+
+            daySchedule.add(LocalTime.parse(currentSchedule, formatter));
+
+        }
 
     }
 

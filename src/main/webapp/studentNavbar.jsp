@@ -16,7 +16,7 @@
                 <li><a href="/instructors">Instructors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logOutConfirmation"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+                <li><a href="/danceup/userLogOut"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
             </ul>
         </div>
     </div>

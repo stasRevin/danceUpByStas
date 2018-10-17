@@ -6,6 +6,52 @@ $(document).ready(function () {
     addDeletePhotoOnClickEvent();
     $( ".datepicker" ).datepicker();
 
+    $(".deleteDance").click(function() {
+
+        $(this).closest("tr").remove();
+        var thisClass = $(this);
+        var danceName = thisClass.data("delete");
+        console.log("dance name: " + danceName);
+        $.get("http://localhost:8080/danceup/deleteUserDance?name=" + danceName, function () {});
+
+    });
+
+    //https://datatables.net/examples/api/select_single_row.html
+    var table = $("#availabilityTable").DataTable();
+
+    $("#availabilityTable tbody").on("click", "tr", function () {
+
+        if ($(this).hasClass("selected")) {
+
+            $(this).removeClass("selected");
+
+        } else {
+
+            table.$("tr.selected").removeClass("selected");
+            $(this).addClass("selected");
+        }
+    });
+
+    $("#deleteAvailability").click(function () {
+
+        var selectedRow = $(".selected");
+
+        table.row(".selected").remove().draw(false);
+
+        $.each(selectedRow, function (key, value) {
+
+            console.log(key + ": " + value);
+        });
+
+        var date = selectedRow.attr("data-date");
+        var startTime = selectedRow.attr("data-start");
+        var endTime = selectedRow.attr("data-end");
+
+        $.get("http://localhost:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
+    });
+
+
+
 });
 
 function signUpEventsInit() {

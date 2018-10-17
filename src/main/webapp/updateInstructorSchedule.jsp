@@ -7,14 +7,14 @@
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
         <div style="float:right">
-            <a class="btn btn-primary" href="instructorProfileUpdate.jsp" role="button">Update My Profile</a>
+            <a class="btn btn-primary" href="/danceup/instructorProfileUpdate.jsp" role="button">Update My Profile</a>
         </div>
         <br/><br/>
         <div style="float:right">
-            <a class="btn btn-primary" href="/updateInstructorDances.jsp" role="button">Update My Dances</a>
+            <a class="btn btn-primary" href="/danceup/updateInstructorDances.jsp" role="button">Update My Dances</a>
         </div>
         <div style="float:left">
-            <a class="btn btn-danger" href="/updateInstructorDances.jsp" role="button">Delete My Schedule</a>
+            <a class="btn btn-danger" href="#" role="button">Delete My Schedule</a>
         </div>
         <br/> <br/>
         <div class="col-sm-12">
@@ -411,45 +411,3 @@
 </div>
 </body>
 </html>
-
-<script>
-
-    //https://datatables.net/examples/api/select_single_row.html
-
-    $(document).ready(function () {
-
-        var table = $("#availabilityTable").DataTable();
-
-        $("#availabilityTable tbody").on("click", "tr", function () {
-
-            if ($(this).hasClass("selected")) {
-
-                $(this).removeClass("selected");
-
-            } else {
-
-                table.$("tr.selected").removeClass("selected");
-                $(this).addClass("selected");
-            }
-        });
-
-        $("#deleteAvailability").click(function () {
-
-            var selectedRow = $(".selected");
-
-            table.row(".selected").remove().draw(false);
-
-            $.each(selectedRow, function (key, value) {
-
-                console.log(key + ": " + value);
-            });
-
-            var date = selectedRow.attr("data-date");
-            var startTime = selectedRow.attr("data-start");
-            var endTime = selectedRow.attr("data-end");
-
-            $.get("http://localhost:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
-        });
-    });
-
-</script>

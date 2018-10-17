@@ -8,14 +8,6 @@
         <jsp:include page="navbar.jsp"/>
         <form class="form-horizontal" id="multipleForm" action="j_security_check" method="POST">
             <div class="form-group">
-                <label class="control-label col-sm-3">Sign up as</label>
-                <div class="col-sm-9">
-                    <input type="radio" name="role" value="student"> Student
-                    &nbsp;&nbsp;
-                    <input type="radio" name="role" value="instructor"> Dance Instructor
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="control-label col-sm-3">Username</label>
                 <div class="col-sm-6">
                     <input class="form-control" type="text" name="j_username">

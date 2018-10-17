@@ -8,11 +8,11 @@
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
             <div style="float:right">
-                <a class="btn btn-primary" href="instructorProfileUpdate.jsp" role="button">Update My Profile</a>
+                <a class="btn btn-primary" href="/danceup/instructorProfileUpdate.jsp" role="button">Update My Profile</a>
             </div>
         <br/><br/>
         <div style="float:right">
-            <a class="btn btn-primary" href="/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
+            <a class="btn btn-primary" href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
         </div>
         <div class="col-sm-12">
             <table class="table">
@@ -26,7 +26,7 @@
                         <tr>
                             <td>${userDance.dance.name}</td>
                             <td>${userDance.yearsOfExperience}</td>
-                            <td><span class="deleteDance" data-delete="${userDance.dance.name}">Delete</span></td>
+                            <td><span class="deleteDance" data-delete="${userDance.dance.name}"><img id="trashCan" src="images/trashCan.png" alt="trash can image"></span></td>
                         </tr>
                     </c:forEach>
 
@@ -40,20 +40,3 @@
 </div>
 </body>
 </html>
-
-<script>
-    $(document).ready(function() {
-
-       $(".deleteDance").click(function() {
-
-           $(this).closest("tr").remove();
-           var thisClass = $(this);
-           var danceName = thisClass.data("delete");
-            console.log("dance name: " + danceName);
-           $.get("http://localhost:8080/danceup/deleteUserDance?name=" + danceName, function () {});
-
-       });
-
-    });
-
-</script>

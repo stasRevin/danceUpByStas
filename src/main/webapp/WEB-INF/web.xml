@@ -17,6 +17,16 @@
       <web-resource-name>instructorPages</web-resource-name>
       <url-pattern>/signInInstructor</url-pattern>
       <url-pattern>/instructorProfileUpdate</url-pattern>
+      <url-pattern>/instructorViewProfile.jsp</url-pattern>
+      <url-pattern>/searchMyStudents.jsp</url-pattern>
+      <url-pattern>/notifications.jsp</url-pattern>
+      <url-pattern>/updateInstructorDances.jsp</url-pattern>
+      <url-pattern>/updateInstructorSchedule.jsp</url-pattern>
+      <url-pattern>/viewMyStudents.jsp</url-pattern>
+      <url-pattern>/deleteUserPhoto</url-pattern>
+      <url-pattern>/insertInstructorSchedule</url-pattern>
+      <url-pattern>/insertUserDance</url-pattern>
+      <url-pattern>/updateUserProfile</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>instructor</role-name>
@@ -26,5 +36,25 @@
   <security-role>
     <role-name>instructor</role-name>
   </security-role>
+
+  <filter>
+    <filter-name>cacheFilter</filter-name>
+    <filter-class>com.danceUpByStas.utilities.CacheFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>cacheFilter</filter-name>
+    <url-pattern>/signInInstructor</url-pattern>
+    <url-pattern>/instructorProfileUpdate</url-pattern>
+    <url-pattern>/instructorViewProfile.jsp</url-pattern>
+    <url-pattern>/searchMyStudents.jsp</url-pattern>
+    <url-pattern>/notifications.jsp</url-pattern>
+    <url-pattern>/updateInstructorDances.jsp</url-pattern>
+    <url-pattern>/updateInstructorSchedule.jsp</url-pattern>
+    <url-pattern>/viewMyStudents.jsp</url-pattern>
+    <url-pattern>/deleteUserPhoto</url-pattern>
+    <url-pattern>/insertInstructorSchedule</url-pattern>
+    <url-pattern>/insertUserDance</url-pattern>
+    <url-pattern>/updateUserProfile</url-pattern>
+  </filter-mapping>
 
 </web-app>

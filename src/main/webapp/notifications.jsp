@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="contentType.jsp"/>
 <html>
 <jsp:include page="head.jsp"/>
@@ -5,7 +6,14 @@
 <div class="container">
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
-<jsp:include page="studentNavbar.jsp"/>
+<c:choose>
+    <c:when test="${role == 1}">
+        <jsp:include page="instructorNavbar.jsp"></jsp:include>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="studentNavbar.jsp"></jsp:include>
+    </c:otherwise>
+</c:choose>
     </div>
     <h1>Notifications</h1>
     <div class="col-sm-12">

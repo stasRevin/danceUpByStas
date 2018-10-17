@@ -6,6 +6,11 @@ footer, nav, section, article, aside {
 
 }
 
+#trashCan {
+
+    width: 5%;
+}
+
 header {
 
     padding: 1em;
