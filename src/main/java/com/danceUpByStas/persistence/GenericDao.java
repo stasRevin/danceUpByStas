@@ -194,10 +194,10 @@ public class GenericDao<T> {
 
     //https://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
 
-    public void deleteEntityByProperty(T entity, String property, String value) {
+    public void deleteEntityByProperty(String property, String value) {
 
         Session session = getSession();
-        Transaction transaction = session.getTransaction();
+        Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaDelete delete = builder.createCriteriaDelete(type);
         Root root = delete.from(type);

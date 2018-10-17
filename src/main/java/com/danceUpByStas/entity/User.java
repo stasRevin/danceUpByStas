@@ -44,12 +44,15 @@ public class User {
     @Column(name="photo_name")
     private String photoName;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserDance> dances = new ArrayList<>();
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> lessons = new ArrayList<>();
 

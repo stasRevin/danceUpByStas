@@ -5,6 +5,7 @@ import com.danceUpByStas.entity.UserRole;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.NoResultException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ class UserDaoTest {
     @Test
     void insertUserSuccess() {
 
-        int id = genericDao.insert(new User("vpablo", "123abc", (short)0, "Victor",
+        int id = genericDao.insert(new User("vpablo", "123abc", 0, "Victor",
                 "Pablo", "123 Main St", "", "Madison", "WI",
                 "53705", 65.00, ""));
         User user = genericDao.getById(3);
@@ -67,5 +68,34 @@ class UserDaoTest {
         assertEquals("Jessy", users.get(0).getLastName());
     }
 
+
+    @Test
+    void getElementByPropertySuccess() {
+
+        String postalCode = "53705";
+        User user = genericDao.getElementByProperty("postalCode", postalCode);
+
+        assertEquals("Michael", user.getFirstName());
+
+    }
+
+
+    @Test
+    void deleteEntityByPropertySuccess() {
+
+        int id = genericDao.insert(new User("vpablo", "123abc", 0, "Victor",
+                "Escobar", "123 Main St", "", "Madison", "WI",
+                "53705", 65.00, ""));
+
+        List<User> users = genericDao.getAll();
+
+        if (users.size() == 3) {
+            genericDao.deleteEntityByProperty("lastName", "Escobar");
+            users = genericDao.getAll();
+            assertEquals(2, users.size());
+
+        }
+
+    }
 
 }

@@ -39,4 +39,5 @@ class UserLessonDaoTest {
 
         assertEquals(2, userLessons.size());
     }
+
 }

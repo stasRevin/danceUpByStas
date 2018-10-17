@@ -1,6 +1,7 @@
 package com.danceUpByStas.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Lesson {
     @JoinColumn(name = "location_id", foreignKey = @ForeignKey(name = "fk_Lesson_Location1"))
     private Location location;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> users = new ArrayList<>();
 
