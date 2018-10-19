@@ -19,7 +19,6 @@ class UserRoleDaoTest {
     private GenericDao<UserRole> userRoleDaoGeneric;
     private GenericDao<User> userDao;
     private GenericDao<Role> genericDao;
-    private UserRoleDao userRoleDao;
     private final Logger logger = LogManager.getLogger(this.getClass());
     @BeforeEach
     void setUp() {
@@ -28,7 +27,6 @@ class UserRoleDaoTest {
         this.userRoleDaoGeneric = new GenericDao<>(UserRole.class);
         this.userDao = new GenericDao<>(User.class);
         this.genericDao = new GenericDao<Role>(Role.class);
-        this.userRoleDao = new UserRoleDao();
     }
 
     @Test
@@ -49,12 +47,6 @@ class UserRoleDaoTest {
 
     }
 
-    @Test
-    void getInstructorsByPropertySuccess() {
-
-        List<UserRole> instructors = userRoleDao.getInstructorsByProperty("postalCode", "53705");
-        logger.debug(instructors);
-    }
 
     @Test
     void getElementsByTwoPropertiesSuccess() {
@@ -65,12 +57,6 @@ class UserRoleDaoTest {
         String propertyTwo = "id";
         String valueOne = "1";
         String valueTwo = "1";
-
-        /*
-        List<UserRole> userRoleList = userRoleDaoGeneric.getElementsByTwoEntitiesAndTwoProperties(entityOne, entityTwo, propertyOne,
-                                                                                    propertyTwo, valueOne, valueTwo);
-
-        */
 
         Map<String, Map<String, String>> entities = new HashMap<>();
         Map<String, String> propertiesOne= new HashMap<>();

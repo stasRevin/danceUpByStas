@@ -28,22 +28,21 @@ public class InstructorProfileUpdate extends HttpServlet {
 
         if (Objects.isNull(user)) {
 
-            url = "/signInInstructor";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-            dispatcher.forward(request, response);
-
+            forward("/signInInstructor", request, response);
         }
 
-        url = "/instructorProfileUpdate.jsp";
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-
-        dispatcher.forward(request, response);
-
+        forward("/instructorProfileUpdate.jsp",request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);
+    }
+
+
+    private void forward(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
     }
 }

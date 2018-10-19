@@ -58,3 +58,5 @@
 |10/12/2018|Tomcat Authentication set-up |8|
 |10/13/2018|Password Hashing, delete dance pages, etc. |6|
 |10/14/2018|Adding features to add, delete, update schedule |6|
+|10/16/2018|Updating instructor schedule update |2|
+|10/18/2018|Refactoring code based on instructor's feedback |1|

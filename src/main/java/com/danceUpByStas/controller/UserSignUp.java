@@ -42,9 +42,7 @@ public class UserSignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        File userPhotoFile = new File((String)context.getAttribute("profilePhotoPath"));
 
-        //Get parameters from the form
         String role = request.getParameter("role");
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
@@ -70,20 +68,42 @@ public class UserSignUp extends HttpServlet {
             response.sendRedirect("/danceup/generalError.jsp");
         }
 
-
-        //TODO: add pay rate for instructor
-
-        //Create new User
         if (role.equals("instructor")) {
 
             payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
         }
 
         User user = new User(username, hashedPassword, 0, firstName, lastName, address1, address2, city, state, zipCode, payrate, "");
-        //Insert new User
+        persistUser(user, request, context);
+        associateUserWithRole(role, user);
+
+        response.sendRedirect("/danceup");
+    }
+
+
+    private int persistUser(User user, HttpServletRequest request, ServletContext context) throws ServletException, IOException {
+
         GenericDao<User> userDao = new GenericDao<User>(User.class);
+        UserPhotoManager photoManager = new UserPhotoManager();
         int userId = userDao.insert(user);
-        //Associate user with the role
+
+        File userPhotoFile = new File((String)context.getAttribute("profilePhotoPath"));
+        File userFolder = new File(userPhotoFile + File.separator + userId);
+
+        if (!userFolder.exists()) {
+
+            userFolder.mkdir();
+        }
+
+        photoManager.saveUserPhoto(request, userFolder, user, userDao);
+
+        return userId;
+
+    }
+
+
+    private void associateUserWithRole(String role, User user) {
+
         GenericDao<UserRole> userRoleDao = new GenericDao<>(UserRole.class);
         GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
 
@@ -97,18 +117,6 @@ public class UserSignUp extends HttpServlet {
             userRoleDao.insertManyToMany(new UserRole(user, student));
         }
 
-        File userFolder = new File(userPhotoFile + File.separator + userId);
-
-
-        if (!userFolder.exists()) {
-
-            userFolder.mkdir();
-        }
-
-        UserPhotoManager photoManager = new UserPhotoManager();
-        photoManager.saveUserPhoto(request, userFolder, user, userDao);
-
-        response.sendRedirect("/danceup/signIn.jsp");
     }
 
 

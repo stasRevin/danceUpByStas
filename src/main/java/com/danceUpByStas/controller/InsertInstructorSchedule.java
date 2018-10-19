@@ -56,6 +56,22 @@ public class InsertInstructorSchedule extends HttpServlet {
                                                        fridayStartTime, fridayEndTime, saturdayStartTime, saturdayEndTime,
                                                        sundayStartTime, sundayEndTime);
 
+
+        Map<DayOfWeek, List<LocalTime>> schedulesMap = prepareSchedule(weeklySchedule, timeFormatter);
+
+        int insertedId = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedulesMap);
+
+        List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
+
+        session.setAttribute("schedules", schedules);
+
+        response.sendRedirect("/danceup/updateInstructorSchedule.jsp");
+
+
+    }
+
+    private Map<DayOfWeek, List<LocalTime>> prepareSchedule(List<String> weeklySchedule, DateTimeFormatter timeFormatter) {
+
         int counter = 1;
         int dayCounter = 1;
         List<LocalTime> daySchedule = null;
@@ -88,22 +104,7 @@ public class InsertInstructorSchedule extends HttpServlet {
 
         }
 
-
-        int insertedId = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedulesMap);
-
-        List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
-
-        session.setAttribute("schedules", schedules);
-
-        response.sendRedirect("/danceup/updateInstructorSchedule.jsp");
-
-        /*
-
-        public int insertSchedulesInRangeForUser(User user, LocalDate startDate, LocalDate endDate,
-                                              Map<DayOfWeek, List<LocalTime>> schedules) {
-         */
-
-
+        return schedulesMap;
 
     }
 
