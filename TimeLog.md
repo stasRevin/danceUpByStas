@@ -60,3 +60,4 @@
 |10/14/2018|Adding features to add, delete, update schedule |6|
 |10/16/2018|Updating instructor schedule update |2|
 |10/18/2018|Refactoring code based on instructor's feedback |1|
+|10/19/2018|Week 8 activities |2|
