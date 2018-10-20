@@ -22,17 +22,16 @@ public class WebServiceTest {
         Client client = ClientBuilder.newClient();
         String uri = "https://www.zipwise.com/webservices/radius.php?key=ehwjedqpjnm7xdsc&zip=90210&radius=2&format=json";
 
-        Map<String, String> jsonObject = client.target(uri).request(MediaType.APPLICATION_JSON).get(LinkedHashMap.class);
+        Map<String, String> jsonResultMap = client.target(uri).request(MediaType.APPLICATION_JSON).get(LinkedHashMap.class);
 
-        List list = (List) new ArrayList(jsonObject.values()).get(0);
+        List locations = (List) new ArrayList(jsonResultMap.values()).get(0);
 
-        LinkedHashMap<String, String> firstLocation = (LinkedHashMap<String, String>)list.get(0);
+        LinkedHashMap<String, String> firstLocation = (LinkedHashMap<String, String>)locations.get(0);
         String zipCode = firstLocation.get("zip");
 
         client.close();
 
         assertEquals("90210", zipCode);
-
 
     }
 
