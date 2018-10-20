@@ -1,5 +1,8 @@
 package com.danceUpByStas.utilities;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zipwise.DataList;
+import com.zipwise.DataListItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
@@ -8,30 +11,26 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WebServiceTest {
 
     Logger logger = LogManager.getLogger(this.getClass());
 
     @Test
-    void getNearbyZipCodesSuccess() {
+    void getNearbyZipCodesSuccess()  throws Exception {
         // https://www.zipwise.com/webservices/?
         Client client = ClientBuilder.newClient();
-        String uri = "https://www.zipwise.com/webservices/radius.php?key=ehwjedqpjnm7xdsc&zip=90210&radius=2&format=json";
+        String uri = "http://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=53705&maximumradius=5&minimumradius=0&key=K60YCD32JR614QCHW6Y9";
 
-        Map<String, String> jsonResultMap = client.target(uri).request(MediaType.APPLICATION_JSON).get(LinkedHashMap.class);
+        String results = client.target(uri).request(MediaType.APPLICATION_JSON).get(String.class).trim().replaceFirst("\ufeff", "");
 
-        List locations = (List) new ArrayList(jsonResultMap.values()).get(0);
+        ObjectMapper mapper = new ObjectMapper();
+        DataList dataList = mapper.readValue(results, DataList.class);
 
-        LinkedHashMap<String, String> firstLocation = (LinkedHashMap<String, String>)locations.get(0);
-        String zipCode = firstLocation.get("zip");
+        DataListItem item = dataList.getDataList().get(1);
 
-        client.close();
-
-        assertEquals("90210", zipCode);
+        assertEquals("53726", item.getCode());
 
     }
 
