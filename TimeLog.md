@@ -61,3 +61,4 @@
 |10/16/2018|Updating instructor schedule update |2|
 |10/18/2018|Refactoring code based on instructor's feedback |1|
 |10/19/2018|Week 8 activities |2|
+|10/20/2018|Week 9 activites and instructor dance addition |5|
