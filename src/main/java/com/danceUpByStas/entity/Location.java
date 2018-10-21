@@ -43,7 +43,7 @@ public class Location {
 
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @ManyToMany(mappedBy = "locations")
+    @ManyToMany(mappedBy = "locations", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
     public Location() {

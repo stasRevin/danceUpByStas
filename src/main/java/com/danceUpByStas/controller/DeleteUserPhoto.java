@@ -22,7 +22,7 @@ public class DeleteUserPhoto extends HttpServlet {
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         User user =  (User) session.getAttribute("user");
         String userPhotoPathValue = (String)getServletContext().getAttribute("profilePhotoPath")
                 + File.separator + user.getId() + File.separator + user.getPhotoName();

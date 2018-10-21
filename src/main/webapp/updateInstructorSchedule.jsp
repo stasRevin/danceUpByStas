@@ -13,6 +13,10 @@
         <div style="float:right">
             <a class="btn btn-primary" href="/danceup/updateUserDances" role="button">Update My Dances</a>
         </div>
+        <br/><br/>
+        <div style="float:right">
+            <a class="btn btn-primary" href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a>
+        </div>
         <div style="float:left">
             <a class="btn btn-danger" href="#" role="button">Delete My Schedule</a>
         </div>

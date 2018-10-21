@@ -20,7 +20,7 @@ import java.util.List;
 public class DeleteInstructorSchedule extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
         List<Schedule> schedules = (List<Schedule>) session.getAttribute("schedules");
         User user = (User) session.getAttribute("user");

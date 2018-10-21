@@ -21,7 +21,7 @@ import java.util.Optional;
 public class DeleteUserDance extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("user");
         String danceToDelete = request.getParameter("name");
         int userId = user.getId();

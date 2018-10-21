@@ -16,6 +16,16 @@ $(document).ready(function () {
 
     });
 
+    $(".deleteLocation").click(function () {
+
+        $(this).closest("tr").remove();
+        var thisClass = $(this);
+        var locationId = thisClass.data("delete");
+        console.log("location id: " + locationId);
+        $.get("http://localhost:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {});
+
+    });
+
     //https://datatables.net/examples/api/select_single_row.html
     var table = $("#availabilityTable").DataTable();
 

@@ -24,7 +24,7 @@ public class InsertInstructorSchedule extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     //TODO add day of week to the parameters in jsp
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
         User user = (User)session.getAttribute("user");
         ScheduleDao scheduleDao = new ScheduleDao();
