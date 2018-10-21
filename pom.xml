@@ -140,12 +140,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-common</artifactId>
-      <version>2.26</version>
-    </dependency>
-
+    <!-- Jersey -->
     <dependency>
       <groupId>org.glassfish.jersey.inject</groupId>
       <artifactId>jersey-hk2</artifactId>
@@ -168,6 +163,12 @@
       <groupId>javax.json.bind</groupId>
       <artifactId>javax.json.bind-api</artifactId>
       <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet</artifactId>
+      <version>2.26</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->

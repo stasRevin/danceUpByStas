@@ -1,5 +1,6 @@
 package com.danceUpByStas.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -7,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "Dance")
 @Table(name = "Dance")
@@ -18,11 +20,14 @@ public class Dance {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @JsonProperty("name")
     @Column(name = "name")
     private String name;
+    @JsonProperty("description")
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "dance", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserDance> users = new ArrayList<>();
 

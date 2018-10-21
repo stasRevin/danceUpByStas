@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WebServiceTest {
 
     Logger logger = LogManager.getLogger(this.getClass());
-
+/*
     @Test
     void getNearbyZipCodesSuccess()  throws Exception {
         // https://www.zipwise.com/webservices/?
@@ -33,5 +33,5 @@ public class WebServiceTest {
         assertEquals("53726", item.getCode());
 
     }
-
+*/
 }
