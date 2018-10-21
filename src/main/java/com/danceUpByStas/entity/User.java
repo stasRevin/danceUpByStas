@@ -2,13 +2,13 @@ package com.danceUpByStas.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.ManyToAny;
 
+import javax.enterprise.inject.TransientReference;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity(name = "User")
 @Table(name = "User")
@@ -45,16 +45,30 @@ public class User {
     private String photoName;
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> roles = new ArrayList<>();
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserDance> dances = new ArrayList<>();
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> lessons = new ArrayList<>();
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name="User_Location",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "location_id")}
+    )
+    private Set<Location> locations = new HashSet<>();
+
 
     public User() {
 
@@ -80,27 +94,16 @@ public class User {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getId() == user.getId() &&
-                getIsDeleted() == user.getIsDeleted() &&
-                Objects.equals(getUsername(), user.getUsername()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getAddressOne(), user.getAddressOne()) &&
-                Objects.equals(getAddressTwo(), user.getAddressTwo()) &&
-                Objects.equals(getCity(), user.getCity()) &&
-                Objects.equals(getState(), user.getState()) &&
-                Objects.equals(getPostalCode(), user.getPostalCode());
+    public void addTeachingLocation(Location location) {
+
+        locations.add(location);
+        location.getUsers().add(this);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUsername(), getPassword(), getIsDeleted(), getFirstName(), getLastName(), getAddressOne(), getAddressTwo(), getCity(), getState(), getPostalCode());
-    }
+    public void removeTeachingLocation(Location location) {
 
+        locations.remove(location);
+        location.getUsers().remove(this);
+
+    }
 }

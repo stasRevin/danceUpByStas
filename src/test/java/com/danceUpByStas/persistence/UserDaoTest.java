@@ -1,5 +1,6 @@
 package com.danceUpByStas.persistence;
 
+import com.danceUpByStas.entity.Location;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import javax.persistence.NoResultException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -97,5 +99,30 @@ class UserDaoTest {
         }
 
     }
+
+    @Test
+    void addAndRemoveInstructorsTeachingLocation() {
+
+        GenericDao<Location> locationGenericDao = new GenericDao<>(Location.class);
+
+        Location location = new Location("Empire Ballroom", "134 Main St", "",
+                                    "Madison", "WI", "53706");
+        locationGenericDao.insert(location);
+        User user = genericDao.getById(1);
+        user.addTeachingLocation(location);
+
+        genericDao.saveOrUpdate(user);
+
+        user = genericDao.getById(1);
+
+        Set<Location> teachingLocations = user.getLocations();
+
+        assertEquals(true, teachingLocations.contains(location));
+
+        teachingLocations.remove(location);
+
+        assertEquals(false, teachingLocations.contains(location));
+    }
+
 
 }
