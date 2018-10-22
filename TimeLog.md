@@ -61,4 +61,5 @@
 |10/16/2018|Updating instructor schedule update |2|
 |10/18/2018|Refactoring code based on instructor's feedback |1|
 |10/19/2018|Week 8 activities |2|
-|10/20/2018|Week 9 activites and instructor dance addition |5|
+|10/20/2018|Week 9 activities and instructor dance addition |5|
+|10/21/2018|Web services, jax-rs xml return type, adding a feature for instructor to update teaching locations. Adding User_Location Hibernate relationship and test |4|
