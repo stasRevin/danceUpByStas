@@ -16,15 +16,15 @@ public class DanceDescriptionService {
 
 
     @GET
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
+    @Produces({MediaType.APPLICATION_XML, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
     @Path("/{param}")
-    public Response getDanceDescription(@PathParam("param") String danceName) {
+    public Dance getDanceDescription(@PathParam("param") String danceName) {
 
         GenericDao<Dance> danceDao = getGenericDao();
 
         Dance dance = danceDao.getElementByProperty("name", danceName);
 
-        return Response.status(200).entity(dance).build();
+        return dance;
 
     }
 
