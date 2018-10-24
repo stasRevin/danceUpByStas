@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.21, for macos10.13 (x86_64)
 --
--- Host: localhost    Database: danceuptest
+-- Host: localhost    Database: DanceUpTest
 -- ------------------------------------------------------
 -- Server version	5.7.21
 
@@ -220,6 +220,32 @@ INSERT INTO `User_Dance` VALUES (NULL,NULL,1,1),(NULL,NULL,1,2);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `User_Location`
+--
+
+DROP TABLE IF EXISTS `User_Location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User_Location` (
+  `user_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`location_id`),
+  KEY `fk_user_location_location_id` (`location_id`),
+  CONSTRAINT `fk_user_location_location_id` FOREIGN KEY (`location_id`) REFERENCES `Location` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_location_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `User_Location`
+--
+
+LOCK TABLES `User_Location` WRITE;
+/*!40000 ALTER TABLE `User_Location` DISABLE KEYS */;
+/*!40000 ALTER TABLE `User_Location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `User_Role`
 --
 
@@ -273,7 +299,7 @@ CREATE TABLE `user_lesson` (
 
 LOCK TABLES `user_lesson` WRITE;
 /*!40000 ALTER TABLE `user_lesson` DISABLE KEYS */;
-INSERT INTO `user_lesson` VALUES (1,1,'2018-10-16 22:08:50',1),(1,2,'2018-10-16 22:08:50',1),(2,1,'2018-10-16 22:08:50',2);
+INSERT INTO `user_lesson` VALUES (1,1,'2018-10-23 21:50:33',1),(1,2,'2018-10-23 21:50:33',1),(2,1,'2018-10-23 21:50:33',2);
 /*!40000 ALTER TABLE `user_lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -286,4 +312,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-16 22:15:37
+-- Dump completed on 2018-10-23 22:21:33

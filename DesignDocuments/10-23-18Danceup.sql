@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.21, for macos10.13 (x86_64)
 --
--- Host: localhost    Database: danceup
+-- Host: localhost    Database: DanceUp
 -- ------------------------------------------------------
 -- Server version	5.7.21
 
@@ -27,7 +27,7 @@ CREATE TABLE `Dance` (
   `name` varchar(45) NOT NULL,
   `description` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `Dance` (
 
 LOCK TABLES `Dance` WRITE;
 /*!40000 ALTER TABLE `Dance` DISABLE KEYS */;
-INSERT INTO `Dance` VALUES (2,'Rumba','romantic, slow, easy'),(3,'Waltz','Slow and elegant'),(4,'Cha Cha','fast and flirtatious');
+INSERT INTO `Dance` VALUES (2,'Rumba','romantic, slow, easy'),(3,'Waltz','Slow and elegant'),(4,'Cha Cha','fast and flirtatious'),(5,'Salsa','hot, fast, fun'),(6,'Tango','dramatic, romantic, staccato'),(7,'Samba','active, rhythmic, lively');
 /*!40000 ALTER TABLE `Dance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,6 +89,33 @@ INSERT INTO `Role` VALUES (1,'instructor'),(2,'student');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `User_Location`
+--
+
+DROP TABLE IF EXISTS `User_Location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User_Location` (
+  `user_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`location_id`),
+  KEY `fk_user_location_location_id` (`location_id`),
+  CONSTRAINT `fk_user_location_location_id` FOREIGN KEY (`location_id`) REFERENCES `Location` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_location_user_id` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `User_Location`
+--
+
+LOCK TABLES `User_Location` WRITE;
+/*!40000 ALTER TABLE `User_Location` DISABLE KEYS */;
+INSERT INTO `User_Location` VALUES (34,3);
+/*!40000 ALTER TABLE `User_Location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `User_Notification`
 --
 
@@ -137,7 +164,7 @@ CREATE TABLE `User_Role` (
 
 LOCK TABLES `User_Role` WRITE;
 /*!40000 ALTER TABLE `User_Role` DISABLE KEYS */;
-INSERT INTO `User_Role` VALUES (2,5),(2,6),(2,9),(2,11),(2,12),(2,14),(2,16),(2,18),(1,19),(1,20),(1,21),(1,22),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(1,41),(1,42),(1,43);
+INSERT INTO `User_Role` VALUES (2,5),(2,6),(2,9),(2,11),(2,12),(2,14),(2,16),(2,18),(1,19),(1,20),(1,21),(1,22),(1,24),(1,25),(1,26),(1,27),(1,28),(1,29),(1,30),(1,31),(1,32),(1,33),(1,34),(1,35),(1,36),(1,37),(1,38),(1,39),(1,40),(1,41),(1,42),(1,43),(1,45),(1,46),(2,47);
 /*!40000 ALTER TABLE `User_Role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +244,7 @@ CREATE TABLE `schedule` (
   PRIMARY KEY (`id`,`user_id`),
   KEY `fk_Schedule_User1_idx` (`user_id`),
   CONSTRAINT `fk_Schedule_User1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +253,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (69,'08:00:00','20:00:00',34,'2018-10-08'),(71,'08:00:00','20:00:00',34,'2018-10-22'),(72,'08:00:00','20:00:00',34,'2018-10-29');
+INSERT INTO `schedule` VALUES (73,'09:00:00','19:00:00',34,'2018-10-01'),(74,'09:00:00','19:00:00',34,'2018-10-08'),(75,'09:00:00','19:00:00',34,'2018-10-15'),(76,'09:00:00','19:00:00',34,'2018-10-22'),(77,'09:00:00','19:00:00',34,'2018-10-29');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,7 +282,7 @@ CREATE TABLE `user` (
   `photo_name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +291,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'test1','abc',0,'John','Kuba','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(3,'test2','abc',0,'Mike','Johnson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(4,'test3','abc',0,'Mike','Johnson','123 Main St','','Madison','WI','53750',NULL,NULL,0.00,''),(5,'test4','abc',0,'Mike','Peterson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(6,'fs','',0,'','','','','','','',NULL,NULL,0.00,''),(7,'fsadg','',0,'','','','','','','',NULL,NULL,0.00,''),(9,'fsa','',0,'','','','','','','',NULL,NULL,0.00,''),(11,'test5','abc',0,'Mike','Simpson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(12,'test6','abc',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(14,'test7','',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(16,'test10','abc',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(18,'test11','abc',0,'Mike','Simpson','123 Main','','Madison','WI','53705',NULL,NULL,0.00,'belitapic.jpg'),(19,'dancer1','abc',0,'Maria','Gomez','134 Main St','','Madison','WI','53705',NULL,NULL,0.00,'susannahpic.jpg'),(20,'dancer2','abc',0,'Marco','Lopez','134 Main','','Madison','WI','53706',NULL,NULL,0.00,'paulpic.jpg'),(21,'dancer3','abc',0,'Marco','Lopez','134 Main','','Madison','WI','53706',NULL,NULL,0.00,'jasonpic.jpg'),(22,'fads','',0,'fs','fs','','','','','',NULL,NULL,0.00,''),(24,'hgyt','',0,'fs','fs','','','','','',NULL,NULL,0.00,''),(25,'aaa','',0,'fs','fs','','','','','',NULL,NULL,0.00,'susannahpic.jpg'),(26,'martini','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(27,'martini1','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(28,'martini2','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(29,'martini3','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,'alexpic.jpg'),(30,'bobby1','abc',0,'Bob','Somers','','','','','',NULL,NULL,0.00,'nevilpic.jpg'),(31,'bobby2','abc',0,'Bob','August','','','','','',NULL,NULL,0.00,'dierdrepic.jpg'),(32,'bobby3','abc',0,'Bob','July','','','','','',NULL,NULL,0.00,'johanpic.jpg'),(33,'bobby4','abc',0,'Bob','Septemberish','123 Main St','','Madison','WI','53704',NULL,NULL,50.00,'susannahpic.jpg'),(34,'Bobby22','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Sam','Cash','135 Sheridan','','Jefferson','AR','53704',NULL,NULL,50.00,'susannahpic.jpg'),(35,'RobertM','abc',0,'Robert','Martin','134 Main St','','Madison','WI','53705',NULL,NULL,34.00,'belitasscore.gif'),(36,'Jessy1','>6Gj>%qxPl?',0,'Jessy','Jackson','134 Main St','','Madison','WI','53705',NULL,NULL,60.00,'oscarpic.jpg'),(37,'Jessy3','f8c1d87006fbf7e5cc4b026c3138bc046883dc71',0,'Jessy','Jackson','3412 Main St','','Madison','WI','54705',NULL,NULL,50.00,''),(38,'Jessy4','abc',0,'Jessy','Johnson','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'nevilpic.jpg'),(39,'Jessy5','a9993e364706816aba3e25717850c26c9cd0d89d',0,'Jessy','Simpson','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'johanpic.jpg'),(40,'Jessy6','f8c1d87006fbf7e5cc4b026c3138bc046883dc71',0,'Jessy','Franklin','3342 Main St','','Madison','WI','53705',NULL,NULL,50.00,'oscarpic.jpg'),(41,'Jessy7','~*G>=YES\'~',0,'Jessy','Milford','234 Main St','','Madison','WI','53705',NULL,NULL,50.00,'susannahpic.jpg'),(42,'Jessy9','~*G>=YES\'~',0,'Jessy','Sammy','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'nevilpic.jpg'),(43,'Jessy10','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Jessy','Jackson','1234 Main St','','Madison','WI','53705',NULL,NULL,40.00,'sidneypic.jpg');
+INSERT INTO `user` VALUES (1,'test1','abc',0,'John','Kuba','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(3,'test2','abc',0,'Mike','Johnson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(4,'test3','abc',0,'Mike','Johnson','123 Main St','','Madison','WI','53750',NULL,NULL,0.00,''),(5,'test4','abc',0,'Mike','Peterson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(6,'fs','',0,'','','','','','','',NULL,NULL,0.00,''),(7,'fsadg','',0,'','','','','','','',NULL,NULL,0.00,''),(9,'fsa','',0,'','','','','','','',NULL,NULL,0.00,''),(11,'test5','abc',0,'Mike','Simpson','123 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(12,'test6','abc',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(14,'test7','',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(16,'test10','abc',0,'Senior','George','123 Main St','','Madison','WI','31431',NULL,NULL,0.00,''),(18,'test11','abc',0,'Mike','Simpson','123 Main','','Madison','WI','53705',NULL,NULL,0.00,'belitapic.jpg'),(19,'dancer1','abc',0,'Maria','Gomez','134 Main St','','Madison','WI','53705',NULL,NULL,0.00,'susannahpic.jpg'),(20,'dancer2','abc',0,'Marco','Lopez','134 Main','','Madison','WI','53706',NULL,NULL,0.00,'paulpic.jpg'),(21,'dancer3','abc',0,'Marco','Lopez','134 Main','','Madison','WI','53706',NULL,NULL,0.00,'jasonpic.jpg'),(22,'fads','',0,'fs','fs','','','','','',NULL,NULL,0.00,''),(24,'hgyt','',0,'fs','fs','','','','','',NULL,NULL,0.00,''),(25,'aaa','',0,'fs','fs','','','','','',NULL,NULL,0.00,'susannahpic.jpg'),(26,'martini','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(27,'martini1','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(28,'martini2','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,''),(29,'martini3','abc',0,'Martin','Mara','124 Main St','','Madison','WI','53705',NULL,NULL,0.00,'alexpic.jpg'),(30,'bobby1','abc',0,'Bob','Somers','','','','','',NULL,NULL,0.00,'nevilpic.jpg'),(31,'bobby2','abc',0,'Bob','August','','','','','',NULL,NULL,0.00,'dierdrepic.jpg'),(32,'bobby3','abc',0,'Bob','July','','','','','',NULL,NULL,0.00,'johanpic.jpg'),(33,'bobby4','abc',0,'Bob','Septemberish','123 Main St','','Madison','WI','53704',NULL,NULL,50.00,'susannahpic.jpg'),(34,'Bobby22','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Sam','Cash','135 Sheridan','','Jefferson','AR','53704',NULL,NULL,50.00,'susannahpic.jpg'),(35,'RobertM','abc',0,'Robert','Martin','134 Main St','','Madison','WI','53705',NULL,NULL,34.00,'belitasscore.gif'),(36,'Jessy1','>6Gj>%qxPl?',0,'Jessy','Jackson','134 Main St','','Madison','WI','53705',NULL,NULL,60.00,'oscarpic.jpg'),(37,'Jessy3','f8c1d87006fbf7e5cc4b026c3138bc046883dc71',0,'Jessy','Jackson','3412 Main St','','Madison','WI','54705',NULL,NULL,50.00,''),(38,'Jessy4','abc',0,'Jessy','Johnson','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'nevilpic.jpg'),(39,'Jessy5','a9993e364706816aba3e25717850c26c9cd0d89d',0,'Jessy','Simpson','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'johanpic.jpg'),(40,'Jessy6','f8c1d87006fbf7e5cc4b026c3138bc046883dc71',0,'Jessy','Franklin','3342 Main St','','Madison','WI','53705',NULL,NULL,50.00,'oscarpic.jpg'),(41,'Jessy7','~*G>=YES\'~',0,'Jessy','Milford','234 Main St','','Madison','WI','53705',NULL,NULL,50.00,'susannahpic.jpg'),(42,'Jessy9','~*G>=YES\'~',0,'Jessy','Sammy','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'nevilpic.jpg'),(43,'Jessy10','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Jessy','Jackson','1234 Main St','','Madison','WI','53705',NULL,NULL,40.00,'sidneypic.jpg'),(44,'patrickM','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Patrick','Mira','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,''),(45,'patrickL','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Patrick','Mira','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'dierdrepic.jpg'),(46,'patrickS','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Patrick','Siri','134 Main St','','Madison','WI','53705',NULL,NULL,50.00,'nevilpic.jpg'),(47,'charlie8','ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',0,'Charlie','Margo','5588 Main St','','Madison','WI','53705',NULL,NULL,0.00,'johanpic.jpg');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +321,7 @@ CREATE TABLE `user_dance` (
 
 LOCK TABLES `user_dance` WRITE;
 /*!40000 ALTER TABLE `user_dance` DISABLE KEYS */;
-INSERT INTO `user_dance` VALUES (2,NULL,33,2),(4,NULL,33,3),(5,NULL,33,4),(5,NULL,34,2),(7,NULL,34,3),(5,NULL,34,4);
+INSERT INTO `user_dance` VALUES (2,NULL,33,2),(4,NULL,33,3),(5,NULL,33,4),(5,NULL,34,4),(2,NULL,34,5),(0,NULL,34,6),(3,NULL,34,7),(NULL,50,47,2),(NULL,60,47,3);
 /*!40000 ALTER TABLE `user_dance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,4 +396,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-16 22:15:22
+-- Dump completed on 2018-10-23 22:21:19
