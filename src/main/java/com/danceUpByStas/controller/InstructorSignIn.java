@@ -25,6 +25,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.danceUpByStas.utilities.UserPhotoManager;
+import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,24 +51,11 @@ public class InstructorSignIn extends HttpServlet {
             int userId = user.getId();
             String photoName = user.getPhotoName();
 
-            List<UserDance> dances = user.getDances();
-            GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
-            GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
-            GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+            UserSignInHelper signInHelper = new UserSignInHelper();
 
-            List<UserDance> userDances = userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
-            List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
-
-            Map<String, Map<String, String>> userLessonEntities = new HashMap<>();
-            Map<String, String> userLessonPropertiesOne = new HashMap<>();
-            Map<String, String> userLessonPropertiesTwo = new HashMap<>();
-
-            userLessonPropertiesOne.put("id", userId + "");
-            userLessonPropertiesTwo.put("id", "1");
-            userLessonEntities.put("user", userLessonPropertiesOne);
-            userLessonEntities.put("role", userLessonPropertiesTwo);
-
-            List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
+            List<UserDance> userDances = signInHelper.getUserDances(userId);
+            List<Schedule> schedules = signInHelper.getUserSchedule(userId);
+            List<UserLesson> userLessons = signInHelper.getUserLessons(userId, 1);
 
             long lessonsTaughtCount = userLessons.stream().filter(l -> l.getLesson().getDate().isBefore(LocalDate.now())).count();
 
@@ -100,7 +88,6 @@ public class InstructorSignIn extends HttpServlet {
         doPost(request, response);
 
     }
-
 
 
 }

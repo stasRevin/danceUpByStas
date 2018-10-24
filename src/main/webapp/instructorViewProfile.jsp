@@ -46,36 +46,7 @@
         </div>
 
         <!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
-        <div class="col-sm-9">
-            <h3>Upcoming Lessons</h3>
-            <div class="table-responsive">
-                <table class="table dataTable table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Location Name</th>
-                        <th>Location Address</th>
-                        <th>Location City</th>
-                        <th>Location State</th>
-                        <th>Location Zip</th>
-                    </tr>
-                    </thead>
-                    <c:forEach var="userLesson" items="${userLessons}">
-                        <tr><td>${userLesson.lesson.date}</td><td>${userLesson.lesson.startTime}</td>
-                            <td>${userLesson.lesson.endTime}</td>
-                            <td>${userLesson.lesson.location.name}</td>
-                            <td>${userLesson.lesson.location.address1}</td>
-                            <td>${userLesson.lesson.location.city}</td>
-                            <td>${userLesson.lesson.location.state}</td>
-                            <td>${userLesson.lesson.location.postalCode}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        </div>
-
+        <jsp:include page="upcomingLessons.jsp"/>
         <div class="col-sm-9">
             <h3>Availability</h3>
         </div>

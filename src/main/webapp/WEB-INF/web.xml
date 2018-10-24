@@ -33,8 +33,22 @@
     </auth-constraint>
   </security-constraint>
 
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>instructorPages</web-resource-name>
+      <url-pattern>/studentSignIn</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>student</role-name>
+    </auth-constraint>
+  </security-constraint>
+
   <security-role>
     <role-name>instructor</role-name>
+  </security-role>
+  
+  <security-role>
+    <role-name>student</role-name>
   </security-role>
 
   <filter>

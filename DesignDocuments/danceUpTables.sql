@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS `Location` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`LessonDao`
 -- -----------------------------------------------------
