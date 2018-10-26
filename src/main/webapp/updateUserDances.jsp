@@ -7,21 +7,6 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
-            <div style="float:right">
-                <a class="btn btn-primary" href="/danceup/instructorProfileUpdate.jsp" role="button">Update My Profile</a>
-            </div>
-        <br/><br/>
-        <c:choose>
-            <c:when test="${role == 1}">
-                <div style="float:right">
-                    <a class="btn btn-primary" href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
-                </div>
-                <br/><br/>
-                <div style="float:right">
-                    <a class="btn btn-primary" href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a>
-                </div>
-            </c:when>
-        </c:choose>
 
         <div class="col-sm-12">
 

@@ -6,21 +6,6 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
         <jsp:include page="instructorNavbar.jsp"/>
-        <div style="float:right">
-            <a class="btn btn-primary" href="/danceup/instructorProfileUpdate.jsp" role="button">Update My Profile</a>
-        </div>
-        <br/><br/>
-        <div style="float:right">
-            <a class="btn btn-primary" href="/danceup/updateUserDances" role="button">Update My Dances</a>
-        </div>
-        <br/><br/>
-        <div style="float:right">
-            <a class="btn btn-primary" href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a>
-        </div>
-        <div style="float:left">
-            <a class="btn btn-danger" href="#" role="button">Delete My Schedule</a>
-        </div>
-        <br/> <br/>
         <div class="col-sm-12">
             <form class="form-horizontal" id="multipleForm" action="/danceup/insertInstructorSchedule" method="post">
                 <h4>Select Schedule Date Range</h4>
