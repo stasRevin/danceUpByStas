@@ -30,6 +30,7 @@ public class UserProfileUpdate extends HttpServlet {
         User user = (User)session.getAttribute("user");
         int userId = user.getId();
         String userPhotoFile = (String)getServletContext().getAttribute("profilePhotoPath");
+        Integer role = (Integer) session.getAttribute("role");
 
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
@@ -42,6 +43,8 @@ public class UserProfileUpdate extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("passwordConfirmation");
         String hashedPassword = "";
+        Double instructorRatePerLesson = 0.0;
+
         GenericDao<User> userDao = new GenericDao<>(User.class);
 
         if (!password.isEmpty() && password.equals(passwordConfirmation)) {
@@ -59,6 +62,12 @@ public class UserProfileUpdate extends HttpServlet {
         user.setCity(city);
         user.setState(state);
         user.setPostalCode(zipCode);
+
+        if (role == 1) {
+
+            instructorRatePerLesson = Double.parseDouble(request.getParameter("ratePerLesson"));
+            user.setPayRate(instructorRatePerLesson);
+        }
 
         File userFolder = new File(userPhotoFile + File.separator + userId);
 

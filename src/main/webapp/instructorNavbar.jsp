@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/danceup/instructorViewProfile.jsp">View Profile</a></li>
-                <li><a href="/danceup/instructorProfileUpdate">Update Profile</a></li>
+                <li><a href="/danceup/userProfileUpdateForward">Update Profile</a></li>
                 <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>
                 <li><a href="/danceup/searchMyStudents.jsp">Students</a></li>
             </ul>

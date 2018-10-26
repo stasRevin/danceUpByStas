@@ -20,7 +20,7 @@ public class UserPhotoManager {
 
     public void prepareUserPhoto(String userPhotoPath, String photoName) {
 
-        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
+        String staticImagePath = "/Users/Sasha/IdeaProjects/danceUpByStas/target/danceup/images/userPhotos";
         String catalinaHome = System.getProperty("catalina.home");
         // String staticImagePath = catalinaHome +  File.separator + "webapps/danceup/images/userPhotos";
         File imageDirectory = new File(staticImagePath);

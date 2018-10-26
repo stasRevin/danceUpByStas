@@ -14,24 +14,35 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebServlet(name = "InstructorProfileUpdate",
-            urlPatterns = {"/instructorProfileUpdate"})
+@WebServlet(name = "UserProfileUpdateForward",
+            urlPatterns = {"/userProfileUpdateForward"})
 
 
-public class InstructorProfileUpdate extends HttpServlet {
+public class UserProfileUpdateForward extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
+        Integer role = (Integer) session.getAttribute("role");
         String url = "";
 
-        if (Objects.isNull(user)) {
+        if (!Objects.isNull(role)) {
 
-            forward("/signInInstructor", request, response);
+            forward("/userProfileUpdate.jsp", request, response);
+
+        } else {
+
+            if (role == 1) {
+
+                forward("/signInInstructor", request, response);
+
+            } else if (role == 2) {
+
+                forward("/signInStudent", request, response);
+            }
         }
 
-        forward("/instructorProfileUpdate.jsp",request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

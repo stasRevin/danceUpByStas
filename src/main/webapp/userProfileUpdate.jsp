@@ -10,15 +10,17 @@
         <div style="float:right">
             <a class="btn btn-primary" href="/danceup/updateUserDances" role="button">Update My Dances</a>
         </div>
-        <br/><br/>
-        <div style="float:right">
-            <a class="btn btn-primary" href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
-        </div>
-        <br/><br/>
-        <div style="float:right">
-            <a class="btn btn-primary" href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a>
-        </div>
-        <br/><br/>
+        <c:if>
+            <br/><br/>
+            <div style="float:right">
+                <a class="btn btn-primary" href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a>
+            </div>
+            <br/><br/>
+            <div style="float:right">
+                <a class="btn btn-primary" href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a>
+            </div>
+            <br/><br/>
+        </c:if>
         <br/><br/>
         <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
@@ -142,12 +144,14 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="control-label col-sm-3">Rate per lesson ($)</label>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" name="ratePerLesson" value="${user.payRate}">
+            <c:if test="${role == 1}">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Rate per lesson ($)</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="ratePerLesson" value="${user.payRate}">
+                    </div>
                 </div>
-            </div>
+            </c:if>
 
             <div class="form-group" id="passwordDiv">
                 <label class="control-label col-sm-3">Password</label>
