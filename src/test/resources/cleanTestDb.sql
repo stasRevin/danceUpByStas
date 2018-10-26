@@ -25,7 +25,7 @@ INSERT INTO USER_ROLE (user_id, role_id) VALUES (2, 2);
 INSERT INTO USER_ROLE (user_id, role_id) VALUES (1, 2);
 ALTER TABLE LOCATION AUTO_INCREMENT = 1;
 INSERT INTO LOCATION (name, address1, city, state, postalcode) values ('My Ballroom', '123 Main St', 'Madison', 'WI','53705');
-INSERT INTO LOCATION (name, address1, city, state, postalcode) values ('Elite Dance', '124 Main St', 'Madison', 'WI','53705');
+INSERT INTO LOCATION (name, address1, city, state, postalcode) values ('Elite Dance', '124 Main St', 'Madison', 'WI','53704');
 ALTER TABLE LESSON AUTO_INCREMENT = 1;
 INSERT INTO LESSON (date, start_time, end_time, location_id) values('2018-09-27', '17:00:00', '18:00:00', 1);
 INSERT INTO LESSON (date, start_time, end_time, location_id) values('2018-10-01', '19:00:00', '18:00:00', 2);

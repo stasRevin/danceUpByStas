@@ -1,21 +1,35 @@
 package com.danceUpByStas.utilities;
 
+import com.danceUpByStas.entity.Location;
+import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.persistence.GenericDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zipwise.DataList;
 import com.zipwise.DataListItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WebServiceTest {
 
     Logger logger = LogManager.getLogger(this.getClass());
+
+    @BeforeEach
+    void setUp() {
+
+        com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
+        database.runSQL("cleanTestDb.sql");
+    }
 /*
     @Test
     void getNearbyZipCodesSuccess()  throws Exception {
@@ -34,4 +48,19 @@ public class WebServiceTest {
 
     }
 */
+
+    @Test
+    void getZipCodesInListSuccess() {
+
+        GenericDao<Location> locationDao = new GenericDao<>(Location.class);
+
+        List<String> zipCodes = new ArrayList<>();
+        zipCodes.add("53705");
+        zipCodes.add("53704");
+
+        List<Location> locations = locationDao.getElementsInList("postalCode", zipCodes);
+
+        assertEquals(2, locations.size());
+
+    }
 }

@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -205,6 +207,30 @@ public class GenericDao<T> {
         session.createQuery(delete).executeUpdate();
         transaction.commit();
         session.close();
+    }
+
+
+    public List<T> getElementsInList(String property, List<String> itemList) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+
+        Expression<T> expression = root.get(property);
+        Predicate predicate = expression.in(itemList);
+
+        query.select(root).where(predicate);
+
+        List<T> elements = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        query.select(root).where(predicate);
+
+        return elements;
+
     }
 
 
