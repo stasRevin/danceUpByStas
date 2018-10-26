@@ -15,7 +15,7 @@ header {
 
     padding: 1em;
     color: #ffffff;
-    background-color: #E9633B;
+    background-color: #BD7167;
     background-image: url("../images/beige-paper.png");
     clear: left;
     text-align: center;
@@ -25,10 +25,22 @@ header {
 body {
 
     color: #000000;
-    background-color: #221E1D;
-    background-image: url("../images/concrete-wall.png");
+    /*background-color: #221E1D;*/
     font-family: Calibri, Arial, sans-serif;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: url(../images/stage.jpg) no-repeat;
+    content: '';
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
+
 
 .program-box a {
 
@@ -38,14 +50,13 @@ body {
 
 .container {
 
-    background-color: #ECEAE0;
-    background-image: url("../images/beige-paper.png");
+    background-color: #ffffff;
 
 }
 
 .jumbotron {
 
-    background-color: #221E1D;
+    background-color: #40233E;
     background-image: url("../images/concrete-wall.png");
     text-align: center;
     padding: 15px;
@@ -89,7 +100,7 @@ button a {
 
 .btn-primary {
 
-    background-color: #63AA9C;
+    background-color: #BA8781;
 
 }
 
@@ -97,7 +108,7 @@ body footer {
 
     padding: 1em;
     color: #ffffff;
-    background-color:  #63AA9C;
+    background-color:  #BA8781;
     background-image: url("../images/beige-paper.png");
     text-align: center;
     margin-top: 0;
@@ -129,6 +140,21 @@ body footer {
     margin-left: 22px;
     margin-top: 40px;
     overflow-y: scroll;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+
+    background-color: #B99591;
+}
+
+.nav-pills > li > a {
+
+    color: #B99793;
+}
+
+.progress-bar-success {
+
+    background-color: #FB9D7D;
 }
 
 .scrollbar-deep-blue::-webkit-scrollbar-track {
@@ -163,14 +189,22 @@ body footer {
 
 .panel-default > .panel-heading {
 
-    background-color:  #63AA9C;
+    background-color:  #BA8781;
+    color: #ffffff;
 }
 
 .panel-primary > .panel-heading {
 
 
-    background-color:  #63AA9C;
+    background-color:  #BA8781;
 }
+
+.navbar-inverse {
+
+    background-color: #40233E;
+    border-color: #080808;
+}
+
 
 @media print {
 
@@ -193,7 +227,7 @@ body footer {
 
     #userPhoto {
 
-        width: 50%;
+        width: 30%;
     }
 
     .dancePanel {

@@ -16,55 +16,54 @@
             <img id="userPhoto" src="images/userPhotos/${user.photoName}">
         </div>
         <br/>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Work Info</div>
-                <div class="scrollbar scrollbar-deep-blue">
-                    <div class="force-overflow">
-                        <table class="table">
-                            <h4>Student/Lesson Details</h4>
-                            <tr><td>Total Lessons Taught</td><td>${lessonsTaughtCount}</td></tr>
-                            <tr><td>Current rate per Lesson</td><td>$${user.payRate}</td></tr>
-                        </table>
-                    </div>
+        <div class="col-sm-9 tabView">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a data-toggle="pill" href="#pills-workInfo">Work Info</a>
+                </li>
+                <li>
+                    <a data-toggle="pill" href="#pills-experience">Teaching Experience</a>
+                </li>
+                <li>
+                    <a data-toggle="pill" href="#pills-availability">Availability</a>
+                </li>
+                <li>
+                    <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="pills-workInfo">
+                    <br/>
+                    <table class="table">
+                        <tr><td>Total Lessons Taught</td><td>${lessonsTaughtCount}</td></tr>
+                        <tr><td>Current rate per Lesson</td><td>$${user.payRate}</td></tr>
+                    </table>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Teaching Experience</div>
-                <div class="scrollbar scrollbar-deep-blue">
-                    <div class="force-overflow">
-                        <table class="table">
+
+                <div class="table tab-pane fade" id="pills-experience">
+                    <br/>
+                    <table class="table">
                         <c:forEach var="userDance" items="${userDances}">
                             <tr><td>${userDance.dance.name}</td><td>${userDance.yearsOfExperience} years</td></tr>
                         </c:forEach>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
-        <jsp:include page="upcomingLessons.jsp"/>
-        <div class="col-sm-9">
-            <h3>Availability</h3>
-        </div>
-<!-- https://mdbootstrap.com/content/bootstrap-table-pagination/ -->
-            <div class="table col-sm-9">
-
-                    <table class="dataTable display" cellspacing="0" width="100%">
-                        <thead>
-                            <tr><th>Date</th><th>Start Time</th><th>End Time</th></tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="schedule" items="${schedules}">
-                                <tr><td>${schedule.date}</td><td>${schedule.startTime}</td><td>${schedule.endTime}</td></tr>
-                            </c:forEach>
-                        </tbody>
                     </table>
                 </div>
+
+                <div class="table tab-pane fade" id="pills-availability">
+                    <br/>
+                    <div class="col-sm-9">
+                        <jsp:include page="instructorAvailability.jsp"/>
+                    </div>
+                </div>
+
+                <div class="table tab-pane fade" id="pills-upcomingLessons">
+                    <br/>
+                    <jsp:include page="upcomingLessons.jsp"/>
+                </div>
             </div>
+        </div>
+    </div>
+    <br/><br/>
         <jsp:include page="footer.jsp"/>
     </div>
 </div>

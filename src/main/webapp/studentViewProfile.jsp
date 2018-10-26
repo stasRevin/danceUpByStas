@@ -15,12 +15,19 @@
         <div class="col-sm-3">
             <img id="userPhoto" src="images/userPhotos/${user.photoName}">
         </div>
-        <div class="col-sm-7">
-            <h2>Progress by dance:</h2>
-        </div>
-        <div class="scrollbar scrollbar-deep-blue col-sm-7">
-            <div class="force-overflow">
 
+        <div class="col-sm-9 tabView">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a data-toggle="pill" href="#pills-progress">Progress by Dance</a>
+                </li>
+                <li>
+                    <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="pills-progress">
+                    <br/>
                     <c:forEach var="userDance" items="${userDances}">
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${userDance.learningProficiency}%">
@@ -28,11 +35,15 @@
                             </div>
                         </div>
                     </c:forEach>
+                </div>
 
+                <div class="table tab-pane fade" id="pills-upcomingLessons">
+                    <br/>
+                    <jsp:include page="upcomingLessons.jsp"/>
+                </div>
             </div>
+            <br/><br/>
         </div>
-
-        <jsp:include page="upcomingLessons.jsp"/>
         <jsp:include page="footer.jsp"/>
     </div>
 </div>

@@ -11,12 +11,12 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/danceup/instructorViewProfile.jsp">View Profile</a></li>
-                <li><a class="btn dropdown-toggle" data-toggle="dropdown" href="/danceup/userProfileUpdateForward">Update Profile<span class="caret"></span></a>
+                <li><a class="dropdown-toggle" data-toggle="dropdown" role="button">Update Profile<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/danceup/userProfileUpdateForward" role="button">Update My Profile</a></li>
-                        <li><a href="/danceup/updateUserDances" role="button">Update My Dances</a></li>
-                        <li><a href="/danceup/updateInstructorSchedule.jsp" role="button">Update My Schedule</a></li>
-                        <li><a href="/danceup/updateInstructorLocations" role="button">Update My Teaching Locations</a></li>
+                        <li><a href="/danceup/userProfileUpdateForward">Update My Profile</a></li>
+                        <li><a href="/danceup/updateUserDances">Update My Dances</a></li>
+                        <li><a href="/danceup/updateInstructorSchedule.jsp">Update My Schedule</a></li>
+                        <li><a href="/danceup/updateInstructorLocations">Update M Teaching Locations</a></li>
                     </ul>
                 </li>
                 <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>
