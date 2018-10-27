@@ -1,7 +1,7 @@
 // For instructorViewProfile.jsp
 $(document).ready(function () {
 
-    $(".dataTable").DataTable();
+    $(".responsive").DataTable();
     $(".dataTables_length").addClass("bs-select");
     addDeletePhotoOnClickEvent();
     $( ".datepicker" ).datepicker();

@@ -11,33 +11,26 @@
             <a class="btn btn-primary" href="searchMyInstructors.jsp" role="button">Search Again</a>
         </div>
         <br/><br/>
-        <h3>Instructors Found</h3>
-        <table class="table">
+        <h3>Instructors Near Me</h3>
+        <table class="display responsive nowrap">
             <thead>
             <tr>
-                <th class="th-sm">
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
                 </th>
-                <th class="th-sm">First Name
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
+                    First Name
                 </th>
-                <th class="th-sm">Last Name
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
+                    Last Name
                 </th>
-                <th class="th-sm">Dances Taught
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
+                    Dances Taught
                 </th>
-                <th class="th-sm">City
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
+                    Locations
                 </th>
-                <th class="th-sm">State
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                </th>
-                <th class="th-sm">Zip Code
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                </th>
-                <th class="th-sm">Book
-                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                <th>
+                    Book
                 </th>
             </tr>
             </thead>
@@ -47,6 +40,21 @@
                     <td><img class="userPhotoClass" src="images/userPhotos/${instructor.photoName}"></td>
                     <td>${instructor.firstName}</td>
                     <td>${instructor.lastName}</td>
+                    <td>
+                        <ul>
+                            <c:forEach var="dance" items="${instructor.dances}">
+                                <li>${dance.dance.name}</li>
+                            </c:forEach>
+
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <c:forEach var="location" items="${instructor.locations}">
+                                <li>${location.name}, ${location.address1} ${location.city}, ${location.state} ${location.postalCode}</li>
+                            </c:forEach>
+                        </ul>
+                    </td>
                     <td>
                         <a href="http://localhost:8080/danceup/bookLesson?${instructor.id}" class="btn btn-info" role="button">Book a Lesson</a>
                     </td>

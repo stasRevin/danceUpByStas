@@ -10,7 +10,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/studentViewProfile">View Profile</a></li>
+                <li><a href="/danceup/studentViewProfile.jsp">View Profile</a></li>
                 <li><a href="/danceup/userProfileUpdateForward">Update Profile</a></li>
                 <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>
                 <li><a href="/danceup/searchInstructors">Instructors</a></li>

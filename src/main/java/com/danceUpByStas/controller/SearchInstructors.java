@@ -4,6 +4,7 @@ import com.danceUpByStas.entity.Location;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserPhotoManager;
+import com.danceUpByStas.utilities.UserSignInHelper;
 import com.danceUpByStas.utilities.ZipCodeRadius;
 import com.zipwise.DataList;
 import com.zipwise.DataListItem;
@@ -27,7 +28,6 @@ import java.util.Set;
 public class SearchInstructors extends HttpServlet {
 
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -42,6 +42,7 @@ public class SearchInstructors extends HttpServlet {
 
         request.setAttribute("usersFound", instructors);
 
+        setInstructorDances(instructors);
         prepareInstructorPhotos(instructors);
 
         forward(request, response);
@@ -56,7 +57,7 @@ public class SearchInstructors extends HttpServlet {
         Set<User> instructors = getNearbyInstructors(user.getPostalCode(), "5");
 
         request.setAttribute("usersFound", instructors);
-
+        setInstructorDances(instructors);
         prepareInstructorPhotos(instructors);
 
         forward(request, response);
@@ -94,5 +95,16 @@ public class SearchInstructors extends HttpServlet {
             manager.prepareUserPhoto(userPhotoPath, photoName);
         }
 
+    }
+
+    private void setInstructorDances(Set<User> instructors) {
+
+        UserSignInHelper helper = new UserSignInHelper();
+
+        for (User instructor : instructors) {
+
+            instructor.setDances(helper.getUserDances(instructor.getId()));
+
+        }
     }
 }

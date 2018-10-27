@@ -211,6 +211,16 @@ body footer {
 
 }
 
+.dataTable th {
+
+    background-color: #BA8781;
+    color: #ffffff;
+}
+
+.responsive {
+
+    width: 100%;
+}
 
 @media print {
 
