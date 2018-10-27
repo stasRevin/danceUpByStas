@@ -1,6 +1,7 @@
 package com.danceUpByStas.utilities;
 
 import com.danceUpByStas.entity.Location;
+import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserLesson;
 import com.danceUpByStas.persistence.GenericDao;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +17,9 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -60,7 +63,15 @@ public class WebServiceTest {
 
         List<Location> locations = locationDao.getElementsInList("postalCode", zipCodes);
 
+        Set<User> users = new HashSet<>();
+
+        for (Location location : locations) {
+
+            users.addAll(location.getUsers());
+        }
+
         assertEquals(2, locations.size());
+        assertEquals(2, users.size());
 
     }
 }

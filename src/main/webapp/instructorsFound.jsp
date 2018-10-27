@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="contentType.jsp"/>
 <html>
 <jsp:include page="head.jsp"/>
@@ -11,9 +12,12 @@
         </div>
         <br/><br/>
         <h3>Instructors Found</h3>
-        <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <table class="table">
             <thead>
             <tr>
+                <th class="th-sm">
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
                 <th class="th-sm">First Name
                     <i class="fa fa-sort float-right" aria-hidden="true"></i>
                 </th>
@@ -38,34 +42,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Tiger</td>
-                <td>Nixon</td>
-                <td>E.C. Swing, Waltz, Tango</td>
-                <td>Madison</td>
-                <td>WI</td>
-                <td>53704</td>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="studentId" value="id">
-                        <button type="submit" class="btn btn-primary btn-default">Book</button>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td>Maria</td>
-                <td>Gonzalez</td>
-                <td>Waltz, Cha Cha, Rumba</td>
-                <td>Madison</td>
-                <td>WI</td>
-                <td>53704</td>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="studentId" value="id">
-                        <button type="submit" class="btn btn-primary btn-default">Book</button>
-                    </form>
-                </td>
-            </tr>
+            <c:forEach var="instructor" items="${usersFound}">
+                <tr>
+                    <td><img class="userPhotoClass" src="images/userPhotos/${instructor.photoName}"></td>
+                    <td>${instructor.firstName}</td>
+                    <td>${instructor.lastName}</td>
+                    <td>
+                        <a href="http://localhost:8080/danceup/bookLesson?${instructor.id}" class="btn btn-info" role="button">Book a Lesson</a>
+                    </td>
+                </tr>
+            </c:forEach>
             </tfoot>
         </table>
     <jsp:include page="footer.jsp"/>

@@ -13,7 +13,7 @@
                 <li><a href="/studentViewProfile">View Profile</a></li>
                 <li><a href="/danceup/userProfileUpdateForward">Update Profile</a></li>
                 <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>
-                <li><a href="/instructors">Instructors</a></li>
+                <li><a href="/danceup/searchInstructors">Instructors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/danceup/userLogOut"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>

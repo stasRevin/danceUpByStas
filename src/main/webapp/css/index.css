@@ -205,6 +205,12 @@ body footer {
     border-color: #080808;
 }
 
+.btn-primary:hover {
+
+    background-color: #3F243F;
+
+}
+
 
 @media print {
 

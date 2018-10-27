@@ -80,7 +80,7 @@ public class UserPhotoManager {
 
             if (part.getName().equals("profilePhoto")) {
 
-                String fileName = getFileName(part);
+                String fileName = user.getId() + getFileName(part);
                 String fileLocation = userFolder + File.separator + fileName;
                 part.write(fileLocation);
                 user.setPhotoName(fileName);
