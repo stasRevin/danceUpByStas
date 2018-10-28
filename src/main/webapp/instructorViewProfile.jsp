@@ -13,7 +13,7 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/userPhotos/${user.photoName}">
+            <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
         </div>
         <br/>
         <div class="col-sm-9 tabView">

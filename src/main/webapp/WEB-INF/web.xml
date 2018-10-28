@@ -16,17 +16,22 @@
     <web-resource-collection>
       <web-resource-name>instructorPages</web-resource-name>
       <url-pattern>/signInInstructor</url-pattern>
-      <url-pattern>/instructorProfileUpdate</url-pattern>
       <url-pattern>/instructorViewProfile.jsp</url-pattern>
       <url-pattern>/searchMyStudents.jsp</url-pattern>
       <url-pattern>/notifications.jsp</url-pattern>
-      <url-pattern>/updateInstructorDances.jsp</url-pattern>
+      <url-pattern>/updateUserDances.jsp</url-pattern>
       <url-pattern>/updateInstructorSchedule.jsp</url-pattern>
       <url-pattern>/viewMyStudents.jsp</url-pattern>
       <url-pattern>/deleteUserPhoto</url-pattern>
       <url-pattern>/insertInstructorSchedule</url-pattern>
       <url-pattern>/insertUserDance</url-pattern>
       <url-pattern>/updateUserProfile</url-pattern>
+      <url-pattern>/deleteUserDance</url-pattern>
+      <url-pattern>/deleteUserPhoto</url-pattern>
+      <url-pattern>/updateInstructorLocations</url-pattern>
+      <url-pattern>/userProfileUpdate</url-pattern>
+      <url-pattern>/userProfileUpdate.jsp</url-pattern>
+      <url-pattern>/deleteInstructorLocation</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>instructor</role-name>
@@ -37,6 +42,15 @@
     <web-resource-collection>
       <web-resource-name>instructorPages</web-resource-name>
       <url-pattern>/studentSignIn</url-pattern>
+      <url-pattern>/studentViewProfile.jsp</url-pattern>
+      <url-pattern>/notifications.jsp</url-pattern>
+      <url-pattern>/searchInstructors</url-pattern>
+      <url-pattern>/instructorsFound.jsp</url-pattern>
+      <url-pattern>/deleteUserDance</url-pattern>
+      <url-pattern>/deleteUserPhoto</url-pattern>
+      <url-pattern>/bookInstructor.jsp</url-pattern>
+      <url-pattern>/userProfileUpdate</url-pattern>
+      <url-pattern>/userProfileUpdate.jsp</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>
@@ -69,6 +83,17 @@
     <url-pattern>/insertInstructorSchedule</url-pattern>
     <url-pattern>/insertUserDance</url-pattern>
     <url-pattern>/updateUserProfile</url-pattern>
+    <url-pattern>/userProfileUpdate.jsp</url-pattern>
+    <url-pattern>/studentSignIn</url-pattern>
+    <url-pattern>/studentViewProfile.jsp</url-pattern>
+    <url-pattern>/searchInstructors</url-pattern>
+    <url-pattern>/deleteUserDance</url-pattern>
+    <url-pattern>/deleteUserPhoto</url-pattern>
+    <url-pattern>/bookInstructor.jsp</url-pattern>
   </filter-mapping>
+  
+  <listener>
+    <listener-class>com.danceUpByStas.utilities.SessionListener</listener-class>
+  </listener>
 
 </web-app>

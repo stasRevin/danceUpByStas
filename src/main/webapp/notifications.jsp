@@ -6,14 +6,14 @@
 <div class="container">
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
-<c:choose>
-    <c:when test="${role == 1}">
-        <jsp:include page="instructorNavbar.jsp"></jsp:include>
-    </c:when>
-    <c:otherwise>
-        <jsp:include page="studentNavbar.jsp"></jsp:include>
-    </c:otherwise>
-</c:choose>
+        <c:choose>
+            <c:when test="${role == 1}">
+                <jsp:include page="instructorNavbar.jsp"/>
+            </c:when>
+            <c:when test="${role == 2}">
+                <jsp:include page="studentNavbar.jsp"/>
+            </c:when>
+        </c:choose>
     </div>
     <h1>Notifications</h1>
     <div class="col-sm-12">

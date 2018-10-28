@@ -26,6 +26,7 @@ public class UserLesson implements Serializable {
     @ManyToOne
     private Lesson lesson;
 
+    @Transient
     @Column(name="time_scheduled")
     private LocalDateTime timeScheduled;
 

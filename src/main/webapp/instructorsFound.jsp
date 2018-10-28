@@ -48,7 +48,7 @@
             <tbody>
             <c:forEach var="instructor" items="${usersFound}">
                 <tr>
-                    <td><img class="userPhotoClass" src="images/userPhotos/${instructor.photoName}"></td>
+                    <td><img class="userPhotoClass" src="images/usersFoundPhotos${user.id}/${instructor.photoName}"></td>
                     <td>${instructor.firstName}</td>
                     <td>${instructor.lastName}</td>
                     <td>

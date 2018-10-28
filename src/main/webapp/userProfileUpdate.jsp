@@ -7,13 +7,19 @@
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
 
-
-        <jsp:include page="instructorNavbar.jsp"/>
+        <c:choose>
+            <c:when test="${role == 1}">
+                <jsp:include page="instructorNavbar.jsp"/>
+            </c:when>
+            <c:when test="${role == 2}">
+                <jsp:include page="studentNavbar.jsp"/>
+            </c:when>
+        </c:choose>
 
         <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">
-                    <img id="userPhoto" src="images/userPhotos/${user.photoName}">
+                    <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
                 </div>
             </div>
             <div class="form-group">

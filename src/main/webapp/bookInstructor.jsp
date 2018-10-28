@@ -18,7 +18,7 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/userPhotos/${instructor.photoName}">
+            <img id="userPhoto" src="images/usersFoundPhotos${user.id}/${instructor.photoName}">
         </div>
         <br/>
         <div class="col-sm-9 tabView">
@@ -53,11 +53,16 @@
     <h3 class="col-sm-12">Set Your Lesson Details</h3>
     <br/>
         <div class="col-sm-12">
-            <form  class="form-horizontal" id="multipleForm" action="#" method="post">
+            <form  class="form-horizontal" id="multipleForm" action="/danceup/bookingConfirmation" method="post">
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input id="instructor" name="instructor" type="hidden" value="${instructor.id}">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Date</label>
                     <div class="col-sm-6">
-                        <input id="lessonDate" type="text" class="datepicker" data-instructorId="${instructor.id}">
+                        <input id="lessonDate" name="lessonDate" type="text" class="datepicker" data-instructorId="${instructor.id}">
                     </div>
                 </div>
                 <!-- User JS onchange event to handle availability display.-->
@@ -74,10 +79,10 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Dance Studio</label>
                     <div class="col-sm-6">
-                        <select name="lessonTime">
+                        <select name="location">
                             <option>None Selected</option>
                             <c:forEach var="location" items="${instructor.locations}">
-                                <option>${location.name} ${location.address1} ${location.city}, ${location.state} ${location.postalCode}</option>
+                                <option value="${location.id}">${location.name} ${location.address1} ${location.city}, ${location.state} ${location.postalCode}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -99,9 +104,6 @@
     $(document).ready(function () {
 
         var lessonDateInput = $("#lessonDate");
-
-
-
 
         lessonDateInput.change(function () {
 

@@ -99,10 +99,6 @@ public class ScheduleDao {
         return id;
     }
 
-    public void deleteAllSchedulesForUser() {
-
-
-    }
 
     public List<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, int userId) {
 

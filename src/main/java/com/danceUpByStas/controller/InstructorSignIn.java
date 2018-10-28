@@ -67,10 +67,17 @@ public class InstructorSignIn extends HttpServlet {
             session.setAttribute("lessonsTaughtCount", lessonsTaughtCount);
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                                 + File.separator + userId + File.separator + user.getPhotoName();
+            String staticUserPhotoPath = (String)context.getAttribute("staticUserPhotoPath") + userId;
+
+            String usersFoundPhotosPath = (String)context.getAttribute("usersFoundPhotosPath") + userId;
+
+            String photoDirectoryName = (String)context.getAttribute("photoDirectoryName") + userId;
             session.setAttribute("userPhotoPath", userPhotoPath);
+            session.setAttribute("usersFoundPhotosPath", usersFoundPhotosPath);
+            session.setAttribute("userPhotoDirectory", staticUserPhotoPath);
 
             UserPhotoManager photoManager = new UserPhotoManager();
-            photoManager.prepareUserPhoto(userPhotoPath, photoName);
+            photoManager.prepareUserPhoto(userPhotoPath, photoDirectoryName, photoName);
             url = "/instructorViewProfile.jsp";
 
         } else {

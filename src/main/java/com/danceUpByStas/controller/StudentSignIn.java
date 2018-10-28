@@ -54,11 +54,17 @@ public class StudentSignIn extends HttpServlet {
 
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                     + File.separator + userId + File.separator + user.getPhotoName();
+            String usersFoundPhotosPath = (String)context.getAttribute("usersFoundPhotosPath") + userId;
+            String staticUserPhotoPath = (String)context.getAttribute("staticUserPhotoPath") + userId;
 
             session.setAttribute("userPhotoPath", userPhotoPath);
 
             UserPhotoManager photoManager = new UserPhotoManager();
-            photoManager.prepareUserPhoto(userPhotoPath, photoName);
+            String photoDirectoryName = (String)context.getAttribute("photoDirectoryName") + userId;
+            session.setAttribute("usersFoundPhotosPath", usersFoundPhotosPath);
+            session.setAttribute("userPhotoDirectory", staticUserPhotoPath);
+
+            photoManager.prepareUserPhoto(userPhotoPath, photoDirectoryName, photoName);
             url = "/studentViewProfile.jsp";
 
         } else {

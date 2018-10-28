@@ -13,23 +13,34 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 
-public class UserPhotoManager {
+public class UserPhotoManager implements PropertiesLoader {
 
    private Logger logger = LogManager.getLogger(this.getClass());
+   private final Properties PROPERTIES = loadProperties("/photoManagerLocal.properties");
 
-    public void prepareUserPhoto(String userPhotoPath, String photoName) {
+    public void prepareUserPhoto(String userPhotoPath, String photoDirectory, String photoName) {
 
-        String staticImagePath = "/Users/stanislavrevin/Desktop/MATC/EnterpriseJava/indieProject/target/danceup/images/userPhotos";
+        String staticImagePath = PROPERTIES.getProperty("staticImagePath");
+
         String catalinaHome = System.getProperty("catalina.home");
-        // String staticImagePath = catalinaHome +  File.separator + "webapps/danceup/images/userPhotos";
-        File imageDirectory = new File(staticImagePath);
+
+        // String staticImagePath = catalinaHome +  File.separator + staticImagePath;
+
+        //create photoDirectory
+        String targetPathName = staticImagePath + File.separator + photoDirectory;
+        createPhotoDirectory(targetPathName);
 
         Path source = Paths.get(userPhotoPath);
-        Path target = Paths.get(staticImagePath + File.separator + photoName);
+        Path target = Paths.get(targetPathName + File.separator + photoName);
 
+        logger.debug("Source: " + source.toString());
+        logger.debug("Target: " + target.toString());
+        logger.debug("Path: " + staticImagePath + File.separator + photoDirectory + File.separator + photoName);
 
         SimpleVisitor simpleVisitor = new SimpleVisitor(target, source);
+
 
         try {
 
@@ -43,12 +54,26 @@ public class UserPhotoManager {
 
     }
 
+    private void createPhotoDirectory(String targetPathName) {
+
+        File photoFile = new File(targetPathName);
+
+        logger.debug("Creating photo directory: " + photoFile.toString());
+
+
+        if (!photoFile.exists()) {
+
+            photoFile.mkdir();
+
+        }
+
+    }
 
     public boolean deleteUserPhoto(User user, Path photoPath) {
 
         boolean wasDeleted = false;
         removePhotoFromDatabase(user);
-        wasDeleted = removePhotoFromUserFolder(user.getId(), photoPath);
+        wasDeleted = removePhotoFromUserFolder(photoPath);
 
         return wasDeleted;
 
@@ -74,7 +99,8 @@ public class UserPhotoManager {
         return fileName;
     }
 
-    public void saveUserPhoto(HttpServletRequest request, File userFolder, User user, GenericDao<User> userDao) throws  IOException, ServletException {
+    public void saveUserPhoto(HttpServletRequest request, File userFolder, User user, GenericDao<User> userDao)
+                throws  IOException, ServletException {
 
         for (Part part : request.getParts()) {
 
@@ -98,7 +124,7 @@ public class UserPhotoManager {
     }
 
 
-    private boolean removePhotoFromUserFolder(int userId, Path photoPath) {
+    public boolean removePhotoFromUserFolder(Path photoPath) {
 
         boolean wasDeleted = false;
         try {
@@ -112,5 +138,22 @@ public class UserPhotoManager {
         return wasDeleted;
     }
 
+
+    public void deleteUserPhotos(File directoryToDelete) {
+
+        File[] fileList = directoryToDelete.listFiles();
+
+        if (fileList != null && fileList.length > 0) {
+
+            for (File file : fileList) {
+
+                file.delete();
+            }
+
+        }
+
+        directoryToDelete.delete();
+
+    }
 
 }

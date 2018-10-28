@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -46,9 +48,11 @@ public class SearchInstructors extends HttpServlet {
 
         request.setAttribute("usersFound", instructors);
         helper.setUserDances(instructors);
-        prepareInstructorPhotos(instructors);
+        prepareInstructorPhotos(user.getId() + "", instructors);
 
         forward(request, response);
+
+        //clearUserPhotosFolder(instructors);
 
     }
 
@@ -67,7 +71,7 @@ public class SearchInstructors extends HttpServlet {
 
     }
 
-    private void prepareInstructorPhotos(Set<User> instructors) {
+    private void prepareInstructorPhotos(String userId, Set<User> instructors) {
 
         ServletContext context = getServletContext();
         UserPhotoManager manager = new UserPhotoManager();
@@ -80,9 +84,30 @@ public class SearchInstructors extends HttpServlet {
             photoName = instructor.getPhotoName();
             userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                     + File.separator + instructor.getId() + File.separator + photoName;
-            manager.prepareUserPhoto(userPhotoPath, photoName);
+            String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
+            manager.prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
         }
 
     }
+
+
+    public void clearUserPhotosFolder(Set<User> instructors) {
+        /*
+        ServletContext context = getServletContext();
+        UserPhotoManager manager = new UserPhotoManager();
+        File photoDirectoryFile = (File)context.getAttribute("usersFoundPhotosFile");
+        manager.deleteUserFoundPhotos(photoDirectoryFile);
+
+        for (User instructor : instructors) {
+
+            manager.removePhotoFromUserFolder(Paths.get(photoDirectoryFile.getAbsolutePath()
+                    + File.separator + instructor.getPhotoName()));
+
+        }
+
+        */
+
+    }
+
 
 }
