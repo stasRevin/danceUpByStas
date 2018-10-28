@@ -1,6 +1,7 @@
 package com.danceUpByStas.utilities;
 
 import com.danceUpByStas.entity.Schedule;
+import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserDance;
 import com.danceUpByStas.entity.UserLesson;
 import com.danceUpByStas.persistence.GenericDao;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class UserSignInHelper {
 
@@ -41,6 +43,15 @@ public class UserSignInHelper {
         userLessonEntities.put("role", userLessonPropertiesTwo);
 
         return userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
+    }
+
+    public void setUserDances(Set<User> users) {
+
+        for (User user : users) {
+
+            user.setDances(getUserDances(user.getId()));
+
+        }
     }
 
 }

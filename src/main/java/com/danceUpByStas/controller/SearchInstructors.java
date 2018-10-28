@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @WebServlet(name = "SearchInstructors",
@@ -28,36 +29,23 @@ import java.util.Set;
 public class SearchInstructors extends HttpServlet {
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
-        GenericDao<Location> locationDao = new GenericDao<>(Location.class);
-
+        UserSignInHelper helper = new UserSignInHelper();
         User user = (User) session.getAttribute("user");
 
-        String zipCode = request.getParameter("zipCode");
-        String radius = request.getParameter("radius");
+
+        String zipCodeInput = request.getParameter("zipCode");
+        String radiusInput = request.getParameter("radius");
+
+        String zipCode = Objects.isNull(zipCodeInput) || zipCodeInput.isEmpty() ? user.getPostalCode() : zipCodeInput;
+        String radius = Objects.isNull(radiusInput) || radiusInput.isEmpty() ? "5" : radiusInput;
 
         Set<User> instructors = getNearbyInstructors(zipCode, radius);
 
         request.setAttribute("usersFound", instructors);
-
-        setInstructorDances(instructors);
-        prepareInstructorPhotos(instructors);
-
-        forward(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session = request.getSession(false);
-        GenericDao<Location> locationDao = new GenericDao<>(Location.class);
-
-        User user = (User) session.getAttribute("user");
-        Set<User> instructors = getNearbyInstructors(user.getPostalCode(), "5");
-
-        request.setAttribute("usersFound", instructors);
-        setInstructorDances(instructors);
+        helper.setUserDances(instructors);
         prepareInstructorPhotos(instructors);
 
         forward(request, response);
@@ -97,14 +85,4 @@ public class SearchInstructors extends HttpServlet {
 
     }
 
-    private void setInstructorDances(Set<User> instructors) {
-
-        UserSignInHelper helper = new UserSignInHelper();
-
-        for (User instructor : instructors) {
-
-            instructor.setDances(helper.getUserDances(instructor.getId()));
-
-        }
-    }
 }

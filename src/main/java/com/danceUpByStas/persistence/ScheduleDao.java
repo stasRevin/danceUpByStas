@@ -104,9 +104,9 @@ public class ScheduleDao {
 
     }
 
-    public List<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, User user) {
+    public List<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, int userId) {
 
-        List<Schedule> schedules = getScheduleByUserIdAndDate(user.getId(), date);
+        List<Schedule> schedules = getScheduleByUserIdAndDate(userId, date);
         List<LocalTime> availableTimes = new ArrayList<>();
 
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
@@ -114,7 +114,7 @@ public class ScheduleDao {
         Map<String, String> userLessonPropertiesOne = new HashMap<>();
         Map<String, String> userLessonPropertiesTwo = new HashMap<>();
 
-        userLessonPropertiesOne.put("id", user.getId()+ "");
+        userLessonPropertiesOne.put("id", userId + "");
         userLessonPropertiesTwo.put("id", "1");
         userLessonEntities.put("user", userLessonPropertiesOne);
         userLessonEntities.put("role", userLessonPropertiesTwo);

@@ -1,5 +1,6 @@
 package com.danceUpByStas.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -18,10 +19,13 @@ public class Schedule {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @JsonProperty("startTime")
     @Column(name = "start_time")
     private LocalTime startTime;
     @Column(name = "end_time")
     private LocalTime endTime;
+
+    @JsonProperty("date")
     @Column(name = "date")
     private LocalDate date;
 
