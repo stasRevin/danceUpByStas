@@ -112,6 +112,7 @@
             console.log(lessonDateInput.val());
             console.log("lessonDate" + lessonDate);
             console.log(instructorId);
+            var hour = "";
 
 
             $.get("http://localhost:8080/danceup/scheduleServices/instructorDayAvailability/"
@@ -127,7 +128,13 @@
 
                     for (index in data) {
 
-                        html += "<option>" +  data[index]["startTime"].hour + ":00</option>";
+                        hour = data[index]["startTime"].hour.toString();
+                        hour = hour.length < 2 ? "0" + hour : hour;
+
+                        console.log("hour len: " + hour.length);
+                        console.log("new hour: " + hour);
+
+                        html += "<option>" +  hour + ":00</option>";
 
                         console.log(data[index]["startTime"].hour);
                     }

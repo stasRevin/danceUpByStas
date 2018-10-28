@@ -11,9 +11,9 @@
         </div>
         <br/><br/>
         <div style="float:right">
-            <form action="" method="post">
-                <input type="hidden" value="instructorId">
-                <input class="btn btn-primary" type="submit" value="Book Another Lesson With Dancing Bobby ${instructor.FirstName}">
+            <form action="/danceup/bookLesson" method="get">
+                <input type="hidden" name="instructorId" value="${instructor.id}">
+                <input class="btn btn-primary" type="submit" value="Book Another Lesson With ${instructor.firstName}">
             </form>
         </div>
         <div class="col-sm-12">

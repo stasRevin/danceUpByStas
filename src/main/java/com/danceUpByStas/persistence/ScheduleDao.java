@@ -141,12 +141,29 @@ public class ScheduleDao {
 
     private void compareTimes(List<LocalTime> availableTimes, List<UserLesson> userLessons, LocalTime time) {
 
-        for (UserLesson lesson : userLessons) {
+        boolean isBooked = false;
 
-            if (time.compareTo(lesson.getLesson().getStartTime()) != 0) {
+        if (userLessons.size() > 0) {
 
-                availableTimes.add(time);
+            for (UserLesson lesson : userLessons) {
+
+                if (time.compareTo(lesson.getLesson().getStartTime()) == 0) {
+
+                    isBooked = true;
+
+                    if (availableTimes.contains(time)) {
+
+                        availableTimes.remove(time);
+                    }
+                }
             }
+
+        }
+
+        if (!isBooked || userLessons.size() == 0) {
+
+            availableTimes.add(time);
+
         }
 
     }
