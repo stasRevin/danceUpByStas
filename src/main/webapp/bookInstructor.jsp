@@ -64,11 +64,9 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Time</label>
                     <div class="col-sm-6">
-                        <select name="lessonTime">
+                        <select id="availableTime" name="lessonTime">
                             <option>None Selected</option>
-                            <option>5PM</option>
-                            <option>6PM</option>
-                            <option>8PM</option>
+
                         </select>
                     </div>
                 </div>
@@ -100,13 +98,42 @@
 <script>
     $(document).ready(function () {
 
-        var lessonDate = $("#lessonDate");
-        var instructorId = lessonDate.attr("data-instructorId");
+        var lessonDateInput = $("#lessonDate");
 
-        lessonDate.change(function () {
 
-            console.log(lessonDate.val());
+
+
+        lessonDateInput.change(function () {
+
+            var lessonDate = lessonDateInput.val().replace("/", "-").replace("/", "-");
+            var instructorId = lessonDateInput.attr("data-instructorId");
+            console.log(lessonDateInput.val());
+            console.log("lessonDate" + lessonDate);
             console.log(instructorId);
+
+
+            $.get("http://localhost:8080/danceup/scheduleServices/instructorDayAvailability/"
+                    + lessonDate + "/" + instructorId, function(data) {
+
+                console.log("response: " + data);
+            })
+
+                .done(function (data) {
+
+                    var schedules = [];
+                    var html = "";
+
+                    for (index in data) {
+
+                        html += "<option>" +  data[index]["startTime"].hour + ":00</option>";
+
+                        console.log(data[index]["startTime"].hour);
+                    }
+
+                    var select = $("#availableTime");
+                    select.html(html);
+
+                });
         });
     });
 </script>

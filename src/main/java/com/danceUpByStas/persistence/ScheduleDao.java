@@ -123,13 +123,21 @@ public class ScheduleDao {
         List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities)
                                         .stream().filter(l -> l.getLesson().getDate().compareTo(date) == 0).collect(Collectors.toList());
 
-        LocalTime startTime = schedules.get(0).getStartTime();
-        LocalTime endTime = schedules.get(0).getEndTime();
+        LocalTime startTime = null;
+        LocalTime endTime = null;
 
-        for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
+        for (Schedule schedule : schedules) {
 
-            compareTimes(availableTimes, userLessons, time);
+            startTime = schedule.getStartTime();
+            endTime = schedule.getEndTime();
+
+            for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
+
+                compareTimes(availableTimes, userLessons, time);
+            }
+
         }
+
 
         return availableTimes;
     }

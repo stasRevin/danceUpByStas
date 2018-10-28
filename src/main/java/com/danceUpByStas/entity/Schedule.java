@@ -25,7 +25,6 @@ public class Schedule {
     @Column(name = "end_time")
     private LocalTime endTime;
 
-    @JsonProperty("date")
     @Column(name = "date")
     private LocalDate date;
 

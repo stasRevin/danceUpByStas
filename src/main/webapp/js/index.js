@@ -4,7 +4,9 @@ $(document).ready(function () {
     $(".responsive").DataTable();
     $(".dataTables_length").addClass("bs-select");
     addDeletePhotoOnClickEvent();
-    $( ".datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker({
+        dateFormat: "yy/mm/dd"
+    });
 
     $(".deleteDance").click(function() {
 

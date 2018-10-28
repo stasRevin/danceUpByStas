@@ -30,7 +30,7 @@ public class InsertInstructorSchedule extends HttpServlet {
         ScheduleDao scheduleDao = new ScheduleDao();
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/d/yyyy");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:m");
         LocalDate startDate = LocalDate.parse((String)request.getParameter("startDate"), dateFormatter);
         LocalDate endDate = LocalDate.parse((String)request.getParameter("endDate"), dateFormatter);

@@ -1,5 +1,6 @@
 package com.instructorDayAvailabilityService;
 
+import com.danceUpByStas.entity.Schedule;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.core.Response;
@@ -19,11 +20,11 @@ class InstructorDayAvailabilityServiceTest {
 
         InstructorDayAvailabilityService service = new InstructorDayAvailabilityService();
         //List<LocalTime> availableTimes = scheduleDao.getAvailabilityForDateByInstructorId(LocalDate.of(2018, 9, 27), 1);
-        Response response = service.getInstructorDayAvailability("09/27/2018", "1");
+        Response response = service.getInstructorDayAvailability("2018-09-27", "1");
 
-        List<LocalTime> availabilityList = (List<LocalTime>)response.getEntity();
+        List<Schedule> schedules = (List<Schedule>)response.getEntity();
 
-        System.out.println(availabilityList);
-        assertEquals(4, availabilityList.size());
+        System.out.println(schedules);
+        assertEquals(4, schedules.size());
     }
 }

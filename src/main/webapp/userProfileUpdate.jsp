@@ -6,6 +6,8 @@
 <div class="container">
     <div class="row">
         <jsp:include page="jumbotron.jsp"/>
+
+
         <jsp:include page="instructorNavbar.jsp"/>
 
         <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
