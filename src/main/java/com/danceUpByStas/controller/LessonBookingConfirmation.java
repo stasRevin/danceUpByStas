@@ -2,6 +2,7 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.*;
 import com.danceUpByStas.persistence.GenericDao;
+import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @WebServlet(name = "LessonBookingConfirmation",
             urlPatterns= {"/bookingConfirmation"})
@@ -73,6 +75,11 @@ public class LessonBookingConfirmation extends HttpServlet {
         request.setAttribute("lesson", lesson);
         request.setAttribute("location", location);
 
+
+        //update jsp
+        UserSignInHelper helper = new UserSignInHelper();
+        List<UserLesson> userLessons = helper.getUserLessons(user.getId(), 2);
+        session.setAttribute("userLessons", userLessons);
 
         //create notification for student
 

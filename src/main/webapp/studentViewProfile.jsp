@@ -19,14 +19,15 @@
         <div class="col-sm-9 tabView">
             <ul class="nav nav-pills">
                 <li class="active">
-                    <a data-toggle="pill" href="#pills-progress">Progress by Dance</a>
-                </li>
-                <li>
                     <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
                 </li>
+                <li>
+                    <a data-toggle="pill" href="#pills-progress">Progress by Dance</a>
+                </li>
+
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="pills-progress">
+                <div class="tab-pane fade" id="pills-progress">
                     <br/>
                     <c:forEach var="userDance" items="${userDances}">
                         <div class="progress">
@@ -37,7 +38,7 @@
                     </c:forEach>
                 </div>
 
-                <div class="table tab-pane fade" id="pills-upcomingLessons">
+                <div class="table tab-pane fade in active" id="pills-upcomingLessons">
                     <br/>
                     <jsp:include page="upcomingLessons.jsp"/>
                 </div>

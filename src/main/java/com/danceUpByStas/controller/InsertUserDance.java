@@ -25,6 +25,9 @@ public class InsertUserDance extends HttpServlet {
 
         String danceName = (String) request.getParameter("danceName");
         String experience = (String) request.getParameter("experience");
+        String learningProficiency = (String) request.getParameter("learningProficiency");
+
+        Integer role = (Integer) session.getAttribute("role");
 
         GenericDao<Dance> danceDao = new GenericDao<>(Dance.class);
         GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
@@ -33,7 +36,15 @@ public class InsertUserDance extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         UserDance userDance = new UserDance(user, dance);
-        userDance.setYearsOfExperience((Integer) Integer.parseInt(experience));
+
+        if (role == 1) {
+
+            userDance.setYearsOfExperience(Integer.parseInt(experience));
+        } else if (role == 2) {
+
+            userDance.setLearningProficiency(Integer.parseInt(learningProficiency));
+
+        }
 
         userDanceDao.insertManyToMany(userDance);
 

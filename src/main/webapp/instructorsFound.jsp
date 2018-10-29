@@ -60,7 +60,8 @@
                         </ul>
                     </td>
                     <td>
-                        <a href="http://localhost:8080/danceup/bookLesson?instructorId=${instructor.id}" class="btn btn-info" role="button">Book a Lesson</a>
+                       <!-- <a href="http://localhost:8080/danceup/bookLesson?instructorId=${instructor.id}" class="btn btn-info" role="button">Book a Lesson</a>-->
+                        <a href="http://3.16.35.156:8080/danceup/bookLesson?instructorId=${instructor.id}" class="btn btn-info" role="button">Book a Lesson</a>
                     </td>
                     <td>
                         <ul>

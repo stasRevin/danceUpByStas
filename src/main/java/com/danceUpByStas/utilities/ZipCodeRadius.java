@@ -50,6 +50,8 @@ public class ZipCodeRadius implements PropertiesLoader {
 
         DataList dataListObject = null;
 
+        logger.debug("Getting list of nearby zip codes, zipCode: {}, radius: {}", zipCode, radius);
+
         try {
 
             dataListObject = mapper.readValue(results, DataList.class);
@@ -69,6 +71,12 @@ public class ZipCodeRadius implements PropertiesLoader {
         }
         List<DataListItem> dataList = dataListObject.getDataList();
         List<String> zipCodes = getZipCodesAsStrings(dataList);
+
+        for (String zip : zipCodes) {
+
+            logger.debug("Zip codes found: {}", zip);
+        }
+
 
         return zipCodes;
     }

@@ -18,7 +18,7 @@ import java.util.Properties;
 public class UserPhotoManager implements PropertiesLoader {
 
    private Logger logger = LogManager.getLogger(this.getClass());
-   private final Properties PROPERTIES = loadProperties("/photoManagerLocal.properties");
+   private final Properties PROPERTIES = loadProperties("/photoManagerRemote.properties");
 
     public void prepareUserPhoto(String userPhotoPath, String photoDirectory, String photoName) {
 
@@ -26,7 +26,7 @@ public class UserPhotoManager implements PropertiesLoader {
 
         String catalinaHome = System.getProperty("catalina.home");
 
-        // String staticImagePath = catalinaHome +  File.separator + staticImagePath;
+        staticImagePath = catalinaHome +  File.separator + staticImagePath;
 
         //create photoDirectory
         String targetPathName = staticImagePath + File.separator + photoDirectory;

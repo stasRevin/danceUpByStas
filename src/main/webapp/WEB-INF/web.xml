@@ -51,6 +51,7 @@
       <url-pattern>/bookInstructor.jsp</url-pattern>
       <url-pattern>/userProfileUpdate</url-pattern>
       <url-pattern>/userProfileUpdate.jsp</url-pattern>
+      <url-pattern>/insertUserDance</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>

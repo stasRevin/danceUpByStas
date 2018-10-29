@@ -114,9 +114,12 @@
             console.log(instructorId);
             var hour = "";
 
-
+            /*
             $.get("http://localhost:8080/danceup/scheduleServices/instructorDayAvailability/"
                     + lessonDate + "/" + instructorId, function(data) {
+*/
+            $.get("http://3.16.35.156:8080/danceup/scheduleServices/instructorDayAvailability/"
+                + lessonDate + "/" + instructorId, function(data) {
 
                 console.log("response: " + data);
             })
