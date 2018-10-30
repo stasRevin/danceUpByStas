@@ -117,7 +117,8 @@ public class ScheduleDao {
 
 
         List<UserLesson> userLessons = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities)
-                                        .stream().filter(l -> l.getLesson().getDate().compareTo(date) == 0).collect(Collectors.toList());
+                                        .stream().filter(l -> l.getLesson().getDate().compareTo(date) == 0)
+                                        .collect(Collectors.toList());
 
         LocalTime startTime = null;
         LocalTime endTime = null;
@@ -127,43 +128,37 @@ public class ScheduleDao {
             startTime = schedule.getStartTime();
             endTime = schedule.getEndTime();
 
-            for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
-
-                compareTimes(availableTimes, userLessons, time);
-            }
+            addToAvailableTimes(startTime, endTime, availableTimes);
 
         }
 
+        subtractBookedTimes(availableTimes, userLessons);
 
         return availableTimes;
     }
 
 
-    private void compareTimes(List<LocalTime> availableTimes, List<UserLesson> userLessons, LocalTime time) {
+    private void addToAvailableTimes(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes) {
 
-        boolean isBooked = false;
+        for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
 
-        if (userLessons.size() > 0) {
-
-            for (UserLesson lesson : userLessons) {
-
-                if (time.compareTo(lesson.getLesson().getStartTime()) == 0) {
-
-                    isBooked = true;
-
-                    if (availableTimes.contains(time)) {
-
-                        availableTimes.remove(time);
-                    }
-                }
-            }
-
-        }
-
-        if (!isBooked || userLessons.size() == 0) {
-
+            //Assume the time is available
             availableTimes.add(time);
 
+        }
+    }
+
+    private void subtractBookedTimes(List<LocalTime> availableTimes, List<UserLesson> userLessons) {
+
+        for (UserLesson lesson : userLessons) {
+
+            LocalTime time = lesson.getLesson().getStartTime();
+
+            if (availableTimes.contains(time)) {
+
+                //Remove time if it is found to be booked
+                availableTimes.remove(time);
+            }
         }
 
     }

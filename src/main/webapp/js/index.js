@@ -14,7 +14,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var danceName = thisClass.data("delete");
         console.log("dance name: " + danceName);
-        $.get("http://localhost:8080/danceup/deleteUserDance?name=" + danceName, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteUserDance?name=" + danceName, function () {});
 
     });
 
@@ -24,7 +24,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var locationId = thisClass.data("delete");
         console.log("location id: " + locationId);
-        $.get("http://localhost:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {});
 
     });
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
         var startTime = selectedRow.attr("data-start");
         var endTime = selectedRow.attr("data-end");
 
-        $.get("http://localhost:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
     });
 
 
@@ -132,7 +132,7 @@ function deleteUserPhoto() {
 
 
     $.get({
-        url: "http://localhost:8080/danceup/deleteUserPhoto",
+        url: "http://3.16.35.156:8080/danceup/deleteUserPhoto",
         success: function () {
 
             console.log("removing photo.");
