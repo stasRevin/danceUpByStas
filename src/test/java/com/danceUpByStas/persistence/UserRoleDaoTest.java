@@ -7,7 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mockito.Mock;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,8 @@ class UserRoleDaoTest {
     private GenericDao<User> userDao;
     private GenericDao<Role> genericDao;
     private final Logger logger = LogManager.getLogger(this.getClass());
+
+
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
