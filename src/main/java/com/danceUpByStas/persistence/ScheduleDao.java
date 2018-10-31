@@ -128,37 +128,39 @@ public class ScheduleDao {
             startTime = schedule.getStartTime();
             endTime = schedule.getEndTime();
 
-            addToAvailableTimes(startTime, endTime, availableTimes);
+            iterateOverScheduleRange(startTime, endTime, availableTimes, userLessons);
 
         }
-
-        subtractBookedTimes(availableTimes, userLessons);
 
         return availableTimes;
     }
 
 
-    private void addToAvailableTimes(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes) {
+    private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes, List<UserLesson> userLessons) {
 
         for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
 
-            //Assume the time is available
-            availableTimes.add(time);
-
+            compareTimes(userLessons, availableTimes, time);
         }
     }
 
-    private void subtractBookedTimes(List<LocalTime> availableTimes, List<UserLesson> userLessons) {
+    private void compareTimes(List<UserLesson> userLessons, List<LocalTime> availableTimes, LocalTime time) {
+
+        boolean isBooked = false;
 
         for (UserLesson lesson : userLessons) {
 
-            LocalTime time = lesson.getLesson().getStartTime();
+            LocalTime lessonTime = lesson.getLesson().getStartTime();
 
-            if (availableTimes.contains(time)) {
+            if (lessonTime.compareTo(time) == 0) {
 
-                //Remove time if it is found to be booked
-                availableTimes.remove(time);
+                isBooked = true;
             }
+        }
+
+        if (!isBooked) {
+
+            availableTimes.add(time);
         }
 
     }

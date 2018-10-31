@@ -73,7 +73,8 @@ public class UserSignUp extends HttpServlet {
             payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
         }
 
-        User user = new User(username, hashedPassword, 0, firstName, lastName, address1, address2, city, state, zipCode, payrate, "");
+        User user = new User(username, hashedPassword, 0, firstName, lastName, address1, address2, city, state,
+                             zipCode, payrate, "");
         persistUser(user, request, context);
         associateUserWithRole(role, user);
 

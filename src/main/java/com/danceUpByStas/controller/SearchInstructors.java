@@ -63,7 +63,7 @@ public class SearchInstructors extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private Set<User> getNearbyInstructors(String zipCode, String radius) {
+    public Set<User> getNearbyInstructors(String zipCode, String radius) {
 
         ZipCodeRadius zipCodeRadius = new ZipCodeRadius();
 
@@ -71,7 +71,7 @@ public class SearchInstructors extends HttpServlet {
 
     }
 
-    private void prepareInstructorPhotos(String userId, Set<User> instructors) {
+    public void prepareInstructorPhotos(String userId, Set<User> instructors) {
 
         ServletContext context = getServletContext();
         UserPhotoManager manager = new UserPhotoManager();
@@ -87,25 +87,6 @@ public class SearchInstructors extends HttpServlet {
             String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
             manager.prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
         }
-
-    }
-
-
-    public void clearUserPhotosFolder(Set<User> instructors) {
-        /*
-        ServletContext context = getServletContext();
-        UserPhotoManager manager = new UserPhotoManager();
-        File photoDirectoryFile = (File)context.getAttribute("usersFoundPhotosFile");
-        manager.deleteUserFoundPhotos(photoDirectoryFile);
-
-        for (User instructor : instructors) {
-
-            manager.removePhotoFromUserFolder(Paths.get(photoDirectoryFile.getAbsolutePath()
-                    + File.separator + instructor.getPhotoName()));
-
-        }
-
-        */
 
     }
 

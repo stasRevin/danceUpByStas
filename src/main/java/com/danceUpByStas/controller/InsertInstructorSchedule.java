@@ -70,7 +70,7 @@ public class InsertInstructorSchedule extends HttpServlet {
 
     }
 
-    private Map<DayOfWeek, List<LocalTime>> prepareSchedule(List<String> weeklySchedule, DateTimeFormatter timeFormatter) {
+    public Map<DayOfWeek, List<LocalTime>> prepareSchedule(List<String> weeklySchedule, DateTimeFormatter timeFormatter) {
 
         int counter = 1;
         int dayCounter = 1;

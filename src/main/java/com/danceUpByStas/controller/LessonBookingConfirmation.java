@@ -49,27 +49,22 @@ public class LessonBookingConfirmation extends HttpServlet {
         int instructorId = Integer.parseInt(instructorIdInput);
 
         //create a lesson
-        GenericDao<Lesson> lessonDao = new GenericDao<>(Lesson.class);
-        GenericDao<Location> locationDao = new GenericDao<>(Location.class);
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
-        GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
 
-        Location location = locationDao.getById(locationId);
+        Location location = getLocation(locationId);
 
         Lesson lesson = new Lesson(lessonStartTime, lessonEndTime, location, lessonDate);
-        lessonDao.insert(lesson);
+        insertLesson(lesson);
 
         //associate lesson with student
 
-        Role studentRole = roleDao.getById(2);
-        userLessonDao.insertManyToMany(new UserLesson(user, lesson, studentRole));
+        Role studentRole = getUserRole(2);
+        insertUserLesson(user, lesson, studentRole);
 
         //associate lesson with instructor
-        Role instructorRole = roleDao.getById(1);
-        User instructor = userDao.getById(instructorId);
+        Role instructorRole = getUserRole(1);
+        User instructor = getInstructor(instructorId);
 
-        userLessonDao.insertManyToMany(new UserLesson(instructor, lesson, instructorRole));
+        insertUserLesson(instructor, lesson, instructorRole);
 
         request.setAttribute("instructor", instructor);
         request.setAttribute("lesson", lesson);
@@ -90,4 +85,39 @@ public class LessonBookingConfirmation extends HttpServlet {
 
     }
 
+    public void insertLesson(Lesson lesson) {
+
+        GenericDao<Lesson> lessonDao = new GenericDao<>(Lesson.class);
+        lessonDao.insert(lesson);
+    }
+
+    public Location getLocation(int locationId) {
+
+        GenericDao<Location> locationDao = new GenericDao<>(Location.class);
+        return locationDao.getById(locationId);
+
+    }
+
+    public User getInstructor(int instructorId) {
+
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+
+        return userDao.getById(instructorId);
+    }
+
+
+    public void insertUserLesson(User user, Lesson lesson, Role role) {
+
+        GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+        userLessonDao.insertManyToMany(new UserLesson(user, lesson, role));
+
+    }
+
+    public Role getUserRole(int roleId) {
+
+        GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
+
+        return roleDao.getById(roleId);
+
+    }
 }
