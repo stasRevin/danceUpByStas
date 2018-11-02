@@ -19,6 +19,9 @@
         <div class="col-sm-9 tabView">
             <ul class="nav nav-pills">
                 <li class="active">
+                    <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
+                </li>
+                <li>
                     <a data-toggle="pill" href="#pills-workInfo">Work Info</a>
                 </li>
                 <li>
@@ -27,12 +30,9 @@
                 <li>
                     <a data-toggle="pill" href="#pills-availability">Availability</a>
                 </li>
-                <li>
-                    <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
-                </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="pills-workInfo">
+                <div class="tab-pane fade" id="pills-workInfo">
                     <br/>
                     <table class="table">
                         <tr><td>Total Lessons Taught</td><td>${lessonsTaughtCount}</td></tr>
@@ -49,7 +49,7 @@
                     </table>
                 </div>
 
-                <div class="table tab-pane fade" id="pills-availability">
+                <div class="table tab-pane fade in active" id="pills-availability">
                     <br/>
                     <div class="col-sm-9">
                         <jsp:include page="instructorAvailability.jsp"/>

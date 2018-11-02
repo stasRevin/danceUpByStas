@@ -1,6 +1,14 @@
 // For instructorViewProfile.jsp
 $(document).ready(function () {
 
+    window.onpageshow = function (event) {
+
+        if (event.persisted) {
+
+            window.location.reload();
+        }
+    };
+
     $(".responsive").DataTable();
     $(".dataTables_length").addClass("bs-select");
     addDeletePhotoOnClickEvent();
@@ -13,8 +21,11 @@ $(document).ready(function () {
         $(this).closest("tr").remove();
         var thisClass = $(this);
         var danceName = thisClass.data("delete");
+        var danceSelection = $("#formControlSelect1");
         console.log("dance name: " + danceName);
-        $.get("http://3.16.35.156:8080/danceup/deleteUserDance?name=" + danceName, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteUserDance?name=" + danceName, function () {
+            danceSelection.append("<option>" + danceName + "</option>");
+        })
 
     });
 
@@ -59,12 +70,58 @@ $(document).ready(function () {
         var startTime = selectedRow.attr("data-start");
         var endTime = selectedRow.attr("data-end");
 
-        $.get("http://3.16.35.156:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime + "&endTime=" + endTime, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime
+                + "&endTime=" + endTime, function () {});
     });
 
+    addInstructorAvailabilityEventHandler();
 
 
 });
+
+function addInstructorAvailabilityEventHandler() {
+
+    var lessonDateInput = $("#lessonDate");
+
+    lessonDateInput.change(function () {
+
+        var lessonDate = lessonDateInput.val().replace("/", "-").replace("/", "-");
+        var instructorId = lessonDateInput.attr("data-instructorId");
+        console.log(lessonDateInput.val());
+        console.log("lessonDate" + lessonDate);
+        console.log(instructorId);
+        var hour = "";
+
+        $.get("http://3.16.35.156:8080/danceup/scheduleServices/instructorDayAvailability/"
+            + lessonDate + "/" + instructorId, function(data) {
+
+            console.log("response: " + data);
+        })
+
+            .done(function (data) {
+
+                var schedules = [];
+                var html = "";
+
+                for (index in data) {
+
+                    hour = data[index]["startTime"].hour.toString();
+                    hour = hour.length < 2 ? "0" + hour : hour;
+
+                    console.log("hour len: " + hour.length);
+                    console.log("new hour: " + hour);
+
+                    html += "<option>" +  hour + ":00</option>";
+
+                    console.log(data[index]["startTime"].hour);
+                }
+
+                var select = $("#availableTime");
+                select.html(html);
+
+            });
+    });
+}
 
 function signUpEventsInit() {
 

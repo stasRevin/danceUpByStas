@@ -79,9 +79,7 @@
                     <tr><th>Dance Name</th><th>Experience (years)</th><th></th><th></th></tr>
                 </thead>
                 <tbody>
-                <c:set var="counter" value="0" scope="page" />
                     <c:forEach var="userDance" items="${userDances}">
-                        <c:set var="counter" value="${counter + 1}" scope="page"/>
                         <tr>
                             <td>${userDance.dance.name}</td>
                             <td>${userDance.yearsOfExperience}</td>
