@@ -16,7 +16,7 @@
                         <li><a href="/danceup/userProfileUpdateForward">Update My Profile</a></li>
                         <li><a href="/danceup/updateUserDances">Update My Dances</a></li>
                         <li><a href="/danceup/updateInstructorSchedule.jsp">Update My Schedule</a></li>
-                        <li><a href="/danceup/updateInstructorLocations">Update M Teaching Locations</a></li>
+                        <li><a href="/danceup/updateInstructorLocations">Update My Teaching Locations</a></li>
                     </ul>
                 </li>
                 <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>

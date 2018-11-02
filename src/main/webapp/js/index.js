@@ -31,11 +31,27 @@ $(document).ready(function () {
 
     $(".deleteLocation").click(function () {
 
+        var row = $(this).closest("tr");
+        var columns = row.find("td");
+        var locationDeleted = "";
+
+        jQuery.each(columns, function(index, item) {
+
+            locationDeleted += item.innerHTML + " ";
+            console.log("locationDeleted: " + locationDeleted)
+
+        });
+
         $(this).closest("tr").remove();
         var thisClass = $(this);
         var locationId = thisClass.data("delete");
+        var locationSelection = $("#locationSelection");
         console.log("location id: " + locationId);
-        $.get("http://3.16.35.156:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {});
+        $.get("http://3.16.35.156:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {
+            locationSelection.append("<option value='" + locationId + "'>" + locationDeleted + "</option>");
+
+            console.log("<option value='\" + locationId + \"'>\" + locationDeleted + \"</option>");
+        });
 
     });
 

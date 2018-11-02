@@ -10,8 +10,8 @@
 
             <form action="/danceup/insertInstructorLocation" method="post">
                 <div class="form-group">
-                    <label for="formControlSelect1">Add a Location</label>
-                    <select class="form-control" name="id" id="formControlSelect1">
+                    <label for="locationSelection">Add a Location</label>
+                    <select class="form-control" name="id" id="locationSelection">
                         <c:forEach var="location" items="${allLocations}">
                             <option value="${location.id}">${location.name}, ${location.address1}, ${location.city}, ${location.state}</option>
                         </c:forEach>
