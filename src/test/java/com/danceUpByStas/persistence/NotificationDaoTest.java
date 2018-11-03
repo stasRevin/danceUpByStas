@@ -32,8 +32,8 @@ class NotificationDaoTest {
 
         User instructor = userDao.getById(1);
 
-        Notification notificationForInstructor = new Notification(messageForInstructor, instructor);
-        Notification notificationForStudent = new Notification(messageForStudent, student);
+        Notification notificationForInstructor = new Notification(messageForInstructor, instructor, 0);
+        Notification notificationForStudent = new Notification(messageForStudent, student, 0);
 
         int instructorNotificationId = notificationDao.insert(notificationForInstructor);
         int studentNotificationId = notificationDao.insert(notificationForStudent);

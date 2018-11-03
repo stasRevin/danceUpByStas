@@ -19,6 +19,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+
 @WebServlet(name = "LessonBookingConfirmation",
             urlPatterns= {"/bookingConfirmation"})
 
@@ -75,10 +76,18 @@ public class LessonBookingConfirmation extends HttpServlet {
         UserSignInHelper helper = new UserSignInHelper();
         List<UserLesson> userLessons = helper.getUserLessons(user.getId(), 2);
         session.setAttribute("userLessons", userLessons);
+        session.setAttribute("unreadNotifications", "true");
 
         //create notification for student
-
+        createNotification(lesson, instructor, user);
         //create notification for instructor
+        createNotification(lesson, user, instructor);
+
+        //Get a list of unread notifications
+        List<Notification> notifications = helper.getNotifications(user);
+
+        //Set into the session
+        session.setAttribute("notifications", notifications);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/bookingConfirmation.jsp");
         dispatcher.forward(request, response);
@@ -120,4 +129,17 @@ public class LessonBookingConfirmation extends HttpServlet {
         return roleDao.getById(roleId);
 
     }
+
+    public void createNotification(Lesson lesson, User withUserInMessage, User notificationOwner) {
+
+        GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
+        String message = "A lesson was scheduled with " + withUserInMessage.getFirstName() + " " + withUserInMessage.getLastName();
+        message += " at " + lesson.getLocation().getName() + " on " + lesson.getDate() + " at " + lesson.getStartTime() + ".";
+        Notification notification = new Notification(message, notificationOwner, 0);
+        notificationDao.insert(notification);
+
+    }
+
+
+
 }

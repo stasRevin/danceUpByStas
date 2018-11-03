@@ -47,8 +47,8 @@ class UserSignInHelperTest {
 
         Lesson lesson = userLessons.stream().filter(l -> l.getRole().getId() == 2).findFirst().get().getLesson();
 
-        Map<Lesson, User> lessonStudentMap = helper.getStudentsForLessons(userLessons);
+        userLessons = helper.getUsersForLessons(userLessons, 2);
 
-        assertEquals("mjessy", lessonStudentMap.get(lesson).getUsername());
+        assertEquals("mjessy", userLessons.get(0).getLesson().getStudents().get(0).getUsername());
     }
 }

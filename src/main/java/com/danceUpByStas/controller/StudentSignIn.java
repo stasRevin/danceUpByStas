@@ -1,5 +1,6 @@
 package com.danceUpByStas.controller;
 
+import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserDance;
 import com.danceUpByStas.entity.UserLesson;
@@ -46,6 +47,8 @@ public class StudentSignIn extends HttpServlet {
 
             List<UserDance> userDances = signInHelper.getUserDances(userId);
             List<UserLesson> userLessons = signInHelper.getUserLessons(userId, 2);
+            userLessons = signInHelper.getUsersForLessons(userLessons, 1);
+            List<Notification> notifications = signInHelper.getNotifications(user);
 
             session.setAttribute("user", user);
             session.setAttribute("role", 2);
@@ -63,6 +66,7 @@ public class StudentSignIn extends HttpServlet {
             String photoDirectoryName = (String)context.getAttribute("photoDirectoryName") + userId;
             session.setAttribute("usersFoundPhotosPath", usersFoundPhotosPath);
             session.setAttribute("userPhotoDirectory", staticUserPhotoPath);
+            session.setAttribute("notifications", notifications);
 
             photoManager.prepareUserPhoto(userPhotoPath, photoDirectoryName, photoName);
             url = "/studentViewProfile.jsp";

@@ -49,31 +49,46 @@ public class UserSignInHelper {
         }
     }
 
-    public Map<Lesson, User> getStudentsForLessons(List<UserLesson> userLessons) {
+    public List<UserLesson> getUsersForLessons(List<UserLesson> userLessons, int lessonsForRole) {
 
-        Map<Lesson, User> lessonStudentMap = new HashMap<>();
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
         User student = null;
         Lesson lesson = null;
-        List<UserLesson> studentLessons = null;
+        List<UserLesson> specificLessons = null;
 
         for (UserLesson userLesson : userLessons) {
 
             lesson = userLesson.getLesson();
 
-            studentLessons
+            specificLessons
                         = userLessonDao.getElementsOfTypeAByIdOfEntityOfTypeB("lesson", lesson.getId())
-                                       .stream().filter(ul -> ul.getRole().getId() == 2).collect(Collectors.toList());
+                                       .stream().filter(ul -> ul.getRole().getId() == lessonsForRole).collect(Collectors.toList());
 
-            if (!studentLessons.isEmpty()) {
 
-                student = studentLessons.get(0).getUser();
-                lessonStudentMap.put(lesson, student);
+            if (!specificLessons.isEmpty()) {
+
+                if (lessonsForRole == 1) {
+
+                    lesson.addInstructors(specificLessons.get(0).getUser());
+
+                } else if (lessonsForRole == 2) {
+
+                    lesson.addStudents(specificLessons.get(0).getUser());
+                }
+
             }
 
         }
 
-        return lessonStudentMap;
+        return userLessons;
+    }
+
+    public List<Notification> getNotifications(User user) {
+
+        GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
+
+        return notificationDao
+                .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
     }
 
 }

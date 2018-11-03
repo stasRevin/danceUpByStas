@@ -102,13 +102,30 @@ public class GenericDao<T> {
      * @return elements found
      */
     public List<T> getElementsOfTypeAByIdOfEntityOfTypeB(String entityBName,
-                                                         int id) {
+                                                              int id) {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
         Root<T> root = query.from(type);
         query.select(root).where(builder.equal(root.get(entityBName).get("id"), id));
+        List<T> elements = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        return elements;
+
+    }
+
+    public List<T> getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA(String entityBName,
+                                                         int id, String propertyName, String propertyValue) {
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder.and(builder.equal(root.get(entityBName).get("id"), id)),
+                                            builder.equal(root.get(propertyName), propertyValue));
         List<T> elements = session.createQuery(query).getResultList();
         transaction.commit();
         session.close();

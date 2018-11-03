@@ -3,6 +3,15 @@
 <table class="display responsive nowrap" style="width:100%;">
     <thead>
     <tr>
+        <c:choose>
+            <c:when test="${role == 1}">
+                <th>Student</th>
+            </c:when>
+            <c:otherwise>
+                <th>Instructor</th>
+            </c:otherwise>
+        </c:choose>
+
         <th>Date</th>
         <th>Start Time</th>
         <th>End Time</th>
@@ -15,7 +24,16 @@
     </thead>
     <tbody>
         <c:forEach var="userLesson" items="${userLessons}">
-            <tr><td>${userLesson.lesson.date}</td><td>${userLesson.lesson.startTime}</td>
+            <tr>
+                <c:choose>
+                    <c:when test="${role == 1}">
+                        <td>${userLesson.lesson.students[0].firstName} ${userLesson.lesson.students[0].lastName}</td>
+                    </c:when>
+                    <c:when test="${role == 2}">
+                        <td>${userLesson.lesson.instructors[0].firstName} ${userLesson.lesson.instructors[0].lastName}</td>
+                    </c:when>
+                </c:choose>
+                <td>${userLesson.lesson.date}</td><td>${userLesson.lesson.startTime}</td>
                 <td>${userLesson.lesson.endTime}</td>
                 <td>${userLesson.lesson.location.name}</td>
                 <td>${userLesson.lesson.location.address1}</td>

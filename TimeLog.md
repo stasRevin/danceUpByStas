@@ -64,3 +64,7 @@
 |10/20/2018|Week 9 activities and instructor dance addition |5|
 |10/21/2018|Web services, jax-rs xml return type, adding a feature for instructor to update teaching locations. Adding User_Location Hibernate relationship and test |4|
 |10/23/2018|Deploying to AWS. Adding User Sign In feature |2|
+|10/25/2018|Front end redesign |5|
+|10/26/2018|Scheduling lessons update |2|
+|10/27/2018|Putting MVP together |8|
+|11/02/2018|Make students/instructors show up in upcoming lessons, notifications |7|

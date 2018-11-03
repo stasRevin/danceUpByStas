@@ -39,6 +39,16 @@ public class Lesson {
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> users = new ArrayList<>();
 
+    @Transient
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<User> instructors = new ArrayList<>();
+
+    @Transient
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<User> students = new ArrayList<>();
+
     public Lesson(LocalTime startTime, LocalTime endTime, Location location, LocalDate date) {
 
         this.startTime = startTime;
@@ -48,6 +58,17 @@ public class Lesson {
     }
 
     public Lesson() {
+
+    }
+
+    public void addInstructors(User user) {
+
+        instructors.add(user);
+    }
+
+    public void addStudents(User user) {
+
+        students.add(user);
 
     }
 

@@ -17,6 +17,9 @@ public class Notification {
     @Column(name = "message")
     private String message;
 
+    @Column(name = "is_read")
+    private int isRead;
+
     @ManyToOne
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_Notification_user_id"))
     private User user;
@@ -26,10 +29,11 @@ public class Notification {
 
     }
 
-    public Notification(String message, User user) {
+    public Notification(String message, User user, int isRead) {
 
         this.message = message;
         this.user = user;
+        this.isRead = isRead;
     }
 
 }

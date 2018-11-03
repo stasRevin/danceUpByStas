@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -17,7 +19,13 @@
                         <li><a href="/danceup/updateUserDances">Update My Dances</a></li>
                     </ul>
                 </li>
-                <li><a href="/danceup/notifications.jsp">Notifications<span class="badge badge-warning">4</span></a></li>
+                <li>
+                    <a href="/danceup/notifications">Notifications
+                        <c:if test="${fn:length(notifications) gt 0}">
+                            <span class="badge badge-warning">${fn:length(notifications)}</span>
+                        </c:if>
+                    </a>
+                </li>
                 <li><a href="/danceup/searchInstructors">Instructors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
