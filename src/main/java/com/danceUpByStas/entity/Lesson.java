@@ -2,6 +2,7 @@ package com.danceUpByStas.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -34,6 +35,7 @@ public class Lesson {
     private Location location;
 
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserLesson> users = new ArrayList<>();
 
@@ -49,20 +51,4 @@ public class Lesson {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Lesson)) return false;
-        Lesson lesson = (Lesson) o;
-        return getId() == lesson.getId() &&
-                Objects.equals(getStartTime(), lesson.getStartTime()) &&
-                Objects.equals(getEndTime(), lesson.getEndTime()) &&
-                Objects.equals(getDate(), lesson.getDate()) &&
-                Objects.equals(getLocation(), lesson.getLocation());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getStartTime(), getEndTime(), getDate(), getLocation());
-    }
 }

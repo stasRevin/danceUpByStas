@@ -1,16 +1,11 @@
 package com.danceUpByStas.utilities;
 
-import com.danceUpByStas.entity.Schedule;
-import com.danceUpByStas.entity.User;
-import com.danceUpByStas.entity.UserDance;
-import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.entity.*;
 import com.danceUpByStas.persistence.GenericDao;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserSignInHelper {
 
@@ -52,6 +47,25 @@ public class UserSignInHelper {
             user.setDances(getUserDances(user.getId()));
 
         }
+    }
+
+    public Map<Lesson, User> getStudentsForLessons(List<UserLesson> userLessons) {
+
+        Map<Lesson, User> lessonStudentMap = new HashMap<>();
+        GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+
+        for (UserLesson userLesson : userLessons) {
+
+            Lesson lesson = userLesson.getLesson();
+
+            List<UserLesson> studentLessons
+                        = userLessonDao.getElementsOfTypeAByIdOfEntityOfTypeB("lesson", lesson.getId())
+                                       .stream().filter(ul -> ul.getRole().getId() == 2).collect(Collectors.toList());
+            User student = studentLessons.get(0).getUser();
+            lessonStudentMap.put(lesson, student);
+        }
+
+        return lessonStudentMap;
     }
 
 }

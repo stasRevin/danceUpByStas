@@ -25,6 +25,7 @@
         <mapping class="com.danceUpByStas.entity.Location"/>
         <mapping class="com.danceUpByStas.entity.UserLesson"/>
         <mapping class="com.danceUpByStas.entity.Schedule"/>
+        <mapping class="com.danceUpByStas.entity.Notification"/>
 
 
     </session-factory>

@@ -16,13 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoTest {
 
-    private GenericDao<User> genericDao;
+    private GenericDao<User> genericDao = new GenericDao<>(User.class);
 
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-        this.genericDao = new GenericDao<>(User.class);
     }
 
     @Test

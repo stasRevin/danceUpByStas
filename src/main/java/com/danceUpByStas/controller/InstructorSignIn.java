@@ -56,6 +56,7 @@ public class InstructorSignIn extends HttpServlet {
             List<UserDance> userDances = signInHelper.getUserDances(userId);
             List<Schedule> schedules = signInHelper.getUserSchedule(userId);
             List<UserLesson> userLessons = signInHelper.getUserLessons(userId, 1);
+            Map<Lesson, User> studentsForLessons = signInHelper.getStudentsForLessons(userLessons);
 
             long lessonsTaughtCount = userLessons.stream().filter(l -> l.getLesson().getDate().isBefore(LocalDate.now())).count();
 
