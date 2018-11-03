@@ -1,14 +1,25 @@
 package com.danceUpByStas.utilities;
 
+import com.danceUpByStas.entity.Lesson;
+import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.persistence.GenericDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserSignInHelperTest {
 
+    GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+
     @BeforeEach
     void setUp() {
+        com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
+        database.runSQL("cleanTestDb.sql");
     }
 
     @Test
@@ -29,5 +40,15 @@ class UserSignInHelperTest {
 
     @Test
     void getStudentsForLessons() {
+
+        UserSignInHelper helper = new UserSignInHelper();
+
+        List<UserLesson> userLessons = userLessonDao.getAll();
+
+        Lesson lesson = userLessons.stream().filter(l -> l.getRole().getId() == 2).findFirst().get().getLesson();
+
+        Map<Lesson, User> lessonStudentMap = helper.getStudentsForLessons(userLessons);
+
+        assertEquals("mjessy", lessonStudentMap.get(lesson).getUsername());
     }
 }

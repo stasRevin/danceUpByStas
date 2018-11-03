@@ -53,16 +53,24 @@ public class UserSignInHelper {
 
         Map<Lesson, User> lessonStudentMap = new HashMap<>();
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
+        User student = null;
+        Lesson lesson = null;
+        List<UserLesson> studentLessons = null;
 
         for (UserLesson userLesson : userLessons) {
 
-            Lesson lesson = userLesson.getLesson();
+            lesson = userLesson.getLesson();
 
-            List<UserLesson> studentLessons
+            studentLessons
                         = userLessonDao.getElementsOfTypeAByIdOfEntityOfTypeB("lesson", lesson.getId())
                                        .stream().filter(ul -> ul.getRole().getId() == 2).collect(Collectors.toList());
-            User student = studentLessons.get(0).getUser();
-            lessonStudentMap.put(lesson, student);
+
+            if (!studentLessons.isEmpty()) {
+
+                student = studentLessons.get(0).getUser();
+                lessonStudentMap.put(lesson, student);
+            }
+
         }
 
         return lessonStudentMap;
