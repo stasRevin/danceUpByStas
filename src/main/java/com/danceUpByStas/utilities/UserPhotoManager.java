@@ -5,6 +5,7 @@ import com.danceUpByStas.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
@@ -14,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.Set;
 
 public class UserPhotoManager implements PropertiesLoader {
 
@@ -153,6 +155,23 @@ public class UserPhotoManager implements PropertiesLoader {
         }
 
         directoryToDelete.delete();
+
+    }
+
+
+    public void prepareInstructorPhotos(String userId, Set<User> instructors, ServletContext context) {
+
+        String userPhotoPath = "";
+        String photoName = "";
+
+        for (User instructor : instructors) {
+
+            photoName = instructor.getPhotoName();
+            userPhotoPath = (String)context.getAttribute("profilePhotoPath")
+                    + File.separator + instructor.getId() + File.separator + photoName;
+            String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
+            prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
+        }
 
     }
 

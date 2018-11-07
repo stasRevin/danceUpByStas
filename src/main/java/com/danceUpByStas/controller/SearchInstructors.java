@@ -34,8 +34,17 @@ public class SearchInstructors extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
+        ServletContext context = request.getServletContext();
+
+        UserPhotoManager photoManager = new UserPhotoManager();
         UserSignInHelper helper = new UserSignInHelper();
         User user = (User) session.getAttribute("user");
+        String searchPhotosDirectoryPrefix = "";
+
+        if (Objects.isNull(user)) {
+
+            searchPhotosDirectoryPrefix = "";
+        }
 
 
         String zipCodeInput = request.getParameter("zipCode");
@@ -48,7 +57,7 @@ public class SearchInstructors extends HttpServlet {
 
         request.setAttribute("usersFound", instructors);
         helper.setUserDances(instructors);
-        prepareInstructorPhotos(user.getId() + "", instructors);
+        photoManager.prepareInstructorPhotos(user.getId() + "", instructors, context);
 
         forward(request, response);
 
@@ -71,24 +80,6 @@ public class SearchInstructors extends HttpServlet {
 
     }
 
-    public void prepareInstructorPhotos(String userId, Set<User> instructors) {
-
-        ServletContext context = getServletContext();
-        UserPhotoManager manager = new UserPhotoManager();
-
-        String userPhotoPath = "";
-        String photoName = "";
-
-        for (User instructor : instructors) {
-
-            photoName = instructor.getPhotoName();
-            userPhotoPath = (String)context.getAttribute("profilePhotoPath")
-                    + File.separator + instructor.getId() + File.separator + photoName;
-            String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
-            manager.prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
-        }
-
-    }
 
 
 }
