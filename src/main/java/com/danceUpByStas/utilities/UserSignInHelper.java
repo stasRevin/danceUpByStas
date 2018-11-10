@@ -91,4 +91,14 @@ public class UserSignInHelper {
                 .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
     }
 
+
+    public User getUserById(int userId) {
+
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+
+        User user = userDao.getById(userId);
+
+        return user;
+    }
+
 }

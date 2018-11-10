@@ -32,6 +32,9 @@
       <url-pattern>/userProfileUpdate</url-pattern>
       <url-pattern>/userProfileUpdate.jsp</url-pattern>
       <url-pattern>/deleteInstructorLocation</url-pattern>
+      <url-pattern>/instructorAccessStudentProfile.jsp</url-pattern>
+      <url-pattern>/instructorAccessStudentProfile</url-pattern>
+      <url-pattern>/userViewProfileForward</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>instructor</role-name>
@@ -40,7 +43,7 @@
 
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>instructorPages</web-resource-name>
+      <web-resource-name>studentPages</web-resource-name>
       <url-pattern>/studentSignIn</url-pattern>
       <url-pattern>/studentViewProfile.jsp</url-pattern>
       <url-pattern>/notifications.jsp</url-pattern>
@@ -52,6 +55,8 @@
       <url-pattern>/userProfileUpdate</url-pattern>
       <url-pattern>/userProfileUpdate.jsp</url-pattern>
       <url-pattern>/insertUserDance</url-pattern>
+      <url-pattern>/updateUserProfile</url-pattern>
+      <url-pattern>/userViewProfileForward</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>

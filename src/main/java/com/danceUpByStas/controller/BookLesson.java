@@ -33,11 +33,12 @@ public class BookLesson extends HttpServlet {
         String instructorIdInput = request.getParameter("instructorId");
         String staticImagePath = (String) context.getAttribute("staticImagePath");
         UserSignInHelper helper = new UserSignInHelper();
+        UserPhotoManager photoManager = new UserPhotoManager();
         User loggedInUser = (User)session.getAttribute("user");
 
         int instructorId = Integer.parseInt(instructorIdInput);
         //get instructor
-        User instructor = getInstructor(instructorId);
+        User instructor = helper.getUserById(instructorId);
 
         //get instructor dances
         Set<User> instructors = new HashSet<>();
@@ -52,10 +53,9 @@ public class BookLesson extends HttpServlet {
         //forward to bookInstructor.jsp
         String userPhotoDirectory = (String) session.getAttribute("userPhotoDirectory");
 
-        if (!checkIfInstructorPhotoExists(staticImagePath + File.separator + userPhotoDirectory, instructor.getPhotoName())) {
+        if (!photoManager.checkIfUserPhotoExists(staticImagePath + File.separator + userPhotoDirectory, instructor.getPhotoName())) {
 
-            UserPhotoManager photoManager = new UserPhotoManager();
-            photoManager.prepareFoundUsersPhotos(loggedInUser.getId() + "", new HashSet<User>(Arrays.asList(instructor)), context);
+            photoManager.prepareFoundUsersPhotos(loggedInUser.getId() + "", instructors, context);
         }
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/bookInstructor.jsp");
@@ -63,25 +63,5 @@ public class BookLesson extends HttpServlet {
 
     }
 
-    private boolean checkIfInstructorPhotoExists(String userPhotoDirectory, String photoName) {
 
-        File photoFile = new File(userPhotoDirectory + File.separator + photoName);
-
-        if (photoFile.exists() && !photoFile.isDirectory()) {
-
-            return  true;
-        }
-
-        return false;
-    }
-
-
-    private User getInstructor(int userId) {
-
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-
-        User instructor = userDao.getById(userId);
-
-        return instructor;
-    }
 }

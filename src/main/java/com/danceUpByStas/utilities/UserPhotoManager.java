@@ -159,19 +159,32 @@ public class UserPhotoManager implements PropertiesLoader {
 
     }
 
+    public boolean checkIfUserPhotoExists(String userPhotoDirectory, String photoName) {
 
-    public void prepareFoundUsersPhotos(String userId, Set<User> foundUsers, ServletContext context) {
+        File photoFile = new File(userPhotoDirectory + File.separator + photoName);
+
+        if (photoFile.exists() && !photoFile.isDirectory()) {
+
+            return  true;
+        }
+
+        return false;
+    }
+
+
+    public void prepareFoundUsersPhotos(String loggedInUserId, Set<User> foundUsers, ServletContext context) {
 
         String userPhotoPath = "";
         String photoName = "";
 
         for (User foundUser : foundUsers) {
 
+            logger.debug("In prepareFoundUsersPhotos, preparing photo for user {}.", foundUser.getFirstName());
             photoName = foundUser.getPhotoName();
             userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                     + File.separator + foundUser.getId() + File.separator + photoName;
             String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
-            prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
+            prepareUserPhoto(userPhotoPath, photoDirectoryName + loggedInUserId, photoName);
         }
 
     }
