@@ -34,6 +34,7 @@ public class UserViewProfileForward extends HttpServlet {
         if (role == 1) {
 
             url = "/instructorViewProfile.jsp";
+
         } else if (role == 2) {
 
             url = "/studentViewProfile.jsp";

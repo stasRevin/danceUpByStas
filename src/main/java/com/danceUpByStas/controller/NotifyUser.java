@@ -19,38 +19,49 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebServlet(name = "NotifyStudent",
-            urlPatterns = {"/notifyStudent"})
+@WebServlet(name = "NotifyUser",
+            urlPatterns = {"/notifyUser"})
 
-public class NotifyStudent extends HttpServlet {
+public class NotifyUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Logger logger = LogManager.getLogger(this.getClass());
 
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("user");
+        User loggedInUser = (User) session.getAttribute("user");
+        Integer role = (Integer) session.getAttribute("role");
+        String url = "";
 
         String message = (String) request.getParameter("message");
-        String studentId = (String) request.getParameter("studentId");
+        String userId = (String) request.getParameter("recepientUserId");
 
         UserSignInHelper signInHelper = new UserSignInHelper();
-        User student = signInHelper.getUserById(Integer.parseInt(studentId));
+        User recepientUser = signInHelper.getUserById(Integer.parseInt(userId));
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
-        Notification notification = new Notification("Notification from instructor " + user.getFirstName()
-                + " " + user.getLastName() + ": " + message, student, 0);
+        Notification notification = new Notification("Notification from user " + loggedInUser.getFirstName()
+                + " " + loggedInUser.getLastName() + ": " + message, recepientUser, 0);
 
         notificationDao.insert(notification);
 
-        Set<User> students = new HashSet<>();
-        students.add(student);
-        signInHelper.setUserDances(students);
+        Set<User> users = new HashSet<>();
+        users.add(recepientUser);
+        signInHelper.setUserDances(users);
 
-        request.setAttribute("student", student);
+        if (role == 1) {
 
-        logger.debug("Notify user servlet: student name: {} " + student.getFirstName());
+            url = "/instructorAccessStudentProfile.jsp";
+            request.setAttribute("student", recepientUser);
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/instructorAccessStudentProfile.jsp");
+        } else if (role == 2) {
+
+            url = "/bookInstructor.jsp";
+            request.setAttribute("instructor", recepientUser);
+        }
+
+        logger.debug("Notify user servlet: student name: {} " + recepientUser.getFirstName());
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
 
     }

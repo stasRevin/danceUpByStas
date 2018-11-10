@@ -26,11 +26,11 @@
         </div>
         <br/>
         <div class="col-sm-9">
-            <form action="/danceup/notifyStudent" method="POST">
+            <form action="/danceup/notifyUser" method="POST">
                 <div class="form-group">
-                    <label for="notification">Notification for student:</label>
+                    <label for="notification">Send notification to ${student.firstName}:</label>
                     <input type="text" class="form-control" name="message" id="notification">
-                    <input type="hidden" name="studentId" value="${student.id}">
+                    <input type="hidden" name="recepientUserId" value="${student.id}">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

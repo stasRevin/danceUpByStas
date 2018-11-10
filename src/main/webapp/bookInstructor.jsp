@@ -50,6 +50,17 @@
         </div>
     </div>
     <br/>
+    <div class="col-sm-9">
+        <form action="/danceup/notifyUser" method="POST">
+            <div class="form-group">
+                <label for="notification">Send notification to ${instructor.firstName}:</label>
+                <input type="text" class="form-control" name="message" id="notification">
+                <input type="hidden" name="recepientUserId" value="${instructor.id}">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    <br/>
     <h3 class="col-sm-12">Set Your Lesson Details</h3>
     <br/>
         <div class="col-sm-12">
