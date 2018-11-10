@@ -28,7 +28,6 @@
                         </c:if>
                     </a>
                 </li>
-                <li><a href="/danceup/searchMyStudents.jsp">Students</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/danceup/userLogOut"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>

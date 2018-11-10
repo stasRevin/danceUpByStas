@@ -32,6 +32,7 @@ public class UserPhotoManager implements PropertiesLoader {
 
         //create photoDirectory
         String targetPathName = staticImagePath + File.separator + photoDirectory;
+
         createPhotoDirectory(targetPathName);
 
         Path source = Paths.get(userPhotoPath);
@@ -159,16 +160,16 @@ public class UserPhotoManager implements PropertiesLoader {
     }
 
 
-    public void prepareInstructorPhotos(String userId, Set<User> instructors, ServletContext context) {
+    public void prepareFoundUsersPhotos(String userId, Set<User> foundUsers, ServletContext context) {
 
         String userPhotoPath = "";
         String photoName = "";
 
-        for (User instructor : instructors) {
+        for (User foundUser : foundUsers) {
 
-            photoName = instructor.getPhotoName();
+            photoName = foundUser.getPhotoName();
             userPhotoPath = (String)context.getAttribute("profilePhotoPath")
-                    + File.separator + instructor.getId() + File.separator + photoName;
+                    + File.separator + foundUser.getId() + File.separator + photoName;
             String photoDirectoryName = (String)context.getAttribute("usersFoundPhotosDirectory");
             prepareUserPhoto(userPhotoPath, photoDirectoryName + userId, photoName);
         }

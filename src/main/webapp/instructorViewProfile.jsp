@@ -12,22 +12,26 @@
                 ${user.firstName} ${user.lastName}
             </h3>
         </div>
-        <div class="col-sm-3">
-            <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+        <div class="col-sm-9">
+            <div class="col-sm-3">
+                <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+            </div>
         </div>
         <br/>
+        <div class="col-sm-9">
+            <h4>Upcoming Lessons</h4>
+            <jsp:include page="upcomingLessons.jsp"/>
+        </div>
+
         <div class="col-sm-9 tabView">
             <ul class="nav nav-pills">
-                <li class="active">
-                    <a data-toggle="pill" href="#pills-upcomingLessons">Upcoming Lessons</a>
-                </li>
                 <li>
                     <a data-toggle="pill" href="#pills-workInfo">Work Info</a>
                 </li>
                 <li>
                     <a data-toggle="pill" href="#pills-experience">Teaching Experience</a>
                 </li>
-                <li>
+                <li class="active">
                     <a data-toggle="pill" href="#pills-availability">Availability</a>
                 </li>
             </ul>
@@ -54,11 +58,6 @@
                     <div class="col-sm-9">
                         <jsp:include page="instructorAvailability.jsp"/>
                     </div>
-                </div>
-
-                <div class="table tab-pane fade" id="pills-upcomingLessons">
-                    <br/>
-                    <jsp:include page="upcomingLessons.jsp"/>
                 </div>
             </div>
         </div>

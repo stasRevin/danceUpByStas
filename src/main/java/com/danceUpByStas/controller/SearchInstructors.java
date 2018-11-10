@@ -57,7 +57,7 @@ public class SearchInstructors extends HttpServlet {
 
         request.setAttribute("usersFound", instructors);
         helper.setUserDances(instructors);
-        photoManager.prepareInstructorPhotos(user.getId() + "", instructors, context);
+        photoManager.prepareFoundUsersPhotos(user.getId() + "", instructors, context);
 
         forward(request, response);
 

@@ -26,7 +26,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
         Logger logger = LogManager.getLogger(this.getClass());
 
         ServletContext context = getServletContext();
-        Properties properties = loadProperties("/photoManagerLocal.properties");
+        Properties properties = loadProperties("/photoManagerRemote.properties");
         String staticImagesDirectory = properties.getProperty("staticImagePath");
         String catalinaHome = System.getProperty("catalina.home");
 
@@ -42,6 +42,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
 
         context.setAttribute("usersFoundPhotosPath", usersFoundPhotosPath);
         context.setAttribute("staticUserPhotoPath", staticUserPhotoPath);
+        context.setAttribute("staticImagePath", staticImagesDirectory);
 
     }
 

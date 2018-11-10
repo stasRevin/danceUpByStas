@@ -27,10 +27,10 @@
             <tr>
                 <c:choose>
                     <c:when test="${role == 1}">
-                        <td>${userLesson.lesson.students[0].firstName} ${userLesson.lesson.students[0].lastName}</td>
+                        <td><a href="http://3.16.35.156:8080/danceup/instructorViewStudentProfile?studentId=${userLesson.lesson.students[0].id}">${userLesson.lesson.students[0].firstName} ${userLesson.lesson.students[0].lastName}</a></td>
                     </c:when>
                     <c:when test="${role == 2}">
-                        <td>${userLesson.lesson.instructors[0].firstName} ${userLesson.lesson.instructors[0].lastName}</td>
+                        <td> <a href="http://3.16.35.156:8080/danceup/bookLesson?instructorId=${userLesson.lesson.instructors[0].id}">${userLesson.lesson.instructors[0].firstName} ${userLesson.lesson.instructors[0].lastName}</a></td>
                     </c:when>
                 </c:choose>
                 <td>${userLesson.lesson.date}</td><td>${userLesson.lesson.startTime}</td>
