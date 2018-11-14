@@ -5,11 +5,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import java.io.File;
-
+@WebListener
 public class SessionListener implements HttpSessionListener {
 
     private Logger logger = LogManager.getLogger(this.getClass());

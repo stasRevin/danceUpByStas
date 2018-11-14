@@ -4,6 +4,9 @@ import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NotificationDaoTest {
@@ -31,9 +34,10 @@ class NotificationDaoTest {
         student = userDao.getById(studentId);
 
         User instructor = userDao.getById(1);
+        LocalDateTime currentDateTime = LocalDateTime.now();
 
-        Notification notificationForInstructor = new Notification(messageForInstructor, instructor, 0);
-        Notification notificationForStudent = new Notification(messageForStudent, student, 0);
+        Notification notificationForInstructor = new Notification(messageForInstructor, instructor, 0, currentDateTime);
+        Notification notificationForStudent = new Notification(messageForStudent, student, 0, currentDateTime);
 
         int instructorNotificationId = notificationDao.insert(notificationForInstructor);
         int studentNotificationId = notificationDao.insert(notificationForStudent);

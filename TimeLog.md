@@ -68,3 +68,8 @@
 |10/26/2018|Scheduling lessons update |2|
 |10/27/2018|Putting MVP together |8|
 |11/02/2018|Make students/instructors show up in upcoming lessons, notifications |7|
+|11/03/2018|Tests, bug fixes |2|
+|11/06/2018|Bug fixes |2|
+|11/08/2018|Bug fixes |2|
+|11/09/2018|Customized notifications, instructor student look-up, photo management, memory leak research and search |8|
+|11/13/2018|Photo management bug fixes, notifications ordered by date newest to oldest |2|

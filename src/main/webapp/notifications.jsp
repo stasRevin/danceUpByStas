@@ -24,7 +24,7 @@
                 <c:forEach var="notification" items="${notificationRequest}">
                     <tr>
                         <td>
-                            ${notification.message}
+                            ${notification.dateTime}: ${notification.message}
                         </td>
                     </tr>
                 </c:forEach>

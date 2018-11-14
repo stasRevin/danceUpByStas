@@ -71,9 +71,6 @@ public class UserProfileUpdate extends HttpServlet {
 
         File userFolder = new File(userPhotoFile + File.separator + userId);
 
-        String photoName = request.getPart("profilePhoto").getName();
-        long size = request.getPart("profilePhoto").getSize();
-
         if (request.getPart("profilePhoto").getSize() > 0) {
             UserPhotoManager photoManager = new UserPhotoManager();
             Path photoPath = Paths.get(userPhotoFile + File.separator + userId + File.separator + user.getPhotoName());
@@ -86,10 +83,16 @@ public class UserProfileUpdate extends HttpServlet {
 
         String url = "";
 
-        if ((Integer)session.getAttribute("role") == 1) {
+        if (role == 1) {
 
             url = "/danceup/signInInstructor";
+
         }
+        else if (role ==2) {
+
+            url = "/danceup/studentSignIn";
+        }
+
 
         response.sendRedirect(url);
 

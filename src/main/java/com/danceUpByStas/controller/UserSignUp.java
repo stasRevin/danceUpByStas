@@ -91,11 +91,6 @@ public class UserSignUp extends HttpServlet {
         File userPhotoFile = new File((String)context.getAttribute("profilePhotoPath"));
         File userFolder = new File(userPhotoFile + File.separator + userId);
 
-        if (!userFolder.exists()) {
-
-            userFolder.mkdir();
-        }
-
         photoManager.saveUserPhoto(request, userFolder, user, userDao);
 
         return userId;

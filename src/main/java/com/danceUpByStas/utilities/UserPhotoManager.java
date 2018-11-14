@@ -105,6 +105,7 @@ public class UserPhotoManager implements PropertiesLoader {
     public void saveUserPhoto(HttpServletRequest request, File userFolder, User user, GenericDao<User> userDao)
                 throws  IOException, ServletException {
 
+        createUserPhotoFolder(userFolder);
         for (Part part : request.getParts()) {
 
             if (part.getName().equals("profilePhoto")) {
@@ -115,6 +116,14 @@ public class UserPhotoManager implements PropertiesLoader {
                 user.setPhotoName(fileName);
                 userDao.saveOrUpdate(user);
             }
+        }
+    }
+
+    private void createUserPhotoFolder(File userFolder) {
+
+        if (!userFolder.exists()) {
+
+            userFolder.mkdir();
         }
     }
 

@@ -86,9 +86,11 @@ public class UserSignInHelper {
     public List<Notification> getNotifications(User user) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
+        List<Notification> notifications = notificationDao
+                                         .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
 
-        return notificationDao
-                .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
+        Collections.sort(notifications, Comparator.comparing(Notification::getDateTime).reversed());
+        return notifications;
     }
 
 

@@ -48,4 +48,9 @@ public class SessionFactoryProvider {
         return sessionFactory;
 
     }
+
+    public static void closeSingleton() {
+
+        sessionFactory = null;
+    }
 }

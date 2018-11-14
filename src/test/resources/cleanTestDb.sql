@@ -45,4 +45,4 @@ INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('17:00:00', '
 INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('17:00:00', '22:00:00', '2018-10-27', 1);
 INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('17:00:00', '22:00:00', '2018-12-27', 1);
 INSERT INTO SCHEDULE (start_time, end_time, date, user_id) VALUES ('15:00:00', '21:00:00', '2018-09-27', 2);
-INSERT INTO NOTIFICATION (message, user_id, is_read) VALUES ('A lesson was booked.', 1, 0);
+INSERT INTO NOTIFICATION (message, user_id, is_read, date_time) VALUES ('A lesson was booked.', 1, 0, '2018-11-13 21:10:09');

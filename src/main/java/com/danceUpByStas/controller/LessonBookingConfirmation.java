@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -135,7 +136,7 @@ public class LessonBookingConfirmation extends HttpServlet {
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
         String message = "A lesson was scheduled with " + withUserInMessage.getFirstName() + " " + withUserInMessage.getLastName();
         message += " at " + lesson.getLocation().getName() + " on " + lesson.getDate() + " at " + lesson.getStartTime() + ".";
-        Notification notification = new Notification(message, notificationOwner, 0);
+        Notification notification = new Notification(message, notificationOwner, 0, LocalDateTime.now());
         notificationDao.insert(notification);
 
     }
