@@ -36,7 +36,7 @@ class UserDaoTest {
     void insertUserSuccess() {
 
         int id = genericDao.insert(new User("vpablo", "123abc", 0, "Victor",
-                "Pablo", "123 Main St", "", "Madison", "WI",
+                "Pablo", "123 Main St", "Madison", "WI",
                 "53705", 65.00, ""));
         User user = genericDao.getById(3);
 
@@ -85,7 +85,7 @@ class UserDaoTest {
     void deleteEntityByPropertySuccess() {
 
         int id = genericDao.insert(new User("vpablo", "123abc", 0, "Victor",
-                "Escobar", "123 Main St", "", "Madison", "WI",
+                "Escobar", "123 Main St", "Madison", "WI",
                 "53705", 65.00, ""));
 
         List<User> users = genericDao.getAll();

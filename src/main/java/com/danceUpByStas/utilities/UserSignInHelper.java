@@ -2,6 +2,8 @@ package com.danceUpByStas.utilities;
 
 import com.danceUpByStas.entity.*;
 import com.danceUpByStas.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class UserSignInHelper {
 
+    private Logger logger = LogManager.getLogger(this.getClass());
 
     public List<UserDance> getUserDances(int userId) {
 
@@ -86,10 +89,18 @@ public class UserSignInHelper {
     public List<Notification> getNotifications(User user) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
-        List<Notification> notifications = notificationDao
-                                         .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
+        List<Notification> notifications = null;
 
-        Collections.sort(notifications, Comparator.comparing(Notification::getDateTime).reversed());
+        try {
+            notifications = notificationDao
+                    .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
+
+            Collections.sort(notifications, Comparator.comparing(Notification::getDateTime).reversed());
+        } catch (Exception exception) {
+
+            logger.debug("Problem finding user notifications: {}", exception);
+        }
+
         return notifications;
     }
 

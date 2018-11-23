@@ -41,7 +41,7 @@ class UserDanceDaoTest {
     void insertUserDanceSuccess() {
 
         User user = new User("apeter", "123abc", 0, "Peter",
-                             "Stevenson", "123 Main St", "", "Madison",
+                             "Stevenson", "123 Main St","Madison",
                              "WI", "53705", 80.00, "");
         Dance dance = new Dance("Pasodoble", "strong, theatrical");
         UserDance userDance = new UserDance(user, dance);

@@ -4,6 +4,7 @@ import com.danceUpByStas.entity.Role;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
+import com.danceUpByStas.utilities.InputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 import org.apache.catalina.realm.RealmBase;
@@ -42,38 +44,34 @@ public class UserSignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
+        InputValidator inputValidator = new InputValidator();
+
+        if (!inputValidator.runInputValidator(request.getParameterMap())) {
+
+            response.sendRedirect("/danceup/generalError.jsp");
+            return;
+        }
 
         String role = request.getParameter("role");
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String address1 = request.getParameter("address1");
-        String address2 = request.getParameter("address2");
+        String address = request.getParameter("address");
         String city = request.getParameter("city");
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
         String password = request.getParameter("password");
-        String passwordConfirmation = request.getParameter("passwordConfirmation");
         Double payrate = 0.0;
 
-        String hashedPassword = "";
+        String hashedPassword = RealmBase.Digest(password, "SHA-256", "UTF-8");
 
-        if (password.equals(passwordConfirmation)) {
 
-            hashedPassword = RealmBase.Digest(password, "SHA-256", "UTF-8");
-
-        } else {
-
-            response.sendRedirect("/danceup/generalError.jsp");
-        }
-
-        if (role.equals("instructor")) {
+        if (role.equals("instructor") && !Objects.isNull(payrate) && !payrate.equals("")) {
 
             payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
         }
 
-        User user = new User(username, hashedPassword, 0, firstName, lastName, address1, address2, city, state,
+        User user = new User(username, hashedPassword, 0, firstName, lastName, address, city, state,
                              zipCode, payrate, "");
         persistUser(user, request, context);
         associateUserWithRole(role, user);

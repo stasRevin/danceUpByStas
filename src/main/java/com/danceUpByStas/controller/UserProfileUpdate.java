@@ -35,8 +35,7 @@ public class UserProfileUpdate extends HttpServlet {
         String username = request.getParameter("username");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String address1 = request.getParameter("address1");
-        String address2 = request.getParameter("address2");
+        String address = request.getParameter("address");
         String city = request.getParameter("city");
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
@@ -57,8 +56,7 @@ public class UserProfileUpdate extends HttpServlet {
         user.setUsername(username);
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setAddressOne(address1);
-        user.setAddressTwo(address2);
+        user.setAddressOne(address);
         user.setCity(city);
         user.setState(state);
         user.setPostalCode(zipCode);

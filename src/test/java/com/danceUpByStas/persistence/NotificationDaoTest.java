@@ -28,7 +28,7 @@ class NotificationDaoTest {
         String messageForStudent = "A lesson was scheduled with the instructor Dancing Bobby at Jimmy's Ballroom on 09/25/2018 at 3PM.";
 
         User student = new User("pavlik", "abc", 0, "Pablo", "Escobar",
-                "356 Sheridan Rd", "", "Madison", "WI", "53705", 0.0, "");
+                "356 Sheridan Rd", "Madison", "WI", "53705", 0.0, "");
 
         int studentId = userDao.insert(student);
         student = userDao.getById(studentId);

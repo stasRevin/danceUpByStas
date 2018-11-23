@@ -23,7 +23,7 @@ $(document).ready(function () {
         var danceName = thisClass.data("delete");
         var danceSelection = $("#formControlSelect1");
         console.log("dance name: " + danceName);
-        $.get("http://3.16.35.156:8080/danceup/deleteUserDance?name=" + danceName, function () {
+        $.get("http://18.219.182.38:8080/danceup/deleteUserDance?name=" + danceName, function () {
             danceSelection.append("<option>" + danceName + "</option>");
         })
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
         var locationId = thisClass.data("delete");
         var locationSelection = $("#locationSelection");
         console.log("location id: " + locationId);
-        $.get("http://3.16.35.156:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {
+        $.get("http://18.219.182.38:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {
             locationSelection.append("<option value='" + locationId + "'>" + locationDeleted + "</option>");
 
             console.log("<option value='\" + locationId + \"'>\" + locationDeleted + \"</option>");
@@ -86,7 +86,7 @@ $(document).ready(function () {
         var startTime = selectedRow.attr("data-start");
         var endTime = selectedRow.attr("data-end");
 
-        $.get("http://3.16.35.156:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime
+        $.get("http://18.219.182.38:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime
                 + "&endTime=" + endTime, function () {});
     });
 
@@ -108,7 +108,7 @@ function addInstructorAvailabilityEventHandler() {
         console.log(instructorId);
         var hour = "";
 
-        $.get("http://3.16.35.156:8080/danceup/scheduleServices/instructorDayAvailability/"
+        $.get("http://18.219.182.38:8080/danceup/scheduleServices/instructorDayAvailability/"
             + lessonDate + "/" + instructorId, function(data) {
 
             console.log("response: " + data);
@@ -205,7 +205,7 @@ function deleteUserPhoto() {
 
 
     $.get({
-        url: "http://3.16.35.156:8080/danceup/deleteUserPhoto",
+        url: "http://18.219.182.38:8080/danceup/deleteUserPhoto",
         success: function () {
 
             console.log("removing photo.");

@@ -37,23 +37,9 @@
                   </div>
 
                   <div class="form-group">
-                      <label class="control-label col-sm-3">Email address</label>
+                      <label class="control-label col-sm-3">Address</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="email" />
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="control-label col-sm-3">Address 1</label>
-                      <div class="col-sm-6">
-                          <input class="form-control" type="text" name="address1">
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                      <label class="control-label col-sm-3">Address 2</label>
-                      <div class="col-sm-6">
-                          <input class="form-control" type="text" name="address2">
+                          <input class="form-control" type="text" name="address">
                       </div>
                   </div>
 

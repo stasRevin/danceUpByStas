@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(name = "NotificationServlet",
             urlPatterns = {"/notifications"})
@@ -33,19 +30,15 @@ public class NotificationServlet extends HttpServlet {
 
         List<Notification> notifications = (List<Notification>) session.getAttribute("notifications");
 
-        //Mark notifications as read
         notifications = signInHelper.getNotifications(user);
 
-        for (Notification notification : notifications) {
+        if (!Objects.isNull(notifications) && notifications.size() > 0) {
 
-            logger.debug("2. notification is read value: {}", notification.getIsRead());
+            request.setAttribute("notificationRequest", notifications);
+            markAsRead(notifications);
+            notifications = signInHelper.getNotifications(user);
+            session.setAttribute("notifications", notifications);
         }
-
-        request.setAttribute("notificationRequest", notifications);
-        markAsRead(notifications);
-        notifications = signInHelper.getNotifications(user);
-        session.setAttribute("notifications", notifications);
-
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/notifications.jsp");
         dispatcher.forward(request, response);
     }

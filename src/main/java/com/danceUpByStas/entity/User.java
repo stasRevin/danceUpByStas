@@ -31,8 +31,6 @@ public class User {
     private String lastName;
     @Column(name="address1")
     private String addressOne;
-    @Column(name="address2")
-    private String addressTwo;
     @Column(name="city")
     private String city;
     @Column(name="state")
@@ -76,7 +74,7 @@ public class User {
 
 
     public User(String username, String password, int isDeleted, String firstName, String lastName,
-                String addressOne, String addressTwo, String city, String state, String postalCode,
+                String addressOne, String city, String state, String postalCode,
                 double payRate, String photoName) {
 
         this.username = username;
@@ -85,7 +83,6 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressOne = addressOne;
-        this.addressTwo = addressTwo;
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
