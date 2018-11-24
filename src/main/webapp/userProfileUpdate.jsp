@@ -19,7 +19,14 @@
         <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">
-                    <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+                    <c:choose>
+                        <c:when test="${not empty user.photoName}">
+                            <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+                        </c:when>
+                        <c:otherwise>
+                            <img id="userPhoto" src="images/nopic.jpg">
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div class="form-group">
@@ -162,7 +169,6 @@
             </div>
 
         </form>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

@@ -16,7 +16,6 @@ header {
     padding: 1em;
     color: #ffffff;
     background-color: #BD7167;
-    background-image: url("../images/beige-paper.png");
     clear: left;
     text-align: center;
     border-radius: 20px;
@@ -57,7 +56,6 @@ body {
 .jumbotron {
 
     background-color: #40233E;
-    background-image: url("../images/concrete-wall.png");
     text-align: center;
     padding: 15px;
     font-family: "Arial Black";
@@ -100,22 +98,10 @@ button a {
 
 .btn-primary {
 
-    background-color: #BA8781;
+    background-color: #BD7167;
 
 }
 
-body footer {
-
-    padding: 1em;
-    color: #ffffff;
-    background-color:  #BA8781;
-    background-image: url("../images/beige-paper.png");
-    text-align: center;
-    margin-top: 0;
-    border-radius: 10px;
-
-
-}
 
 .panel-heading h3 {
 
@@ -144,12 +130,12 @@ body footer {
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
 
-    background-color: #B99591;
+    background-color: #BD7167;
 }
 
 .nav-pills > li > a {
 
-    color: #B99793;
+    color: #BD7167;
 }
 
 .progress-bar-success {
@@ -181,6 +167,11 @@ body footer {
     margin-bottom: 20%;
 }
 
+.container {
+
+    min-height: 100%;
+}
+
 .container-fluid {
 
     background-image: url("../images/cross-stripes.png");
@@ -189,14 +180,19 @@ body footer {
 
 .panel-default > .panel-heading {
 
-    background-color:  #BA8781;
+    background-color: #BD7167;
     color: #ffffff;
 }
 
 .panel-primary > .panel-heading {
 
 
-    background-color:  #BA8781;
+    background-color:  #BD7167;
+}
+
+.panel-primary {
+
+    border-color: #451f3f;
 }
 
 .navbar-inverse {
@@ -213,7 +209,7 @@ body footer {
 
 .dataTable th {
 
-    background-color: #BA8781;
+    background-color: #BD7167;
     color: #ffffff;
 }
 

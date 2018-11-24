@@ -18,7 +18,14 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/usersFoundPhotos${user.id}/${instructor.photoName}">
+            <c:choose>
+                <c:when test="not empty ${instructor.photoName}">
+                    <img id="userPhoto" src="images/userPhotos${user.id}/${instructor.photoName}">
+                </c:when>
+                <c:otherwise>
+                    <img id="userPhoto" src="images/nopic.jpg">
+                </c:otherwise>
+            </c:choose>
         </div>
         <br/>
         <div class="col-sm-9 tabView">
@@ -105,7 +112,6 @@
                     </div>
                 </div>
             </form>
-            <jsp:include page="footer.jsp"/>
         </div>
     </div>
 </div>

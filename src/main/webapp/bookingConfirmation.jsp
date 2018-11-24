@@ -25,7 +25,6 @@
                 <tr><td>Location</td><td>${location.name} ${location.address1} ${location.city} ${location.state} ${location.postalCode}</td></tr>
             </table>
         </div>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

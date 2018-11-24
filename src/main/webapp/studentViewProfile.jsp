@@ -13,9 +13,15 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+            <c:choose>
+                <c:when test="${not empty user.photoName}">
+                    <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+                </c:when>
+                <c:otherwise>
+                    <img id="userPhoto" src="images/nopic.jpg">
+                </c:otherwise>
+            </c:choose>
         </div>
-
         <div class="col-sm-9 tabView">
             <ul class="nav nav-pills">
                 <li class="active">
@@ -45,7 +51,6 @@
             </div>
             <br/><br/>
         </div>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

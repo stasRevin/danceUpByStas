@@ -48,7 +48,14 @@
             <tbody>
             <c:forEach var="instructor" items="${usersFound}">
                 <tr>
-                    <td><img class="userPhotoClass" src="images/usersFoundPhotos${user.id}/${instructor.photoName}"></td>
+                    <c:choose>
+                        <c:when test="${not empty instructor.photoName}">
+                            <td><img id="userPhotoClass" src="images/userPhotos${user.id}/${instructor.photoName}"></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td><img id="userPhotoClass" src="images/nopic.jpg"></td>
+                        </c:otherwise>
+                    </c:choose>
                     <td>${instructor.firstName}</td>
                     <td>${instructor.lastName}</td>
                     <td>
@@ -74,7 +81,6 @@
             </c:forEach>
             </tfoot>
         </table>
-    <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

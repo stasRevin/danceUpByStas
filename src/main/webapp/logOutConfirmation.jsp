@@ -8,7 +8,6 @@
         <jsp:include page="navbar.jsp"/>
 
         <h2>Your logout was successful.</h2>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

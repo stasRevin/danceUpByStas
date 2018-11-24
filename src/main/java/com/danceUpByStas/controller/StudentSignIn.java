@@ -7,6 +7,8 @@ import com.danceUpByStas.entity.UserLesson;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import com.danceUpByStas.utilities.UserSignInHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -29,7 +31,7 @@ public class StudentSignIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-
+        final Logger logger = LogManager.getLogger(this.getClass());
         HttpSession session = request.getSession();
 
         String username = request.getUserPrincipal().getName();
@@ -37,6 +39,7 @@ public class StudentSignIn extends HttpServlet {
         GenericDao<User> userDao = new GenericDao<>(User.class);
 
         User user = userDao.getElementByProperty("username", username);
+        logger.debug("User signing in before null check: {}", user);
 
         if (Objects.nonNull(user)) {
 
@@ -54,6 +57,7 @@ public class StudentSignIn extends HttpServlet {
             session.setAttribute("role", 2);
             session.setAttribute("userDances", userDances);
             session.setAttribute("userLessons", userLessons);
+            logger.debug("Signing in user: {}", user);
 
             String userPhotoPath = (String)context.getAttribute("profilePhotoPath")
                     + File.separator + userId + File.separator + user.getPhotoName();

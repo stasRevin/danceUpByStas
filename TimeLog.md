@@ -73,3 +73,5 @@
 |11/08/2018|Bug fixes |2|
 |11/09/2018|Customized notifications, instructor student look-up, photo management, memory leak research and search |8|
 |11/13/2018|Photo management bug fixes, notifications ordered by date newest to oldest |2|
+|11/22/2018|Validation and testing |3|
+|11/23/2018|Validation and testing |3|

@@ -5,6 +5,7 @@ import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.InputValidator;
+import com.danceUpByStas.utilities.SignUpInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class UserSignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        InputValidator inputValidator = new InputValidator();
+        InputValidator inputValidator = new SignUpInputValidator();
 
         if (!inputValidator.runInputValidator(request.getParameterMap())) {
 

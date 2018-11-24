@@ -85,7 +85,6 @@
                 </div>
             </div>
         </form>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>

@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class InputValidatorTest {
 
     private Map<String, String[]> parameterMap = new HashMap<>();
-    private InputValidator inputValidator = new InputValidator();
+    private SignUpInputValidator inputValidator = new SignUpInputValidator();
 
     @BeforeEach
     void populateMap() {
@@ -26,14 +26,13 @@ class InputValidatorTest {
         parameterMap.put("zip", new String[] {"56789"});
         parameterMap.put("password", new String[] {"afsa"});
         parameterMap.put("passwordConfirmation", new String[] {"afsa"});
+        parameterMap.put("ratePerLesson", new String[]{"0.00"});
     }
 
     @Test
     void runInputValidatorSuccess() {
 
-        InputValidator inputValidator = new InputValidator();
         boolean isValidInput = inputValidator.runInputValidator(parameterMap);
-
         assertEquals(true, isValidInput);
     }
 
@@ -79,6 +78,15 @@ class InputValidatorTest {
     void runInputValidatorFailOnNonMatchingPasswords() {
 
         parameterMap.get("passwordConfirmation")[0] = "abc";
+        boolean isValidInput = inputValidator.runInputValidator(parameterMap);
+
+        assertEquals(false, isValidInput);
+    }
+
+    @Test
+    void runInputValidatorFailOnNonMatchingRatePerLesson() {
+
+        parameterMap.get("ratePerLesson")[0] = "$%";
         boolean isValidInput = inputValidator.runInputValidator(parameterMap);
 
         assertEquals(false, isValidInput);

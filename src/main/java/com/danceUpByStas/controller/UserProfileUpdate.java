@@ -2,6 +2,8 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
+import com.danceUpByStas.utilities.InputValidator;
+import com.danceUpByStas.utilities.ProfileUpdateInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import org.apache.catalina.realm.RealmBase;
 
@@ -13,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 @WebServlet(name = "UserProfileUpdate",
             urlPatterns = {"/updateUserProfile"})
@@ -26,6 +29,13 @@ public class UserProfileUpdate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        InputValidator inputValidator = new ProfileUpdateInputValidator();
+
+        if (!inputValidator.runInputValidator(request.getParameterMap())) {
+
+            response.sendRedirect("/danceup/generalError.jsp");
+            return;
+        }
 
         User user = (User)session.getAttribute("user");
         int userId = user.getId();
@@ -61,11 +71,20 @@ public class UserProfileUpdate extends HttpServlet {
         user.setState(state);
         user.setPostalCode(zipCode);
 
-        if (role == 1) {
+        if (role == 1 && !Objects.isNull(instructorRatePerLesson) && !instructorRatePerLesson.equals("")) {
 
             instructorRatePerLesson = Double.parseDouble(request.getParameter("ratePerLesson"));
             user.setPayRate(instructorRatePerLesson);
         }
+
+        updateUserPhoto(userPhotoFile, userId, request, user, userDao);
+        userDao.saveOrUpdate(user);
+        String url = setUrl(role);
+        response.sendRedirect(url);
+    }
+
+    private void updateUserPhoto(String userPhotoFile, int userId, HttpServletRequest request, User user, GenericDao<User> userDao)
+            throws IOException, ServletException {
 
         File userFolder = new File(userPhotoFile + File.separator + userId);
 
@@ -77,26 +96,21 @@ public class UserProfileUpdate extends HttpServlet {
 
         }
 
-        userDao.saveOrUpdate(user);
+    }
 
-        String url = "";
+    private String setUrl(int role) {
 
         if (role == 1) {
 
-            url = "/danceup/signInInstructor";
+            return "/danceup/signInInstructor";
 
         }
         else if (role ==2) {
 
-            url = "/danceup/studentSignIn";
+            return "/danceup/studentSignIn";
         }
 
-
-        response.sendRedirect(url);
-
+        return "";
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

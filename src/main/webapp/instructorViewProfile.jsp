@@ -14,7 +14,14 @@
         </div>
         <div class="col-sm-9">
             <div class="col-sm-3">
-                <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+                <c:choose>
+                    <c:when test="${not empty user.photoName}">
+                        <img id="userPhoto" src="images/userPhotos${user.id}/${user.photoName}">
+                    </c:when>
+                    <c:otherwise>
+                        <img id="userPhoto" src="images/nopic.jpg">
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
         <br/>
@@ -63,7 +70,6 @@
         </div>
     </div>
     <br/><br/>
-        <jsp:include page="footer.jsp"/>
     </div>
 </div>
 </body>
