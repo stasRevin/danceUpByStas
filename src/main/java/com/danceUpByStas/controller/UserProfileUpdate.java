@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.ws.rs.PathParam;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -29,7 +30,7 @@ public class UserProfileUpdate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        InputValidator inputValidator = new ProfileUpdateInputValidator();
+        ProfileUpdateInputValidator inputValidator = new ProfileUpdateInputValidator();
 
         if (!inputValidator.runInputValidator(request.getParameterMap())) {
 

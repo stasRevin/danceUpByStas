@@ -3,9 +3,9 @@ package com.danceUpByStas.utilities;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public abstract class InputValidator {
+public class InputValidator implements PropertiesLoader {
 
-    public abstract boolean runInputValidator(Map<String, String[]> parameterMap);
+    //public abstract boolean runInputValidator(Map<String, String[]> parameterMap);
 
     protected Set<String> filterSet(Set<String> setToFilter, List<String> filterCriteria) {
 
@@ -37,26 +37,6 @@ public abstract class InputValidator {
             }
         }
         return true;
-    }
-
-    protected String getZipRegex() {
-
-        return "^\\d{1,20}$";
-    }
-
-    protected String getAlphaInputRegex() {
-
-        return "^[A-Za-z]+$";
-    }
-
-    protected String getDoubleTypeRegex() {
-
-        return "^\\d{1,3}.\\d{2}$";
-    }
-
-    protected String getStateRegex() {
-
-        return "^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
     }
 
 }

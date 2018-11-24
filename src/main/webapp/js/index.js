@@ -16,6 +16,26 @@ $(document).ready(function () {
         dateFormat: "yy/mm/dd"
     });
 
+    $("#username").change(function () {
+
+        var thisClass = $(this);
+        var usernameInput = thisClass.val();
+        console.log("username input: " + usernameInput);
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateUsername/" + usernameInput, function (response) {
+
+            $(".error").remove();
+            console.log("response: " + response);
+            if (response === "false") {
+                $(".error").remove();
+                console.log("response inside the if statement: " + response);
+                var span = $("<span />").addClass("error").html("This username was either taken or invalid. Try again.");
+                span.insertBefore(thisClass);
+            }
+        });
+
+    });
+
     $(".deleteDance").click(function() {
 
         $(this).closest("tr").remove();

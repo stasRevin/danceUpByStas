@@ -45,7 +45,7 @@ public class UserSignUp extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
-        InputValidator inputValidator = new SignUpInputValidator();
+        SignUpInputValidator inputValidator = new SignUpInputValidator();
 
         if (!inputValidator.runInputValidator(request.getParameterMap())) {
 

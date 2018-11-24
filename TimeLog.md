@@ -75,3 +75,4 @@
 |11/13/2018|Photo management bug fixes, notifications ordered by date newest to oldest |2|
 |11/22/2018|Validation and testing |3|
 |11/23/2018|Validation and testing |3|
+|11/24/2018|Validation and testing |2|

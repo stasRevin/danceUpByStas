@@ -19,7 +19,7 @@
                   <div class="form-group">
                       <label class="control-label col-sm-3">Username</label>
                       <div class="col-sm-6">
-                        <input class="form-control" type="text" name="username">
+                        <input class="form-control" id="username" type="text" name="username">
                       </div>
                   </div>
                   <div class="form-group">
@@ -151,5 +151,7 @@
   </body>
 </html>
 <script type="text/javascript" charset="UTF-8">
-    signUpEventsInit()
+    signUpEventsInit();
+
+
 </script>
