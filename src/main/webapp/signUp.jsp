@@ -11,7 +11,7 @@
                   <div class="form-group">
                       <label class="control-label col-sm-3">Sign up as</label>
                       <div class="col-sm-9">
-                        <input type="radio" name="role" id="studentRole" value="student"> Student
+                        <input type="radio" name="role" id="studentRole" value="student" checked> Student
                         &nbsp;&nbsp;
                         <input type="radio" name="role" id="instructorRole" value="instructor"> Dance Instructor
                       </div>
@@ -25,35 +25,35 @@
                   <div class="form-group">
                       <label class="control-label col-sm-3">First Name</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="firstName" />
+                          <input class="form-control" type="text" id="firstName" name="firstName" />
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3">Last Name</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="lastName" />
+                          <input class="form-control" type="text" id="lastName" name="lastName" />
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3">Address</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="address">
+                          <input class="form-control" type="text" id="address" name="address">
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3">City</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="city">
+                          <input class="form-control" type="text" id="city" name="city">
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3"> State</label>
                       <div class="col-sm-6">
-                          <select class="form-control" name="state">
+                          <select class="form-control" id="state" name="state">
                               <option value="">None selected</option>
                               <option value="AK">Alaska</option>
                               <option value="AL">Alabama</option>
@@ -113,35 +113,35 @@
                   <div class="form-group">
                       <label class="control-label col-sm-3">Zip Code</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="text" name="zip">
+                          <input class="form-control" type="text" id="zip" name="zip">
                       </div>
                   </div>
 
                   <div class="form-group" id="passwordDiv">
                       <label class="control-label col-sm-3">Password</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="password" name="password">
+                          <input class="form-control" type="password" id="password" name="password">
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3">Confirm Password</label>
                       <div class="col-sm-6">
-                          <input class="form-control" type="password" name="passwordConfirmation">
+                          <input class="form-control" type="password" id="passwordConfirmation" name="passwordConfirmation">
                       </div>
                   </div>
 
                   <div class="form-group">
                       <label class="control-label col-sm-3">Upload Profile Photo</label>
                       <div class="col-sm-6">
-                          <input type="file" name="profilePhoto">
+                          <input type="file" id="profilePhoto" name="profilePhoto">
                       </div>
                   </div>
 
                   <div class="form-group">
                       <div class="col-sm-offset-3 col-sm-5">
-                          <input class="btn btn-primary" type="submit" value="Submit" class="btn btn-default">
-                          <button class="btn btn-primary" type="reset" class="btn btn-default">Clear</button>
+                          <input class="btn btn-primary" type="submit" id="submit" class="btn btn-default">
+                          <button class="btn btn-primary" type="reset" value="Clear" class="btn btn-default">Clear</button>
                       </div>
                   </div>
 
@@ -152,6 +152,4 @@
 </html>
 <script type="text/javascript" charset="UTF-8">
     signUpEventsInit();
-
-
 </script>

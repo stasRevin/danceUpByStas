@@ -76,3 +76,4 @@
 |11/22/2018|Validation and testing |3|
 |11/23/2018|Validation and testing |3|
 |11/24/2018|Validation and testing |2|
+|11/27/2018|Validation and testing |3|

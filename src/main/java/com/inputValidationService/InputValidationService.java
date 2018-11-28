@@ -40,20 +40,51 @@ public class InputValidationService extends InputValidator {
 
 
     @GET
-    @Path("/validateFirstName/{firstName}")
-    public boolean validateFirstName(@PathParam("firstName")String firstName) {
+    @Path("/validateName/{name}")
+    public boolean validateFirstName(@PathParam("name")String name) {
 
-        if (!validateMatchesRegularExpression(firstName, properties.getProperty("regex.alpha")))
+        if (!validateMatchesRegularExpression(name, properties.getProperty("regex.name")))
             return false;
 
         return true;
     }
 
     @GET
-    @Path("/validateLastName/{lastName}")
-    public boolean validateLastName(@PathParam("lastName")String lastName) {
+    @Path("/validateAddress/{address}")
+    public boolean validateLastName(@PathParam("address")String address) {
 
-        if (!validateMatchesRegularExpression(lastName, properties.getProperty("regex.alpha")))
+        if (!validateMatchesRegularExpression(address, properties.getProperty("regex.address")))
+            return false;
+
+        return true;
+    }
+
+
+    @GET
+    @Path("/validateZipCode/{zipCode}")
+    public boolean validateZipCode(@PathParam("zipCode")String zipCode) {
+
+        if (!validateMatchesRegularExpression(zipCode, properties.getProperty("regex.zipcode")))
+            return false;
+
+        return true;
+    }
+
+    @GET
+    @Path("/validateState/{state}")
+    public boolean validateState(@PathParam("state")String state) {
+
+        if (!validateMatchesRegularExpression(state, properties.getProperty("regex.state")))
+            return false;
+
+        return true;
+    }
+
+    @GET
+    @Path("/validateRate/{rate}")
+    public boolean validateRate(@PathParam("rate")String rate) {
+
+        if (!validateMatchesRegularExpression(rate, properties.getProperty("regex.double")))
             return false;
 
         return true;

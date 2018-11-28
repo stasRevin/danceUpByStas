@@ -19,20 +19,153 @@ $(document).ready(function () {
     $("#username").change(function () {
 
         var thisClass = $(this);
-        var usernameInput = thisClass.val();
+        var usernameInput = thisClass.val().trim();
         console.log("username input: " + usernameInput);
 
         $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateUsername/" + usernameInput, function (response) {
 
-            $(".error").remove();
-            console.log("response: " + response);
-            if (response === "false") {
-                $(".error").remove();
-                console.log("response inside the if statement: " + response);
-                var span = $("<span />").addClass("error").html("This username was either taken or invalid. Try again.");
-                span.insertBefore(thisClass);
-            }
+            performInputValidation(response, thisClass, "This username was either taken or invalid. Try again.");
         });
+
+    });
+
+    $("#firstName").change(function () {
+
+        var thisClass = $(this);
+        var firstNameInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + firstNameInput, function (response) {
+
+            performInputValidation(response, thisClass, "The first name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
+
+        });
+
+    });
+
+    $("#lastName").change(function() {
+
+        var thisClass = $(this);
+        var lastNameInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + lastNameInput, function (response) {
+
+            performInputValidation(response, thisClass, "The last name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
+
+        });
+
+    });
+
+    $("#address").change(function () {
+
+        var thisClass = $(this);
+        var addressInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateAddress/" + addressInput, function (response) {
+
+            performInputValidation(response, thisClass, "The address must be of the format \"street number\" \"street name\" (street type (ST, AVE, BLVD) optionally.)");
+        });
+    });
+
+    $("#city").change(function () {
+
+        var thisClass = $(this);
+        var cityInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + cityInput, function (response) {
+
+            performInputValidation(response, thisClass, "The city name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
+        });
+    });
+    
+    $("#zip").change(function () {
+
+        var thisClass = $(this);
+        var zipCodeInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateZipCode/" + zipCodeInput, function (response) {
+
+            performInputValidation(response, thisClass, "The zip code must consist of exactly five digits.")
+        });
+    });
+
+    $("#state").change(function () {
+
+        var thisClass = $(this);
+        var stateInput = thisClass.val().trim();
+
+        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateState/" + stateInput, function (response) {
+
+            performInputValidation(response, thisClass, "The state must be one of the provided below options.");
+        });
+
+    });
+
+    $("#passwordConfirmation").change(function () {
+
+        var thisClass = $(this);
+        var passwordConfirmationInput = thisClass.val();
+        var passwordInput = $("#password").val();
+
+        if (passwordConfirmationInput !== passwordInput) {
+
+            console.log("password: " + passwordInput);
+            console.log("password confirmation: " + passwordConfirmationInput);
+            outputWarningMessage("Password and password confirmation must match.", thisClass);
+        } else {
+
+            $(".error").remove();
+        }
+    });
+
+    $("#profilePhoto").change(function () {
+
+        var photoFiles = document.getElementById("profilePhoto");
+        var thisClass = $(this);
+        var filesLength = photoFiles.files.length;
+
+        if (filesLength > 0) {
+
+            for (var i = 0; i <= filesLength - 1; i += 1) {
+
+                var fileSize = photoFiles.files.item(i).size;
+                console.log("file size: " + fileSize);
+                if (fileSize > 140000) {
+
+                    outputWarningMessage("Your photo file is too large.", thisClass);
+                } else {
+
+                    $(".error").remove();
+                }
+            }
+        }
+
+    });
+
+    $("#multipleForm").submit(function (event) {
+
+        var username = $("#username");
+        var firstName = $("#firstName");
+        var lastName = $("#lastName");
+        var address = $("#address");
+        var city = $("#city");
+        var state = $("#state");
+        var zip = $("#zip");
+        var password = $("#password");
+        var passwordConfirmation = $("#passwordConfirmation");
+
+        var input = [username, firstName, lastName, address, city, state, zip, password, passwordConfirmation];
+
+        for (var i = 0; i < input.length; i += 1) {
+
+            var inputValue = input[i].val().trim();
+            console.log("input value: " + inputValue);
+
+            if (inputValue === "undefined" || inputValue === "" || inputValue === null) {
+
+                outputWarningMessage("This field cannot be empty.", input[i]);
+                event.preventDefault();
+            }
+        }
 
     });
 
@@ -114,6 +247,25 @@ $(document).ready(function () {
 
 
 });
+
+function performInputValidation(response, thisClass, errorMessage) {
+
+    $(".error").remove();
+    console.log("response: " + response);
+
+    if (response === "false") {
+
+        console.log("response inside the if statement: " + response);
+        outputWarningMessage(errorMessage, thisClass);
+    }
+}
+
+function outputWarningMessage(errorMessage, thisClass) {
+
+    $(".error").remove();
+    var span = $("<span />").addClass("error").html(errorMessage);
+    span.insertBefore(thisClass);
+}
 
 function addInstructorAvailabilityEventHandler() {
 
@@ -204,6 +356,18 @@ function addInstructorsDetails() {
         formGroupDiv.appendChild(label);
         formGroupDiv.appendChild(inputDiv);
         form.insertBefore(formGroupDiv, document.getElementById("passwordDiv"));
+
+        $("#instructorsRate").change(function () {
+
+            var thisClass = $(this);
+            var rateInput = thisClass.val().trim();
+
+            $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateRate/" + rateInput, function (response) {
+
+                performInputValidation(response, thisClass, "The rate must be in the format with the decimal point like \"00.00\".");
+            });
+
+        });
     }
 
 }
