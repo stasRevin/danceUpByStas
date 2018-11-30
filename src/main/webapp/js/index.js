@@ -164,6 +164,7 @@ $(document).ready(function () {
 
                 outputWarningMessage("This field cannot be empty.", input[i]);
                 event.preventDefault();
+                break;
             }
         }
 
