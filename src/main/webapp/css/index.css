@@ -240,6 +240,11 @@ button a {
 
 }
 
+.error {
+
+    color: red;
+}
+
 @media only screen and (max-width: 767px) {
 
     #userPhoto {

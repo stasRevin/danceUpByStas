@@ -110,7 +110,7 @@ $(document).ready(function () {
 
             console.log("password: " + passwordInput);
             console.log("password confirmation: " + passwordConfirmationInput);
-            outputWarningMessage("Password and password confirmation must match.", thisClass);
+            outputWarningMessage("Password and password confirmation must match.", thisClass, new Function());
         } else {
 
             $(".error").remove();
@@ -121,23 +121,8 @@ $(document).ready(function () {
 
         var photoFiles = document.getElementById("profilePhoto");
         var thisClass = $(this);
-        var filesLength = photoFiles.files.length;
 
-        if (filesLength > 0) {
-
-            for (var i = 0; i <= filesLength - 1; i += 1) {
-
-                var fileSize = photoFiles.files.item(i).size;
-                console.log("file size: " + fileSize);
-                if (fileSize > 140000) {
-
-                    outputWarningMessage("Your photo file is too large.", thisClass);
-                } else {
-
-                    $(".error").remove();
-                }
-            }
-        }
+        validatePhotoFileSize(photoFiles, thisClass);
 
     });
 
@@ -152,8 +137,12 @@ $(document).ready(function () {
         var zip = $("#zip");
         var password = $("#password");
         var passwordConfirmation = $("#passwordConfirmation");
+        var photoFiles = document.getElementById("profilePhoto");
+        var thisClass = $(this);
 
         var input = [username, firstName, lastName, address, city, state, zip, password, passwordConfirmation];
+
+        removeErrors();
 
         for (var i = 0; i < input.length; i += 1) {
 
@@ -162,10 +151,14 @@ $(document).ready(function () {
 
             if (inputValue === "undefined" || inputValue === "" || inputValue === null) {
 
-                outputWarningMessage("This field cannot be empty.", input[i]);
+                outputWarningMessage("This field cannot be empty.", input[i], new Function());
                 event.preventDefault();
-                break;
             }
+        }
+
+        if (!validatePhotoFileSize(photoFiles, thisClass)) {
+
+            event.preventDefault();
         }
 
     });
@@ -249,6 +242,32 @@ $(document).ready(function () {
 
 });
 
+function validatePhotoFileSize(photoFiles, thisClass) {
+
+    var filesLength = photoFiles.files.length;
+
+    if (filesLength > 0) {
+
+        for (var i = 0; i <= filesLength - 1; i += 1) {
+
+            var fileSize = photoFiles.files.item(i).size;
+            console.log("file size: " + fileSize);
+            if (fileSize > 140000) {
+
+                outputWarningMessage("Your photo file is too large.", thisClass, new Function());
+                return false;
+            } else {
+
+                $(".error").remove();
+                return true;
+            }
+        }
+    } else {
+
+        return true;
+    }
+}
+
 function performInputValidation(response, thisClass, errorMessage) {
 
     $(".error").remove();
@@ -257,15 +276,20 @@ function performInputValidation(response, thisClass, errorMessage) {
     if (response === "false") {
 
         console.log("response inside the if statement: " + response);
-        outputWarningMessage(errorMessage, thisClass);
+        outputWarningMessage(errorMessage, thisClass, removeErrors);
     }
 }
 
-function outputWarningMessage(errorMessage, thisClass) {
+function outputWarningMessage(errorMessage, thisClass, cleanUp) {
 
-    $(".error").remove();
+    cleanUp();
     var span = $("<span />").addClass("error").html(errorMessage);
     span.insertBefore(thisClass);
+}
+
+function removeErrors() {
+
+    $(".error").remove();
 }
 
 function addInstructorAvailabilityEventHandler() {
