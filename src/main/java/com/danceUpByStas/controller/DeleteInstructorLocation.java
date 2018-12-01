@@ -12,10 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * This is the DeleteInstructorLocation servlet class designed to facilitate the dissociation of instructor's teaching
+ * location for the instructor's profile.
+ * @author srevin
+ */
 @WebServlet(name = "DeleteInstructorLocation",
             urlPatterns = {"/deleteInstructorLocation"})
 public class DeleteInstructorLocation extends HttpServlet {
 
+    /**
+     * This method responds to the DELETE requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -36,6 +48,13 @@ public class DeleteInstructorLocation extends HttpServlet {
 
     }
 
+    /**
+     * This method responds to the GET requests.
+     * @param request The instance of HTTP request
+     * @param response The instance of HTTP response
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doDelete(request, response);

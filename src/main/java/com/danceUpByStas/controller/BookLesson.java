@@ -24,8 +24,20 @@ import java.util.Set;
 @WebServlet(name = "BookLesson",
             urlPatterns = {"/bookLesson"})
 
+/**
+ * This is the BookLesson servlet class designed to facilitate the booking of a dance lesson.
+ * @author srevin
+ */
+
 public class BookLesson extends HttpServlet {
 
+    /**
+     * This method responds to the GET requests.
+     * @param request The instance of HTTP request
+     * @param response The instance of HTTP response
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -37,23 +49,19 @@ public class BookLesson extends HttpServlet {
         User loggedInUser = (User)session.getAttribute("user");
 
         int instructorId = Integer.parseInt(instructorIdInput);
-        //get instructor
         User instructor = helper.getUserById(instructorId);
 
-        //get instructor dances
         Set<User> instructors = new HashSet<>();
         instructors.add(instructor);
         helper.setUserDances(instructors);
 
-        //get instructor availability
         List<Schedule> schedules = helper.getUserSchedule(instructorId);
-        //set instructor in request
         request.setAttribute("instructor", instructor);
         request.setAttribute("schedules", schedules);
-        //forward to bookInstructor.jsp
         String userPhotoDirectory = (String) session.getAttribute("userPhotoDirectory");
 
-        if (!photoManager.checkIfUserPhotoExists(staticImagePath + File.separator + userPhotoDirectory, instructor.getPhotoName())) {
+        if (!photoManager.checkIfUserPhotoExists(staticImagePath + File.separator
+                + userPhotoDirectory, instructor.getPhotoName())) {
 
             photoManager.prepareFoundUsersPhotos(loggedInUser.getId() + "", instructors, context);
         }
@@ -62,6 +70,5 @@ public class BookLesson extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
-
 
 }

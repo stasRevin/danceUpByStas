@@ -8,6 +8,8 @@
         <jsp:include page="instructorNavbar.jsp"/>
         <div class="col-sm-12">
             <form class="form-horizontal" id="multipleForm" action="/danceup/insertInstructorSchedule" method="post">
+
+                <c:if test="${not empty insertError}"><p class='error'>${insertError}</p></c:if>
                 <h4>Select Schedule Date Range</h4>
                 <div class="form-group">
                     <label class="control-label col-sm-3"> Start Date</label>

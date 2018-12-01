@@ -19,8 +19,16 @@ import java.util.Properties;
         urlPatterns = {"/applicationStartup"},
         loadOnStartup = 1
 )
+/**
+ * This the is ApplicationStartup class designed to set the context environment of the application.
+ * @author srevin
+ */
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
+    /**
+     * This method initializes the application.
+     * @throws ServletException The servlet exception.
+     */
     public void init() throws ServletException {
 
         Logger logger = LogManager.getLogger(this.getClass());

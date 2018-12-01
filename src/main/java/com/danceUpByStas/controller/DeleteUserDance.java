@@ -18,9 +18,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * This is the DeleteUserDance servlet class designed to facilitate the removal of the UserDance instances.
+ * @author srevin
+ */
+
 @WebServlet(name = "DeleteUserDance",
             urlPatterns = {"/deleteUserDance"})
 public class DeleteUserDance extends HttpServlet {
+
+    /**
+     * This method responds to the DELETE requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -29,10 +42,7 @@ public class DeleteUserDance extends HttpServlet {
         int userId = user.getId();
         Logger logger = LogManager.getLogger(this.getClass());
 
-        //getElementsByEntitiesAndProperties(Map<String, Map<String, String>> entities)
-
         List<UserDance> userDanceList = (List<UserDance>) session.getAttribute("userDances");
-
         List<UserDance> userDances = deleteUserDance(userDanceList, danceToDelete, userId);
 
         for (UserDance dance : userDances) {
@@ -41,14 +51,27 @@ public class DeleteUserDance extends HttpServlet {
 
         }
         session.setAttribute("userDances", userDances);
-
     }
 
+    /**
+     * This method responds to the GET requests.
+     * @param request The instance of HTTP request
+     * @param response The instance of HTTP response
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doDelete(request, response);
     }
 
+    /**
+     * This methods deletes the UserDance instance from the database.
+     * @param userDanceList The list of UserDance instances.
+     * @param danceToDelete The dance to delete.
+     * @param userId The user id.
+     * @return userDanceList The list of UserDance instances.
+     */
     public List<UserDance> deleteUserDance(List<UserDance> userDanceList, String danceToDelete, int userId) {
 
         GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);

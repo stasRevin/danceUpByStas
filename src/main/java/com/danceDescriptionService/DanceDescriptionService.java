@@ -11,10 +11,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * This is the DanceDescriptionService class designed to provide the description of the dances.
+ * @author srevin
+ */
 @Path("/danceDescription")
 public class DanceDescriptionService {
 
 
+    /**
+     * This method returns dance description based on the dance's name.
+     * @param danceName The name of the dance.
+     * @return dance The dance description.
+     */
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
     @Path("/{param}")
@@ -28,6 +37,10 @@ public class DanceDescriptionService {
 
     }
 
+    /**
+     * This method returns all dance descriptions.
+     * @return response The list of dance descriptions.
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN})
     public Response getDanceDescription() {
@@ -40,7 +53,10 @@ public class DanceDescriptionService {
 
     }
 
-
+    /**
+     * This method returns an instance of a generic Data Access Object.
+     * @return genericDao The generic Data Access Object.
+     */
     private GenericDao<Dance> getGenericDao() {
 
         return new GenericDao<Dance>(Dance.class);

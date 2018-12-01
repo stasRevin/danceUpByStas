@@ -78,25 +78,57 @@ public class ScheduleDao {
     public int insertSchedulesInRangeForUser(User user, LocalDate startDate, LocalDate endDate,
                                               Map<DayOfWeek, List<LocalTime>> schedules) {
 
+        GenericDao<Schedule> genericDao = new GenericDao<>(Schedule.class);
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-        int id = 0;
+        List<Schedule> existingSchedules = null;
+        int errorCounter = 0;
 
         for (LocalDate date = startDate; date.isBefore(endDate) || date.isEqual(endDate); date = date.plusDays(1)) {
 
            DayOfWeek currentDay = date.getDayOfWeek();
 
+
            if (schedules.containsKey(currentDay)) {
 
                List<LocalTime> times = schedules.get(currentDay);
-               Schedule schedule = new Schedule(date, times.get(0), times.get(1), user);
-               id = (int)session.save(schedule);
+               LocalTime startTime = times.get(0);
+               LocalTime endTime = times.get(1);
+               existingSchedules = getMatchingSchedule(date, startTime, endTime, user);
+
+               if (existingSchedules.size() == 0) {
+
+                   Schedule schedule = new Schedule(date, startTime, times.get(1), user);
+                   session.save(schedule);
+               }
+
+           } else {
+
+               errorCounter += 1;
            }
         }
         transaction.commit();
         session.close();
 
-        return id;
+        return errorCounter;
+    }
+
+    public List<Schedule> getMatchingSchedule(LocalDate date, LocalTime startTime, LocalTime endTime, User user) {
+
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Schedule> query = builder.createQuery(Schedule.class);
+        Root<Schedule> root = query.from(Schedule.class);
+        query.select(root).where(builder.and(builder.equal(root.get("user"), user),
+                                             builder.equal(root.get("date"), date),
+                                             builder.equal(root.get("startTime"), startTime),
+                                             builder.equal(root.get("endTime"), endTime)));
+        List<Schedule> elements = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        return elements;
     }
 
 
@@ -136,7 +168,8 @@ public class ScheduleDao {
     }
 
 
-    private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes, List<UserLesson> userLessons) {
+    private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes,
+                                          List<UserLesson> userLessons) {
 
         for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
 

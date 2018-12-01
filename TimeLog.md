@@ -78,3 +78,4 @@
 |11/24/2018|Validation and testing |2|
 |11/27/2018|Validation and testing |3|
 |11/29/2018|Updating exercise for week 13 |1|
+|11/30/2018|Testing, bug fixes, javadocs |4|

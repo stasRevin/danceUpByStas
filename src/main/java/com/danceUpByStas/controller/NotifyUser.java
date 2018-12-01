@@ -33,8 +33,8 @@ public class NotifyUser extends HttpServlet {
         Integer role = (Integer) session.getAttribute("role");
         String url = "";
 
-        String message = (String) request.getParameter("message");
-        String userId = (String) request.getParameter("recepientUserId");
+        String message = request.getParameter("message");
+        String userId = request.getParameter("recepientUserId");
 
         UserSignInHelper signInHelper = new UserSignInHelper();
         User recepientUser = signInHelper.getUserById(Integer.parseInt(userId));

@@ -5,6 +5,8 @@ import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.persistence.ScheduleDao;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,32 +25,51 @@ import java.util.*;
 public class InsertInstructorSchedule extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //TODO add day of week to the parameters in jsp
-        HttpSession session = request.getSession(false);
 
+        HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("user");
         ScheduleDao scheduleDao = new ScheduleDao();
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
-
+        String url = "/updateInstructorSchedule.jsp";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("H:m");
-        LocalDate startDate = LocalDate.parse((String)request.getParameter("startDate"), dateFormatter);
-        LocalDate endDate = LocalDate.parse((String)request.getParameter("endDate"), dateFormatter);
 
-        String mondayStartTime = (String)request.getParameter("mondayStartTime");
-        String mondayEndTime = (String)request.getParameter("mondayEndTime");
-        String tuesdayStartTime = (String) request.getParameter("tuesdayStartTime");
-        String tuesdayEndTime = (String) request.getParameter("tuesdayEndTime");
-        String wednesdayStartTime = (String) request.getParameter("wednesdayStartTime");
-        String wednesdayEndTime = (String) request.getParameter("wednesdayEndTime");
-        String thursdayStartTime = (String) request.getParameter("thursdayStartTime");
-        String thursdayEndTime = (String) request.getParameter("thursdayEndTime");
-        String fridayStartTime = (String) request.getParameter("fridayStartTime");
-        String fridayEndTime = (String) request.getParameter("fridayEndTime");
-        String saturdayStartTime = (String) request.getParameter("saturdayStartTime");
-        String saturdayEndTime = (String) request.getParameter("saturdayEndTime");
-        String sundayStartTime = (String) request.getParameter("sundayStartTime");
-        String sundayEndTime = (String) request.getParameter("sundayEndTime");
+        String startDateInput = (String)request.getParameter("startDate");
+        String endDateInput = request.getParameter("endDate");
+        LocalDate startDate = null;
+        LocalDate endDate = null;
+
+        if (!Objects.isNull(startDateInput) && !startDateInput.equals("")) {
+
+            startDate = LocalDate.parse((String)request.getParameter("startDate"), dateFormatter);
+        } else {
+            setErrorMessage(request);
+            forward(url, request, response);
+            return;
+        }
+        if (!Objects.isNull(endDateInput) && !endDateInput.equals("")) {
+
+            endDate = LocalDate.parse(endDateInput, dateFormatter);
+
+        } else {
+
+            endDate = startDate;
+        }
+
+        String mondayStartTime = request.getParameter("mondayStartTime");
+        String mondayEndTime = request.getParameter("mondayEndTime");
+        String tuesdayStartTime = request.getParameter("tuesdayStartTime");
+        String tuesdayEndTime = request.getParameter("tuesdayEndTime");
+        String wednesdayStartTime = request.getParameter("wednesdayStartTime");
+        String wednesdayEndTime = request.getParameter("wednesdayEndTime");
+        String thursdayStartTime = request.getParameter("thursdayStartTime");
+        String thursdayEndTime = request.getParameter("thursdayEndTime");
+        String fridayStartTime = request.getParameter("fridayStartTime");
+        String fridayEndTime = request.getParameter("fridayEndTime");
+        String saturdayStartTime = request.getParameter("saturdayStartTime");
+        String saturdayEndTime = request.getParameter("saturdayEndTime");
+        String sundayStartTime = request.getParameter("sundayStartTime");
+        String sundayEndTime = request.getParameter("sundayEndTime");
 
 
         List<String> weeklySchedule = Arrays.asList(mondayStartTime, mondayEndTime, tuesdayStartTime, tuesdayEndTime,
@@ -59,14 +80,17 @@ public class InsertInstructorSchedule extends HttpServlet {
 
         Map<DayOfWeek, List<LocalTime>> schedulesMap = prepareSchedule(weeklySchedule, timeFormatter);
 
-        int insertedId = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedulesMap);
+        int errorCounter = scheduleDao.insertSchedulesInRangeForUser(user, startDate, endDate, schedulesMap);
+
+        if (errorCounter > 0) {
+            setErrorMessage(request);
+        }
 
         List<Schedule> schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
 
         session.setAttribute("schedules", schedules);
 
-        response.sendRedirect("/danceup/updateInstructorSchedule.jsp");
-
+        forward(url, request, response);
 
     }
 
@@ -76,7 +100,6 @@ public class InsertInstructorSchedule extends HttpServlet {
         int dayCounter = 1;
         List<LocalTime> daySchedule = null;
         Map<DayOfWeek, List<LocalTime>> schedulesMap = new HashMap<>();
-
 
         for (String currentSchedule : weeklySchedule) {
 
@@ -108,6 +131,17 @@ public class InsertInstructorSchedule extends HttpServlet {
 
     }
 
+    private void setErrorMessage(HttpServletRequest request) {
+
+        request.setAttribute("insertError", "Not all schedules have been inserted. No duplicates are allowed. " +
+                "The days of week selected must be within the provided date range. Please verify your input and try again.");
+    }
+
+    private void forward(String url, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(url);
+        requestDispatcher.forward(request, response);
+    }
 
     private void addToSchedule(List<LocalTime> daySchedule, String currentSchedule, DateTimeFormatter formatter) {
 

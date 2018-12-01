@@ -19,8 +19,8 @@
         </div>
         <div class="col-sm-3">
             <c:choose>
-                <c:when test="not empty ${instructor.photoName}">
-                    <img id="userPhoto" src="images/userPhotos${user.id}/${instructor.photoName}">
+                <c:when test="${not empty instructor.photoName}">
+                    <img id="userPhoto" src="images/usersFoundPhotos${user.id}/${instructor.photoName}">
                 </c:when>
                 <c:otherwise>
                     <img id="userPhoto" src="images/nopic.jpg">

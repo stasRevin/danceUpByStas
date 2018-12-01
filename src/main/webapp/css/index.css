@@ -28,7 +28,7 @@ body {
     font-family: Calibri, Arial, sans-serif;
     padding-top: 40px;
     padding-bottom: 40px;
-    background: url(../images/stage.jpg) no-repeat;
+    background: url(../images/stage.jpg);
     content: '';
     z-index: -1;
     width: 100%;
