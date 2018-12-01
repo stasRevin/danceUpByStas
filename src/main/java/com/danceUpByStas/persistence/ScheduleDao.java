@@ -17,10 +17,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ScheduleDao {
@@ -83,11 +80,11 @@ public class ScheduleDao {
         Transaction transaction = session.beginTransaction();
         List<Schedule> existingSchedules = null;
         int errorCounter = 0;
+        Integer id = -1;
 
         for (LocalDate date = startDate; date.isBefore(endDate) || date.isEqual(endDate); date = date.plusDays(1)) {
 
            DayOfWeek currentDay = date.getDayOfWeek();
-
 
            if (schedules.containsKey(currentDay)) {
 
@@ -99,12 +96,18 @@ public class ScheduleDao {
                if (existingSchedules.size() == 0) {
 
                    Schedule schedule = new Schedule(date, startTime, times.get(1), user);
-                   session.save(schedule);
+                   id = (Integer) session.save(schedule);
+
+                   if (Objects.isNull(id) || id < 0) {
+
+                       errorCounter += 1;
+                   }
+
+               } else {
+
+                   errorCounter += 1;
                }
 
-           } else {
-
-               errorCounter += 1;
            }
         }
         transaction.commit();

@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">Photo</label>
                 <div class="col-sm-6">
-                    <input type="file" name="profilePhoto"><br/>
+                    <input type="file" id="profilePhoto" name="profilePhoto"><br/>
                     <input type="button" value="Delete Photo" id="deletePhotoButton">
                 </div>
             </div>
