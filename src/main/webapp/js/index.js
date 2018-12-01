@@ -1,4 +1,3 @@
-// For instructorViewProfile.jsp
 $(document).ready(function () {
 
     window.onpageshow = function (event) {
@@ -22,7 +21,7 @@ $(document).ready(function () {
         var usernameInput = thisClass.val().trim();
         console.log("username input: " + usernameInput);
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateUsername/" + usernameInput, function (response) {
+        $.get(getInputValidationAddress() + "validateUsername/" + usernameInput, function (response) {
 
             performInputValidation(response, thisClass, "This username was either taken or invalid. Try again.");
         });
@@ -34,7 +33,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var firstNameInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + firstNameInput, function (response) {
+        $.get(getInputValidationAddress() + "validateName/" + firstNameInput, function (response) {
 
             performInputValidation(response, thisClass, "The first name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
 
@@ -47,7 +46,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var lastNameInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + lastNameInput, function (response) {
+        $.get(getInputValidationAddress() + "validateName/" + lastNameInput, function (response) {
 
             performInputValidation(response, thisClass, "The last name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
 
@@ -60,7 +59,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var addressInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateAddress/" + addressInput, function (response) {
+        $.get(getInputValidationAddress() + "validateAddress/" + addressInput, function (response) {
 
             performInputValidation(response, thisClass, "The address must be of the format \"street number\" \"street name\" (street type (ST, AVE, BLVD) optionally.)");
         });
@@ -71,7 +70,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var cityInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateName/" + cityInput, function (response) {
+        $.get(getInputValidationAddress() + "validateName/" + cityInput, function (response) {
 
             performInputValidation(response, thisClass, "The city name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
         });
@@ -82,7 +81,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var zipCodeInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateZipCode/" + zipCodeInput, function (response) {
+        $.get(getInputValidationAddress() + "validateZipCode/" + zipCodeInput, function (response) {
 
             performInputValidation(response, thisClass, "The zip code must consist of exactly five digits.")
         });
@@ -93,7 +92,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var stateInput = thisClass.val().trim();
 
-        $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateState/" + stateInput, function (response) {
+        $.get(getInputValidationAddress() + "validateState/" + stateInput, function (response) {
 
             performInputValidation(response, thisClass, "The state must be one of the provided below options.");
         });
@@ -108,8 +107,7 @@ $(document).ready(function () {
 
         if (passwordConfirmationInput !== passwordInput) {
 
-            console.log("password: " + passwordInput);
-            console.log("password confirmation: " + passwordConfirmationInput);
+            $(".error").remove();
             outputWarningMessage("Password and password confirmation must match.", thisClass, new Function());
         } else {
 
@@ -126,6 +124,8 @@ $(document).ready(function () {
 
     });
 
+    addInstructorsRateListener();
+
     $("#multipleForm").submit(function (event) {
 
         var username = $("#username");
@@ -135,26 +135,15 @@ $(document).ready(function () {
         var city = $("#city");
         var state = $("#state");
         var zip = $("#zip");
+        var rate = $("#instructorsRate");
         var password = $("#password");
         var passwordConfirmation = $("#passwordConfirmation");
         var photoFiles = document.getElementById("profilePhoto");
         var thisClass = $(this);
 
-        var input = [username, firstName, lastName, address, city, state, zip, password, passwordConfirmation];
+        var input = [username, firstName, lastName, address, city, state, zip, password, passwordConfirmation, rate];
 
-        removeErrors();
-
-        for (var i = 0; i < input.length; i += 1) {
-
-            var inputValue = input[i].val().trim();
-            console.log("input value: " + inputValue);
-
-            if (inputValue === "undefined" || inputValue === "" || inputValue === null) {
-
-                outputWarningMessage("This field cannot be empty.", input[i], new Function());
-                event.preventDefault();
-            }
-        }
+        validateFormBeforeSubmission(input, event, thisClass);
 
         if (!validatePhotoFileSize(photoFiles, thisClass)) {
 
@@ -163,6 +152,32 @@ $(document).ready(function () {
 
     });
 
+
+    $("#multipleFormUpdate").submit(function (event) {
+
+        var username = $("#username");
+        var firstName = $("#firstName");
+        var lastName = $("#lastName");
+        var address = $("#address");
+        var city = $("#city");
+        var state = $("#state");
+        var zip = $("#zip");
+        var rate = $("#instructorsRate");
+        var photoFiles = document.getElementById("profilePhoto");
+        var thisClass = $(this);
+
+        var input = [username, firstName, lastName, address, city, state, zip, rate];
+
+        validateFormBeforeSubmission(input, event, thisClass);
+
+        if (!validatePhotoFileSize(photoFiles, thisClass)) {
+
+            event.preventDefault();
+        }
+
+    });
+
+
     $(".deleteDance").click(function() {
 
         $(this).closest("tr").remove();
@@ -170,7 +185,7 @@ $(document).ready(function () {
         var danceName = thisClass.data("delete");
         var danceSelection = $("#formControlSelect1");
         console.log("dance name: " + danceName);
-        $.get("http://18.219.182.38:8080/danceup/deleteUserDance?name=" + danceName, function () {
+        $.get(getServerHomeAddress() + "deleteUserDance?name=" + danceName, function () {
             danceSelection.append("<option>" + danceName + "</option>");
         })
 
@@ -194,7 +209,7 @@ $(document).ready(function () {
         var locationId = thisClass.data("delete");
         var locationSelection = $("#locationSelection");
         console.log("location id: " + locationId);
-        $.get("http://18.219.182.38:8080/danceup/deleteInstructorLocation?id=" + locationId, function () {
+        $.get(getServerHomeAddress() + "deleteInstructorLocation?id=" + locationId, function () {
             locationSelection.append("<option value='" + locationId + "'>" + locationDeleted + "</option>");
 
             console.log("<option value='\" + locationId + \"'>\" + locationDeleted + \"</option>");
@@ -233,7 +248,7 @@ $(document).ready(function () {
         var startTime = selectedRow.attr("data-start");
         var endTime = selectedRow.attr("data-end");
 
-        $.get("http://18.219.182.38:8080/danceup/deleteInstructorSchedule?date=" + date + "&startTime=" + startTime
+        $.get(getServerHomeAddress() + "deleteInstructorSchedule?date=" + date + "&startTime=" + startTime
                 + "&endTime=" + endTime, function () {});
     });
 
@@ -241,6 +256,34 @@ $(document).ready(function () {
 
 
 });
+
+function getServerHomeAddress() {
+
+    return "http://18.219.182.38:8080/danceup/";
+}
+
+function getInputValidationAddress() {
+
+    return getServerHomeAddress() + "inputValidationServices/inputValidator/";
+}
+
+function validateFormBeforeSubmission(input, event, thisClass) {
+
+    removeErrors();
+
+    for (var i = 0; i < input.length; i += 1) {
+
+        var inputValue = input[i].val().trim();
+        console.log("input value: " + inputValue);
+
+        if (inputValue === "undefined" || inputValue === "" || inputValue === null) {
+
+            outputWarningMessage("This field cannot be empty.", input[i], new Function());
+            event.preventDefault();
+        }
+    }
+
+}
 
 function validatePhotoFileSize(photoFiles, thisClass) {
 
@@ -305,7 +348,7 @@ function addInstructorAvailabilityEventHandler() {
         console.log(instructorId);
         var hour = "";
 
-        $.get("http://18.219.182.38:8080/danceup/scheduleServices/instructorDayAvailability/"
+        $.get(getServerHomeAddress() + "scheduleServices/instructorDayAvailability/"
             + lessonDate + "/" + instructorId, function(data) {
 
             console.log("response: " + data);
@@ -350,7 +393,7 @@ function signUpEventsInit() {
     } else {
 
         studentRole.attachEvent("onclick", removeInstructorsDetails);
-        instructorRole.attacheEvent("onclick", addInstructorsDetails);
+        instructorRole.attacheEvent("onclick", addInstructorsDetails(inputValidationAddress));
     }
 
 }
@@ -382,19 +425,25 @@ function addInstructorsDetails() {
         formGroupDiv.appendChild(inputDiv);
         form.insertBefore(formGroupDiv, document.getElementById("passwordDiv"));
 
-        $("#instructorsRate").change(function () {
+        addInstructorsRateListener();
 
-            var thisClass = $(this);
-            var rateInput = thisClass.val().trim();
-
-            $.get("http://localhost:8080/danceup/inputValidationServices/inputValidator/validateRate/" + rateInput, function (response) {
-
-                performInputValidation(response, thisClass, "The rate must be in the format with the decimal point like \"00.00\".");
-            });
-
-        });
     }
 
+}
+
+function addInstructorsRateListener() {
+
+    $("#instructorsRate").change(function () {
+
+        var thisClass = $(this);
+        var rateInput = thisClass.val().trim();
+
+        $.get(getInputValidationAddress() + "validateRate/" + rateInput, function (response) {
+
+            performInputValidation(response, thisClass, "The rate must be in the format with the decimal point like \"00.00\".");
+        });
+
+    });
 }
 
 function removeInstructorsDetails() {
@@ -412,9 +461,8 @@ function removeInstructorsDetails() {
 //Remove user photo from the update page
 function deleteUserPhoto() {
 
-
     $.get({
-        url: "http://18.219.182.38:8080/danceup/deleteUserPhoto",
+        url: getServerHomeAddress() + "deleteUserPhoto",
         success: function () {
 
             console.log("removing photo.");
@@ -422,7 +470,6 @@ function deleteUserPhoto() {
         }
 
     });
-
 }
 
 function removePhotoFromPage() {

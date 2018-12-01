@@ -16,7 +16,7 @@
             </c:when>
         </c:choose>
 
-        <form class="form-horizontal" id="multipleForm" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" id="multipleFormUpdate" action="/danceup/updateUserProfile" method="post" enctype="multipart/form-data">
             <div class="form-group" style="margin-left: 24%">
                 <div class="col-sm-3">
                     <c:choose>
@@ -39,34 +39,34 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">Username</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="username" value="${user.username}">
+                    <input class="form-control" type="text" id="username" name="username" value="${user.username}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-3">First Name</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="firstName" value="${user.firstName}"/>
+                    <input class="form-control" type="text" id="firstName" name="firstName" value="${user.firstName}"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Last Name</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="lastName" value="${user.lastName}"/>
+                    <input class="form-control" type="text" id="lastName" name="lastName" value="${user.lastName}"/>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Address</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="address" value="${user.addressOne}">
+                    <input class="form-control" type="text" id="address" name="address" value="${user.addressOne}">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">City</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="city" value="${user.city}">
+                    <input class="form-control" type="text" id="city" name="city" value="${user.city}">
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3"> State</label>
                 <div class="col-sm-6">
-                    <select class="form-control" name="state">
+                    <select class="form-control" id="state" name="state">
                         <option value="${user.state}">${user.state}</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
@@ -134,7 +134,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-3">Zip Code</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="zip" value="${user.postalCode}">
+                    <input class="form-control" type="text" id="zip" name="zip" value="${user.postalCode}">
                 </div>
             </div>
 
@@ -142,7 +142,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Rate per lesson ($)</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" name="ratePerLesson" value="${user.payRate}">
+                        <input class="form-control" type="text" id="instructorsRate" name="ratePerLesson" value="${user.payRate}">
                     </div>
                 </div>
             </c:if>
@@ -150,14 +150,14 @@
             <div class="form-group" id="passwordDiv">
                 <label class="control-label col-sm-3">Password</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="password" name="password">
+                    <input class="form-control" type="password" id="password" name="password">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3">Confirm Password</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="password" name="passwordConfirmation">
+                    <input class="form-control" type="password" id="passwordConfirmation" name="passwordConfirmation">
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ import com.danceUpByStas.entity.User;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import org.hibernate.Session;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,11 +28,25 @@ public class DeleteUserPhoto extends HttpServlet {
         String userPhotoPathValue = (String)getServletContext().getAttribute("profilePhotoPath")
                 + File.separator + user.getId() + File.separator + user.getPhotoName();
 
+        int role = (Integer) session.getAttribute("role");
         Path photoPath = Paths.get(userPhotoPathValue);
 
         UserPhotoManager photoManager = new UserPhotoManager();
 
         photoManager.deleteUserPhoto(user, photoPath);
+        String url = "";
+
+        if (role == 1) {
+
+            url = "/instructorViewProfile.jsp";
+
+        } else if (role == 2) {
+
+            url = "/studentViewProfile.jsp";
+        }
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
 
     }
 
