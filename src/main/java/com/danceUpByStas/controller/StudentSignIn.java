@@ -23,9 +23,21 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ *This is the StudentSignIn servlet class designed to facilitate the signing in process of the student.
+ * @author srevin
+ */
 @WebServlet(name = "StudentSignIn",
             urlPatterns = "/studentSignIn")
 public class StudentSignIn extends HttpServlet {
+
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -82,6 +94,13 @@ public class StudentSignIn extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);
