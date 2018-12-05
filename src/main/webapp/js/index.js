@@ -258,8 +258,8 @@ $(document).ready(function () {
 
 function getServerHomeAddress() {
 
-    //return "http://18.219.182.38:8080/danceup/";
-    return "http://localhost:8080/danceup/";
+    return "http://18.219.182.38:8080/danceup/";
+    //return "http://localhost:8080/danceup/";
 }
 
 function getInputValidationAddress() {
