@@ -21,11 +21,22 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This is the InstructorAccessStudentProfile class designed to facilitate the action of instructors accessing
+ * student profiles.
+ * @author srevin
+ */
 @WebServlet(name = "InstructorAccessStudentProfile",
             urlPatterns = {"/instructorAccessStudentProfile"})
-
 public class InstructorAccessStudentProfile extends HttpServlet {
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Logger logger = LogManager.getLogger(this.getClass());
