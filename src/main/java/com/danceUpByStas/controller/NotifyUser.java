@@ -19,10 +19,22 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This is the NotifyUser servlet class designed to facilitate the sending of a notification message
+ * from one user to another.
+ * @author srevin
+ */
 @WebServlet(name = "NotifyUser",
             urlPatterns = {"/notifyUser"})
-
 public class NotifyUser extends HttpServlet {
+
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Logger logger = LogManager.getLogger(this.getClass());
