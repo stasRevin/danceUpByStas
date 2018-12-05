@@ -17,11 +17,21 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * This is the SearchInstructors servlet class designed to facilitate the search of the instructors by students.
+ * @author srevin
+ */
 @WebServlet(name = "SearchInstructors",
             urlPatterns = {"/searchInstructors"})
 public class SearchInstructors extends HttpServlet {
 
-
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -30,13 +40,6 @@ public class SearchInstructors extends HttpServlet {
         UserPhotoManager photoManager = new UserPhotoManager();
         UserSignInHelper helper = new UserSignInHelper();
         User user = (User) session.getAttribute("user");
-        String searchPhotosDirectoryPrefix = "";
-
-        if (Objects.isNull(user)) {
-
-            searchPhotosDirectoryPrefix = "";
-        }
-
 
         String zipCodeInput = request.getParameter("zipCode");
         String radiusInput = request.getParameter("radius");
@@ -49,28 +52,36 @@ public class SearchInstructors extends HttpServlet {
         request.setAttribute("usersFound", instructors);
         helper.setUserDances(instructors);
         photoManager.prepareFoundUsersPhotos(user.getId() + "", instructors, context);
+        String url = "/instructorsFound.jsp";
 
-        forward(request, response);
-
-        //clearUserPhotosFolder(instructors);
+        forward(request, response, url);
 
     }
 
+    /**
+     * This method forwards request and response to the specified page.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
+    private void forward(HttpServletRequest request, HttpServletResponse response, String url) throws  ServletException, IOException {
 
-    private void forward(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/instructorsFound.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 
+    /**
+     * This method returns the instructors who teach in the area near the user's address.
+     * @param zipCode The user's postal code.
+     * @param radius The radius of search.
+     * @return instructors The set of instructors found.
+     */
     public Set<User> getNearbyInstructors(String zipCode, String radius) {
 
         ZipCodeRadius zipCodeRadius = new ZipCodeRadius();
-
         return zipCodeRadius.getInstructorsWhoTeachNearMe(zipCode, radius);
 
     }
-
-
 
 }
