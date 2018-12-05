@@ -17,10 +17,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * This is the NotificationServlet class designed to load notification related information
+ * to the notification page.
+ * @author srevin
+ */
 @WebServlet(name = "NotificationServlet",
             urlPatterns = {"/notifications"})
 public class NotificationServlet extends HttpServlet {
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -43,7 +55,10 @@ public class NotificationServlet extends HttpServlet {
     }
 
 
-
+    /**
+     * This methods marks notifications as read.
+     * @param notifications The list of notifications to mark.
+     */
     public void markAsRead(List<Notification> notifications) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
