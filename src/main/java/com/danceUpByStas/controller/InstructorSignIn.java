@@ -29,12 +29,24 @@ import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * This is the InstructorSignIn servlet class design to facilitate the sign in process of the instructors.
+ * @author srevin
+ */
 @WebServlet(
         name = "com.danceUpByStas.controller.InstructorSignIn",
         urlPatterns = {"/signInInstructor"}
 
 )
 public class InstructorSignIn extends HttpServlet {
+
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -93,6 +105,13 @@ public class InstructorSignIn extends HttpServlet {
 
     }
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);
