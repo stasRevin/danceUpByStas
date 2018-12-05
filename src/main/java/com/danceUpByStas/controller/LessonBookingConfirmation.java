@@ -20,13 +20,23 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-
+/**
+ * This is the LessonBookingConfirmation servlet class designed to facilitate the booking of a dance lesson with
+ * an instructor by a student.
+ * @srevin
+ */
 @WebServlet(name = "LessonBookingConfirmation",
             urlPatterns= {"/bookingConfirmation"})
 
 public class LessonBookingConfirmation extends HttpServlet {
 
-
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Logger logger = LogManager.getLogger(this.getClass());
@@ -95,12 +105,21 @@ public class LessonBookingConfirmation extends HttpServlet {
 
     }
 
+    /**
+     * This metods inserts the lesson into database.
+     * @param lesson The lesson to insert.
+     */
     public void insertLesson(Lesson lesson) {
 
         GenericDao<Lesson> lessonDao = new GenericDao<>(Lesson.class);
         lessonDao.insert(lesson);
     }
 
+    /**
+     * This method returns instructor's teaching location.
+     * @param locationId The identification number of the location.
+     * @return location The instructor's teaching location.
+     */
     public Location getLocation(int locationId) {
 
         GenericDao<Location> locationDao = new GenericDao<>(Location.class);
@@ -108,14 +127,23 @@ public class LessonBookingConfirmation extends HttpServlet {
 
     }
 
+    /**
+     * This method returns the instructor entity based on the supplied id.
+     * @param instructorId The instructor's identification number.
+     * @return instructor The instructor entity object.
+     */
     public User getInstructor(int instructorId) {
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
-
         return userDao.getById(instructorId);
     }
 
-
+    /**
+     * This method inserts the UserLesson entity into the database.
+     * @param user
+     * @param lesson
+     * @param role
+     */
     public void insertUserLesson(User user, Lesson lesson, Role role) {
 
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
@@ -123,6 +151,11 @@ public class LessonBookingConfirmation extends HttpServlet {
 
     }
 
+    /**
+     * This method returns the user role.
+     * @param roleId The identification number of the role.
+     * @return role The role entity.
+     */
     public Role getUserRole(int roleId) {
 
         GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
@@ -131,6 +164,12 @@ public class LessonBookingConfirmation extends HttpServlet {
 
     }
 
+    /**
+     * This method creates a notification for a user.
+     * @param lesson The dance lesson.
+     * @param withUserInMessage The user being mentioned in the message.
+     * @param notificationOwner The owner of the notification.
+     */
     public void createNotification(Lesson lesson, User withUserInMessage, User notificationOwner) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
@@ -140,7 +179,4 @@ public class LessonBookingConfirmation extends HttpServlet {
         notificationDao.insert(notification);
 
     }
-
-
-
 }
