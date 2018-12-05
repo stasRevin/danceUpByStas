@@ -15,10 +15,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This is the InsertUserDance servlet class designed to facilitate the insertion of the UserDance entities.
+ * @author srevin
+ */
 @WebServlet(name = "InsertUserDance",
             urlPatterns = {"/insertUserDance"}
 )
 public class InsertUserDance extends HttpServlet {
+
+    /**
+     * This method services the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -57,6 +69,13 @@ public class InsertUserDance extends HttpServlet {
     }
 
 
+    /**
+     * This method responds to the GET requests.
+     * @param request The instance of HTTP request
+     * @param response The instance of HTTP response
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 

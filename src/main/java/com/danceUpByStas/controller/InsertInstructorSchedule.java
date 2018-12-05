@@ -19,10 +19,22 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * This is the InsertInstructorSchedule servlet class designed to facilitate
+ * the insertion of the instructor schedule.
+ * @author srevin
+ */
 @WebServlet(name = "InsertInstructorSchedule",
             urlPatterns = {"/insertInstructorSchedule"})
 public class InsertInstructorSchedule extends HttpServlet {
 
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -93,6 +105,12 @@ public class InsertInstructorSchedule extends HttpServlet {
 
     }
 
+    /**
+     * This method prepares instructor's schedule by producing a schedule map to be inserted.
+     * @param weeklySchedule The weekly schedule provided by the instructor.
+     * @param timeFormatter The time formatter.
+     * @return scheduleMap. The instructor schedule map.
+     */
     public Map<DayOfWeek, List<LocalTime>> prepareSchedule(List<String> weeklySchedule, DateTimeFormatter timeFormatter) {
 
         int counter = 1;
@@ -130,18 +148,36 @@ public class InsertInstructorSchedule extends HttpServlet {
 
     }
 
+    /**
+     * This method sets the error message.
+     * @param request
+     */
     private void setErrorMessage(HttpServletRequest request) {
 
         request.setAttribute("insertError", "Not all schedules have been inserted. No duplicates are allowed. " +
                 "The days of week selected must be within the provided date range. Please verify your input and try again.");
     }
 
+    /**
+     * This method forwards request and response to a specified URL.
+     * @param url The target URL.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws IOException The input output exception.
+     * @throws ServletException The servlet exception.
+     */
     private void forward(String url, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(url);
         requestDispatcher.forward(request, response);
     }
 
+    /**
+     * This utility method adds to the instructor's schedule.
+     * @param daySchedule The list of schedule entries.
+     * @param currentSchedule The current schedule entry to add to the list.
+     * @param formatter The date and time formatter.
+     */
     private void addToSchedule(List<LocalTime> daySchedule, String currentSchedule, DateTimeFormatter formatter) {
 
         if (currentSchedule != null && !currentSchedule.isEmpty()
