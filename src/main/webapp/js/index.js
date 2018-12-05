@@ -19,7 +19,6 @@ $(document).ready(function () {
 
         var thisClass = $(this);
         var usernameInput = thisClass.val().trim();
-        console.log("username input: " + usernameInput);
 
         $.get(getInputValidationAddress() + "validateUsername/" + usernameInput, function (response) {
 
@@ -259,8 +258,8 @@ $(document).ready(function () {
 
 function getServerHomeAddress() {
 
-    return "http://18.219.182.38:8080/danceup/";
-    //return "http://localhost:8080/danceup/";
+    //return "http://18.219.182.38:8080/danceup/";
+    return "http://localhost:8080/danceup/";
 }
 
 function getInputValidationAddress() {
@@ -295,7 +294,6 @@ function validatePhotoFileSize(photoFiles, thisClass) {
         for (var i = 0; i <= filesLength - 1; i += 1) {
 
             var fileSize = photoFiles.files.item(i).size;
-            console.log("file size: " + fileSize);
             if (fileSize > 140000) {
 
                 outputWarningMessage("Your photo file is too large.", thisClass, new Function());
@@ -314,13 +312,14 @@ function validatePhotoFileSize(photoFiles, thisClass) {
 
 function performInputValidation(response, thisClass, errorMessage) {
 
-    $(".error").remove();
-    console.log("response: " + response);
+    removeErrors();
 
     if (response === "false") {
 
-        console.log("response inside the if statement: " + response);
         outputWarningMessage(errorMessage, thisClass, removeErrors);
+    } else {
+
+        removeErrors();
     }
 }
 
@@ -370,7 +369,6 @@ function addInstructorAvailabilityEventHandler() {
 
                     html += "<option>" +  hour + ":00</option>";
 
-                    console.log(data[index]["startTime"].hour);
                 }
 
                 var select = $("#availableTime");
@@ -385,10 +383,8 @@ function signUpEventsInit() {
     var studentRole = document.getElementById("studentRole");
     var instructorRole = document.getElementById("instructorRole");
 
-    console.log("in signUpEventsInit function");
     if (window.addEventListener) {
 
-        console.log("adding listener");
         studentRole.addEventListener("click", removeInstructorsDetails, false);
         instructorRole.addEventListener("click", addInstructorsDetails, false);
     } else {

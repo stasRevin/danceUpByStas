@@ -111,6 +111,12 @@ public class UserPhotoManager implements PropertiesLoader {
 
             if (part.getName().equals("profilePhoto")) {
 
+                String photoPart = getFileName(part);
+                if (Objects.isNull(photoPart) || photoPart.equals("")) {
+
+                    break;
+                }
+
                 String fileName = user.getId() + getFileName(part);
                 String fileLocation = userFolder + File.separator + fileName;
                 part.write(fileLocation);

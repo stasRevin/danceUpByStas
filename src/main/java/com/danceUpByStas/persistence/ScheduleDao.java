@@ -75,7 +75,6 @@ public class ScheduleDao {
     public int insertSchedulesInRangeForUser(User user, LocalDate startDate, LocalDate endDate,
                                               Map<DayOfWeek, List<LocalTime>> schedules) {
 
-        GenericDao<Schedule> genericDao = new GenericDao<>(Schedule.class);
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         List<Schedule> existingSchedules = null;

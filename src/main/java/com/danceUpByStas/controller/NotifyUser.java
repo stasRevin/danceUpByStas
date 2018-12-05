@@ -6,7 +6,6 @@ import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

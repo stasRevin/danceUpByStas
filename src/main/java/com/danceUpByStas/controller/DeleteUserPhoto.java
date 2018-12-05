@@ -2,9 +2,7 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.utilities.UserPhotoManager;
-import org.hibernate.Session;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +14,22 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+/**
+ * This is DeleteUserPhoto servlet class designed to service request to delete a photo from the user profile.
+ * @author srevin
+ */
 @WebServlet(name = "DeleteUserPhoto",
             urlPatterns = {"/deleteUserPhoto"})
 public class DeleteUserPhoto extends HttpServlet {
 
 
+    /**
+     * The doDelete method facilitates the removal of the photo.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -36,6 +44,13 @@ public class DeleteUserPhoto extends HttpServlet {
         photoManager.deleteUserPhoto(user, photoPath);
     }
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doDelete(request, response);

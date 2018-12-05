@@ -1,13 +1,9 @@
 package com.danceUpByStas.persistence;
 
-import com.danceUpByStas.entity.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -207,7 +203,6 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
         return element;
-
 
     }
 

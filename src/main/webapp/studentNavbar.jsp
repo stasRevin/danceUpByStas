@@ -8,11 +8,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/danceup/userViewProfileForward">DanceUp</a>
+            <a class="navbar-brand" href="/danceup/studentSignIn">DanceUp</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/danceup/userViewProfileForward">View Profile</a></li>
+                <li><a href="/danceup/studentSignIn">View Profile</a></li>
                 <li><a class="dropdown-toggle" data-toggle="dropdown" role="button">Update Profile<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/danceup/userProfileUpdateForward">Update My Profile</a></li>

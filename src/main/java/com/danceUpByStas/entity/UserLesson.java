@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * This entity is created to reflect the many-to-many relationship between User and Lesson.

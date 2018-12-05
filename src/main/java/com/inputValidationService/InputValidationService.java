@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import java.util.Objects;
 import java.util.Properties;
+import javax.ws.rs.core.Response;
 
 @Path("/inputValidator")
 public class InputValidationService extends InputValidator {
@@ -19,7 +20,7 @@ public class InputValidationService extends InputValidator {
     private Properties properties = loadProperties("/regexValidation.properties");
     @GET
     @Path("/validateUsername/{username}")
-    public boolean validateUsername(@PathParam("username")String username) {
+    public Response validateUsername(@PathParam("username")String username) {
 
         GenericDao<User> userDao = new GenericDao<User>(User.class);
         User user = null;
@@ -32,62 +33,62 @@ public class InputValidationService extends InputValidator {
             logger.debug("User with username {} was not found.", username);
         }
 
-        if (Objects.isNull(user))
-            return true;
+        if (!Objects.isNull(user))
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return false;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
 
     @GET
     @Path("/validateName/{name}")
-    public boolean validateFirstName(@PathParam("name")String name) {
+    public Response validateFirstName(@PathParam("name")String name) {
 
         if (!validateMatchesRegularExpression(name, properties.getProperty("regex.name")))
-            return false;
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return true;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
     @GET
     @Path("/validateAddress/{address}")
-    public boolean validateLastName(@PathParam("address")String address) {
+    public Response validateLastName(@PathParam("address")String address) {
 
         if (!validateMatchesRegularExpression(address, properties.getProperty("regex.address")))
-            return false;
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return true;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
 
     @GET
     @Path("/validateZipCode/{zipCode}")
-    public boolean validateZipCode(@PathParam("zipCode")String zipCode) {
+    public Response validateZipCode(@PathParam("zipCode")String zipCode) {
 
         if (!validateMatchesRegularExpression(zipCode, properties.getProperty("regex.zipcode")))
-            return false;
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return true;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
     @GET
     @Path("/validateState/{state}")
-    public boolean validateState(@PathParam("state")String state) {
+    public Response validateState(@PathParam("state")String state) {
 
         if (!validateMatchesRegularExpression(state, properties.getProperty("regex.state")))
-            return false;
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return true;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
     @GET
     @Path("/validateRate/{rate}")
-    public boolean validateRate(@PathParam("rate")String rate) {
+    public Response validateRate(@PathParam("rate")String rate) {
 
         if (!validateMatchesRegularExpression(rate, properties.getProperty("regex.double")))
-            return false;
+            return Response.status(200).entity(false).header("Access-Control-Allow-Origin", "*").build();
 
-        return true;
+        return Response.status(200).entity(true).header("Access-Control-Allow-Origin", "*").build();
     }
 
 

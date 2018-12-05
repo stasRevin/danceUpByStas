@@ -1,7 +1,6 @@
 package com.instructorDayAvailabilityService;
 
 import com.danceUpByStas.entity.Schedule;
-import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.persistence.ScheduleDao;
 
 import javax.ws.rs.GET;

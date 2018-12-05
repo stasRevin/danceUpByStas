@@ -1,13 +1,9 @@
 package com.danceUpByStas.controller;
 
-import com.danceUpByStas.entity.Location;
 import com.danceUpByStas.entity.User;
-import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import com.danceUpByStas.utilities.UserSignInHelper;
 import com.danceUpByStas.utilities.ZipCodeRadius;
-import com.zipwise.DataList;
-import com.zipwise.DataListItem;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -17,12 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 

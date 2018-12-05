@@ -4,14 +4,9 @@ import com.danceUpByStas.entity.Role;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
-import com.danceUpByStas.utilities.InputValidator;
 import com.danceUpByStas.utilities.SignUpInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,15 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.Random;
 
 import org.apache.catalina.realm.RealmBase;
 
@@ -62,14 +49,15 @@ public class UserSignUp extends HttpServlet {
         String state = request.getParameter("state");
         String zipCode = request.getParameter("zip");
         String password = request.getParameter("password");
+        String rateInput = request.getParameter("ratePerLesson");
         Double payrate = 0.0;
 
         String hashedPassword = RealmBase.Digest(password, "SHA-256", "UTF-8");
 
 
-        if (role.equals("instructor") && !Objects.isNull(payrate) && !payrate.equals("")) {
+        if (role.equals("instructor") && !Objects.isNull(rateInput) && !rateInput.equals("")) {
 
-            payrate = Double.parseDouble(request.getParameter("ratePerLesson"));
+            payrate = Double.parseDouble(rateInput);
         }
 
         User user = new User(username, hashedPassword, 0, firstName, lastName, address, city, state,

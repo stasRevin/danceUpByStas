@@ -1,17 +1,12 @@
 package com.danceUpByStas.controller;
 
 import com.danceUpByStas.utilities.PropertiesLoader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
 import java.util.Properties;
 
 @WebServlet(
@@ -30,8 +25,6 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
      * @throws ServletException The servlet exception.
      */
     public void init() throws ServletException {
-
-        Logger logger = LogManager.getLogger(this.getClass());
 
         ServletContext context = getServletContext();
         Properties properties = loadProperties("/photoManagerRemote.properties");

@@ -73,8 +73,8 @@ class UserDaoTest {
     @Test
     void getElementByPropertySuccess() {
 
-        String postalCode = "53705";
-        User user = genericDao.getElementByProperty("postalCode", postalCode);
+        String username = "mjackson";
+        User user = genericDao.getElementByProperty("username", username);
 
         assertEquals("Michael", user.getFirstName());
 

@@ -23,7 +23,6 @@ public class NotificationServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Logger logger = LogManager.getLogger(this.getClass());
         HttpSession session = request.getSession(false);
         UserSignInHelper signInHelper = new UserSignInHelper();
         User user = (User) session.getAttribute("user");

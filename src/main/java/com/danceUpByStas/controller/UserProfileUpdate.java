@@ -2,7 +2,6 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
-import com.danceUpByStas.utilities.InputValidator;
 import com.danceUpByStas.utilities.ProfileUpdateInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import org.apache.catalina.realm.RealmBase;
@@ -11,7 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.ws.rs.PathParam;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -53,6 +51,7 @@ public class UserProfileUpdate extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("passwordConfirmation");
         String hashedPassword = "";
+        String rateInput = request.getParameter("ratePerLesson");
         Double instructorRatePerLesson = 0.0;
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
@@ -72,9 +71,9 @@ public class UserProfileUpdate extends HttpServlet {
         user.setState(state);
         user.setPostalCode(zipCode);
 
-        if (role == 1 && !Objects.isNull(instructorRatePerLesson) && !instructorRatePerLesson.equals("")) {
+        if (role == 1 && !Objects.isNull(rateInput) && !rateInput.equals("")) {
 
-            instructorRatePerLesson = Double.parseDouble(request.getParameter("ratePerLesson"));
+            instructorRatePerLesson = Double.parseDouble(rateInput);
             user.setPayRate(instructorRatePerLesson);
         }
 

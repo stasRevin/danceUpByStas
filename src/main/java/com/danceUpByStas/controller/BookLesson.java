@@ -2,7 +2,6 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
-import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import com.danceUpByStas.utilities.UserSignInHelper;
 
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,8 +54,8 @@ public class BookLesson extends HttpServlet {
         helper.setUserDances(instructors);
 
         List<Schedule> schedules = helper.getUserSchedule(instructorId);
-        request.setAttribute("instructor", instructor);
-        request.setAttribute("schedules", schedules);
+        session.setAttribute("instructor", instructor);
+        session.setAttribute("schedules", schedules);
         String userPhotoDirectory = (String) session.getAttribute("userPhotoDirectory");
 
         if (!photoManager.checkIfUserPhotoExists(staticImagePath + File.separator

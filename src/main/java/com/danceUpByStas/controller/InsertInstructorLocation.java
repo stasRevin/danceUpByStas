@@ -13,9 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * This is the InsertInstructionLocation service designed to service requests to insert a teaching location for
+ * instructors.
+ * @author srevin
+ */
 @WebServlet(name = "InsertInstructorLocation",
             urlPatterns = {"/insertInstructorLocation"})
 public class InsertInstructorLocation extends HttpServlet {
+
+    /**
+     * The doPost method is designed to service POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -36,6 +49,13 @@ public class InsertInstructorLocation extends HttpServlet {
 
     }
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);

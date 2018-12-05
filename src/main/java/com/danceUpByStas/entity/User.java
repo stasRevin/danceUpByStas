@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
 
-import javax.enterprise.inject.TransientReference;
 import javax.persistence.*;
 import java.util.*;
 

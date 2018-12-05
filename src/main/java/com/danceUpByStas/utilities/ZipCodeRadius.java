@@ -70,7 +70,14 @@ public class ZipCodeRadius implements PropertiesLoader {
 
         }
         List<DataListItem> dataList = dataListObject.getDataList();
-        List<String> zipCodes = getZipCodesAsStrings(dataList);
+
+        List<String> zipCodes = null;
+
+        if (!Objects.isNull(dataList)) {
+
+            zipCodes = getZipCodesAsStrings(dataList);
+        }
+
 
         for (String zip : zipCodes) {
 

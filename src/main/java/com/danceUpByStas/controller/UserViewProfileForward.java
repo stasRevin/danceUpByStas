@@ -2,6 +2,7 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.entity.UserLesson;
 import com.danceUpByStas.utilities.UserSignInHelper;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @WebServlet(name = "UserViewProfileForward",
@@ -30,9 +29,11 @@ public class UserViewProfileForward extends HttpServlet {
         UserSignInHelper signInHelper = new UserSignInHelper();
 
         List<Notification> notifications = signInHelper.getNotifications(user);
+        List<UserLesson> userLessons = signInHelper.getUserLessons(user.getId(), role);
 
         session.setAttribute("notifications",
                 notifications);
+        session.setAttribute("userLessons", userLessons);
 
         if (role == 1) {
 

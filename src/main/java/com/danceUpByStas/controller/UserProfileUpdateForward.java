@@ -1,9 +1,5 @@
 package com.danceUpByStas.controller;
 
-import com.danceUpByStas.entity.User;
-import com.danceUpByStas.persistence.GenericDao;
-import com.danceUpByStas.utilities.UserPhotoManager;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
