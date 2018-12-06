@@ -27,6 +27,8 @@ public class ZipCodeRadius implements PropertiesLoader {
         // get list of nearby zip codes
         List<String> zipCodes = getListOfNearbyZipCodes(zipCode, radius);
 
+        if (Objects.isNull(zipCodes))
+            return null;
         //call generic dao to get locations within those zip codes
         List<Location> locations = locationDao.getElementsInList("postalCode", zipCodes);
         //get users who teach at those locations
@@ -44,11 +46,21 @@ public class ZipCodeRadius implements PropertiesLoader {
         String baseURI = properties.getProperty("uri");
         String uri = baseURI + "?zipcode=" + zipCode + "&maxmaximumradius=" + radius
                    + "&minminimumradius=" + "0&key=" + properties.getProperty("key");
-        String results = client.target(uri).request(MediaType.APPLICATION_JSON_TYPE).get(String.class).trim().replaceFirst("\ufeff", "");
-
+        String results = "";
         ObjectMapper mapper = new ObjectMapper();
-
         DataList dataListObject = null;
+
+        try {
+            results = client.target(uri)
+                                   .request(MediaType.APPLICATION_JSON_TYPE)
+                                   .get(String.class)
+                                   .trim()
+                                   .replaceFirst("\ufeff", "");
+        } catch (Exception exception) {
+
+            logger.debug("The URI {} is not responding.", uri);
+            return null;
+        }
 
         logger.debug("Getting list of nearby zip codes, zipCode: {}, radius: {}", zipCode, radius);
 
@@ -68,22 +80,17 @@ public class ZipCodeRadius implements PropertiesLoader {
 
             logger.debug("input output exception: {}", inputOutputException);
 
+        } catch (Exception exception) {
+
+            logger.debug("an exception has occurred: {}", exception);
         }
-        List<DataListItem> dataList = dataListObject.getDataList();
 
         List<String> zipCodes = null;
 
-        if (!Objects.isNull(dataList)) {
+        if (!Objects.isNull(dataListObject)) {
 
-            zipCodes = getZipCodesAsStrings(dataList);
+            zipCodes = getZipCodesAsStrings(dataListObject.getDataList());
         }
-
-
-        for (String zip : zipCodes) {
-
-            logger.debug("Zip codes found: {}", zip);
-        }
-
 
         return zipCodes;
     }

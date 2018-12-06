@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 
 public class CacheFilter implements javax.servlet.Filter {
 
-    public FilterConfig filterConfiguration;
+    private FilterConfig filterConfiguration;
 
 
     public void doFilter(final ServletRequest request,

@@ -23,6 +23,8 @@
             <button type="submit" class="btn btn-primary mb-2">Search Instructors</button>
         </form>
         <h3>Instructors Near Me</h3>
+
+        <c:if test="${not empty zipRadiusServiceError}"><h4 class="error">${zipRadiusServiceError}</h4></c:if>
         <table class="display responsive nowrap">
             <thead>
             <tr>

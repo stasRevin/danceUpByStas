@@ -46,13 +46,19 @@ public class SearchInstructors extends HttpServlet {
 
         String zipCode = Objects.isNull(zipCodeInput) || zipCodeInput.isEmpty() ? user.getPostalCode() : zipCodeInput;
         String radius = Objects.isNull(radiusInput) || radiusInput.isEmpty() ? "5" : radiusInput;
-
+        String url = "/instructorsFound.jsp";
         Set<User> instructors = getNearbyInstructors(zipCode, radius);
+
+        if (Objects.isNull(instructors)) {
+            request.setAttribute("zipRadiusServiceError",
+                    "The instructor search service is unavailable. Try again later.");
+            forward(request, response, url);
+        }
 
         request.setAttribute("usersFound", instructors);
         helper.setUserDances(instructors);
         photoManager.prepareFoundUsersPhotos(user.getId() + "", instructors, context);
-        String url = "/instructorsFound.jsp";
+
 
         forward(request, response, url);
 
