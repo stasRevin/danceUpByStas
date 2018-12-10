@@ -33,9 +33,6 @@ In the era of a so called gig economy, a number of applications has emerged to a
   * JUnit tests to achieve appropriate coverage to test all the business logic and calculations.
 
 
-### [Project Plan](ProjectPlan.md)
 * [Screen Design](DesignDocuments/wireframes/images/)
 * [Application Flow](DesignDocuments/applicationFlow.md)
 * [Database Design](DesignDocuments/ERD.JPEG)
-
-### [Development Journal](Journal.md)
