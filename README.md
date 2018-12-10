@@ -30,7 +30,7 @@ In the era of a so called gig economy, a number of applications has emerged to a
 * Independent Research Topic
   * Java 8 Lambdas
 * Unit Testing
-  * JUnit tests to achieve 80% code coverage
+  * JUnit tests to achieve appropriate coverage to test all the business logic and calculations.
 
 
 ### [Project Plan](ProjectPlan.md)

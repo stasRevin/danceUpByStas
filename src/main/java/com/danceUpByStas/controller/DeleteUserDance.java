@@ -72,7 +72,7 @@ public class DeleteUserDance extends HttpServlet {
      * @param userId The user id.
      * @return userDanceList The list of UserDance instances.
      */
-    public List<UserDance> deleteUserDance(List<UserDance> userDanceList, String danceToDelete, int userId) {
+    private List<UserDance> deleteUserDance(List<UserDance> userDanceList, String danceToDelete, int userId) {
 
         GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
         UserDance userDanceToDelete = userDanceList.stream().filter(d -> d.getDance().getName().equals(danceToDelete))

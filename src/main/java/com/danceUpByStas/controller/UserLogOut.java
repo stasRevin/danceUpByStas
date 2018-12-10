@@ -23,7 +23,6 @@ public class UserLogOut extends HttpServlet {
             session.invalidate();
         }
 
-        // TODO remove all photos from images on logout
         response.sendRedirect("/danceup/logOutConfirmation.jsp");
     }
 }

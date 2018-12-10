@@ -59,7 +59,7 @@ public class NotificationServlet extends HttpServlet {
      * This methods marks notifications as read.
      * @param notifications The list of notifications to mark.
      */
-    public void markAsRead(List<Notification> notifications) {
+    private void markAsRead(List<Notification> notifications) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
         Logger logger = LogManager.getLogger(this.getClass());

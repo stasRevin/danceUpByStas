@@ -90,17 +90,5 @@ class UserDanceDaoTest {
         assertEquals(wasDeleted, true);
     }
 
-    @Test
-    void deleteDanceUsingServletSuccess() {
 
-        DeleteUserDance servlet = new DeleteUserDance();
-        List<UserDance> userDances = userDanceGeneric.getElementsOfTypeAByIdOfEntityOfTypeB("user", 1);
-        Optional<UserDance> userDanceToDelete = userDances.stream().filter(ud -> ud.getDance().getId() == 1).findFirst();
-
-        userDances = servlet.deleteUserDance(userDances, userDanceToDelete.get().getDance().getName(), 1);
-
-        boolean wasDeleted = !userDances.contains(userDanceToDelete);
-
-        assertEquals(wasDeleted, true);
-    }
 }

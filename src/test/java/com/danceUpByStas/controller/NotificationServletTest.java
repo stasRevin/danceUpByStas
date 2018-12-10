@@ -23,19 +23,4 @@ class NotificationServletTest {
         database.runSQL("cleanTestDb.sql");
     }
 
-    @Test
-    void markAsReadSuccess() {
-        User user = userDao.getById(1);
-
-        NotificationServlet servlet = new NotificationServlet();
-        UserSignInHelper helper = new UserSignInHelper();
-        List<Notification> notificationList = helper.getNotifications(user);
-
-        servlet.markAsRead(notificationList);
-
-        notificationList = helper.getNotifications(user);
-
-        assertEquals(0, notificationList.size());
-
-    }
 }

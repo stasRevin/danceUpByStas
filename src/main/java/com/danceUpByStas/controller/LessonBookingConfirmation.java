@@ -109,7 +109,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * This metods inserts the lesson into database.
      * @param lesson The lesson to insert.
      */
-    public void insertLesson(Lesson lesson) {
+    private void insertLesson(Lesson lesson) {
 
         GenericDao<Lesson> lessonDao = new GenericDao<>(Lesson.class);
         lessonDao.insert(lesson);
@@ -120,7 +120,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * @param locationId The identification number of the location.
      * @return location The instructor's teaching location.
      */
-    public Location getLocation(int locationId) {
+    private Location getLocation(int locationId) {
 
         GenericDao<Location> locationDao = new GenericDao<>(Location.class);
         return locationDao.getById(locationId);
@@ -132,7 +132,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * @param instructorId The instructor's identification number.
      * @return instructor The instructor entity object.
      */
-    public User getInstructor(int instructorId) {
+    private User getInstructor(int instructorId) {
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
         return userDao.getById(instructorId);
@@ -144,7 +144,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * @param lesson
      * @param role
      */
-    public void insertUserLesson(User user, Lesson lesson, Role role) {
+    private void insertUserLesson(User user, Lesson lesson, Role role) {
 
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
         userLessonDao.insertManyToMany(new UserLesson(user, lesson, role));
@@ -156,7 +156,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * @param roleId The identification number of the role.
      * @return role The role entity.
      */
-    public Role getUserRole(int roleId) {
+    private Role getUserRole(int roleId) {
 
         GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
 
@@ -170,7 +170,7 @@ public class LessonBookingConfirmation extends HttpServlet {
      * @param withUserInMessage The user being mentioned in the message.
      * @param notificationOwner The owner of the notification.
      */
-    public void createNotification(Lesson lesson, User withUserInMessage, User notificationOwner) {
+    private void createNotification(Lesson lesson, User withUserInMessage, User notificationOwner) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
         String message = "A lesson was scheduled with " + withUserInMessage.getFirstName() + " " + withUserInMessage.getLastName();

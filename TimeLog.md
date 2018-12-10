@@ -80,3 +80,5 @@
 |11/29/2018|Updating exercise for week 13 |1|
 |11/30/2018|Testing, bug fixes, javadocs |4|
 |12/04/2018|Bug fixes. |3|
+|12/05/2018| Logs for AWS, error handling for the service.|2|
+|12/09/2018|Fixing log4j |2|

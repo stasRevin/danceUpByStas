@@ -83,7 +83,7 @@ public class UserPhotoManager implements PropertiesLoader {
 
     }
 
-    public String getFileName(Part part) {
+    private String getFileName(Part part) {
 
         String contentDisplay = part.getHeader("content-disposition");
         String fileName = "";
@@ -143,7 +143,7 @@ public class UserPhotoManager implements PropertiesLoader {
     }
 
 
-    public boolean removePhotoFromUserFolder(Path photoPath) {
+    private boolean removePhotoFromUserFolder(Path photoPath) {
 
         boolean wasDeleted = false;
         try {
@@ -158,7 +158,7 @@ public class UserPhotoManager implements PropertiesLoader {
     }
 
 
-    public void deleteUserPhotos(File directoryToDelete) {
+    void deleteUserPhotos(File directoryToDelete) {
 
         File[] fileList = directoryToDelete.listFiles();
 

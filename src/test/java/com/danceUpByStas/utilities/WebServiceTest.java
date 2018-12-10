@@ -25,8 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WebServiceTest {
 
-    Logger logger = LogManager.getLogger(this.getClass());
-
     @BeforeEach
     void setUp() {
 
