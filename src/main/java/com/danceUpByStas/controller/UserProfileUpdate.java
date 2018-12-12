@@ -1,6 +1,7 @@
 package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.ProfileUpdateInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
@@ -71,7 +72,7 @@ public class UserProfileUpdate extends HttpServlet {
         user.setState(state);
         user.setPostalCode(zipCode);
 
-        if (role == 1 && !Objects.isNull(rateInput) && !rateInput.equals("")) {
+        if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber() && !Objects.isNull(rateInput) && !rateInput.equals("")) {
 
             instructorRatePerLesson = Double.parseDouble(rateInput);
             user.setPayRate(instructorRatePerLesson);
@@ -100,12 +101,12 @@ public class UserProfileUpdate extends HttpServlet {
 
     private String setUrl(int role) {
 
-        if (role == 1) {
+        if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
             return "/danceup/signInInstructor";
 
         }
-        else if (role ==2) {
+        else if (role == UserRoleEnum.STUDENT.getRoleNumber()) {
 
             return "/danceup/studentSignIn";
         }

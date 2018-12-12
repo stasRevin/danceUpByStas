@@ -7,19 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScheduleDaoTest {
 
     private ScheduleDao scheduleDao;
-    private GenericDao<Schedule> genericDao;
     private GenericDao<User> userDao;
 
     @BeforeEach
@@ -28,7 +23,6 @@ class ScheduleDaoTest {
         database.runSQL("cleanTestDb.sql");
 
         scheduleDao = new ScheduleDao();
-        genericDao = new GenericDao<>(Schedule.class);
         userDao = new GenericDao<>(User.class);
     }
 
@@ -92,7 +86,7 @@ class ScheduleDaoTest {
     @Test
     void getAvailabilityForDateByInstructorIdSuccess() {
 
-        List<LocalTime> availableTimes = scheduleDao.getAvailabilityForDateByInstructorId(LocalDate.of(2018, 9, 27), 1);
+        Set<LocalTime> availableTimes = scheduleDao.getAvailabilityForDateByInstructorId(LocalDate.of(2018, 9, 27), 1);
         assertEquals(4, availableTimes.size());
     }
 }

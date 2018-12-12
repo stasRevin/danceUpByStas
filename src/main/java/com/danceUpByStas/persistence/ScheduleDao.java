@@ -3,6 +3,7 @@ package com.danceUpByStas.persistence;
 import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.enums.UserRoleEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -134,10 +135,10 @@ public class ScheduleDao {
     }
 
 
-    public List<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, int userId) {
+    public Set<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, int userId) {
 
         List<Schedule> schedules = getScheduleByUserIdAndDate(userId, date);
-        List<LocalTime> availableTimes = new ArrayList<>();
+        Set<LocalTime> availableTimes = new HashSet<>();
 
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
         Map<String, Map<String, String>> userLessonEntities = new HashMap<>();
@@ -145,7 +146,7 @@ public class ScheduleDao {
         Map<String, String> userLessonPropertiesTwo = new HashMap<>();
 
         userLessonPropertiesOne.put("id", userId + "");
-        userLessonPropertiesTwo.put("id", "1");
+        userLessonPropertiesTwo.put("id", UserRoleEnum.INSTRUCTOR.getRoleNumber() + "");
         userLessonEntities.put("user", userLessonPropertiesOne);
         userLessonEntities.put("role", userLessonPropertiesTwo);
 
@@ -170,7 +171,7 @@ public class ScheduleDao {
     }
 
 
-    private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, List<LocalTime> availableTimes,
+    private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, Set<LocalTime> availableTimes,
                                           List<UserLesson> userLessons) {
 
         for (LocalTime time = startTime; time.isBefore(endTime); time = time.plusHours(1)) {
@@ -179,7 +180,7 @@ public class ScheduleDao {
         }
     }
 
-    private void compareTimes(List<UserLesson> userLessons, List<LocalTime> availableTimes, LocalTime time) {
+    private void compareTimes(List<UserLesson> userLessons, Set<LocalTime> availableTimes, LocalTime time) {
 
         boolean isBooked = false;
 

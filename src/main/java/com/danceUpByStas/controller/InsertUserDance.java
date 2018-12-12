@@ -3,6 +3,7 @@ package com.danceUpByStas.controller;
 import com.danceUpByStas.entity.Dance;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserDance;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 
 import javax.servlet.RequestDispatcher;
@@ -49,10 +50,10 @@ public class InsertUserDance extends HttpServlet {
 
         UserDance userDance = new UserDance(user, dance);
 
-        if (role == 1) {
+        if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
             userDance.setYearsOfExperience(Integer.parseInt(experience));
-        } else if (role == 2) {
+        } else if (role == UserRoleEnum.STUDENT.getRoleNumber()) {
 
             userDance.setLearningProficiency(Integer.parseInt(learningProficiency));
 

@@ -36,6 +36,7 @@ public class SearchInstructors extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         ServletContext context = request.getServletContext();
+        String defaultRadius = (String) context.getAttribute("defaultRadius");
 
         UserPhotoManager photoManager = new UserPhotoManager();
         UserSignInHelper helper = new UserSignInHelper();
@@ -45,7 +46,7 @@ public class SearchInstructors extends HttpServlet {
         String radiusInput = request.getParameter("radius");
 
         String zipCode = Objects.isNull(zipCodeInput) || zipCodeInput.isEmpty() ? user.getPostalCode() : zipCodeInput;
-        String radius = Objects.isNull(radiusInput) || radiusInput.isEmpty() ? "5" : radiusInput;
+        String radius = Objects.isNull(radiusInput) || radiusInput.isEmpty() ? defaultRadius : radiusInput;
         String url = "/instructorsFound.jsp";
         Set<User> instructors = getNearbyInstructors(zipCode, radius);
 

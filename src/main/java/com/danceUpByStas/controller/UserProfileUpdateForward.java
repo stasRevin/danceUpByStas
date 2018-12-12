@@ -1,5 +1,7 @@
 package com.danceUpByStas.controller;
 
+import com.danceUpByStas.enums.UserRoleEnum;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,11 +30,11 @@ public class UserProfileUpdateForward extends HttpServlet {
 
         } else {
 
-            if (role == 1) {
+            if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
                 forward("/signInInstructor", request, response);
 
-            } else if (role == 2) {
+            } else if (role == UserRoleEnum.STUDENT.getRoleNumber()) {
 
                 forward("/signInStudent", request, response);
             }

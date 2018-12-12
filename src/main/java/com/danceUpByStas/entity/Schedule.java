@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Entity(name = "Schedule")
 @Table(name = "Schedule")
 @Data
-public class Schedule {
+public class Schedule implements Comparable<Schedule> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -41,6 +41,15 @@ public class Schedule {
 
     public Schedule() {
 
+    }
+
+    public int compareTo(Schedule anotherSchedule) {
+
+        int startTimeComparison = this.startTime.compareTo(anotherSchedule.getStartTime());
+        if (startTimeComparison != 0)
+            return startTimeComparison;
+
+        return 0;
     }
 
 }

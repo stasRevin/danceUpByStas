@@ -6,6 +6,7 @@ import com.danceUpByStas.entity.UserRole;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.SignUpInputValidator;
 import com.danceUpByStas.utilities.UserPhotoManager;
+import com.danceUpByStas.enums.UserRoleEnum;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -91,12 +92,12 @@ public class UserSignUp extends HttpServlet {
         GenericDao<Role> roleDao = new GenericDao<Role>(Role.class);
 
         if (role.equals("instructor")) {
-            Role instructor = roleDao.getById(1);
+            Role instructor = roleDao.getById(UserRoleEnum.INSTRUCTOR.getRoleNumber());
             userRoleDao.insertManyToMany(new UserRole(user, instructor));
 
         } else if (role.equals("student")) {
 
-            Role student = roleDao.getById(2);
+            Role student = roleDao.getById(UserRoleEnum.STUDENT.getRoleNumber());
             userRoleDao.insertManyToMany(new UserRole(user, student));
         }
 

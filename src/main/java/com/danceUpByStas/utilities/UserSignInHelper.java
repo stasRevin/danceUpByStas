@@ -1,6 +1,7 @@
 package com.danceUpByStas.utilities;
 
 import com.danceUpByStas.entity.*;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,11 +71,11 @@ public class UserSignInHelper {
 
             if (!specificLessons.isEmpty()) {
 
-                if (lessonsForRole == 1) {
+                if (lessonsForRole == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
                     lesson.addInstructors(specificLessons.get(0).getUser());
 
-                } else if (lessonsForRole == 2) {
+                } else if (lessonsForRole == UserRoleEnum.STUDENT.getRoleNumber()) {
 
                     lesson.addStudents(specificLessons.get(0).getUser());
                 }

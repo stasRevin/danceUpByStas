@@ -30,6 +30,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
         Properties properties = loadProperties("/photoManagerRemote.properties");
         String staticImagesDirectory = properties.getProperty("staticImagePath");
         String catalinaHome = System.getProperty("catalina.home");
+        String defaultRadius = "5";
 
         String photoDirectoryName = "userPhotos";
         String usersFoundPhotosDirectory = "usersFoundPhotos";
@@ -44,6 +45,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
         context.setAttribute("usersFoundPhotosPath", usersFoundPhotosPath);
         context.setAttribute("staticUserPhotoPath", staticUserPhotoPath);
         context.setAttribute("staticImagePath", staticImagesDirectory);
+        context.setAttribute("defaultRadius", defaultRadius);
 
     }
 

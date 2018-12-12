@@ -1,6 +1,7 @@
 package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.*;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.SimpleVisitor;
 
@@ -67,15 +68,15 @@ public class InstructorSignIn extends HttpServlet {
 
             List<UserDance> userDances = signInHelper.getUserDances(userId);
             List<Schedule> schedules = signInHelper.getUserSchedule(userId);
-            List<UserLesson> userLessons = signInHelper.getUserLessons(userId, 1);
-            userLessons = signInHelper.getUsersForLessons(userLessons, 2);
+            List<UserLesson> userLessons = signInHelper.getUserLessons(userId, UserRoleEnum.INSTRUCTOR.getRoleNumber());
+            userLessons = signInHelper.getUsersForLessons(userLessons, UserRoleEnum.STUDENT.getRoleNumber());
             List<Notification> notifications = signInHelper.getNotifications(user);
 
             long lessonsTaughtCount = userLessons.stream().filter(l -> l.getLesson().getDate().isBefore(LocalDate.now())).count();
 
             session.setAttribute("notifications", notifications);
             session.setAttribute("user", user);
-            session.setAttribute("role", 1);
+            session.setAttribute("role", UserRoleEnum.INSTRUCTOR.getRoleNumber());
             session.setAttribute("userDances", userDances);
             session.setAttribute("schedules", schedules);
             session.setAttribute("userLessons", userLessons);

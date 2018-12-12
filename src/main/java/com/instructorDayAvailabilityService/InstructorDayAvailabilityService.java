@@ -12,8 +12,7 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Path("/instructorDayAvailability")
 public class InstructorDayAvailabilityService {
@@ -30,24 +29,21 @@ public class InstructorDayAvailabilityService {
         LocalDate date = LocalDate.parse(inputDate, dateFormatter);
         int instructorId = Integer.parseInt(instructorIdInput);
 
-        List<LocalTime> availabilityList = scheduleDao.getAvailabilityForDateByInstructorId(date, instructorId);
-
-        List<Schedule> schedules = getSchedulesFromAvailability(availabilityList);
+        Set<LocalTime> availabilitySet = scheduleDao.getAvailabilityForDateByInstructorId(date, instructorId);
+        Set<Schedule> schedules = getSchedulesFromAvailability(availabilitySet);
 
         return Response.status(200).entity(schedules).build();
     }
 
-    private List<Schedule> getSchedulesFromAvailability(List<LocalTime> availabilityList) {
+    private Set<Schedule> getSchedulesFromAvailability(Set<LocalTime> availabilitySet) {
 
-        List<Schedule> schedules = new ArrayList<>();
-        Schedule schedule = null;
+        Set<Schedule> schedules = new TreeSet<>();
 
-        for (LocalTime availability : availabilityList) {
+        for (LocalTime availability : availabilitySet) {
 
-            schedule = new Schedule();
+            Schedule schedule = new Schedule();
             schedule.setStartTime(availability);
             schedules.add(schedule);
-
         }
 
         return schedules;

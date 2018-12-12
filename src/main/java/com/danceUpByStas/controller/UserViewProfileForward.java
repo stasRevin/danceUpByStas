@@ -3,6 +3,7 @@ package com.danceUpByStas.controller;
 import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.utilities.UserSignInHelper;
 
 import javax.servlet.RequestDispatcher;
@@ -35,11 +36,11 @@ public class UserViewProfileForward extends HttpServlet {
                 notifications);
         session.setAttribute("userLessons", userLessons);
 
-        if (role == 1) {
+        if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
             url = "/instructorViewProfile.jsp";
 
-        } else if (role == 2) {
+        } else if (role == UserRoleEnum.STUDENT.getRoleNumber()) {
 
             url = "/studentViewProfile.jsp";
         }

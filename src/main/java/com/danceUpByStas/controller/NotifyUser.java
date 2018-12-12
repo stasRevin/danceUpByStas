@@ -2,6 +2,7 @@ package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
@@ -60,12 +61,12 @@ public class NotifyUser extends HttpServlet {
         users.add(recepientUser);
         signInHelper.setUserDances(users);
 
-        if (role == 1) {
+        if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
 
             url = "/instructorAccessStudentProfile.jsp";
             request.setAttribute("student", recepientUser);
 
-        } else if (role == 2) {
+        } else if (role == UserRoleEnum.STUDENT.getRoleNumber()) {
 
             url = "/bookInstructor.jsp";
             request.setAttribute("instructor", recepientUser);

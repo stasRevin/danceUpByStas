@@ -462,7 +462,6 @@ function deleteUserPhoto() {
         url: getServerHomeAddress() + "deleteUserPhoto",
         success: function () {
 
-            console.log("removing photo.");
             removePhotoFromPage();
 
             $.get(getServerHomeAddress() + "userViewProfileForward", function () {
@@ -473,10 +472,11 @@ function deleteUserPhoto() {
     });
 }
 
+
 function removePhotoFromPage() {
 
     var sourcePath = $("#userPhoto").attr("src");
-    $("#userPhoto").attr("src", "");
+    $("#userPhoto").attr("src", "images/nopic.jpg");
 }
 
 function addDeletePhotoOnClickEvent() {

@@ -1,6 +1,7 @@
 package com.danceUpByStas.controller;
 
 import com.danceUpByStas.entity.*;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserSignInHelper;
 import org.apache.logging.log4j.LogManager;
@@ -69,11 +70,11 @@ public class LessonBookingConfirmation extends HttpServlet {
 
         //associate lesson with student
 
-        Role studentRole = getUserRole(2);
+        Role studentRole = getUserRole(UserRoleEnum.STUDENT.getRoleNumber());
         insertUserLesson(user, lesson, studentRole);
 
         //associate lesson with instructor
-        Role instructorRole = getUserRole(1);
+        Role instructorRole = getUserRole(UserRoleEnum.INSTRUCTOR.getRoleNumber());
         User instructor = getInstructor(instructorId);
 
         insertUserLesson(instructor, lesson, instructorRole);
@@ -85,7 +86,7 @@ public class LessonBookingConfirmation extends HttpServlet {
 
         //update jsp
         UserSignInHelper helper = new UserSignInHelper();
-        List<UserLesson> userLessons = helper.getUserLessons(user.getId(), 2);
+        List<UserLesson> userLessons = helper.getUserLessons(user.getId(), UserRoleEnum.STUDENT.getRoleNumber());
         session.setAttribute("userLessons", userLessons);
         session.setAttribute("unreadNotifications", "true");
 

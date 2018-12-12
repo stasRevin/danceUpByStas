@@ -4,6 +4,7 @@ import com.danceUpByStas.entity.Notification;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserDance;
 import com.danceUpByStas.entity.UserLesson;
+import com.danceUpByStas.enums.UserRoleEnum;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.utilities.UserPhotoManager;
 import com.danceUpByStas.utilities.UserSignInHelper;
@@ -59,12 +60,12 @@ public class StudentSignIn extends HttpServlet {
             UserSignInHelper signInHelper = new UserSignInHelper();
 
             List<UserDance> userDances = signInHelper.getUserDances(userId);
-            List<UserLesson> userLessons = signInHelper.getUserLessons(userId, 2);
-            userLessons = signInHelper.getUsersForLessons(userLessons, 1);
+            List<UserLesson> userLessons = signInHelper.getUserLessons(userId, UserRoleEnum.STUDENT.getRoleNumber());
+            userLessons = signInHelper.getUsersForLessons(userLessons, UserRoleEnum.INSTRUCTOR.getRoleNumber());
             List<Notification> notifications = signInHelper.getNotifications(user);
 
             session.setAttribute("user", user);
-            session.setAttribute("role", 2);
+            session.setAttribute("role", UserRoleEnum.STUDENT.getRoleNumber());
             session.setAttribute("userDances", userDances);
             session.setAttribute("userLessons", userLessons);
             logger.debug("Signing in user: {}", user);
