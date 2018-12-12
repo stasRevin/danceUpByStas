@@ -82,3 +82,4 @@
 |12/04/2018|Bug fixes. |3|
 |12/05/2018| Logs for AWS, error handling for the service.|2|
 |12/09/2018|Fixing log4j |2|
+|12/11/2018|Bug fixes: added ENUM in place of magic numbers, added error pages for codes 500 and 404, fixed photo deletion in JS, fixed duplicate availability being displayed if instructor has more than 1 schedule on the same day |3|
