@@ -12,12 +12,22 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This is the UserProfileUpdateForward servlet class designed to facilitate the forward operation to
+ * the servlet where user profile update will take place.
+ * @author srevin
+ */
 @WebServlet(name = "UserProfileUpdateForward",
             urlPatterns = {"/userProfileUpdateForward"})
-
-
 public class UserProfileUpdateForward extends HttpServlet {
 
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -43,12 +53,26 @@ public class UserProfileUpdateForward extends HttpServlet {
 
     }
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         doPost(request, response);
     }
 
-
+    /**
+     * This method will forward user to the specified location.
+     * @param url The uniform resource locator where user will be forwarded.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     private void forward(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

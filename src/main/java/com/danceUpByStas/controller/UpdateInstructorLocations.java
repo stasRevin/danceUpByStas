@@ -15,10 +15,22 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This is the UpdateInstructorLocations servlet class designed to facilitate the update of the instructor teaching
+ * locations.
+ * @author srevin
+ */
 @WebServlet(name = "UpdateInstructorLocations",
             urlPatterns = {"/updateInstructorLocations"})
 public class UpdateInstructorLocations extends HttpServlet {
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);
@@ -41,6 +53,13 @@ public class UpdateInstructorLocations extends HttpServlet {
 
     }
 
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 

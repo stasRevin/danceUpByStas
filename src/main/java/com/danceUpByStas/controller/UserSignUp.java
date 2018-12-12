@@ -19,6 +19,10 @@ import java.util.Objects;
 
 import org.apache.catalina.realm.RealmBase;
 
+/**
+ * This is the UserSignUp servlet class designed to facilitate the user sign up process.
+ * @author srevin
+ */
 @WebServlet(
         name = "UserSignUp",
         urlPatterns = "/userSignUp")
@@ -27,9 +31,15 @@ import org.apache.catalina.realm.RealmBase;
         maxFileSize = 1024 * 1024 * 100,
         maxRequestSize = 1024 * 1024 * 500
 )
-
 public class UserSignUp extends HttpServlet {
 
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ServletContext context = getServletContext();
@@ -69,7 +79,15 @@ public class UserSignUp extends HttpServlet {
         response.sendRedirect("/danceup");
     }
 
-
+    /**
+     * This method persists the user object and saves the user's uploaded photo.
+     * @param user The reference to the User object.
+     * @param request The HTTP request.
+     * @param context The servlet context.
+     * @return userId The id of the user.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input/output exception.
+     */
     private int persistUser(User user, HttpServletRequest request, ServletContext context) throws ServletException, IOException {
 
         GenericDao<User> userDao = new GenericDao<User>(User.class);
@@ -82,10 +100,13 @@ public class UserSignUp extends HttpServlet {
         photoManager.saveUserPhoto(request, userFolder, user, userDao);
 
         return userId;
-
     }
 
-
+    /**
+     * This method associates the user with the specified role.
+     * @param role The user role.
+     * @param user The reference to the User object.
+     */
     private void associateUserWithRole(String role, User user) {
 
         GenericDao<UserRole> userRoleDao = new GenericDao<>(UserRole.class);
@@ -100,8 +121,5 @@ public class UserSignUp extends HttpServlet {
             Role student = roleDao.getById(UserRoleEnum.STUDENT.getRoleNumber());
             userRoleDao.insertManyToMany(new UserRole(user, student));
         }
-
     }
-
-
 }

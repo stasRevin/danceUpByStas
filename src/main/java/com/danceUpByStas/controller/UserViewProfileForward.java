@@ -16,10 +16,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * This is the UserViewProfileForward servlet class designed to forward requests to view user profile.
+ * @author srevin
+ */
 @WebServlet(name = "UserViewProfileForward",
             urlPatterns = "/userViewProfileForward")
 public class UserViewProfileForward extends HttpServlet {
 
+    /**
+     * The doGet method designed to accept GET requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession(false);

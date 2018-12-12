@@ -17,6 +17,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+/**
+ * This is the UserProfileUpdate servlet class designed to facilitate the update of the user profiles.
+ * @author srevin
+ */
 @WebServlet(name = "UserProfileUpdate",
             urlPatterns = {"/updateUserProfile"})
 
@@ -26,6 +30,14 @@ import java.util.Objects;
         maxRequestSize = 1024 * 1024 * 500
 )
 public class UserProfileUpdate extends HttpServlet {
+
+    /**
+     * This method handles the POST requests.
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     * @throws ServletException The servlet exception.
+     * @throws IOException The input output exception.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -84,6 +96,16 @@ public class UserProfileUpdate extends HttpServlet {
         response.sendRedirect(url);
     }
 
+    /**
+     * This method deletes old user photo and inserts a new user photos.
+     * @param userPhotoFile The file where to user photo file is located.
+     * @param userId The user id.
+     * @param request The HTTP request.
+     * @param user The object reference of type user.
+     * @param userDao The Data Access Object reference to the objects that handle user related database operations.
+     * @throws IOException The input/output exception.
+     * @throws ServletException The servlet exception.
+     */
     private void updateUserPhoto(String userPhotoFile, int userId, HttpServletRequest request, User user, GenericDao<User> userDao)
             throws IOException, ServletException {
 
@@ -99,6 +121,11 @@ public class UserProfileUpdate extends HttpServlet {
 
     }
 
+    /**
+     * This method will determine what path to use in order to forward user based on his/her role.
+     * @param role The user role.
+     * @return path The path to the page where user will be forwarded.
+     */
     private String setUrl(int role) {
 
         if (role == UserRoleEnum.INSTRUCTOR.getRoleNumber()) {
