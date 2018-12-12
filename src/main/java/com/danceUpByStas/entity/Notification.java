@@ -5,6 +5,10 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * This is the Notification bean class representing the Notification entity.
+ * @author srevin
+ */
 @Entity(name = "Notification")
 @Table(name = "Notification")
 @Data
@@ -28,11 +32,20 @@ public class Notification {
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_Notification_user_id"))
     private User user;
 
-
+    /**
+     * The empty constructor.
+     */
     public Notification() {
 
     }
 
+    /**
+     * The parameterized constructor.
+     * @param message The message to send.
+     * @param user The reference to the user object.
+     * @param isRead The true/false value on whether message was read.
+     * @param dateTime The date and time of this notification.
+     */
     public Notification(String message, User user, int isRead, LocalDateTime dateTime) {
 
         this.message = message;

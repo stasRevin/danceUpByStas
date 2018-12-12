@@ -8,6 +8,10 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * This is the User bean class representing the User entity.
+ * @author srevin
+ */
 @Entity(name = "User")
 @Table(name = "User")
 @Data
@@ -65,12 +69,28 @@ public class User {
     )
     private Set<Location> locations = new HashSet<>();
 
-
+    /**
+     * The empty constructor.
+     */
     public User() {
 
     }
 
 
+    /**
+     * The parameterized constructor.
+     * @param username The username of this user.
+     * @param password The user password.
+     * @param isDeleted The flag of whether the user is deleted.
+     * @param firstName The first name.
+     * @param lastName The last name.
+     * @param addressOne The first address.
+     * @param city The city where user resides.
+     * @param state The state where user resides.
+     * @param postalCode The user's postal code.
+     * @param payRate The pay rate.
+     * @param photoName The name of user's photo.
+     */
     public User(String username, String password, int isDeleted, String firstName, String lastName,
                 String addressOne, String city, String state, String postalCode,
                 double payRate, String photoName) {
@@ -89,12 +109,20 @@ public class User {
 
     }
 
+    /**
+     * The method to add teaching location.
+     * @param location The teaching location.
+     */
     public void addTeachingLocation(Location location) {
 
         locations.add(location);
         location.getUsers().add(this);
     }
 
+    /**
+     * The method to remove teaching location.
+     * @param location The teaching location.
+     */
     public void removeTeachingLocation(Location location) {
 
         locations.remove(location);

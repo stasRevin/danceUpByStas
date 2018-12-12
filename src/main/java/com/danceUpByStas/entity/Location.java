@@ -9,6 +9,10 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This is the Location bean class representing the Location entity.
+ * @author srevin
+ */
 @Entity(name = "Location")
 @Table(name = "Location")
 @Data
@@ -46,10 +50,22 @@ public class Location {
     @ManyToMany(mappedBy = "locations", fetch = FetchType.EAGER)
     private Set<User> users = new HashSet<>();
 
+    /**
+     * The empty constructor.
+     */
     public Location() {
 
     }
 
+    /**
+     * The parameterized constructor.
+     * @param name The name of the location.
+     * @param address1 The first address of the location.
+     * @param address2 The second address of the location.
+     * @param city The city of this location.
+     * @param state The state of this location.
+     * @param postalCode The postal code of this location.
+     */
     public Location(String name, String address1, String address2, String city, String state, String postalCode) {
 
         this.name = name;

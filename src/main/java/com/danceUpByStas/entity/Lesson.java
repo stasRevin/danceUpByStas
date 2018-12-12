@@ -11,6 +11,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the Lesson bean class representing the Lesson entity.
+ * @author srevin
+ */
 @Entity(name = "Lesson")
 @Table(name = "Lesson")
 @Data
@@ -47,6 +51,13 @@ public class Lesson {
     @ToString.Exclude
     private List<User> students = new ArrayList<>();
 
+    /**
+     * The parameterized constructor.
+     * @param startTime The start time of the lesson.
+     * @param endTime The end time of the lesson.
+     * @param location The location of the lesson.
+     * @param date The date of the lesson.
+     */
     public Lesson(LocalTime startTime, LocalTime endTime, Location location, LocalDate date) {
 
         this.startTime = startTime;
@@ -55,15 +66,26 @@ public class Lesson {
         this.date = date;
     }
 
+    /**
+     * The empty constructor.
+     */
     public Lesson() {
 
     }
 
+    /**
+     * This method will add users who have instructor roles to the list of instructors.
+     * @param user The user who has instructor role.
+     */
     public void addInstructors(User user) {
 
         instructors.add(user);
     }
 
+    /**
+     * This method will add users who have student roles to the list of students.
+     * @param user The user who has user student role.
+     */
     public void addStudents(User user) {
 
         students.add(user);

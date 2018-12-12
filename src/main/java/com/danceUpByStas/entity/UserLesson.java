@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * the potential expansion of the entity by adding some other fields later on. Some examples
  * may include a primary key or a timestamp to record when the association between the user and
  * the lesson took place.
+ * @author  srevin
  */
 @Entity(name = "UserLesson")
 @Table(name = "User_Lesson")
@@ -33,10 +34,19 @@ public class UserLesson implements Serializable {
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_lesson_role_id"))
     private Role role;
 
+    /**
+     * The empty constructor.
+     */
     public UserLesson() {
 
     }
 
+    /**
+     * The parameterized constructor.
+     * @param user The reference to the user object.
+     * @param lesson The reference ot the lesson object.
+     * @param role The reference to the role object.
+     */
     public UserLesson(User user, Lesson lesson, Role role) {
 
         this.user = user;
