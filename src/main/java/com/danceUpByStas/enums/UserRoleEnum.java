@@ -1,5 +1,9 @@
 package com.danceUpByStas.enums;
 
+/**
+ * This is the UserRoleEnum designed to keep track of user role IDs.
+ * @srevin
+ */
 public enum UserRoleEnum {
 
     INSTRUCTOR(1),
@@ -7,13 +11,20 @@ public enum UserRoleEnum {
 
     private final int roleNumber;
 
+    /**
+     * The parameterized constructor.
+     * @param roleNumber The user role number.
+     */
     UserRoleEnum(int roleNumber) {
 
         this.roleNumber = roleNumber;
     }
 
-    public int getRoleNumber()
-    {
+    /**
+     * This method returns the user role number.
+     * @return roleNumber The user role number.
+     */
+    public int getRoleNumber() {
         return this.roleNumber;
     }
 

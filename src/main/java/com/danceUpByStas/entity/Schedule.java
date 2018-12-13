@@ -59,8 +59,8 @@ public class Schedule implements Comparable<Schedule> {
 
     /**
      * The method to compare two different schedules.
-     * @param anotherSchedule
-     * @return
+     * @param anotherSchedule The schedule to which to compare.
+     * @return result int. If '0', then schedules are the same. Negative if current schedule is less. Positive if greater.
      */
     public int compareTo(Schedule anotherSchedule) {
 

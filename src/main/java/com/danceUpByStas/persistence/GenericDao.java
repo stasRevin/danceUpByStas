@@ -1,7 +1,5 @@
 package com.danceUpByStas.persistence;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,21 +10,27 @@ import java.util.Map;
 
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
- *
+ * This is the GenericDao class designed to store a set of generic Hibernate queries.
+ * @srevin
  */
 
 public class GenericDao<T> {
 
     private Class<T> type;
-    private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * The constructor with type parameter.
+     * @param type The reference to what type this generic DAO will relate.
+     */
     public GenericDao(Class<T> type) {
 
         this.type = type;
-
     }
 
-
+    /**
+     * This method gets all elements of the specified type.
+     * @return list The list of all instances.
+     */
     public List<T> getAll() {
 
         Session session = getSession();
@@ -40,6 +44,12 @@ public class GenericDao<T> {
         return list;
     }
 
+    /**
+     * This method gets an element by its id.
+     * @param id The id of the element.
+     * @param <T> The type of the element.
+     * @return entity The found entity.
+     */
     public <T> T getById(int id) {
 
         Session session = getSession();
@@ -49,6 +59,10 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * This method deletes the specified entity.
+     * @param entity The entity to delete.
+     */
     public void delete(T entity) {
 
         Session session = getSession();
@@ -59,6 +73,11 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * This method inserts the specified entity.
+     * @param entity The entity to insert.
+     * @return
+     */
     public int insert(T entity) {
 
         int id = 0;
@@ -71,6 +90,10 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * This method saves or updates the specified entity.
+     * @param entity The entity to save or update.
+     */
     public void saveOrUpdate(T entity) {
 
         Session session = getSession();
@@ -80,6 +103,11 @@ public class GenericDao<T> {
         session.close();
     }
 
+    /**
+     * This method inserts a junction entity.
+     * @param entity The junction entity to insert.
+     * @return
+     */
     public T insertManyToMany(T entity) {
 
         Session session = getSession();
@@ -113,6 +141,14 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * This method gets elements of type 'A' by id of entity of type 'B' and a property of type 'A'
+     * @param entityBName The name of entity 'B'
+     * @param id The id of entity of type 'A'
+     * @param propertyName The name of property of 'A' entity.
+     * @param propertyValue The value of property of 'A' entity.
+     * @return elements The elements that were found.
+     */
     public List<T> getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA(String entityBName,
                                                          int id, String propertyName, String propertyValue) {
         Session session = getSession();
@@ -127,10 +163,13 @@ public class GenericDao<T> {
         session.close();
 
         return elements;
-
     }
 
-
+    /**
+     * This method gets elements by entities and properties.
+     * @param entities The map of entities and its properties.
+     * @return resultList The list of results.
+     */
     public List<T> getElementsByEntitiesAndProperties(Map<String, Map<String, String>> entities) {
 
         Session session = getSession();
@@ -167,6 +206,11 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * This method gets elements by multiple properties.
+     * @param properties The map of properties.
+     * @return elements. The elements that were found.
+     */
     //https://stackoverflow.com/questions/12244799/correct-usage-of-jpa-criteria-api-predicates-and-where-method-of-criteriaquery
     public List<T> getElementsByMultipleProperties(Map<String, String> properties) {
 
@@ -190,6 +234,12 @@ public class GenericDao<T> {
         return elements;
     }
 
+    /**
+     * This method gets an element by property.
+     * @param property The name of the property.
+     * @param value The property value.
+     * @return element. The element found.
+     */
     public T getElementByProperty(String property, String value) {
 
         Session session = getSession();
@@ -208,6 +258,11 @@ public class GenericDao<T> {
 
     //https://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
 
+    /**
+     * This elements deletes entity by its property.
+     * @param property The name of the property.
+     * @param value The property value.
+     */
     public void deleteEntityByProperty(String property, String value) {
 
         Session session = getSession();
@@ -221,7 +276,12 @@ public class GenericDao<T> {
         session.close();
     }
 
-
+    /**
+     * This method imitate SELECT 1 FROM %Table% WHERE %Property% IN (%VALUES%)
+     * @param property The property name.
+     * @param itemList The list of qualified items.
+     * @return elements The found elements.
+     */
     public List<T> getElementsInList(String property, List<String> itemList) {
 
         Session session = getSession();
@@ -245,7 +305,10 @@ public class GenericDao<T> {
 
     }
 
-
+    /**
+     * This method returns the open session.
+     * @return session The Hibernate session.
+     */
     private Session getSession() {
 
         return SessionFactoryProvider.getSessionFactory().openSession();

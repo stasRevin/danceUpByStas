@@ -21,12 +21,20 @@ import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This is the ScheduleDao class designed to handle schedule related Hibernate operations.
+ * @author srevin
+ */
 public class ScheduleDao {
 
-    private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
-
+    /**
+     * This method gets instructor's schedule by user id and date.
+     * @param userId The user id.
+     * @param date The schedule date.
+     * @return schedules. The list of schedules.
+     */
     public List<Schedule> getScheduleByUserIdAndDate(int userId, LocalDate date) {
 
         Session session = getSession();
@@ -47,6 +55,13 @@ public class ScheduleDao {
 
     // https://stackoverflow.com/questions/41806152/add-criteriabuilder-betweendate-to-predicate
 
+    /**
+     * This method gets a schedule range for the specified instructor.
+     * @param userId The user id.
+     * @param startDate The start date.
+     * @param endDate The end date.
+     * @return schedules The list of found schedules.
+     */
     public List<Schedule> getScheduleRangeForUser(int userId, LocalDate startDate, LocalDate endDate) {
 
         Session session = getSession();
@@ -72,7 +87,14 @@ public class ScheduleDao {
         return schedules;
     }
 
-
+    /**
+     * This method inserts schedules in range for the specified instructor.
+     * @param user The reference to the user object.
+     * @param startDate The start date.
+     * @param endDate The end date.
+     * @param schedules The list of schedules.
+     * @return errorCounter The number of errors encountered.
+     */
     public int insertSchedulesInRangeForUser(User user, LocalDate startDate, LocalDate endDate,
                                               Map<DayOfWeek, List<LocalTime>> schedules) {
 
@@ -116,6 +138,14 @@ public class ScheduleDao {
         return errorCounter;
     }
 
+    /**
+     * This method gets schedules for the specified date, time and user.
+     * @param date The schedule date.
+     * @param startTime The start time.
+     * @param endTime The end time.
+     * @param user The reference to the user object.
+     * @return elements The found elements.
+     */
     public List<Schedule> getMatchingSchedule(LocalDate date, LocalTime startTime, LocalTime endTime, User user) {
 
         Session session = getSession();
@@ -134,7 +164,12 @@ public class ScheduleDao {
         return elements;
     }
 
-
+    /**
+     * This method get availability for the specific date by instructor id.
+     * @param date The lesson date.
+     * @param userId The user id.
+     * @return availableTimes The set of times when instructor is available to teach.
+     */
     public Set<LocalTime> getAvailabilityForDateByInstructorId(LocalDate date, int userId) {
 
         List<Schedule> schedules = getScheduleByUserIdAndDate(userId, date);
@@ -170,7 +205,13 @@ public class ScheduleDao {
         return availableTimes;
     }
 
-
+    /**
+     * This a helper method that iterates over a schedule range.
+     * @param startTime The start time.
+     * @param endTime The end time.
+     * @param availableTimes The set of available times.
+     * @param userLessons The list of references to UserLesson objects.
+     */
     private void iterateOverScheduleRange(LocalTime startTime, LocalTime endTime, Set<LocalTime> availableTimes,
                                           List<UserLesson> userLessons) {
 
@@ -180,6 +221,12 @@ public class ScheduleDao {
         }
     }
 
+    /**
+     * This method compares times.
+     * @param userLessons
+     * @param availableTimes
+     * @param time
+     */
     private void compareTimes(List<UserLesson> userLessons, Set<LocalTime> availableTimes, LocalTime time) {
 
         boolean isBooked = false;
@@ -200,6 +247,7 @@ public class ScheduleDao {
         }
 
     }
+
 
     private Session getSession() {
 
