@@ -48,11 +48,10 @@ public class DeleteInstructorLocation extends HttpServlet {
         if (inputValidator.validateMatchesRegularExpression(locationId, properties.getProperty("regex.numeric"))) {
 
             location = locationDao.getById(Integer.parseInt(locationId));
+            user.removeTeachingLocation(location);
+            userDao.saveOrUpdate(user);
+            session.setAttribute("user", user);
         }
-        user.removeTeachingLocation(location);
-        userDao.saveOrUpdate(user);
-
-        session.setAttribute("user", user);
     }
 
     /**

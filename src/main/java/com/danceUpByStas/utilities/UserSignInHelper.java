@@ -86,7 +86,6 @@ public class UserSignInHelper {
     public List<UserLesson> getUsersForLessons(List<UserLesson> userLessons, int lessonsForRole) {
 
         GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
-        User student = null;
         Lesson lesson = null;
         List<UserLesson> specificLessons = null;
 
