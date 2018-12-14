@@ -5,8 +5,17 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ *This is the SignUpInputValidator class designed to validate user input coming from the user sign up page.
+ * @author srevin
+ */
 public class SignUpInputValidator extends InputValidator {
 
+    /**
+     * This method runs input validator against the given parameter map of user inputs.
+     * @param parameterMap The parameter map of user inputs.
+     * @return true/false The result of the validation.
+     */
     public boolean runInputValidator(Map<String, String[]> parameterMap) {
 
         Properties properties = loadProperties("/regexValidation.properties");

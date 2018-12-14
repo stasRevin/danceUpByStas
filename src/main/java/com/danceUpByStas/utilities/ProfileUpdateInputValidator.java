@@ -5,8 +5,18 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * This is the ProfileUpdateInputValidator designed to validate input coming from the profile update page.
+ * @author srevin
+ */
+
 public class ProfileUpdateInputValidator extends InputValidator {
 
+    /**
+     * This method runs the input validator against the given input parameter map.
+     * @param parameterMap The parameter map of user inputs.
+     * @return true/false The result of validation.
+     */
     public boolean runInputValidator(Map<String, String[]> parameterMap) {
 
         Properties properties = loadProperties("/regexValidation.properties");

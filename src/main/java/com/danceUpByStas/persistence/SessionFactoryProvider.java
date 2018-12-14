@@ -49,6 +49,9 @@ public final class SessionFactoryProvider {
 
     }
 
+    /**
+     * This method closes the Singleton object.
+     */
     public static void closeSingleton() {
 
         sessionFactory = null;

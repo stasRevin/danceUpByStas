@@ -21,6 +21,12 @@ public class ZipCodeRadius implements PropertiesLoader {
 
     private Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     *
+     * @param zipCode
+     * @param radius
+     * @return
+     */
     public Set<User> getInstructorsWhoTeachNearMe(String zipCode, String radius) {
 
         GenericDao<Location> locationDao = new GenericDao<>(Location.class);
@@ -117,7 +123,6 @@ public class ZipCodeRadius implements PropertiesLoader {
             userSet.addAll(location.getUsers());
 
         }
-
         return userSet;
 
     }

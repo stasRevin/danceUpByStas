@@ -146,7 +146,7 @@ public class ScheduleDao {
      * @param user The reference to the user object.
      * @return elements The found elements.
      */
-    public List<Schedule> getMatchingSchedule(LocalDate date, LocalTime startTime, LocalTime endTime, User user) {
+    private List<Schedule> getMatchingSchedule(LocalDate date, LocalTime startTime, LocalTime endTime, User user) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
@@ -248,7 +248,10 @@ public class ScheduleDao {
 
     }
 
-
+    /**
+     * This method returns open session object reference.
+     * @return session. The Hibernate Session.
+     */
     private Session getSession() {
 
         return sessionFactory.openSession();
