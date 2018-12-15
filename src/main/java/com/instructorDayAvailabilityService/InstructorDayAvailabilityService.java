@@ -14,7 +14,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-@Path("/instructorDayAvailability")
+/**
+ * This is the InstructorDayAvailabilityService
+ * @author srevin
+ */
+@Path("/instructor-availabilities")
 public class InstructorDayAvailabilityService {
 
     @GET

@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
  * This is the InputValidationService designed to provide methods to validate the user input.
  * @author srevin
  */
-@Path("/inputValidator")
+@Path("/input-validator")
 public class InputValidationService extends InputValidator {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -29,7 +29,7 @@ public class InputValidationService extends InputValidator {
      * @return response The service response.
      */
     @GET
-    @Path("/validateUsername/{username}")
+    @Path("/username/{username}")
     public Response validateUsername(@PathParam("username")String username) {
 
         GenericDao<User> userDao = new GenericDao<User>(User.class);
@@ -55,7 +55,7 @@ public class InputValidationService extends InputValidator {
      * @return response The service response.
      */
     @GET
-    @Path("/validateName/{name}")
+    @Path("/name/{name}")
     public Response validateName(@PathParam("name")String name) {
 
         if (!validateMatchesRegularExpression(name, properties.getProperty("regex.name")))
@@ -70,7 +70,7 @@ public class InputValidationService extends InputValidator {
      * @return response The service response.
      */
     @GET
-    @Path("/validateAddress/{address}")
+    @Path("/address/{address}")
     public Response validateAddress(@PathParam("address")String address) {
 
         if (!validateMatchesRegularExpression(address, properties.getProperty("regex.address")))
@@ -85,7 +85,7 @@ public class InputValidationService extends InputValidator {
      * @return response The service response.
      */
     @GET
-    @Path("/validateZipCode/{zipCode}")
+    @Path("/zip-code/{zipCode}")
     public Response validateZipCode(@PathParam("zipCode")String zipCode) {
 
         if (!validateMatchesRegularExpression(zipCode, properties.getProperty("regex.zipcode")))
@@ -100,7 +100,7 @@ public class InputValidationService extends InputValidator {
      * @return response. The service response.
      */
     @GET
-    @Path("/validateState/{state}")
+    @Path("/state/{state}")
     public Response validateState(@PathParam("state")String state) {
 
         if (!validateMatchesRegularExpression(state, properties.getProperty("regex.state")))
@@ -115,7 +115,7 @@ public class InputValidationService extends InputValidator {
      * @return response. The service response.
      */
     @GET
-    @Path("/validateRate/{rate}")
+    @Path("/rate/{rate}")
     public Response validateRate(@PathParam("rate")String rate) {
 
         if (!validateMatchesRegularExpression(rate, properties.getProperty("regex.double")))

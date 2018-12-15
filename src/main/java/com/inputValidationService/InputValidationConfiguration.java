@@ -10,7 +10,7 @@ import java.util.Set;
  * to run the input validation service.
  * @author srevin
  */
-@ApplicationPath("/inputValidationServices")
+@ApplicationPath("/input-validation")
 public class InputValidationConfiguration extends Application {
 
     /**

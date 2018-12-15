@@ -20,7 +20,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var usernameInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateUsername/" + usernameInput, function (response) {
+        $.get(getInputValidationAddress() + "username/" + usernameInput, function (response) {
 
             performInputValidation(response, thisClass, "This username was either taken or invalid. Try again.");
         });
@@ -32,7 +32,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var firstNameInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateName/" + firstNameInput, function (response) {
+        $.get(getInputValidationAddress() + "name/" + firstNameInput, function (response) {
 
             performInputValidation(response, thisClass, "The first name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
 
@@ -45,7 +45,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var lastNameInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateName/" + lastNameInput, function (response) {
+        $.get(getInputValidationAddress() + "name/" + lastNameInput, function (response) {
 
             performInputValidation(response, thisClass, "The last name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
 
@@ -58,7 +58,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var addressInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateAddress/" + addressInput, function (response) {
+        $.get(getInputValidationAddress() + "address/" + addressInput, function (response) {
 
             performInputValidation(response, thisClass, "The address must be of the format \"street number\" \"street name\" (street type (ST, AVE, BLVD) optionally.)");
         });
@@ -69,7 +69,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var cityInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateName/" + cityInput, function (response) {
+        $.get(getInputValidationAddress() + "name/" + cityInput, function (response) {
 
             performInputValidation(response, thisClass, "The city name must consist only of alpha characters or alpha characters with an optional hyphen or a space between two words.");
         });
@@ -80,7 +80,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var zipCodeInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateZipCode/" + zipCodeInput, function (response) {
+        $.get(getInputValidationAddress() + "zip-code/" + zipCodeInput, function (response) {
 
             performInputValidation(response, thisClass, "The zip code must consist of exactly five digits.")
         });
@@ -91,7 +91,7 @@ $(document).ready(function () {
         var thisClass = $(this);
         var stateInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateState/" + stateInput, function (response) {
+        $.get(getInputValidationAddress() + "state/" + stateInput, function (response) {
 
             performInputValidation(response, thisClass, "The state must be one of the provided below options.");
         });
@@ -264,7 +264,7 @@ function getServerHomeAddress() {
 
 function getInputValidationAddress() {
 
-    return getServerHomeAddress() + "inputValidationServices/inputValidator/";
+    return getServerHomeAddress() + "input-validation/input-validator/";
 }
 
 function validateFormBeforeSubmission(input, event, thisClass) {
@@ -348,10 +348,9 @@ function addInstructorAvailabilityEventHandler() {
         console.log(instructorId);
         var hour = "";
 
-        $.get(getServerHomeAddress() + "scheduleServices/instructorDayAvailability/"
+        $.get(getServerHomeAddress() + "schedule-services/instructor-availabilities/"
             + lessonDate + "/" + instructorId, function(data) {
 
-            console.log("response: " + data);
         })
 
             .done(function (data) {
