@@ -12,23 +12,29 @@ In the era of a so called gig economy, a number of applications has emerged to a
 ### Project Technologies/Techniques 
 
 * Security/Authentication
-  * Admin role: create/read/update/delete (crud) of all data
-  * User role: create a profile, store dances learned, favorite dance music.
-  * All: can browse website to read about dancing, instructor's tips, look for instructor (cannot book without a valid account)
+  * Instructor role: create a profile, store dances taught, view students' profiles, send notifications to students, update profile,
+    create and delete schedule, add and delete teaching locations.
+  * Student role: create a profile, store dances learned, find instructors nearby, send notifications to instructors, update profile, store and display profile photo
 * Database (MySQL and Hibernate)
   * Store users and roles
+  * Store application data
 * ORM Framework
   * Hibernate
 * Web Services or APIs
-  * Zip Code Radius
+  * Zip Code Radius RESTful service (consumed)
+  * Input validation RESTful service (created and consumed)
+  * Instructor availability RESTful service (created and consumed)
 * Data Validation
-  * jQuery validator
+  * Custom build input validation service (works on the front and the back end)
 * Logging
   * Configurable logging using Log4J. In production, only errors will normally be logged, but logging at a debug level can be turned on to facilitate trouble-shooting. 
 * Hosting
   * AWS
 * Independent Research Topic
   * Java 8 Lambdas
+  * Java 7EE Filters and Listeners
+  * Project Lombok
+  * Enums
 * Unit Testing
   * JUnit tests to achieve appropriate coverage to test all the business logic and calculations.
 
