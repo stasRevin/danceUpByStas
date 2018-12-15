@@ -3,6 +3,8 @@ package com.danceUpByStas.controller;
 import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +39,7 @@ public class DeleteInstructorSchedule extends HttpServlet {
 
         List<Schedule> schedules = (List<Schedule>) session.getAttribute("schedules");
         User user = (User) session.getAttribute("user");
-
+        Logger logger = LogManager.getLogger(this.getClass());
         LocalDate date = LocalDate.parse((String)request.getParameter("date"));
         LocalTime starTime = LocalTime.parse((String)request.getParameter("startTime"));
         LocalTime endTime = LocalTime.parse((String)request.getParameter("endTime"));
@@ -48,8 +50,13 @@ public class DeleteInstructorSchedule extends HttpServlet {
 
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
 
+        try {
         scheduleGenericDao.delete(scheduleToDelete);
         schedules = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", user.getId());
+        } catch (Exception exception) {
+
+            logger.debug("Problem removing or getting schedule: {}", exception);
+        }
 
         session.setAttribute("schedules", schedules);
     }

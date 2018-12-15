@@ -71,12 +71,19 @@ public class DeleteUserDance extends HttpServlet {
      */
     private List<UserDance> deleteUserDance(List<UserDance> userDanceList, String danceToDelete, int userId) {
 
+        Logger logger = LogManager.getLogger(this.getClass());
         GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
         UserDance userDanceToDelete = userDanceList.stream().filter(d -> d.getDance().getName().equals(danceToDelete))
                                                    .findFirst().get();
+        List<UserDance> userDances = null;
+        try {
+            userDanceDao.delete(userDanceToDelete);
+            userDances = userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+        } catch (Exception exception) {
 
-        userDanceDao.delete(userDanceToDelete);
-        return userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+            logger.debug("Problem deleting user dances: {}", exception);
+        }
+        return userDances;
 
     }
 }
