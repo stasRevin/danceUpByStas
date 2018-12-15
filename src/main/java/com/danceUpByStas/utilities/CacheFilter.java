@@ -38,7 +38,7 @@ public class CacheFilter implements javax.servlet.Filter {
 
     /**
      * This method initializes the filter configuration.
-     * @param filterConfiguration
+     * @param filterConfiguration The filter configuration.
      */
     public void init(final FilterConfig filterConfiguration) {
 

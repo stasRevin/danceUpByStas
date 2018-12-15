@@ -21,7 +21,7 @@ public class SessionListener implements HttpSessionListener {
 
     /**
      * This method responds to the event of session creation.
-     * @param sessionEvent
+     * @param sessionEvent The session event.
      */
     public void sessionCreated(HttpSessionEvent sessionEvent) {
         //number of seconds
@@ -32,7 +32,7 @@ public class SessionListener implements HttpSessionListener {
 
     /**
      * This method responds to the event of session destruction.
-     * @param sessionEvent
+     * @param sessionEvent The session event.
      */
     public void sessionDestroyed(HttpSessionEvent sessionEvent) {
 

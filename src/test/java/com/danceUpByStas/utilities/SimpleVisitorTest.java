@@ -13,13 +13,27 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Simple visitor test.
+ * @author srevin
+ */
 class SimpleVisitorTest {
 
+    /**
+     * The Logger.
+     */
     Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
     }
 
+    /**
+     * Visit file success.
+     */
     @Test
     void visitFileSuccess() {
 

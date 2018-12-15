@@ -14,16 +14,26 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User dao test.
+ * @author srevin
+ */
 class UserDaoTest {
 
     private GenericDao<User> genericDao = new GenericDao<>(User.class);
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
     }
 
+    /**
+     * Gets all users success.
+     */
     @Test
     void getAllUsersSuccess() {
 
@@ -32,6 +42,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Insert user success.
+     */
     @Test
     void insertUserSuccess() {
 
@@ -44,6 +57,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Save or update user success.
+     */
     @Test
     void saveOrUpdateUserSuccess() {
 
@@ -55,6 +71,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Gets element by two properties success.
+     */
     @Test
     void getElementByTwoPropertiesSuccess() {
     /*
@@ -70,6 +89,9 @@ class UserDaoTest {
     }
 
 
+    /**
+     * Gets element by property success.
+     */
     @Test
     void getElementByPropertySuccess() {
 
@@ -81,6 +103,9 @@ class UserDaoTest {
     }
 
 
+    /**
+     * Delete entity by property success.
+     */
     @Test
     void deleteEntityByPropertySuccess() {
 
@@ -99,6 +124,9 @@ class UserDaoTest {
 
     }
 
+    /**
+     * Add and remove instructors teaching location.
+     */
     @Test
     void addAndRemoveInstructorsTeachingLocation() {
 

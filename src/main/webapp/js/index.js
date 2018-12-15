@@ -434,7 +434,7 @@ function addInstructorsRateListener() {
         var thisClass = $(this);
         var rateInput = thisClass.val().trim();
 
-        $.get(getInputValidationAddress() + "validateRate/" + rateInput, function (response) {
+        $.get(getInputValidationAddress() + "rate/" + rateInput, function (response) {
 
             performInputValidation(response, thisClass, "The rate must be in the format with the decimal point like \"00.00\".");
         });

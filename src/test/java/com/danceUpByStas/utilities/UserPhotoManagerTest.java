@@ -15,20 +15,37 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User photo manager test.
+ * @author srevin
+ */
 class UserPhotoManagerTest {
 
+    /**
+     * The Logger.
+     */
     Logger logger = LogManager.getLogger(this.getClass());
+
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
     }
 
+    /**
+     * Prepare user photo.
+     */
     @Test
     void prepareUserPhoto() {
 
     }
 
+    /**
+     * Delete user photo.
+     */
     @Test
     void deleteUserPhoto() {
 
@@ -76,7 +93,5 @@ class UserPhotoManagerTest {
         }
 
         assertEquals(true, wasDeleted);
-
-
     }
 }

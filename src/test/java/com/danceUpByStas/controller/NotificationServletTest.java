@@ -12,11 +12,24 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Notification servlet test.
+ * @author srevin
+ */
 class NotificationServletTest {
 
+    /**
+     * The Notification dao.
+     */
     GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
+    /**
+     * The User dao.
+     */
     GenericDao<User> userDao = new GenericDao<>(User.class);
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();

@@ -5,6 +5,11 @@ import lombok.Data;
 
 import javax.annotation.Generated;
 
+/**
+ * This is the DataListItem zip radius web service support class designed to describe a JSON string to be returned
+ * by the service.
+ * @author srevin
+ */
 @Data
 @Generated("com.robohorse.robopojogenerator")
 public class DataListItem{

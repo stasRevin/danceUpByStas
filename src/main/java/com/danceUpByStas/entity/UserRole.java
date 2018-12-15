@@ -66,7 +66,7 @@ public class UserRole implements Serializable {
 
     /**
      * This method sets the value to the role object.
-     * @param role
+     * @param role The user role
      */
     public void setRole(Role role) {
         this.role = role;

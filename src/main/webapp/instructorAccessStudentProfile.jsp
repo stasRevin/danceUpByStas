@@ -13,7 +13,14 @@
             </h3>
         </div>
         <div class="col-sm-3">
-            <img id="userPhoto" src="images/usersFoundPhotos${user.id}/${student.photoName}">
+            <c:choose>
+                <c:when test="${not empty user.photoName}">
+                    <img id="userPhoto" src="images/usersFoundPhotos${user.id}/${student.photoName}">
+                </c:when>
+                <c:otherwise>
+                    <img id="userPhoto" src="images/nopic.jpg">
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="col-sm-6">
             <c:forEach var="studentDance" items="${student.dances}">

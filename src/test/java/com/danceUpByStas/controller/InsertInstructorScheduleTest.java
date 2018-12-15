@@ -12,8 +12,15 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Insert instructor schedule test.
+ * @author srevin
+ */
 class InsertInstructorScheduleTest {
 
+    /**
+     * Prepare schedule success.
+     */
     @Test
     void prepareScheduleSuccess() {
 

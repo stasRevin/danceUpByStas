@@ -8,11 +8,18 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Input validator test.
+ * @author srevin
+ */
 class InputValidatorTest {
 
     private Map<String, String[]> parameterMap = new HashMap<>();
     private SignUpInputValidator inputValidator = new SignUpInputValidator();
 
+    /**
+     * Populate map.
+     */
     @BeforeEach
     void populateMap() {
 
@@ -29,6 +36,9 @@ class InputValidatorTest {
         parameterMap.put("ratePerLesson", new String[]{"0.00"});
     }
 
+    /**
+     * Run input validator success.
+     */
     @Test
     void runInputValidatorSuccess() {
 
@@ -36,6 +46,9 @@ class InputValidatorTest {
         assertEquals(true, isValidInput);
     }
 
+    /**
+     * Run input validator fail on empty input.
+     */
     @Test
     void runInputValidatorFailOnEmptyInput() {
 
@@ -45,6 +58,9 @@ class InputValidatorTest {
         assertEquals(false, isValidInput);
     }
 
+    /**
+     * Run input validator fail on non numeric zip.
+     */
     @Test
     void runInputValidatorFailOnNonNumericZip() {
 
@@ -54,6 +70,9 @@ class InputValidatorTest {
         assertEquals(false, isValidInput);
     }
 
+    /**
+     * Run input validator fail on non alfa last name.
+     */
     @Test
     void runInputValidatorFailOnNonAlfaLastName() {
 
@@ -65,6 +84,9 @@ class InputValidatorTest {
     }
 
 
+    /**
+     * Run input validator fail on invalid state.
+     */
     @Test
     void runInputValidatorFailOnInvalidState() {
 
@@ -74,6 +96,9 @@ class InputValidatorTest {
         assertEquals(false, isValidInput);
     }
 
+    /**
+     * Run input validator fail on non matching passwords.
+     */
     @Test
     void runInputValidatorFailOnNonMatchingPasswords() {
 
@@ -83,6 +108,9 @@ class InputValidatorTest {
         assertEquals(false, isValidInput);
     }
 
+    /**
+     * Run input validator fail on non matching rate per lesson.
+     */
     @Test
     void runInputValidatorFailOnNonMatchingRatePerLesson() {
 

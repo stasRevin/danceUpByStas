@@ -9,8 +9,15 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Instructor day availability service test.
+ * @author srevin
+ */
 class InstructorDayAvailabilityServiceTest {
 
+    /**
+     * Gets instructor day availability success.
+     */
     @Test
     void getInstructorDayAvailabilitySuccess() {
 

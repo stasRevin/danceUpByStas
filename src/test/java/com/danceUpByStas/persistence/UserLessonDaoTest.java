@@ -1,6 +1,5 @@
 package com.danceUpByStas.persistence;
 
-import com.danceUpByStas.entity.User;
 import com.danceUpByStas.entity.UserLesson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,9 +10,17 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User lesson dao test.
+ * @author srevin
+ */
 class UserLessonDaoTest {
 
     private GenericDao<UserLesson> userLessonGenericDao;
+
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
 
@@ -22,6 +29,9 @@ class UserLessonDaoTest {
         userLessonGenericDao = new GenericDao<>(UserLesson.class);
     }
 
+    /**
+     * Gets all lessons where user is in role success.
+     */
     @Test
     void getAllLessonsWhereUserIsInRoleSuccess() {
 

@@ -11,39 +11,71 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Lesson booking confirmation test.
+ * @author srevin
+ */
 class LessonBookingConfirmationTest {
 
+    /**
+     * The User dao.
+     */
     GenericDao<User> userDao = new GenericDao<>(User.class);
+
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
     }
 
+    /**
+     * Insert lesson.
+     */
     @Test
     void insertLesson() {
     }
 
+    /**
+     * Gets location.
+     */
     @Test
     void getLocation() {
     }
 
+    /**
+     * Gets instructor.
+     */
     @Test
     void getInstructor() {
     }
 
+    /**
+     * Insert user lesson.
+     */
     @Test
     void insertUserLesson() {
     }
 
+    /**
+     * Gets user role.
+     */
     @Test
     void getUserRole() {
     }
 
+    /**
+     * Create notification.
+     */
     @Test
     void createNotification() {
     }
 
+    /**
+     * Gets notifications.
+     */
     @Test
     void getNotifications() {
 

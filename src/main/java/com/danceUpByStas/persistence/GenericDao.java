@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
  * This is the GenericDao class designed to store a set of generic Hibernate queries.
- * @srevin
+ * @author srevin
  */
 
 public class GenericDao<T> {
@@ -76,7 +76,7 @@ public class GenericDao<T> {
     /**
      * This method inserts the specified entity.
      * @param entity The entity to insert.
-     * @return
+     * @return id The returned id.
      */
     public int insert(T entity) {
 
@@ -87,7 +87,6 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
         return  id;
-
     }
 
     /**
@@ -106,7 +105,7 @@ public class GenericDao<T> {
     /**
      * This method inserts a junction entity.
      * @param entity The junction entity to insert.
-     * @return
+     * @return entityInserted. The inserted entity.
      */
     public T insertManyToMany(T entity) {
 

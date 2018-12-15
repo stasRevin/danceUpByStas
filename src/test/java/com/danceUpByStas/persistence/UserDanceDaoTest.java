@@ -14,11 +14,19 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User dance dao test.
+ * @author srevin
+ */
 class UserDanceDaoTest {
 
     private GenericDao<Dance> genericDaoDance;
     private GenericDao<User> genericDaoUser;
     private GenericDao<UserDance> userDanceGeneric;
+
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
 
@@ -29,6 +37,9 @@ class UserDanceDaoTest {
         this.genericDaoUser = new GenericDao<>(User.class);
     }
 
+    /**
+     * Gets all success.
+     */
     @Test
     void getAllSuccess() {
 
@@ -37,6 +48,9 @@ class UserDanceDaoTest {
 
     }
 
+    /**
+     * Insert user dance success.
+     */
     @Test
     void insertUserDanceSuccess() {
 
@@ -54,6 +68,9 @@ class UserDanceDaoTest {
 
     }
 
+    /**
+     * Save or update success.
+     */
     @Test
     void saveOrUpdateSuccess() {
 
@@ -66,6 +83,9 @@ class UserDanceDaoTest {
 
     }
 
+    /**
+     * Gets dances by user id success.
+     */
     @Test
     void getDancesByUserIdSuccess() {
 
@@ -77,6 +97,9 @@ class UserDanceDaoTest {
 
     }
 
+    /**
+     * Delete user dances by user id success.
+     */
     @Test
     void deleteUserDancesByUserIdSuccess() {
 

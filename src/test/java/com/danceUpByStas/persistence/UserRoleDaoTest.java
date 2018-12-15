@@ -13,6 +13,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User role dao test.
+ * @author srevin
+ */
 class UserRoleDaoTest {
 
     private GenericDao<UserRole> userRoleDaoGeneric;
@@ -21,6 +25,9 @@ class UserRoleDaoTest {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
@@ -30,6 +37,9 @@ class UserRoleDaoTest {
         this.genericDao = new GenericDao<Role>(Role.class);
     }
 
+    /**
+     * Gets all user roles success.
+     */
     @Test
     void getAllUserRolesSuccess() {
 
@@ -37,6 +47,9 @@ class UserRoleDaoTest {
         assertEquals(3, userRoleList.size());
     }
 
+    /**
+     * Insert user role success.
+     */
     @Test
     void insertUserRoleSuccess() {
 
@@ -49,6 +62,9 @@ class UserRoleDaoTest {
     }
 
 
+    /**
+     * Gets elements by two properties success.
+     */
     @Test
     void getElementsByTwoPropertiesSuccess() {
 

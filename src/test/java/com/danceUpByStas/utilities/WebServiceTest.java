@@ -23,15 +23,27 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Web service test.
+ * @author srevin
+ */
 public class WebServiceTest {
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
 
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
     }
-/*
+
+    /**
+     * Gets nearby zip codes success.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void getNearbyZipCodesSuccess()  throws Exception {
         // https://www.zipwise.com/webservices/?
@@ -48,8 +60,11 @@ public class WebServiceTest {
         assertEquals("53726", item.getCode());
 
     }
-*/
 
+
+    /**
+     * Gets zip codes in list success.
+     */
     @Test
     void getZipCodesInListSuccess() {
 

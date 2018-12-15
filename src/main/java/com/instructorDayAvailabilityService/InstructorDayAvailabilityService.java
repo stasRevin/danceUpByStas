@@ -15,12 +15,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- * This is the InstructorDayAvailabilityService
+ * This is the InstructorDayAvailabilityService designed to produce availability schedule for a given instructor.
  * @author srevin
  */
 @Path("/instructor-availabilities")
 public class InstructorDayAvailabilityService {
 
+    /**
+     * This method returns availability schedule for a given instructor.
+     * @param inputDate The date for which availability is being requested.
+     * @param instructorIdInput The instructor's id.
+     * @return response The service response.
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("{date}/{instructorId}")
@@ -39,6 +45,11 @@ public class InstructorDayAvailabilityService {
         return Response.status(200).entity(schedules).build();
     }
 
+    /**
+     * This method returns a set of schedules from given availability set.
+     * @param availabilitySet The set of availability.
+     * @return schedules The set of schedules.
+     */
     private Set<Schedule> getSchedulesFromAvailability(Set<LocalTime> availabilitySet) {
 
         Set<Schedule> schedules = new TreeSet<>();

@@ -12,32 +12,57 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type User sign in helper test.
+ * @author srevin
+ */
 class UserSignInHelperTest {
 
+    /**
+     * The User lesson dao.
+     */
     GenericDao<UserLesson> userLessonDao = new GenericDao<>(UserLesson.class);
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
     }
 
+    /**
+     * Gets user dances.
+     */
     @Test
     void getUserDances() {
     }
 
+    /**
+     * Gets user schedule.
+     */
     @Test
     void getUserSchedule() {
     }
 
+    /**
+     * Gets user lessons.
+     */
     @Test
     void getUserLessons() {
     }
 
+    /**
+     * Sets user dances.
+     */
     @Test
     void setUserDances() {
     }
 
+    /**
+     * Gets students for lessons.
+     */
     @Test
     void getStudentsForLessons() {
 

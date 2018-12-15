@@ -2,7 +2,7 @@ package com.danceUpByStas.enums;
 
 /**
  * This is the UserRoleEnum designed to keep track of user role IDs.
- * @srevin
+ * @author srevin
  */
 public enum UserRoleEnum {
 

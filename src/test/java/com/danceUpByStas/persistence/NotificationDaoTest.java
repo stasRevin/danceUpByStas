@@ -9,11 +9,18 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Notification dao test.
+ * @author srevin
+ */
 class NotificationDaoTest {
 
     private GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
     private GenericDao<User> userDao = new GenericDao<>(User.class);
 
+    /**
+     * Set up.
+     */
     @BeforeEach
     void SetUp() {
 
@@ -21,6 +28,9 @@ class NotificationDaoTest {
         database.runSQL("cleanTestDb.sql");
     }
 
+    /**
+     * Create notification success.
+     */
     @Test
     void createNotificationSuccess() {
 

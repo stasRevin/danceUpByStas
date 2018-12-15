@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * This is the LessonBookingConfirmation servlet class designed to facilitate the booking of a dance lesson with
  * an instructor by a student.
- * @srevin
+ * @author srevin
  */
 @WebServlet(name = "LessonBookingConfirmation",
             urlPatterns= {"/bookingConfirmation"})

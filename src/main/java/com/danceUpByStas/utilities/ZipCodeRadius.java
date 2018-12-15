@@ -29,8 +29,8 @@ public class ZipCodeRadius implements PropertiesLoader {
     /**
      * This method returns a set of instructors who teach withing the given radius from
      * the given zip code.
-     * @param zipCode
-     * @param radius
+     * @param zipCode The zip code.
+     * @param radius The radius.
      * @return userSet The set of instructors found.
      */
     public Set<User> getInstructorsWhoTeachNearMe(String zipCode, String radius) {

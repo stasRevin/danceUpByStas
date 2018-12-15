@@ -12,11 +12,18 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Schedule dao test.
+ * @author srevin
+ */
 class ScheduleDaoTest {
 
     private ScheduleDao scheduleDao;
     private GenericDao<User> userDao;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
@@ -26,6 +33,9 @@ class ScheduleDaoTest {
         userDao = new GenericDao<>(User.class);
     }
 
+    /**
+     * Gets schedule by user id and date success.
+     */
     @Test
     void getScheduleByUserIdAndDateSuccess() {
 
@@ -33,6 +43,9 @@ class ScheduleDaoTest {
 
     }
 
+    /**
+     * Gets schedule range success.
+     */
     @Test
     void getScheduleRangeSuccess() {
 
@@ -42,6 +55,9 @@ class ScheduleDaoTest {
         assertEquals(5, schedules.size());
     }
 
+    /**
+     * Insert schedules in range for user success.
+     */
     @Test
     void insertSchedulesInRangeForUserSuccess() {
 
@@ -83,6 +99,9 @@ class ScheduleDaoTest {
 
     }
 
+    /**
+     * Gets availability for date by instructor id success.
+     */
     @Test
     void getAvailabilityForDateByInstructorIdSuccess() {
 
