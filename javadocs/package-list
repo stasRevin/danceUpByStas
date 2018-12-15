@@ -1,0 +1,10 @@
+com.danceDescriptionService
+com.danceUpByStas.controller
+com.danceUpByStas.entity
+com.danceUpByStas.enums
+com.danceUpByStas.persistence
+com.danceUpByStas.test.util
+com.danceUpByStas.utilities
+com.inputValidationService
+com.instructorDayAvailabilityService
+com.zipwise
