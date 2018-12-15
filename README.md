@@ -13,7 +13,7 @@ In the era of a so called gig economy, a number of applications has emerged to a
 
 * Security/Authentication
   * Instructor role: create a profile, store dances taught, view students' profiles, send notifications to students, update profile,
-    create and delete schedule, add and delete teaching locations.
+    create and delete schedule, add and delete teaching locations, store and display profile photo.
   * Student role: create a profile, store dances learned, find instructors nearby, send notifications to instructors, update profile, store and display profile photo
 * Database (MySQL and Hibernate)
   * Store users and roles
