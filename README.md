@@ -25,7 +25,7 @@ In the era of a so called gig economy, a number of applications has emerged to a
   * Input validation RESTful service (created and consumed)
   * Instructor availability RESTful service (created and consumed)
 * Data Validation
-  * Custom build input validation service (works on the front and the back end)
+  * Custom built input validation service (works on the front and the back end)
 * Logging
   * Configurable logging using Log4J. In production, only errors will normally be logged, but logging at a debug level can be turned on to facilitate trouble-shooting. 
 * Hosting
