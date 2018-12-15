@@ -25,8 +25,10 @@ public class UserSignInHelper {
     public List<UserDance> getUserDances(int userId) {
 
         GenericDao<UserDance> userDanceDao = new GenericDao<>(UserDance.class);
-        return userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+        List<UserDance> userDanceList = null;
+        userDanceList = userDanceDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
 
+        return userDanceList;
     }
 
     /**
@@ -37,8 +39,10 @@ public class UserSignInHelper {
     public List<Schedule> getUserSchedule(int userId) {
 
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
+        List<Schedule> scheduleList = null;
+        scheduleList = scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
 
-        return scheduleGenericDao.getElementsOfTypeAByIdOfEntityOfTypeB("user", userId);
+        return scheduleList;
     }
 
     /**
@@ -60,7 +64,10 @@ public class UserSignInHelper {
         userLessonEntities.put("user", userLessonPropertiesOne);
         userLessonEntities.put("role", userLessonPropertiesTwo);
 
-        return userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
+        List<UserLesson> userLessonList = null;
+        userLessonList = userLessonDao.getElementsByEntitiesAndProperties(userLessonEntities);
+
+        return userLessonList;
     }
 
     /**
@@ -72,7 +79,6 @@ public class UserSignInHelper {
         for (User user : users) {
 
             user.setDances(getUserDances(user.getId()));
-
         }
     }
 
@@ -94,8 +100,8 @@ public class UserSignInHelper {
 
             specificLessons
                         = userLessonDao.getElementsOfTypeAByIdOfEntityOfTypeB("lesson", lesson.getId())
-                                       .stream().filter(ul -> ul.getRole().getId() == lessonsForRole).collect(Collectors.toList());
-
+                                       .stream().filter(ul -> ul.getRole().getId() == lessonsForRole).collect(Collectors
+                                       .toList());
 
             if (!specificLessons.isEmpty()) {
 
@@ -120,13 +126,9 @@ public class UserSignInHelper {
     public List<Notification> getNotifications(User user) {
 
         GenericDao<Notification> notificationDao = new GenericDao<>(Notification.class);
-        List<Notification> notifications = null;
-
-            notifications = notificationDao
+        List<Notification> notifications = notificationDao
                     .getElementsOfTypeAByIdOfEntityOfTypeBAndPropertyA("user", user.getId(), "isRead", "0");
-
-            Collections.sort(notifications, Comparator.comparing(Notification::getDateTime).reversed());
-
+        Collections.sort(notifications, Comparator.comparing(Notification::getDateTime).reversed());
 
         return notifications;
     }
@@ -139,8 +141,6 @@ public class UserSignInHelper {
     public User getUserById(int userId) {
 
         GenericDao<User> userDao = new GenericDao<>(User.class);
-
         return userDao.getById(userId);
     }
-
 }
