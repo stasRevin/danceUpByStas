@@ -17,15 +17,21 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * This is the ZipCodeRadius class designed to consume the web service that finds zip codes withing a given
+ * radius from a given zip code.
+ * @author srevin
+ */
 public class ZipCodeRadius implements PropertiesLoader {
 
     private Logger logger = LogManager.getLogger(this.getClass());
 
     /**
-     *
+     * This method returns a set of instructors who teach withing the given radius from
+     * the given zip code.
      * @param zipCode
      * @param radius
-     * @return
+     * @return userSet The set of instructors found.
      */
     public Set<User> getInstructorsWhoTeachNearMe(String zipCode, String radius) {
 
@@ -43,7 +49,12 @@ public class ZipCodeRadius implements PropertiesLoader {
         return userSet;
     }
 
-
+    /**
+     * This method returns the list of zip codes located within the given radius from the given zip code.
+     * @param zipCode The given zip code.
+     * @param radius The given radius.
+     * @return zipCodes. The list of zip codes found.
+     */
     private List<String> getListOfNearbyZipCodes(String zipCode, String radius) {
 
         Properties properties = loadProperties("/zipCodeRadius.properties");
@@ -101,6 +112,11 @@ public class ZipCodeRadius implements PropertiesLoader {
         return zipCodes;
     }
 
+    /**
+     * This method returns a list of zip codes as strings.
+     * @param dataList The list of data list items.
+     * @return zipCodes The list of zip codes as strings.
+     */
     private List<String> getZipCodesAsStrings(List<DataListItem> dataList) {
 
         List<String> zipCodes = new ArrayList<>();
@@ -114,6 +130,11 @@ public class ZipCodeRadius implements PropertiesLoader {
         return zipCodes;
     }
 
+    /**
+     * This method returns a set of users who teach at the specified locations.
+     * @param locations The list of specified locations.
+     * @return userSet The set of users.
+     */
     private Set<User> getUsersWhoTeachAtLocations(List<Location> locations) {
 
         Set<User> userSet = new HashSet<>();
@@ -124,6 +145,5 @@ public class ZipCodeRadius implements PropertiesLoader {
 
         }
         return userSet;
-
     }
 }

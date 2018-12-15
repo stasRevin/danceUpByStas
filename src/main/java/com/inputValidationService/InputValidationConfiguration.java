@@ -5,9 +5,18 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This is the InputValidationConfiguration class designed to produce a set of required classes
+ * to run the input validation service.
+ * @author srevin
+ */
 @ApplicationPath("/inputValidationServices")
 public class InputValidationConfiguration extends Application {
 
+    /**
+     * This method returns a set of required classes to run the service.
+     * @return set The set of classes.
+     */
     @Override
     public Set<Class<?>> getClasses() {
 
