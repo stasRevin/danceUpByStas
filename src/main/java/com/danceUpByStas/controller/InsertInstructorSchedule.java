@@ -4,6 +4,8 @@ import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
 import com.danceUpByStas.persistence.GenericDao;
 import com.danceUpByStas.persistence.ScheduleDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,7 +41,8 @@ public class InsertInstructorSchedule extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("user");
-        ScheduleDao scheduleDao = new ScheduleDao();
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext("appContext.xml");
+        ScheduleDao scheduleDao = applicationContext.getBean("scheduleDao", ScheduleDao.class);
         GenericDao<Schedule> scheduleGenericDao = new GenericDao<>(Schedule.class);
         String url = "/updateInstructorSchedule.jsp";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");

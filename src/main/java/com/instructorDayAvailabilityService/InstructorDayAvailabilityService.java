@@ -2,6 +2,8 @@ package com.instructorDayAvailabilityService;
 
 import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.persistence.ScheduleDao;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -33,7 +35,8 @@ public class InstructorDayAvailabilityService {
     public Response getInstructorDayAvailability(@PathParam("date")String inputDate,
                                                  @PathParam("instructorId") String instructorIdInput ) {
 
-        ScheduleDao scheduleDao = new ScheduleDao();
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext("appContext.xml");
+        ScheduleDao scheduleDao = applicationContext.getBean("scheduleDao", ScheduleDao.class);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate date = LocalDate.parse(inputDate, dateFormatter);

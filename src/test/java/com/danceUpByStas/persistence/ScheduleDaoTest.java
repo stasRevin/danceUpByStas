@@ -4,6 +4,8 @@ import com.danceUpByStas.entity.Schedule;
 import com.danceUpByStas.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -28,8 +30,8 @@ class ScheduleDaoTest {
     void setUp() {
         com.danceUpByStas.test.util.Database database = com.danceUpByStas.test.util.Database.getInstance();
         database.runSQL("cleanTestDb.sql");
-
-        scheduleDao = new ScheduleDao();
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext("appContext.xml");
+        scheduleDao = applicationContext.getBean("scheduleDao", ScheduleDao.class);
         userDao = new GenericDao<>(User.class);
     }
 
